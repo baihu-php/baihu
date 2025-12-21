@@ -1,0 +1,33 @@
+{
+    "name": "baihu/baihu",
+    "type": "phpbb-extension",
+    "description": "Baihu Content Management System",
+    "homepage": "https://www.github.com/GanstaZ/",
+    "version": "4.0.0-dev",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "GanstaZ",
+            "email": "ganstaz@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "composer/installers": "^1.0 || ^2.0"
+    },
+    "require-dev": {
+        "phing/phing": "~2.4",
+        "phpstan/phpstan": "^1.8"
+    },
+    "extra": {
+        "display-name": "Baihu CMS",
+        "soft-require": {
+            "phpbb/phpbb": ">=4.0.0@dev"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}
