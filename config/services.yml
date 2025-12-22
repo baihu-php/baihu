@@ -4,7 +4,6 @@ imports:
     # - { resource: area.yml }
     # - { resource: auth.yml }
     - { resource: controller.yml }
-    # - { resource: event.yml }
     - { resource: members.yml }
     - { resource: plugins.yml }
     - { resource: tables.yml }
@@ -20,3 +19,16 @@ services:
         class: baihu\baihu\src\event\subscribers
         tags:
             - { name: event.listener }
+
+    baihu.info:
+        class: baihu\baihu\src\info
+        autowire: false
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@event_dispatcher'
+            - '@template'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.php_ext%'
