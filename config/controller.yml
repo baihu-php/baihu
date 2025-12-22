@@ -1,0 +1,46 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    baihu.abstract_controller:
+        abstract: true
+
+    baihu.controller_helper:
+        class: baihu\baihu\src\controller\controller_helper
+        decorates: controller.helper
+        autowire: false
+        arguments:
+            - '@auth'
+            - '@cache.driver'
+            - '@config'
+            - '@cron.manager'
+            - '@dbal.conn'
+            - '@event_dispatcher'
+            - '@language'
+            - '@request'
+            - '@routing.helper'
+            - '@symfony_request'
+            - '@template'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.adm_relative_path%'
+            - '%core.php_ext%'
+            - '%debug.sql_explain%'
+
+    baihu\baihu\src\controller\controller_helper: '@baihu.controller_helper'
+
+# ----- Controllers -----
+    baihu.index_controller:
+        class: baihu\baihu\src\controller\index_controller
+        calls:
+            - [set_container, ['@Psr\Container\ContainerInterface']]
+        tags: ['container.service_subscriber']
+
+    baihu.posts_controller:
+        class: baihu\baihu\src\controller\posts_controller
+        arguments:
+            - '%core.php_ext%'
+        calls:
+            - [set_container, ['@Psr\Container\ContainerInterface']]
+        tags: ['container.service_subscriber']

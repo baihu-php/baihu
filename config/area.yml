@@ -1,0 +1,44 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    baihu.area.manager:
+        class: baihu\baihu\src\area\manager
+        autowire: false
+        arguments:
+            - '@auth'
+            - '@cache'
+            - '@dbal.conn'
+            - '@event_dispatcher'
+            - '@template'
+            - '@baihu.controller_helper'
+            - '%core.table_prefix%'
+
+    baihu\baihu\src\area\manager: '@baihu.area.manager'
+
+    baihu.area_kernel_subscriber:
+        class: baihu\baihu\src\area\event\area_kernel_subscriber
+        tags:
+            - { name: kernel.event_subscriber }
+
+    baihu.area_subscriber:
+        class: baihu\baihu\src\area\event\area_subscriber
+        tags:
+            - { name: kernel.event_subscriber }
+
+# ----- Controllers -----
+    baihu.admin_controller:
+        class: baihu\baihu\src\controller\admin\index_controller
+        calls:
+            - [set_container, ['@Psr\Container\ContainerInterface']]
+        tags: ['container.service_subscriber']
+
+    # ganstaz.gzo.admin.settings_controller:
+    #     class: ganstaz\gzo\src\controller\admin\settings_controller
+    #     autowire: true
+    #     arguments:
+    #         - '@ganstaz.gzo.settings'
+    #     calls:
+    #         - [set_container, ['@Psr\Container\ContainerInterface']]
+    #     tags: ['container.service_subscriber']

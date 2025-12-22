@@ -1,0 +1,19 @@
+<ul>
+	{% for pagi in pagination %}
+		{% if pagi.S_IS_PREV %}
+			<li class="arrow-left">
+				{{ link({'class': 'button2', 'href': pagi.PAGE_URL}, Icon('font', 'chevron-left', lang('PREVIOUS'), false)) }}
+			</li>
+		{% elseif pagi.S_IS_CURRENT %}
+			<li class="active"><span>{{ pagi.PAGE_NUMBER }}</span></li>
+		{% elseif pagi.S_IS_ELLIPSIS %}
+			<li class="ellipsis"><span>{{ lang('ELLIPSIS') }}</span></li>
+		{% elseif pagi.S_IS_NEXT %}
+			<li class="arrow-right">
+				{{ link({'class': 'button2', 'href': pagi.PAGE_URL}, Icon('font', 'mdi--chevron-right', lang('NEXT'), false)) }}
+			</li>
+		{% else %}
+			<li>{{ link({'class': 'button2', 'href': pagi.PAGE_URL}, pagi.PAGE_NUMBER) }}</li>
+		{% endif %}
+	{% endfor %}
+</ul>

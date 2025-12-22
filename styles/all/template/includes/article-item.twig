@@ -1,0 +1,58 @@
+<article class="gzo-block gzo-post">
+
+	<div class="gzo-bar gzo-block-bar">
+
+		<div class="gzo-bar-left">
+			<div class="gzo-bar-item">
+
+				<button class="gzo-bar-profile gzo-action" data-toggle="author-aid-{{ article.id }}">
+
+					<span class="gzo-avatar-wrap gzo-avatar gzo-avatar-sm">
+						{{ avatar('user', article.author_avatar[0], '', false, true, 'gzo-avatar-sm', true) }}
+					</span>
+
+					<span class="gzo-bar-user">
+						{{- gzo_username('username', article.author, article.author_name, article.author_color, 'gzo-bar-author') -}}
+						<small class="gzo-bar-user-title">{{ article.author_rank }}</small>
+					</span>
+
+				</button>
+				{{- include('@baihu_baihu/includes/profile-mini.twig', article) -}}
+
+			</div>
+		</div>
+
+		<div class="gzo-bar-right">
+
+			<span class="gzo-bar-item gzo-bar-info gzo-post-meta-time u-hidden-xs-down">
+				<time class="gzo-post-meta-time-text" datetime="{{ article.date }}" title="{{ article.date }}" data-short="{{ article.date }}">{{ article.date }}</time>
+			</span>
+		</div>
+	</div>
+
+	<section class="gzo-post-body">
+
+		<h3>{{ link({'href': article.link}, article.title) }}</h3>
+
+		<div class="gzo-content">
+			{{ article.text ~ (article.is_trimmed ? lang('ELLIPSIS') ~ link({'href': article.link}, lang('READ_FULL'))) }}
+		</div>
+
+		<div class="gzo-bar gzo-post-action-bar">
+			<div class="gzo-bar-left gzo-post-action-bar-right"></div>
+			<div class="gzo-bar-right gzo-post-action-bar-right">
+
+				<span class="gzo-bar-item gzo-action gzo-post-action" data-tooltip="true" title="{{ lang('VIEWS') ~ ': ' ~ article.views }}">
+					{{ Icon('gzo', 'fa-regular--eye', lang('VIEWS'), true, 'gzo-icon gzo-action-icon') }}
+				</span>
+				<span class="gzo-bar-item gzo-action gzo-post-action" href="" data-tooltip="true" title="{{ lang('REPLIES') ~ ': ' ~ article.replies }}">
+					{{ Icon('gzo', 'mdi--comments-text-outline', lang('REPLIES'), true, 'gzo-icon gzo-action-icon') }}
+				</span>
+				<span class="gzo-bar-item gzo-action gzo-post-action" href="" data-tooltip="true" title="{{ lang('GZO_LIKE') }}">
+					{{ Icon('gzo', 'mdi--heart-outline', lang('GZO_LIKE'), true, 'gzo-icon gzo-action-icon') }}
+				</span>
+			</div>
+		</div>
+
+	</section>
+</article>

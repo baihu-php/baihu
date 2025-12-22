@@ -1,0 +1,21 @@
+<div class="gzo-block gzo-post-profile gzo-action-toggle gzo-author-aid-{{ article.id }}">
+
+	<a href="{{ article.author_profile }}">
+		<div class="gzo-avatar-wrap gzo-avatar-lg">
+			{{ avatar('user', article.author_avatar[0], '', false, true, 'gzo-avatar-lg', true) }}
+		</div>
+	</a>
+
+	<h4 class="gzo-post-profile-meta">
+		{{- gzo_username('profile', article.author, article.author_name, article.author_color, 'gzo-post-profile-user') -}}
+
+		{% if article.author_rank %}
+			<small class="gzo-post-profile-user-title">{{ article.author_rank }}</small>
+		{% endif %}
+
+		{% if article.author_rank_img %}
+			<span class="gzo-post-profile-rank">{{ article.author_rank_img }}</span>
+		{% endif %}
+	</h4>
+
+</div>

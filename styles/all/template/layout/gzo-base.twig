@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html dir="{{ S_CONTENT_DIRECTION }}" lang="{{ S_USER_LANG }}">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Description" content="{{ SITE_DESCRIPTION }}">
+
+		{{ META }}
+		<title>{% if UNREAD_NOTIFICATIONS_COUNT %}({{ UNREAD_NOTIFICATIONS_COUNT }}) {% endif %}{{ SITENAME }} - {{ PAGE_TITLE }}</title>
+
+		{% if U_CANONICAL %}
+			<link rel="canonical" href="{{ U_CANONICAL }}">
+		{% endif %}
+
+		{% if S_COOKIE_NOTICE %}
+			<link href="{{ T_ASSETS_PATH }}/cookieconsent/cookieconsent.min.css?assets_version={{ T_ASSETS_VERSION }}" rel="stylesheet">
+		{% endif %}
+
+		{# GZO theme #}
+		{% INCLUDECSS '@baihu_baihu/css/theme.css' %}
+
+		{# GZO area #}
+		{% if GZO_IN_AREA %}
+			{% INCLUDECSS '@baihu_baihu/css/area.css' %}
+		{% endif %}
+
+		{% EVENT gzo_header_head_append %}
+
+		{$STYLESHEETS}
+
+		{% EVENT gzo_header_stylesheets_after %}
+
+	</head>
+
+	<body>
+
+		<div class="gzo-page" id="page-top" data-container="page">
+
+			<header class="gzo-header-container">
+
+				<div id="gzo-overlay"></div>
+
+				{# GZO navbar section #}
+				{% block gzo_top_bar %}
+					{{ include('@baihu_baihu/includes/search.twig') }}
+					{{ include('@baihu_baihu/includes/topbar.twig') }}
+				{% endblock %}
+
+				{% block gzo_header %}{% endblock %}
+
+				{% block gzo_crumb %}
+					{{ include('@baihu_baihu/includes/crumbs.twig') }}
+				{% endblock %}
+
+			</header>
+
+			{% block gzo_main_before %}{% endblock %}
+			<main class="gzo-container">
+
+					{% block gzo_main_content_before %}{% endblock %}
+
+					<section class="gzo-content-main">
+
+						{% block gzo_main_left %}
+							{% EVENT gzo_main_left %}
+						{% endblock %}
+
+						{# GZO main section #}
+						<div class="gzo-section-main">
+							{% block gzo_main_content_top %}{% endblock %}
+
+							{% block gzo_main_content %}{% endblock %}
+
+							{% block gzo_main_content_bottom %}
+								{{ gzo_block('baihu_bottom') }}
+								{% EVENT gzo_main_middle %}
+							{% endblock %}
+						</div>
+
+						{% block gzo_main_right %}
+							{% if config('baihu_side') %}
+								<div class="gzo-section-side">
+									{{ gzo_block('baihu_side') }}
+								</div>
+							{% endif %}
+						{% endblock %}
+
+					</section>
+
+					{% block gzo_main_content_after %}{% endblock %}
+
+
+			</main>
+
+			<footer class="gzo-footer-container" id="page-bottom">
+				{{ include('@baihu_baihu/includes/footer.twig') }}
+			</footer>
+
+		</div>
+
+		<script src="{{ T_JQUERY_LINK }}"></script>
+		<script src="{{ T_ASSETS_PATH }}/javascript/core.js?assets_version={{ T_ASSETS_VERSION }}"></script>
+		{% INCLUDEJS 'ajax.js' %}
+
+		{% if S_COOKIE_NOTICE %}
+			<script src="{{ T_ASSETS_PATH }}/cookieconsent/cookieconsent.min.js?assets_version={{ T_ASSETS_VERSION }}"></script>
+			<script>
+				if (typeof window.cookieconsent === "object") {
+					window.addEventListener("load", function(){
+						window.cookieconsent.initialise({
+							"palette": {
+								"popup": {
+									"background": "#0F538A"
+								},
+								"button": {
+									"background": "#E5E5E5"
+								}
+							},
+							"theme": "classic",
+							"content": {
+								"message": "{LA_COOKIE_CONSENT_MSG}",
+								"dismiss": "{LA_COOKIE_CONSENT_OK}",
+								"link": "{LA_COOKIE_CONSENT_INFO}",
+								"href": "{UA_PRIVACY}"
+							}
+						});
+					});
+				}
+			</script>
+		{% endif %}
+
+		{% INCLUDEJS '@baihu_baihu/js/gzo.js' %}
+		{% INCLUDEJS '@baihu_baihu/js/core.js' %}
+
+		{% if config('gzo_bottom') %}
+			{% INCLUDEJS '@baihu_baihu/js/tabs.js' %}
+		{% endif %}
+
+		{% if GZO_IN_AREA %}
+			{% INCLUDEJS '@baihu_baihu/js/dashboard.js' %}
+		{% endif %}
+
+		{% EVENT gzo_footer_after %}
+
+		{$SCRIPTS}
+
+		{% EVENT gzo_footer_body_after %}
+
+	</body>
+
+</html>

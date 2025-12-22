@@ -1,0 +1,9 @@
+{% EVENT ganstaz_gzo_navi_before %}
+
+{% if U_ACP %}
+	<li class="in-menu">
+		{{ link({'href': U_GZO_ADMIN, 'title': lang('GZO_MAIN_PAGE'), 'role': 'menuitem'}, Icon('font', 'cogs', lang('GZO_MAIN_PAGE'), false)) }}
+	</li>
+{% endif %}
+
+{% EVENT ganstaz_gzo_navi_after %}

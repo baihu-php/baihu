@@ -1,0 +1,5 @@
+<dl>
+	<dt><label for="{{ name }}">{{ lang(name|upper) ~ lang('COLON') }}</label></dt>
+
+	<dd>{{ OPTIONS.s_config ? config(name) : OPTIONS.current }}</dd>
+</dl>

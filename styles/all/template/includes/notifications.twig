@@ -1,0 +1,52 @@
+<div class="gzo-notification-container gzo-action-toggle gzo-notification">
+	<div class="gzo-bar gzo-notification-header">
+
+		<div class="gzo-bar-left gzo-notification-header-left">
+			<h2 class="gzo-bar-title">{{ lang('NOTIFICATIONS') }}</h2>
+		</div>
+
+		<div class="gzo-bar-right gzo-notification-header-right">
+			<a class="gzo-bar-item gzo-action gzo-notification-action" href="{{ U_NOTIFICATION_SETTINGS }}" data-tooltip="true" title="{{ lang('NOTIFICATIONS') }}">
+				{{ Icon('gzo', 'mdi--settings-outline', lang('NOTIFICATIONS'), true) }}
+			</a>
+		</div>
+
+	</div>
+
+	<ul class="gzo-notification-list">
+		{% if notifications %}
+
+			{% for item in notifications %}
+				<li class="gzo-notification-item">
+					<a class="gzo-notification-media" href="{{ item.url }}">
+						<span class="gzo-avatar-wrap gzo-avatar gzo-avatar-sm">
+							{{ avatar('user', item, '', false, true, 'gzo-avatar-sm', false) }}
+						</span>
+					</a>
+
+					<div class="gzo-notification-text">
+						<p class="gzo-notification-title">{{ item.FORMATTED_TITLE }}</p>
+						{% if item.REFERENCE %}<p class="gzo-notification-reference">{{ item.REFERENCE }}</p>{% endif %}
+						{% if item.FORUM %}<p class="gzo-notification-forum">{{ item.FORUM }}</p>{% endif %}
+						{% if item.REASON %}<p class="gzo-notification-reason">{{ item.REASON }}</p>{% endif %}
+						<p class="gzo-notification-time">
+							{{ Icon('gzo', 'mdi--clock-outline', item.TIME, true) }}
+							<time class="gzo-time-text" datetime="{{ item.TIME }}" title="{{ item.TIME }}" data-short="{{ item.TIME }}">{{ item.TIME }}</time>
+						</p>
+					</div>
+				</li>
+			{% endfor %}
+
+		{% else %}
+			<li class="gzo-notification-no-item">{{ lang('NO_NOTIFICATIONS') }}</li>
+		{% endif %}
+	</ul>
+
+	<div class="gzo-bar gzo-notification-footer">
+
+		<a class="gzo-bar-item gzo-action gzo-notification-action" href="{{ U_VIEW_ALL_NOTIFICATIONS }}">
+			<span class="gzo-action-text">{{ lang('SEE_ALL') }}</span>
+		</a>
+
+	</div>
+</div>

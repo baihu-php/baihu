@@ -1,0 +1,23 @@
+services:
+    baihu.page:
+        class: baihu\baihu\src\user\page
+        arguments:
+            - '@config'
+            - '@user'
+            - '%core.php_ext%'
+
+    baihu.time:
+        class: baihu\baihu\src\user\time
+        autowire: true
+
+    baihu.users_loader:
+        class: baihu\baihu\src\user\loader
+        arguments:
+            - '@dbal.conn'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%tables.users%'
+
+    baihu\baihu\src\user\page: '@baihu.page'
+    baihu\baihu\src\user\loader: '@baihu.users_loader'
+    baihu\baihu\src\user\time: '@baihu.time'

@@ -1,0 +1,19 @@
+<div class="gzo-bar gzo-search gzo-action-toggle">
+
+	<form class="gzo-search-form" action="{{ U_SEARCH }}" method="get" id="search" role="search">
+
+		<button class="gzo-action" type="submit" data-tooltip="true" title="{{ lang('SEARCH') }}">
+			{{ Icon('gzo', 'mdi--search', lang('SEARCH'), true) }}
+		</button>
+
+		<input class="gzo-search-field" name="keywords" id="keywords" type="search" maxlength="128" title="{{ lang('SEARCH_KEYWORDS') }}" value="{{ SEARCH_WORDS }}" placeholder="{{ lang('SEARCH_MINI') }}">
+
+		<a class="gzo-action" href="{{ U_SEARCH }}" data-tooltip="true" title="{{ lang('SEARCH_ADV') }}">
+			{{ Icon('gzo', 'mdi--settings-outline', lang('SEARCH_ADV'), true) }}
+			<span class="gzo-action-text u-sr-only">
+				{{ lang('SEARCH_ADV') }}
+			</span>
+		</a>
+		{{ S_SEARCH_HIDDEN_FIELDS }}
+	</form>
+</div>

@@ -1,0 +1,49 @@
+{% embed '@baihu_baihu/includes/block-item.twig' %}
+
+	{% set title = lang('WELCOME_GUEST') %}
+
+	{% if S_REGISTERED_USER %}
+		{% set title = lang('WELCOME') ~ S_USERNAME %}
+	{% endif %}
+
+	{% block block_title %}{{ title }}{% endblock %}
+
+	{% block block_content %}
+		<div class="gzo-block-stats">
+
+			{% if S_REGISTERED_USER %}
+
+				<div class="gzo-avatar-wrap gzo-mini-profile gzo-avatar-md">
+					{{ avatar('user', CURRENT_USER_AVATAR, '', false, true, 'gzo-avatar-md', true) }}
+				</div>
+
+				<div class="gzo-block-info">
+					{% if S_DISPLAY_PM %}
+
+						{% set PMC = PRIVATE_MESSAGE_COUNT == 1 ? lang('NEW_PM') : lang('NEW_PMS') %}
+
+						{{- lang('PRIVATE_MESSAGES') ~ lang('COLON') ~ link({'href': U_PRIVATEMSGS, 'title': lang('PRIVATE_MESSAGES')}, ' ' ~ PRIVATE_MESSAGE_COUNT ~ PMC) -}}
+
+					{% endif %}
+				</div>
+
+			{% elseif not S_IS_BOT %}
+				{# <form class="o-form">
+					<div class="o-form-group">
+						<input id="username" class="o-form-input" type="text">
+						<label class="o-form-floating-label" for="username">Username</label>
+					</div>
+					<div class="o-form-group">
+						<input id="password" class="o-form-input" type="text">
+						<label class="o-form-floating-label" for="username">Password</label>
+					</div>
+					<fieldset>
+						<button class="o-btn" type="submit">Sign In</button>
+					</fieldset>
+				</form> #}
+			{% endif %}
+
+		</div>
+	{% endblock %}
+
+{% endembed %}

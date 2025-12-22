@@ -1,0 +1,11 @@
+<div class="gzo-drawer-container gzo-action-toggle gzo-drawer-{{ side }}">
+	{% block drawer_top %}{% endblock %}
+
+	<nav>
+		<ul class="gzo-navigation">
+			{% block drawer %}{% endblock %}
+		</ul>
+	</nav>
+
+	{% block drawer_bottom %}{% endblock %}
+</div>

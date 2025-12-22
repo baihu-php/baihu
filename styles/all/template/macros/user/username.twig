@@ -1,0 +1,19 @@
+{% set color = COLOR ? 'color:#' ~ COLOR : '' %}
+
+{% if MODE === 'profile' %}
+
+	{% if S_GRANTED %}
+		{{- link({'class': CLASSES, 'href': path('ganstaz_gzo_member', {'username': USERNAME}), 'style': color}, USERNAME) -}}
+	{% else %}
+		{{- USERNAME -}}
+	{% endif %}
+
+{% elseif MODE === 'username' %}
+
+	{% if USERNAME %}
+		<span{% if CLASSES %} class="{{ CLASSES }}"{% endif %}{% if color %} style="{{ color }};"{% endif %}>{{ USERNAME }}</span>
+	{% else %}
+		<span>{{ lang('GUEST') }}</span>
+	{% endif %}
+
+{% endif %}

@@ -1,0 +1,136 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    baihu.plugin.loader:
+        class: baihu\baihu\src\plugin\loader
+        autowire: false
+        arguments:
+            - '@dbal.conn'
+            - '@baihu.plugin.collection'
+            - '@baihu.plugin.data'
+            - '%baihu.tables.plugins%'
+            - '%baihu.tables.plugins_on_page%'
+
+    baihu\baihu\src\plugin\loader: '@baihu.plugin.loader'
+
+    baihu.plugin.data:
+        class: baihu\baihu\src\plugin\data
+
+    baihu\baihu\src\plugin\data: '@baihu.plugin.data'
+
+    baihu.plugin.base:
+        abstract: true
+        autowire: false
+        arguments:
+            - '@config'
+            - '@controller.helper'
+            - '@dbal.conn'
+            - '@event_dispatcher'
+            - '@template'
+            - '@baihu.users_loader'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+
+    baihu.posts:
+        class: baihu\baihu\src\plugin\article\posts
+        shared: false
+        parent: baihu.plugin.base
+        autowire: false
+        arguments:
+            - '@auth'
+            - '@language'
+            - '@pagination'
+            - '@text_formatter.renderer'
+            - '@user'
+            # - '@baihu.helper'
+
+    baihu\baihu\src\plugin\article\posts: '@baihu.posts'
+
+# ----- Plugins -----
+    baihu.plugin.collection:
+        class: phpbb\di\service_collection
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: service_collection, tag: baihu.plugin }
+
+    baihu.baihu.plugin.mini_profile:
+        class: baihu\baihu\src\plugin\sidebar\mini_profile
+        shared: false
+        parent: baihu.plugin.base
+        calls:
+            - [loadable, [false]]
+            - [dynamic_id, [false]]
+            - [set_type, [block]]
+        tags:
+            - { name: baihu.plugin }
+
+    baihu.baihu.plugin.information:
+        class: baihu\baihu\src\plugin\sidebar\information
+        shared: false
+        parent: baihu.plugin.base
+        calls:
+            - [loadable, [true]]
+            - [dynamic_id, [false]]
+            - [set_type, [block]]
+        tags:
+            - { name: baihu.plugin }
+
+    baihu.baihu.plugin.group:
+        class: baihu\baihu\src\plugin\sidebar\group
+        shared: false
+        parent: baihu.plugin.base
+        calls:
+            - [loadable, [true]]
+            - [dynamic_id, [true]]
+            - [set_type, [block]]
+        tags:
+            - { name: baihu.plugin }
+
+    baihu.baihu.plugin.top_posters:
+        class: baihu\baihu\src\plugin\sidebar\top_posters
+        shared: false
+        parent: baihu.plugin.base
+        calls:
+            - [loadable, [true]]
+            - [dynamic_id, [false]]
+            - [set_type, [block]]
+        tags:
+            - { name: baihu.plugin }
+
+    baihu.baihu.plugin.recent_posts:
+        class: baihu\baihu\src\plugin\sidebar\recent_posts
+        shared: false
+        parent: baihu.plugin.base
+        calls:
+            - [loadable, [true]]
+            - [dynamic_id, [true]]
+            - [set_type, [block]]
+        tags:
+            - { name: baihu.plugin }
+
+    baihu.baihu.plugin.recent_topics:
+        class: baihu\baihu\src\plugin\sidebar\recent_topics
+        shared: false
+        parent: baihu.plugin.base
+        calls:
+            - [loadable, [true]]
+            - [dynamic_id, [true]]
+            - [set_type, [block]]
+        tags:
+            - { name: baihu.plugin }
+
+    baihu.baihu.plugin.online:
+        class: baihu\baihu\src\plugin\block\online
+        shared: false
+        parent: baihu.plugin.base
+        arguments:
+            - '@baihu.info'
+        calls:
+            - [loadable, [true]]
+            - [dynamic_id, [false]]
+            - [set_type, [block]]
+        tags:
+            - { name: baihu.plugin }

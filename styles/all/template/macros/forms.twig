@@ -1,0 +1,37 @@
+{% macro input(name, value, class, attributes) %}
+	<input{% if class %} class="{{ class }}"{% endif %} id="{{ name }}" name="{{ name }}"{% for attr, value in attributes %} {{ attr }}="{{ value }}"{% endfor %} value="{{ value }}">
+{% endmacro %}
+
+{% macro select(name, current, values, keys = false, attributes) %}
+	<select id="{{ name }}" name="{{ name }}"{% for attr, value in attributes %} {{ attr }}="{{ value }}"{% endfor %}>
+		{% for key, value in values %}
+			{% set option = keys ? key : value %}
+			<option value="{{ option }}"{{ current == option ? ' selected' }}>{{ value }}</option>
+		{% endfor %}
+	</select>
+{% endmacro %}
+
+{% macro label(id, content) %}
+	<label for="{{ id }}">{{ content }}</label>
+{% endmacro %}
+
+{% macro radio(name, value, lang) %}
+	<label>
+		<input class="radio" name="{{ name }}" type="radio" value="1"{{ value ? ' checked' : '' }}> {{ lang.yes }}
+	</label>
+	<label>
+		<input class="radio" name="{{ name }}" type="radio" value="0"{{ value ? '' : ' checked' }}> {{ lang.no }}
+	</label>
+{% endmacro %}
+
+{% macro checkbox(name, value) %}
+	<input class="checkbox" name="{{ name }}" type="checkbox" value="1"{{ value ? ' checked' : '' }}>
+{% endmacro %}
+
+{% macro button(name, value, class, attributes) %}
+	{% from _self import input %}
+
+	<label>
+		{{ input(name, value, class, attributes) }}
+	</label>
+{% endmacro %}

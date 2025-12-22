@@ -1,0 +1,18 @@
+<dl>
+	<dt><label for="{{ name }}">{{ lang(name|upper) ~ lang('COLON') }}</label>
+		{% if OPTIONS.explain %}
+			<br><span>{{ lang(name|upper ~ '_EXPLAIN') }}</span>
+		{% endif %}
+	</dt>
+
+	<dd>
+		{% set value = OPTIONS.s_config ? config(name) : OPTIONS.value %}
+		{% set values = OPTIONS.values ? OPTIONS.values : { 1 : 'YES', 0 : 'NO' } %}
+		{% for key, label in values %}
+			<label>
+				<input class="radio"{% if not OPTIONS.attributes.id is defined %} id="{{ name }}"{% endif %} name="{{ name }}" type="radio" value="{{ key }}"{{ value == key ? ' checked' : '' }}{% for attr, value in OPTIONS.attributes %} {{ attr }}="{{ value }}"{% endfor %}> {{ lang(label) }}
+			</label>
+		{% endfor %}
+
+	</dd>
+</dl>

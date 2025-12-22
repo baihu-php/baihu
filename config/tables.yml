@@ -1,0 +1,4 @@
+parameters:
+    baihu.tables.area: '%core.table_prefix%baihu_areaz'
+    baihu.tables.plugins: '%core.table_prefix%baihu_plugins'
+    baihu.tables.plugins_on_page: '%core.table_prefix%baihu_plugins_on_page'

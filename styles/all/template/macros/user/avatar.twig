@@ -1,0 +1,4 @@
+{% if SRC %}<img class="avatar{% if CLASSES %} {{ CLASSES }}{% endif %}" src="{{ SRC }}"{% if DATA_SRC %} data-src="{{ DATA_SRC }}"{% endif %}{% if WIDTH %} width="{{ WIDTH }}"{% endif %}{% if HEIGHT %} height="{{ HEIGHT }}"{% endif %} alt="{{ lang(TITLE) }}">{% endif %}
+{% if S_ONLINE %}
+	<span class="gzo-avatar-online" data-tooltip="true" title="{{ lang('ONLINE') }}"></span>
+{% endif %}

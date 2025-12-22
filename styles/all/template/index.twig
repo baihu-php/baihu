@@ -1,0 +1,15 @@
+{% extends '@baihu_baihu/layout/gzo-base.twig' %}
+
+{% block gzo_main_content_top %}
+	{% EVENT gzo_main_top_index %}
+{% endblock %}
+
+{% block gzo_main_content %}
+
+	{% if articles %}
+		{% for article in articles %}
+			{{ include('@baihu_baihu/includes/article-item.twig') }}
+		{% endfor %}
+	{% endif %}
+
+{% endblock %}

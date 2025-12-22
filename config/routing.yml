@@ -1,0 +1,52 @@
+baihu_area_routing:
+    resource: area_routes.yml
+    prefix: /admin
+
+# Main page
+ganstaz_gzo_index:
+    path: /
+    controller: baihu.index_controller:index
+
+# Articles
+ganstaz_gzo_articles:
+    path: /articles/{fid}
+    controller: baihu.posts_controller:articles
+    requirements:
+        id: \d+
+
+# Redirect to topic page
+ganstaz_gzo_article:
+    path: /article/{aid}
+    controller: baihu.posts_controller:article
+    requirements:
+        aid: \d+
+
+# Redirect to recent post
+ganstaz_gzo_recent_post:
+    path: /recent-post/aid-{aid}-p-{post_id}
+    controller: baihu.posts_controller:recent_post
+    requirements:
+        aid: \d+
+        post_id: \d+
+
+# Redirect to recent topic
+ganstaz_gzo_recent_topic:
+    path: /recent-article/{aid}
+    controller: baihu.posts_controller:recent_topic
+    requirements:
+        aid: \d+
+
+# Members
+ganstaz_gzo_member:
+    path: /u/{username}
+    controller: baihu.profile_controller:index
+    defaults:
+        tab: profile
+
+ganstaz_gzo_member_tab:
+    path: /u/{username}/tab/{tab}
+    controller: baihu.profile_controller:index
+
+ganstaz_gzo_members:
+    path: /members
+    controller: baihu.members_controller:index

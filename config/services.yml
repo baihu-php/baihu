@@ -1,0 +1,33 @@
+imports:
+    - { resource: alias.yml }
+    - { resource: area.yml }
+    - { resource: auth.yml }
+    - { resource: controller.yml }
+    - { resource: members.yml }
+    - { resource: plugins.yml }
+    - { resource: tables.yml }
+    - { resource: twig.yml }
+    - { resource: user.yml }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    baihu.subscribers:
+        class: baihu\baihu\src\event\subscribers
+        tags:
+            - { name: event.listener }
+
+    baihu.info:
+        class: baihu\baihu\src\info
+        autowire: false
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@event_dispatcher'
+            - '@template'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.php_ext%'

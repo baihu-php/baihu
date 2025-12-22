@@ -1,0 +1,12 @@
+{% embed '@baihu_baihu/includes/block-item.twig' %}
+	{% block block_title %}{{ lang('RECENT_TOPICS') }}{% endblock %}
+
+	{% block block_content %}
+		<ul class="gzo-block-stats">
+			{% for recent in recent_topics %}
+				{{ include('@baihu_baihu/includes/recent-item.twig') }}
+			{% endfor %}
+		</ul>
+	{% endblock %}
+
+{% endembed %}

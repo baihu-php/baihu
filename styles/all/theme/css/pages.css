@@ -1,0 +1,100 @@
+/* Profile page */
+.gzo-profile-header {
+	border-radius: var(--gzo-border-radius);
+	margin-block-end: var(--gzo-spacing-md);
+
+	.gzo-profile-header-cover {
+		background-image: url(./../../../../../test/styles/all/theme/icons/img/testing.webp);
+		/* border-top-left-radius: var(--gzo-border-radius);
+		border-top-right-radius: var(--gzo-border-radius); */
+		border-radius: var(--gzo-border-radius);
+	}
+
+	/* .gzo-profile-header-info {
+		position: relative;
+		height: 100px;
+
+		.gzo-profile-header-avatar {
+			position: absolute;
+			top: -2rem;
+			margin-left: 2rem;
+		}
+	} */
+}
+
+.gzo-profile-title {
+	font-size: var(--gzo-spacing-md);
+	margin-block-end: var(--gzo-spacing-md);
+}
+
+/* Profile left side */
+.gzo-profile {
+	padding-block: var(--gzo-spacing);
+	margin: 0;
+
+	.gzo-profile-avatar-wrap {
+		width: 336px;
+		margin-inline: auto;
+	}
+
+	.gzo-profile-details {
+		font-weight: var(--gzo-font-weight);
+		list-style: none;
+		margin: 0;
+		margin-block-start: var(--gzo-spacing-md);
+		padding-inline: var(--gzo-spacing);
+	}
+}
+
+/* Profile content */
+.gzo-profile-content {
+	.gzo-profile-meta {
+		text-align: center;
+		margin: 0;
+		padding: var(--gzo-spacing-3);
+
+		.gzo-profile-user-title {
+			opacity: 0.38;
+		}
+
+		.gzo-profile-group img {
+			max-width: 200px;
+		}
+	}
+
+	.gzo-profile-meta-5 {
+		font-size: var(--gzo-font-size);
+		margin-bottom: var(--gzo-spacing-3);
+	}
+
+	.gzo-profile-details-text,
+	.gzo-profile-details-link {
+		/* padding-left: 0.5rem; */
+		vertical-align: middle;
+	}
+
+	.gzo-profile-details-icon + .gzo-profile-details-link,
+	.gzo-profile-details-link + .gzo-profile-details-icon {
+		padding-left: 0.5rem;
+	}
+
+	.gzo-profile-details-icon {
+		color: var(--gzo-color-secondary);
+	}
+
+	.gzo-profile-card {
+		background-color: var(--gzo-block-bg);
+		border-radius: var(--gzo-border-radius);
+		margin-bottom: var(--gzo-spacing-4);
+		padding: var(--gzo-spacing-3);
+
+		.gzo-profile-details-stats {
+			margin-bottom: 0;
+			padding-left: var(--gzo-spacing);
+		}
+	}
+
+	.gzo-profile-card:last-of-type {
+		margin-bottom: 0;
+	}
+}
