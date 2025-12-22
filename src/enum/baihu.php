@@ -21,6 +21,8 @@ final class baihu
 	public const MAIN_MIGRATION = '\baihu\baihu\migrations\v40\m1_main';
 
 	// Area
+	public const GZO_IN_AREA = 'GZO_IN_AREA';
+	// public const GZO_IN_ADMIN = 'IN_ADMIN';
 	public const TYPE = 'baihu';
 	public const AREA_DASHBOARD = 'DASHBOARD';
 	public const AREA_CONFIG = 'GZO_CONFIG';
