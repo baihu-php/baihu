@@ -1,0 +1,40 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    baihu.twig.extension:
+        class: baihu\baihu\src\twig\extension
+        # autowire: false
+        # arguments:
+        #     - '@baihu.plugin.data'
+        #     - '@group_helper'
+        tags:
+            - { name: twig.extension }
+
+    # baihu.form.extension:
+    #     class: baihu\baihu\src\twig\extension\form
+    #     tags:
+    #         - { name: twig.extension }
+
+    baihu.username.extension:
+        class: baihu\baihu\src\twig\extension\username
+        tags:
+            - { name: twig.extension }
+
+    baihu.avatar.extension:
+        class: baihu\baihu\src\twig\extension\avatar
+        decorates: template.twig.extensions.avatar
+
+    baihu.icon.extension:
+        class: baihu\baihu\src\twig\extension\icon
+        decorates: template.twig.extensions.icon
+
+    baihu.extension.phpbb:
+        class: baihu\baihu\src\twig\extension_phpbb
+        decorates: template.twig.extensions.phpbb
+        autowire: false
+        arguments:
+            - '@template_context'
+            - '@template.twig.environment'
+            - '@language'
