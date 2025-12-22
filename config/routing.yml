@@ -1,0 +1,14 @@
+# Members
+ganstaz_gzo_member:
+    path: /u/{username}
+    controller: baihu.profile_controller:index
+    defaults:
+        tab: profile
+
+ganstaz_gzo_member_tab:
+    path: /u/{username}/tab/{tab}
+    controller: baihu.profile_controller:index
+
+ganstaz_gzo_members:
+    path: /members
+    controller: baihu.members_controller:index

@@ -1,0 +1,70 @@
+services:
+    baihu.members.subscribers:
+        class: baihu\baihu\src\members\event\subscribers
+        autowire: true
+        tags:
+            - { name: event.listener }
+
+    ganstaz.gzo.members.tabs:
+        class: baihu\baihu\src\members\manager
+        arguments:
+            - '@ganstaz.gzo.members.tabs_collection'
+            - '@controller.helper'
+            - '@language'
+            - '@template'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+
+    ganstaz.gzo.members.tabs_collection:
+        class: phpbb\di\ordered_service_collection
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: service_collection, tag: ganstaz.gzo.profile_tabs }
+
+    ganstaz.gzo.members.profile_base:
+        abstract: true
+        arguments:
+            - '@auth'
+            - '@dbal.conn'
+            - '@event_dispatcher'
+            - '@controller.helper'
+            - '@language'
+            - '@template'
+            - '@user'
+
+# ----- GZO Tabs -----
+    ganstaz.gzo.members.profile:
+        class: baihu\baihu\src\members\tabs\profile
+        shared: false
+        parent: ganstaz.gzo.members.profile_base
+        arguments:
+            - '@config'
+            - '@group_helper'
+            - '@profilefields.manager'
+            - '%core.adm_relative_path%'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+        calls:
+            - [set_name, [profile]]
+        tags:
+            - { name: ganstaz.gzo.profile_tabs, order: 1 }
+
+# ----- Controllers -----
+    baihu.profile_controller:
+        class: baihu\baihu\src\controller\member\profile_controller
+        autowire: true
+        arguments:
+            - '@?ganstaz.gzo.members.tabs'
+        calls:
+            - [set_container, ['@Psr\Container\ContainerInterface']]
+        tags: ['container.service_subscriber']
+
+    baihu.members_controller:
+        class: baihu\baihu\src\controller\member\members_controller
+        autowire: true
+        arguments:
+            - '%core.php_ext%'
+        calls:
+            - [set_container, ['@Psr\Container\ContainerInterface']]
+        tags: ['container.service_subscriber']

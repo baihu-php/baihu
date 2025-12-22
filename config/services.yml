@@ -5,7 +5,7 @@ imports:
     # - { resource: auth.yml }
     - { resource: controller.yml }
     # - { resource: event.yml }
-    # - { resource: members.yml }
+    - { resource: members.yml }
     - { resource: plugins.yml }
     - { resource: tables.yml }
     - { resource: twig.yml }
