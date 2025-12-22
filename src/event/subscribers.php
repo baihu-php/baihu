@@ -36,7 +36,7 @@ class subscribers implements EventSubscriberInterface
 		return [
 			'core.user_setup'		 => 'add_language',
 			'core.user_setup_after'	 => 'load_available_plugins',
-			// 'core.page_header_after' => 'add_global_variables',
+			'core.page_header_after' => 'add_global_variables',
 		];
 	}
 
@@ -65,7 +65,7 @@ class subscribers implements EventSubscriberInterface
 	public function add_global_variables(): void
 	{
 		$this->template->assign_vars([
-			'U_GZO_ADMIN' => $this->controller_helper->route('gzo_main'),
+			'U_GZO_ADMIN' => $this->controller_helper->route('baihu_main'),
 		]);
 	}
 }

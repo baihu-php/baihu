@@ -1,5 +1,9 @@
+baihu_area_routing:
+    resource: area_routes.yml
+    prefix: /admin
+
 # Main page
-baihu_index:
+ganstaz_gzo_index:
     path: /
     controller: baihu.index_controller:index
 
