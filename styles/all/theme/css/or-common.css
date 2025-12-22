@@ -1,0 +1,10 @@
+/* For forum styles */
+.rank-img img {
+	max-width: 192px;
+}
+
+a.avatar.avatar img {
+	max-width: 100px;
+	/* border-radius: 50%;
+	border-style: none; */
+}

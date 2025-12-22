@@ -1,0 +1,9 @@
+<dl>
+	<dt><label for="{{ name }}">{{ lang(name|upper) ~ lang('COLON') }}</label>
+		{% if OPTIONS.explain %}
+			<br><span>{{ lang(name|upper ~ '_EXPLAIN') }}</span>
+		{% endif %}
+	</dt>
+	{% set _value = OPTIONS.s_config ? config(name) : OPTIONS.value %}
+	<dd><input id="{{ name }}" name="{{ name }}" type="{{ type }}"{% for attr, value in OPTIONS.attributes %} {{ attr }}="{{ value }}"{% endfor %} value="{{ _value }}"></dd>
+</dl>

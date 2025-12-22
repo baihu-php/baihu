@@ -1,0 +1,29 @@
+{% embed '@baihu_baihu/includes/block-item.twig' %}
+	{# {% block block_title %}{{ lang('THE_TEAM') }}{% endblock %} #}
+	{% block block_title %}{{ get_group_name(team_name) }}{% endblock %}
+
+	{% block block_content %}
+
+		<div class="gzo-block-stats">
+			{% for member in the_team %}
+
+				<div class="gzo-block-info gzo-block-user">
+
+					<span class="gzo-avatar-wrap gzo-avatar gzo-avatar-sm">
+						{{ avatar('user', member.avatar[0], '', false, true, 'gzo-avatar-sm') }}
+					</span>
+
+					<span class="gzo-user-status">
+						{{- gzo_username('profile', member.id, member.name, member.color, 'gzo-the-team-user') -}}
+						<small class="gzo-user-status-title">{{ member.rank }}</small>
+					</span>
+
+				</div>
+			{% else %}
+				{# TODO: Language string for no members #}
+			{% endfor %}
+		</div>
+
+	{% endblock %}
+
+{% endembed %}

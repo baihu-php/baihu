@@ -1,0 +1,19 @@
+<dl>
+	<dt><label for="{{ name }}">{{ lang(name|upper) ~ lang('COLON') }}</label></dt>
+
+	{% set current = OPTIONS.s_config ? config(name) : OPTIONS.current %}
+	<dd>
+
+{# {% if classes %} class="{{ classes }}"{% endif %}{% if not OPTIONS.attributes.id is defined %} id="{{ name }}"{% endif %} #}
+
+		<select id="{{ name }}" name="{{ name }}"{% for attr, value in OPTIONS.attributes %} {{ attr }}="{{ value }}"{% endfor %}>
+			{% for key, value in OPTIONS.choices %}
+
+				{% set option = OPTIONS.keys ? key : value %}
+				<option value="{{ option }}"{{ current == option ? ' selected' }}>{{ value }}</option>
+
+			{% endfor %}
+		</select>
+
+	</dd>
+</dl>

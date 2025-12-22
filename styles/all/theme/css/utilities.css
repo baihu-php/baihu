@@ -1,0 +1,154 @@
+[tabindex="-1"]:focus {
+	outline: none !important;
+}
+
+.u-clearfix:after {
+	display: table;
+	clear: both;
+	content: " ";
+}
+
+.u-sr-only {
+	border: 0;
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	margin: -0.0625rem;
+	padding: 0;
+}
+
+.u-sr-only.focusable:active,
+.u-sr-only.focusable:focus {
+	position: static;
+	overflow: visible;
+	width: auto;
+	height: auto;
+	margin: 0;
+}
+
+.u-hidden {
+	display: none !important;
+}
+
+@media (max-width: 410px) {
+	.u-hidden-xxs-down {
+		display: none !important;
+	}
+}
+
+@media (min-width: 411px) {
+	.u-hidden-xs-up {
+		display: none !important;
+	}
+}
+
+@media (max-width: 539px) {
+	.u-hidden-xs-down {
+		display: none !important;
+	}
+}
+
+@media (min-width: 540px) {
+	.u-hidden-sm-up {
+		display: none !important;
+	}
+}
+
+@media (max-width: 769px) {
+	.u-hidden-sm-down {
+		display: none !important;
+	}
+}
+
+@media (min-width: 770px) {
+	.u-hidden-md-up {
+		display: none !important;
+	}
+}
+
+@media (max-width: 959px) {
+	.u-hidden-md-down {
+		display: none !important;
+	}
+}
+
+@media (min-width: 960px) {
+	.u-hidden-lg-up {
+		display: none !important;
+	}
+}
+
+@media (max-width: 1139px) {
+	.u-hidden-md-down {
+		display: none !important;
+	}
+}
+
+@media (min-width: 1140px) {
+	.u-hidden-lg-up {
+		display: none !important;
+	}
+}
+
+@media print {
+	*,
+	*:before,
+	*:after,
+	*:first-letter,
+	*:first-line {
+		background: transparent !important;
+		box-shadow: none !important;
+		text-shadow: none !important;
+		color: var(--gray-1300) !important;
+	}
+
+	a,
+	a:visited {
+		text-decoration: underline;
+	}
+
+	a[href]:after {
+		content: " (" attr(href) ")";
+	}
+
+	abbr[title]:after {
+		content: " (" attr(title) ")";
+	}
+
+	a[href^="#"]:after,
+	a[href^="javascript:"]:after {
+		content: "";
+	}
+
+	pre,
+	blockquote {
+		border: 1px solid var(--gray-700);
+		page-break-inside: avoid;
+	}
+
+	thead {
+		display: table-header-group;
+	}
+
+	tr,
+	img {
+		page-break-inside: avoid;
+	}
+
+	img {
+		max-width: 100% !important;
+	}
+
+	p,
+	h2,
+	h3 {
+		orphans: 3;
+		widows: 3;
+	}
+
+	h2,
+	h3 {
+		page-break-after: avoid;
+	}
+}

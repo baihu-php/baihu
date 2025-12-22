@@ -1,0 +1,29 @@
+{% embed '@baihu_baihu/includes/block-item.twig' %}
+	{% block block_title %}{{ lang('LEADERS') }}{% endblock %}
+
+	{% block block_content %}
+
+		<div class="gzo-block-stats">
+			{% for top in top_posters %}
+
+				<div class="gzo-block-info gzo-block-user">
+
+					<span class="gzo-avatar-wrap gzo-avatar gzo-avatar-sm">
+						{{ avatar('user', top.avatar[0], '', false, true, 'gzo-avatar-sm') }}
+					</span>
+
+					<span class="gzo-user-status">
+						{{- gzo_username('profile', top.id, top.name, top.color, 'gzo-top-posters-user') -}}
+						<small class="gzo-user-status-title">
+							{{ lang('POSTS') }} {{ top.posts }}
+						</small>
+					</span>
+
+				</div>
+
+			{% endfor %}
+		</div>
+
+	{% endblock %}
+
+{% endembed %}

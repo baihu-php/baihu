@@ -1,0 +1,97 @@
+<aside class="gzo-section-side gzo-block gzo-profile">
+
+	<div class="gzo-profile-avatar-wrap">
+		<div class="gzo-avatar-wrap gzo-avatar-lg">
+			{{ avatar('user', AVATAR, '', false, true, 'gzo-avatar-lg', true) }}
+		</div>
+	</div>
+
+	<div class="gzo-profile-content">
+
+		<h3 class="gzo-profile-meta">
+			{{- gzo_username('username', user_id, username, color, 'gzo-profile-user') -}}
+
+			{# <br>
+			{{- gzo_username('profile', user_id, username, color, 'gzo-profile-user-link') -}} #}
+
+			{% EVENT memberlist_view_rank_avatar_before %}
+
+			{% if RANK_TITLE %}
+				<small class="gzo-profile-user-title">{{ RANK_TITLE }}</small>
+			{% endif %}
+
+			{% if RANK_IMG %}
+				<span class="gzo-profile-group">{{ RANK_IMG }}</span>
+			{% endif %}
+
+			{% EVENT memberlist_view_rank_avatar_after %}
+		</h3>
+
+		{% if U_EDIT_SELF %}
+			<div class="gzo-profile-bar">
+				<a href="{{ U_EDIT_SELF }}" class="gzo-bar-item gzo-action" title="{{ lang('EDIT_PROFILE') }}">
+					{{- Icon('gzo', 'lucide--edit', lang('LOGIN_LOGOUT'), true, 'gzo-action-icon') -}}<span class="gzo-action-text">{{ lang('EDIT_PROFILE') }}</span>
+				</a>
+			</div>
+		{% endif %}
+
+		{% EVENT memberlist_view_contact_before %}
+
+		<hr class="gzo-stabilize">
+		<ul class="gzo-profile-details">
+			<h4 class="gzo-profile-meta-5">{{ lang('CONTACT_USER') }}</h4>
+
+			{% if U_EMAIL %}
+				<li>
+					{{ Icon('gzo', 'mdi--envelope', lang('SEND_EMAIL_USER'), true, 'gzo-profile-details-icon')
+						~ link({'class': 'gzo-profile-details-link', 'href': U_EMAIL, 'title': lang('SEND_EMAIL_USER')}, lang('SEND_EMAIL_USER'))
+					}}
+				{# <a href="{{ U_EMAIL }}" class="gzo-profile-details-link" title="{{ lang('EDIT_PROFILE') }}">
+					<span class="gzo-profile-details-text">{{ lang('EDIT_PROFILE') }}</span>{{- Icon('gzo', 'mdi--envelope', lang('SEND_EMAIL_USER'), true, 'gzo-profile-details-text-icon') -}}
+				</a> #}
+				</li>
+			{% endif %}
+
+			{% if U_PM %}
+				<li>
+					{{ Icon('gzo', 'mdi--inbox', lang('PRIVATE_MESSAGES'), true, 'gzo-profile-details-icon')
+						~ link({'class': 'gzo-profile-details-link', 'href': U_PM, 'title': lang('SEND_PRIVATE_MESSAGE')}, lang('SEND_PRIVATE_MESSAGE'))
+					}}
+				</li>
+			{% endif %}
+
+			{% EVENT memberlist_view_contact_custom_fields_before %}
+
+			{% for cf in custom_fields %}
+
+				{% if cf.S_PROFILE_CONTACT %}
+
+					{% if cf.PROFILE_FIELD_CONTACT %}
+						{% set field_icon = S_PROFILE_PHPBB_WEBSITE ? 'mdi--globe' : '' %}
+						<li>
+							{{ Icon('gzo', 'mdi--globe', cf.PROFILE_FIELD_DESC, true, 'gzo-profile-details-icon')
+								~ link({'class': 'gzo-profile-details-link', 'href': cf.PROFILE_FIELD_CONTACT, 'title': cf.PROFILE_FIELD_DESC}, cf.PROFILE_FIELD_DESC)
+							}}
+						</li>
+					{% else %}
+						<li>{{ cf.PROFILE_FIELD_VALUE }}</li>
+					{% endif %}
+
+				{% endif %}
+			{% endfor %}
+
+			{# TODO: Remove? #}
+			{% if S_PROFILE_FIELD1 %}
+				{# NOTE: Use a construct like this to include admin defined profile fields. Replace FIELD1 with the name of your field. #}
+				<li>{{ PROFILE_FIELD1_NAME ~ lang('COLON') }} {{ PROFILE_FIELD1_VALUE }}</li>
+			{% endif %}
+
+			{% EVENT memberlist_view_contact_custom_fields_after %}
+
+		</ul>
+
+		{% EVENT memberlist_view_contact_after %}
+
+	</div>
+
+</aside>

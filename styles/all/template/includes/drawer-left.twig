@@ -1,0 +1,55 @@
+{% embed '@baihu_baihu/includes/drawer-item.twig' %}
+
+	{% block drawer %}
+
+		<li class="gzo-navigation-item">
+			<span class="gzo-navigation-category">{{ lang('GZO_GENERAL') }}</span>
+		</li>
+
+		<li class="gzo-navigation-item">
+			<a class="gzo-navigation-link" href="{{ U_FAQ }}">
+				{{ Icon('gzo', 'mdi--faq', lang('FAQ'), true) -}}
+				<span class="gzo-navigation-text">{{ lang('FAQ') }}</span>
+			</a>
+		</li>
+
+		{% if U_CONTACT_US %}
+			<li class="gzo-navigation-item">
+				<a class="gzo-navigation-link" href="{{ U_CONTACT_US }}">
+					{{ Icon('gzo', 'mdi--email-outline', lang('CONTACT_US'), true) -}}
+					<span class="gzo-navigation-text">{{ lang('CONTACT_US') }}</span>
+				</a>
+			</li>
+		{% endif %}
+
+		<li class="gzo-navigation-divider"></li>
+		<li class="gzo-navigation-item">
+			<span class="gzo-navigation-category">{{ lang('GZO_LEGAL') }}</span>
+		</li>
+
+		{% if not S_IS_BOT %}
+			<li class="gzo-navigation-item">
+				<a class="gzo-navigation-link" href="{{ U_DELETE_COOKIES }}" data-ajax="true" data-refresh="true" role="menuitem">
+					{{ Icon('gzo', 'mdi--trash-outline', lang('DELETE_COOKIES'), true) -}}
+					<span class="gzo-navigation-text">{{ lang('DELETE_COOKIES') }}</span>
+				</a>
+			</li>
+		{% endif %}
+
+		<li class="gzo-navigation-item">
+			<a class="gzo-navigation-link" href="{{ U_PRIVACY }}" title="{{ lang('PRIVACY_LINK') }}" role="menuitem">
+				{{ Icon('gzo', 'ic--outline-privacy-tip', lang('PRIVACY_LINK'), true) -}}
+				<span class="gzo-navigation-text">{{ lang('PRIVACY_LINK') }}</span>
+			</a>
+		</li>
+
+		<li class="gzo-navigation-item">
+			<a class="gzo-navigation-link" href="{{ U_TERMS_USE }}" title="{{ lang('TERMS_LINK') }}" role="menuitem">
+				{{- Icon('gzo', 'ant-design--file-done-outlined', lang('TERMS_LINK'), true) -}}
+				<span class="gzo-navigation-text">{{- lang('TERMS_LINK') -}}</span>
+			</a>
+		</li>
+
+	{% endblock %}
+
+{% endembed %}
