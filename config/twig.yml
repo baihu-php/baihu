@@ -27,7 +27,7 @@ services:
         decorates: template.twig.extensions.avatar
 
     baihu.icon.extension:
-        class: baihu\baihu\src\twig\extension\icon
+        class: baihu\baihu\src\twig\extension\icons
         decorates: template.twig.extensions.icon
 
     baihu.extension.phpbb:

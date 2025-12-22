@@ -11,9 +11,9 @@
 namespace baihu\baihu\src\twig\extension;
 
 use phpbb\template\twig\environment;
-use phpbb\template\twig\extension\icon as phpbb_icon;
+use phpbb\template\twig\extension\icon;
 
-class icon extends phpbb_icon
+class icons extends icon
 {
 	public function icon(environment $environment, $type, $icon, $title = '', $hidden = false, $classes = '', array $attributes = [])
 	{
