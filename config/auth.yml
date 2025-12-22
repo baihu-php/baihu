@@ -1,0 +1,12 @@
+services:
+    baihu.auth:
+        class: baihu\baihu\src\auth\auth
+        arguments:
+            - '@auth'
+
+    baihu.auth_kernel_subscriber:
+        class: baihu\baihu\src\auth\event\auth_kernel_subscriber
+        arguments:
+            - '@baihu.auth'
+        tags:
+            - { name: kernel.event_subscriber }

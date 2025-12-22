@@ -1,8 +1,8 @@
 imports:
     - { resource: alias.yml }
-    # - { resource: admin.yml }
-    # - { resource: area.yml }
-    # - { resource: auth.yml }
+    - { resource: admin.yml }
+    - { resource: area.yml }
+    - { resource: auth.yml }
     - { resource: controller.yml }
     - { resource: members.yml }
     - { resource: plugins.yml }

@@ -1,0 +1,14 @@
+baihu_main:
+    path: /index
+    controller: baihu.admin_controller:index
+
+baihu_settings:
+    path: /baihu-settings
+    controller: baihu.admin_controller:index
+baihu_pages:
+    path: /baihu-pages
+    controller: baihu.admin_controller:index
+
+baihu_plugins:
+    path: /baihu-plugins
+    controller: baihu.admin_controller:index
