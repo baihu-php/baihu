@@ -25,7 +25,7 @@ class area_subscriber implements EventSubscriberInterface
 			'lang'		=> 'area_baihu',
 			'ext_name'	=> 'baihu/baihu',
 			'dashboard' => 'DASHBOARD',
-			'route'		=> 'baihu_main',
+			'route'		=> baihu::TYPE . '_main',
 		];
 
 		$event['areas'] = $area;

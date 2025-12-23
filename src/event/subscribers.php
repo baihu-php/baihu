@@ -10,6 +10,7 @@
 
 namespace baihu\baihu\src\event;
 
+use baihu\baihu\src\enum\baihu;
 use baihu\baihu\src\plugin\loader as plugins;
 use baihu\baihu\src\user\page;
 use baihu\baihu\src\controller\controller_helper;
@@ -53,7 +54,7 @@ class subscribers implements EventSubscriberInterface
 	*/
 	public function load_available_plugins(): void
 	{
-		if ($this->config['baihu_plugins'] && $page_name = $this->page->get_current_page())
+		if ($this->config[baihu::PLUGINS] && $page_name = $this->page->get_current_page())
 		{
 			$this->plugins->load_available_plugins($page_name, $this->config);
 		}

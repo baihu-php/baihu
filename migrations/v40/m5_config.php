@@ -44,7 +44,7 @@ class m5_config extends \phpbb\db\migration\migration
 			// ['config.add', ['baihu_recent_posts_fid', 0]],
 			// ['config.add', ['baihu_recent_topics_fid', 0]],
 
-			['config.add', ['baihu_plugins', true]],
+			['config.add', [baihu::PLUGINS, true]],
 			['config.add', [baihu::SIDE, true]],
 			['config.add', [baihu::TOP, true]],
 			['config.add', [baihu::BOTTOM, true]],
