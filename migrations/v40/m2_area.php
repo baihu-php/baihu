@@ -72,7 +72,7 @@ class m2_area extends \phpbb\db\migration\migration
 				],
 				[
 					'cat'	 => baihu::AREA_DASHBOARD,
-					'title'	 => 'GZO_MAIN_PAGE',
+					'title'	 => 'AREA_MAIN_PAGE',
 					'type'	 => baihu::TYPE,
 					'parent' => 0,
 					'auth'	 => '',
@@ -82,7 +82,7 @@ class m2_area extends \phpbb\db\migration\migration
 				],
 				[
 					'cat'	 => baihu::AREA_CONFIG,
-					'title'	 => 'GZO_SETTINGS',
+					'title'	 => 'SETTINGS',
 					'type'	 => baihu::TYPE,
 					'parent' => 0,
 					'auth'	 => '',
@@ -92,7 +92,7 @@ class m2_area extends \phpbb\db\migration\migration
 				],
 				[
 					'cat'	 => baihu::AREA_CONFIG,
-					'title'	 => 'GZO_PLUGINS',
+					'title'	 => 'PLUGINS',
 					'type'	 => baihu::TYPE,
 					'parent' => 0,
 					'auth'	 => '',
@@ -102,7 +102,7 @@ class m2_area extends \phpbb\db\migration\migration
 				],
 				[
 					'cat'	 => baihu::AREA_CONFIG,
-					'title'	 => 'GZO_PAGES',
+					'title'	 => 'PAGES',
 					'type'	 => baihu::TYPE,
 					'parent' => 0,
 					'auth'	 => '',
