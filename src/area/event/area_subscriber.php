@@ -16,7 +16,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class area_subscriber implements EventSubscriberInterface
 {
-	public function gzo_modify_data($event): void
+	public function area_modify_data($event): void
 	{
 		$area = $event['areas'];
 		$area[baihu::TYPE] = [
@@ -34,7 +34,7 @@ class area_subscriber implements EventSubscriberInterface
 	public static function getSubscribedEvents(): array
 	{
 		return [
-			events::BAIHU_AREA_MODIFY_DATA => 'gzo_modify_data'
+			events::BAIHU_AREA_MODIFY_DATA => 'area_modify_data'
 		];
 	}
 }

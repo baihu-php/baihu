@@ -42,9 +42,9 @@ final class manager
 	{
 		$areas = $this->areas;
 
-		/** @event events::GZO_AREA_MODIFY_DATA */
+		/** @event events::BAIHU_AREA_MODIFY_DATA */
 		$vars = ['areas'];
-		extract($this->dispatcher->trigger_event(events::GZO_AREA_MODIFY_DATA, compact($vars)));
+		extract($this->dispatcher->trigger_event(events::BAIHU_AREA_MODIFY_DATA, compact($vars)));
 
 		$this->areas = $areas;
 		unset($areas);
@@ -128,9 +128,9 @@ final class manager
 		$type = $this->type;
 		$navigation = $this->navigation[$type];
 
-		/** @event events::GZO_AREA_MODIFY_NAVIGATION */
+		/** @event events::BAIHU_AREA_MODIFY_NAVIGATION */
 		$vars = ['icons', 'navigation', 'type'];
-		extract($this->dispatcher->trigger_event(events::GZO_AREA_MODIFY_NAVIGATION, compact($vars)));
+		extract($this->dispatcher->trigger_event(events::BAIHU_AREA_MODIFY_NAVIGATION, compact($vars)));
 
 		$this->icons = $icons;
 		$this->navigation = $navigation;
