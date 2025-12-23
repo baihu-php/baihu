@@ -21,7 +21,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, [
 	// Navigation
 	'DASHBOARD' => 'Dashboard',
-	'GZO_MAIN_PAGE' => 'GZO Admin',
+	'AREA_MAIN_PAGE' => 'GZO Admin',
 
 	// Drawer
 	'GZO_GENERAL'	=> 'General',

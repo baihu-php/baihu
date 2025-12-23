@@ -20,15 +20,16 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 	// Categories
-	'GZO_CONFIG'   => 'Configurations',
-	'GZO_PLUGINS'  => 'Plugins',
+	'CONFIG'   => 'Configurations',
+	'PLUGINS'  => 'Plugins',
 
 	// Pages
-	'GZO_MAIN_PAGE_DESC' => 'Welcome to GZO Admin Dashboard!',
+	'AREA_MAIN_PAGE_DESC' => 'Welcome to GZO Admin Dashboard!',
 
-	'GZO_SETTINGS' => 'Global settings',
-	'GZO_PAGES'	   => 'Page settings',
+	'SETTINGS' => 'Global settings',
+	'PAGES'	   => 'Page settings',
 
+	// Inforomation
 	'GZO_PHP'	   => 'PHP version',
 	'GZO_BOARD'	   => 'Board version',
 ]);

@@ -35,6 +35,6 @@ class index_controller extends abstract_controller
 			'BOARD_VERSION'	   => PHPBB_VERSION,
 		]);
 
-		return $controller_helper->render('admin/index.twig', $controller_helper->get_language()->lang('GZO_MAIN_PAGE'));
+		return $controller_helper->render('admin/index.twig', $controller_helper->get_language()->lang('AREA_MAIN_PAGE'));
 	}
 }

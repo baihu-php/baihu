@@ -22,7 +22,7 @@ class area_subscriber implements EventSubscriberInterface
 		$area[baihu::TYPE] = [
 			'type'		=> baihu::TYPE,
 			'auth'		=> 'a_',
-			'lang'		=> 'area_gzo',
+			'lang'		=> 'area_baihu',
 			'ext_name'	=> 'baihu/baihu',
 			'dashboard' => 'DASHBOARD',
 			'route'		=> 'baihu_main',
