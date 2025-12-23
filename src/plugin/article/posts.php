@@ -131,7 +131,7 @@ final class posts extends plugin
 		}
 
 		// Assign breadcrumb
-		$this->controller_helper->assign_breadcrumb($this->categories($forum_id), 'ganstaz_gzo_articles', ['fid' => $forum_id]);
+		$this->controller_helper->assign_breadcrumb($this->categories($forum_id), 'baihu_articles', ['fid' => $forum_id]);
 
 		// Build sql data
 		$sql_ary = $this->get_sql_data($forum_id);
@@ -156,8 +156,8 @@ final class posts extends plugin
 
 			$base = [
 				'routes' => [
-					'ganstaz_gzo_articles',
-					'ganstaz_gzo_articles_page',
+					'baihu_articles',
+					'baihu_articles_page',
 				],
 				'params' => ['id' => $forum_id],
 			];
@@ -202,14 +202,14 @@ final class posts extends plugin
 
 		return [
 			'id'			  => $row['post_id'],
-			'link'			  => $this->controller_helper->route('ganstaz_gzo_article', ['aid' => $row['topic_id']]),
+			'link'			  => $this->controller_helper->route('baihu_article', ['aid' => $row['topic_id']]),
 			'title'			  => $this->truncate($row['topic_title'], $this->config['baihu_title_length']),
 			'date'			  => $this->user->format_date($row['topic_time']),
 
 			'author'		  => $user_id,
 			'author_name'	  => $user['username'],
 			'author_color'	  => $user['user_colour'],
-			'author_profile'  => $this->controller_helper->route('ganstaz_gzo_member', ['username' => $user['username']]),
+			'author_profile'  => $this->controller_helper->route('baihu_member', ['username' => $user['username']]),
 			'author_avatar'	  => [$this->users_loader->get_avatar_data($user_id)],
 			'author_rank'	  => $rank['rank_title'],
 			'author_rank_img' => $rank['rank_img'],

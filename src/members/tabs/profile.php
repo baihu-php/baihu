@@ -336,7 +336,7 @@ final class profile extends profile_base
 			'U_REMOVE_FRIEND'			=> ($friend && $friends_enabled) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;remove=1&amp;usernames[]=' . $user_id) : '',
 			'U_REMOVE_FOE'				=> ($foe && $foes_enabled) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;remove=1&amp;mode=foes&amp;usernames[]=' . $user_id) : '',
 
-			'U_CANONICAL'				=> $this->controller->route('ganstaz_gzo_member', ['username' => $username]),
+			'U_CANONICAL'				=> $this->controller->route('baihu_member', ['username' => $username]),
 		];
 
 		/**

@@ -21,7 +21,7 @@ final class baihu
 	public const MAIN_MIGRATION = '\baihu\baihu\migrations\v40\m1_main';
 
 	// Area
-	public const TYPE = 'baihu';
+	public const TYPE = 'areaz';
 	public const IN_AREAZ = 'IN_AREAZ';
 	public const AREA_DEFAULT_ICON = 'AREA_DEFAULT_ICON';
 	public const AREA_DASHBOARD = 'DASHBOARD';

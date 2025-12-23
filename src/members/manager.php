@@ -77,10 +77,10 @@ class manager
 
 		foreach ($this->available() as $tab)
 		{
-			$route = $this->controller_helper->route('ganstaz_gzo_member_tab', ['username' => $username, 'tab' => $tab]);
+			$route = $this->controller_helper->route('baihu_member_tab', ['username' => $username, 'tab' => $tab]);
 			if ($tab === 'profile')
 			{
-				$route = $this->controller_helper->route('ganstaz_gzo_member', ['username' => $username]);
+				$route = $this->controller_helper->route('baihu_member', ['username' => $username]);
 			}
 
 			$this->template->assign_block_vars('tabs', [
@@ -93,12 +93,12 @@ class manager
 
 	public function generate_breadcrumb(string $username, string $tab): void
 	{
-		$this->controller_helper->assign_breadcrumb('MEMBERLIST', 'ganstaz_gzo_members')
-			->assign_breadcrumb($username, 'ganstaz_gzo_member', ['username' => $username]);
+		$this->controller_helper->assign_breadcrumb('MEMBERLIST', 'baihu_members')
+			->assign_breadcrumb($username, 'baihu_member', ['username' => $username]);
 
 		if ($tab !== 'profile')
 		{
-			$this->controller_helper->assign_breadcrumb(ucfirst($tab), 'ganstaz_gzo_member_tab', ['username' => $username, 'tab' => $tab]);
+			$this->controller_helper->assign_breadcrumb(ucfirst($tab), 'baihu_member_tab', ['username' => $username, 'tab' => $tab]);
 		}
 	}
 }

@@ -65,7 +65,7 @@ class subscribers implements EventSubscriberInterface
 	public function add_global_variables(): void
 	{
 		$this->template->assign_vars([
-			'U_GZO_ADMIN' => $this->controller_helper->route('baihu_main'),
+			'U_GZO_ADMIN' => $this->controller_helper->route('areaz_main'),
 		]);
 	}
 }

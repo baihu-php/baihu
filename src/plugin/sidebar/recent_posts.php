@@ -30,7 +30,7 @@ class recent_posts extends plugin
 		while ($row = $this->db->sql_fetchrow($result))
 		{
 			$this->template->assign_block_vars('recent_posts', [
-				'link'	=> $this->controller_helper->route('ganstaz_gzo_recent_post', ['aid' => $row['topic_id'], 'post_id' => $row['post_id']]),
+				'link'	=> $this->controller_helper->route('baihu_recent_post', ['aid' => $row['topic_id'], 'post_id' => $row['post_id']]),
 				'title' => $this->truncate($row['topic_title'], $this->config['baihu_title_length']),
 			]);
 		}
