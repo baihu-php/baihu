@@ -28,11 +28,10 @@ class index_controller extends abstract_controller
 		$controller_helper = $this->get_controller_helper();
 
 		$controller_helper->get_template()->assign_vars([
-			'GZO_VERSION'	   => gzo::VERSION,
-			'GZO_STYLE'		   => gzo::STYLE,
-
-			'PHP_VERSION_INFO' => PHP_VERSION,
-			'BOARD_VERSION'	   => PHPBB_VERSION,
+			'VERSION'		=> gzo::VERSION,
+			'STYLE'			=> gzo::STYLE,
+			'PHP_VERSION'	=> PHP_VERSION,
+			'BOARD_VERSION'	=> PHPBB_VERSION,
 		]);
 
 		return $controller_helper->render('admin/index.twig', $controller_helper->get_language()->lang('AREA_MAIN_PAGE'));

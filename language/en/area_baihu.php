@@ -30,6 +30,8 @@ $lang = array_merge($lang, [
 	'PAGES'	   => 'Page settings',
 
 	// Inforomation
-	'GZO_PHP'	   => 'PHP version',
-	'GZO_BOARD'	   => 'Board version',
+	'AREA_BAIHU_INFO' => 'Baihu version',
+	'AREA_STYLE_INFO' => 'Baihu style',
+	'AREA_PHP_INFO'   => 'PHP version',
+	'AREA_BOARD_INFO' => 'Board version',
 ]);
