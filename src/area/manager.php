@@ -166,6 +166,6 @@ final class manager
 
 	public function set_template_var(bool $value): void
 	{
-		$this->template->assign_var(gzo::GZO_IN_AREA, $value);
+		$this->template->assign_var(gzo::IN_AREAZ, $value);
 	}
 }
