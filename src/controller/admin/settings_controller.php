@@ -26,7 +26,7 @@ class settings_controller extends abstract_controller
 	{
 	}
 
-	#[isGranted('ADMIN', 'a_board', 'GZO_NO_ADMIN', 403)]
+	#[isGranted('ADMIN', 'a_board', 'AREA_NO_ADMIN', 403)]
 	public function index(): Response
 	{
 		$controller_helper = $this->get_controller_helper();

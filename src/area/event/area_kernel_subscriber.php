@@ -38,7 +38,7 @@ class area_kernel_subscriber implements EventSubscriberInterface
 
 		if (!$this->area_manager->authorize($type))
 		{
-			throw new http_exception(403, 'GZO_NO_ADMIN');
+			throw new http_exception(403, 'AREA_NO_ADMIN');
 		}
 
 		$this->area_manager->build_area_data();
