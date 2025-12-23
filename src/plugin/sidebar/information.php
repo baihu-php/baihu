@@ -21,8 +21,8 @@ class information extends plugin
 	*/
 	public function load_plugin(): void
 	{
-		/** @event events::GZO_INFORMATION_BEFORE */
-		$this->dispatcher->trigger_event(events::GZO_INFORMATION_BEFORE);
+		/** @event events::BAIHU_INFORMATION_BEFORE */
+		$this->dispatcher->trigger_event(events::BAIHU_INFORMATION_BEFORE);
 
 		// Set template vars
 		$this->template->assign_vars([

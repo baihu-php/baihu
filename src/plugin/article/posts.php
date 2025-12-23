@@ -109,9 +109,9 @@ final class posts extends plugin
 		// $category_ids = $this->helper->get_forum_ids();
 		// $default = [(int) $this->config['baihu_fid'], (int) $this->config['gzo_news_fid'],];
 
-		/** @event events::GZO_POSTS_MODIFY_CATEGORY_DATA */
+		/** @event events::BAIHU_POSTS_MODIFY_CATEGORY_DATA */
 		// $vars = ['category_ids', 'default'];
-		// extract($this->dispatcher->trigger_event(events::GZO_POSTS_MODIFY_CATEGORY_DATA, compact($vars)));
+		// extract($this->dispatcher->trigger_event(events::BAIHU_POSTS_MODIFY_CATEGORY_DATA, compact($vars)));
 
 		// Validate category
 		// if (!in_array($forum_id, $category_ids) && !in_array($forum_id, $default))
@@ -256,9 +256,9 @@ final class posts extends plugin
 
 		$template_data = $this->get_template_data($row);
 
-		/** @event events::GZO_ARTICLE_MODIFY_TEMPLATE_DATA */
+		/** @event events::BAIHU_ARTICLE_MODIFY_TEMPLATE_DATA */
 		$vars = ['template_data'];
-		extract($this->dispatcher->trigger_event(events::GZO_ARTICLE_MODIFY_TEMPLATE_DATA, compact($vars)));
+		extract($this->dispatcher->trigger_event(events::BAIHU_ARTICLE_MODIFY_TEMPLATE_DATA, compact($vars)));
 
 		// Assign breadcrumb data
 		$this->controller_helper->assign_breadcrumb($template_data['title'], 'ganstaz_gzo_first_post', ['aid' => $topic_id]);

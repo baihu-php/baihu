@@ -34,7 +34,7 @@ class area_subscriber implements EventSubscriberInterface
 	public static function getSubscribedEvents(): array
 	{
 		return [
-			events::GZO_AREA_MODIFY_DATA => 'gzo_modify_data'
+			events::BAIHU_AREA_MODIFY_DATA => 'gzo_modify_data'
 		];
 	}
 }

@@ -21,15 +21,15 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, [
 	// Navigation
 	'DASHBOARD' => 'Dashboard',
-	'AREA_MAIN_PAGE' => 'GZO Admin',
+	'AREA_MAIN_PAGE' => 'Baihu AreaZ',
 
 	// Drawer
-	'GZO_GENERAL'	=> 'General',
-	'GZO_LEGAL'		=> 'Help & Legal',
+	'DRAWER_GENERAL' => 'General',
+	'DRAWER_LEGAL'	 => 'Help & Legal',
 
-	'GZO_LIKE' => 'Like',
+	'BAIHU_LIKE' => 'Like',
 
-	'NEWS'			=> 'News',
+	'NEWS' => 'News',
 
 	'LATEST_NEWS'  => 'Viewing category',
 	'ARTICLE'	   => 'Viewing article',
@@ -53,11 +53,11 @@ $lang = array_merge($lang, [
 		2 => '%2$ss ago',
 	],
 
-	'GZO_PROFILE' => 'Overview',
-	'GZO_YOUR'	  => 'Your %s',
-	'GZO_OTHER'	  => '%s / %s',
+	// 'GZO_PROFILE' => 'Overview',
+	'CURRENT_USERS_PROFILE_TAB' => 'Your %s',
+	'USERS_PROFILE_TAB' => '%s / %s',
 
-	'GZO_PER_DAY' => '%s per day <strong>%s</strong>',
+	'BAIHU_STATS_PER_DAY' => '%s per day <strong>%s</strong>',
 
 	'LEADERS'		=> 'Top posters',
 	'RECENT_POSTS'	=> 'Recent posts',
@@ -68,6 +68,7 @@ $lang = array_merge($lang, [
 	'NEW_PM'  => ' new message',
 	'NEW_PMS' => ' new messages',
 
+	// TODO: To be removed
 	'PHPBB_VERSION' => 'phpBB version',
 	'PHPBB_STYLE'	=> 'Board style',
 	'GZO_VERSION'	=> 'GZO version',
