@@ -34,7 +34,7 @@ class username extends AbstractExtension
 	public function getFunctions(): array
 	{
 		return [
-			new TwigFunction('gzo_username', [$this, 'username'], ['needs_environment' => true]),
+			new TwigFunction('baihu_username', [$this, 'username'], ['needs_environment' => true]),
 		];
 	}
 
