@@ -109,9 +109,9 @@ final class posts extends plugin
 		// $category_ids = $this->helper->get_forum_ids();
 		// $default = [(int) $this->config['baihu_fid'], (int) $this->config['gzo_news_fid'],];
 
-		/** @event events::GZO_POSTS_MODIFY_CATEGORY_DATA */
+		/** @event events::BAIHU_POSTS_MODIFY_CATEGORY_DATA */
 		// $vars = ['category_ids', 'default'];
-		// extract($this->dispatcher->trigger_event(events::GZO_POSTS_MODIFY_CATEGORY_DATA, compact($vars)));
+		// extract($this->dispatcher->trigger_event(events::BAIHU_POSTS_MODIFY_CATEGORY_DATA, compact($vars)));
 
 		// Validate category
 		// if (!in_array($forum_id, $category_ids) && !in_array($forum_id, $default))
@@ -131,7 +131,7 @@ final class posts extends plugin
 		}
 
 		// Assign breadcrumb
-		$this->controller_helper->assign_breadcrumb($this->categories($forum_id), 'ganstaz_gzo_articles', ['fid' => $forum_id]);
+		$this->controller_helper->assign_breadcrumb($this->categories($forum_id), 'baihu_articles', ['fid' => $forum_id]);
 
 		// Build sql data
 		$sql_ary = $this->get_sql_data($forum_id);
@@ -156,8 +156,8 @@ final class posts extends plugin
 
 			$base = [
 				'routes' => [
-					'ganstaz_gzo_articles',
-					'ganstaz_gzo_articles_page',
+					'baihu_articles',
+					'baihu_articles_page',
 				],
 				'params' => ['id' => $forum_id],
 			];
@@ -202,14 +202,14 @@ final class posts extends plugin
 
 		return [
 			'id'			  => $row['post_id'],
-			'link'			  => $this->controller_helper->route('ganstaz_gzo_article', ['aid' => $row['topic_id']]),
+			'link'			  => $this->controller_helper->route('baihu_article', ['aid' => $row['topic_id']]),
 			'title'			  => $this->truncate($row['topic_title'], $this->config['baihu_title_length']),
 			'date'			  => $this->user->format_date($row['topic_time']),
 
 			'author'		  => $user_id,
 			'author_name'	  => $user['username'],
 			'author_color'	  => $user['user_colour'],
-			'author_profile'  => $this->controller_helper->route('ganstaz_gzo_member', ['username' => $user['username']]),
+			'author_profile'  => $this->controller_helper->route('baihu_member', ['username' => $user['username']]),
 			'author_avatar'	  => [$this->users_loader->get_avatar_data($user_id)],
 			'author_rank'	  => $rank['rank_title'],
 			'author_rank_img' => $rank['rank_img'],
@@ -256,12 +256,12 @@ final class posts extends plugin
 
 		$template_data = $this->get_template_data($row);
 
-		/** @event events::GZO_ARTICLE_MODIFY_TEMPLATE_DATA */
+		/** @event events::BAIHU_ARTICLE_MODIFY_TEMPLATE_DATA */
 		$vars = ['template_data'];
-		extract($this->dispatcher->trigger_event(events::GZO_ARTICLE_MODIFY_TEMPLATE_DATA, compact($vars)));
+		extract($this->dispatcher->trigger_event(events::BAIHU_ARTICLE_MODIFY_TEMPLATE_DATA, compact($vars)));
 
 		// Assign breadcrumb data
-		$this->controller_helper->assign_breadcrumb($template_data['title'], 'ganstaz_gzo_first_post', ['aid' => $topic_id]);
+		$this->controller_helper->assign_breadcrumb($template_data['title'], 'baihu_first_post', ['aid' => $topic_id]);
 
 		$this->template->assign_block_vars('articles', $template_data);
 

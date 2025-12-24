@@ -5,7 +5,7 @@
 	{% EVENT gzo_header_breadcrumbs_before %}
 
 	<ol class="gzo-crumbs" itemscope itemtype="https://schema.org/BreadcrumbList" role="list">
-		{% if not GZO_IN_AREA %}
+		{% if not IN_AREAZ %}
 
 			{% if U_SITE_HOME %}
 				<li class="gzo-crumbs-item" {{ MICRODATA }} role="listitem">
@@ -40,7 +40,7 @@
 
 			<li class="gzo-crumbs-item" {{ MICRODATA }}{% if navlink.MICRODATA %} {{ navlink.MICRODATA }}{% endif %}>
 				<a class="gzo-crumbs-link" itemprop="item" href="{{ NAVLINK_LINK }}" title="{{ NAVLINK_NAME }}">
-					{% if GZO_IN_AREA and loop.first %}
+					{% if IN_AREAZ and loop.first %}
 						{{ Icon('gzo', 'mdi--view-dashboard-outline', lang('DASHBOARD'), true, 'gzo-crumbs-icon') }}
 					{% else %}
 						{{ Icon('gzo', 'mdi--chevron-right', '', true, 'gzo-crumbs-icon') }}

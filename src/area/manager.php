@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\src\area;
 
-use baihu\baihu\src\enum\baihu as gzo;
+use baihu\baihu\src\enum\core;
 use baihu\baihu\src\event\events;
 use baihu\baihu\src\controller\controller_helper;
 use phpbb\auth\auth;
@@ -24,7 +24,7 @@ final class manager
 	protected readonly string $type;
 	protected array|bool $areas = [];
 	protected array|bool $navigation = [];
-	protected array $icons = ['GZO_DEFAULT' => 'ic--outline-home'];
+	protected array $icons = [core::AREA_DEFAULT_ICON => 'ic--outline-home'];
 
 	public function __construct(
 		protected auth $auth,
@@ -42,9 +42,9 @@ final class manager
 	{
 		$areas = $this->areas;
 
-		/** @event events::GZO_AREA_MODIFY_DATA */
+		/** @event events::BAIHU_AREA_MODIFY_DATA */
 		$vars = ['areas'];
-		extract($this->dispatcher->trigger_event(events::GZO_AREA_MODIFY_DATA, compact($vars)));
+		extract($this->dispatcher->trigger_event(events::BAIHU_AREA_MODIFY_DATA, compact($vars)));
 
 		$this->areas = $areas;
 		unset($areas);
@@ -76,10 +76,10 @@ final class manager
 
 		$this->controller_helper->add_language($area['lang'], $area['ext_name']);
 
-		if (($this->navigation = $this->cache->get('_gzo_area')) === false)
+		if (($this->navigation = $this->cache->get('_baihu_areaz')) === false)
 		{
 			$sql = 'SELECT *
-					FROM ' . $this->table . gzo::AREAZ . '
+					FROM ' . $this->table . core::AREAZ . '
 					ORDER BY id';
 			$result = $this->db->sql_query($sql);
 
@@ -89,7 +89,7 @@ final class manager
 			}
 			$this->db->sql_freeresult($result);
 
-			$this->cache->put('_gzo_area', $this->navigation);
+			$this->cache->put('_baihu_areaz', $this->navigation);
 		}
 
 		foreach ($this->navigation[$this->type] as $cat => $data)
@@ -128,9 +128,9 @@ final class manager
 		$type = $this->type;
 		$navigation = $this->navigation[$type];
 
-		/** @event events::GZO_AREA_MODIFY_NAVIGATION */
+		/** @event events::BAIHU_AREA_MODIFY_NAVIGATION */
 		$vars = ['icons', 'navigation', 'type'];
-		extract($this->dispatcher->trigger_event(events::GZO_AREA_MODIFY_NAVIGATION, compact($vars)));
+		extract($this->dispatcher->trigger_event(events::BAIHU_AREA_MODIFY_NAVIGATION, compact($vars)));
 
 		$this->icons = $icons;
 		$this->navigation = $navigation;
@@ -140,7 +140,7 @@ final class manager
 		{
 			$this->template->assign_block_vars('menu', [
 				'heading' => $category,
-				'icon'	  => $this->icons[$category] ?? $this->icons['GZO_DEFAULT'],
+				'icon'	  => $this->icons[$category] ?? $this->icons[core::AREA_DEFAULT_ICON],
 			]);
 
 			foreach ($data as $item)
@@ -166,6 +166,6 @@ final class manager
 
 	public function set_template_var(bool $value): void
 	{
-		$this->template->assign_var(gzo::GZO_IN_AREA, $value);
+		$this->template->assign_var(core::IN_AREAZ, $value);
 	}
 }

@@ -16,20 +16,18 @@ namespace baihu\baihu\src\event;
 final class events
 {
 	/** Area manager */
-	public const GZO_AREA_MODIFY_DATA = 'ganstaz.gzo.area_modify_data';
+	public const BAIHU_AREA_MODIFY_DATA = 'baihu.area_modify_data';
 
 	/** Area base class */
-	public const GZO_AREA_MODIFY_NAVIGATION = 'ganstaz.gzo.area_modify_navigation';
+	public const BAIHU_AREA_MODIFY_NAVIGATION = 'baihu.area_modify_navigation';
 
 	/** Information plugin */
-	public const GZO_INFORMATION_BEFORE = 'ganstaz.gzo.information_before';
+	public const BAIHU_INFORMATION_BEFORE = 'baihu.information_before';
 
 	/** Who's Online plugin */
-	public const GZO_ONLINE_DATA_AFTER = 'ganstaz.gzo.online_data_after';
+	public const BAIHU_ONLINE_DATA_AFTER = 'baihu.online_data_after';
 
 	/** Posts plugin */
-	public const GZO_POSTS_MODIFY_CATEGORY_DATA = 'ganstaz.gzo.posts_modify_category_data';
-
-	/** Posts plugin */
-	public const GZO_ARTICLE_MODIFY_TEMPLATE_DATA = 'ganstaz.gzo.article_modify_template_data';
+	public const BAIHU_POSTS_MODIFY_CATEGORY_DATA = 'baihu.posts_modify_category_data';
+	public const BAIHU_ARTICLE_MODIFY_TEMPLATE_DATA = 'baihu.article_modify_template_data';
 }

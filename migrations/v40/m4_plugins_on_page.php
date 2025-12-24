@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\migrations\v40;
 
-use baihu\baihu\src\enum\baihu;
+use baihu\baihu\src\enum\core;
 
 class m4_plugins_on_page extends \phpbb\db\migration\migration
 {
@@ -19,7 +19,7 @@ class m4_plugins_on_page extends \phpbb\db\migration\migration
 	 */
 	public static function depends_on(): array
 	{
-		return [baihu::MAIN_MIGRATION];
+		return [core::MAIN_MIGRATION];
 	}
 
 	/**
@@ -34,47 +34,47 @@ class m4_plugins_on_page extends \phpbb\db\migration\migration
 
 	public function add_plugins_page_data(): void
 	{
-		if ($this->db_tools->sql_table_exists($this->table_prefix . baihu::PLUGINS_ON_PAGE))
+		if ($this->db_tools->sql_table_exists($this->table_prefix . core::PLUGINS_ON_PAGE))
 		{
 			$on_page = [
 				[
-					'name'		=> baihu::PROFILE,
-					'page_name' => baihu::PAGE,
+					'name'		=> core::PROFILE,
+					'page_name' => core::PAGE,
 					'active'	=> 1,
 				],
 				[
-					'name'		=> baihu::GROUP,
-					'page_name' => baihu::PAGE,
+					'name'		=> core::GROUP,
+					'page_name' => core::PAGE,
 					'active'	=> 1,
 				],
 				[
-					'name'		=> baihu::POSTER,
-					'page_name' => baihu::PAGE,
+					'name'		=> core::POSTER,
+					'page_name' => core::PAGE,
 					'active'	=> 1,
 				],
 				[
-					'name'		=> baihu::POSTS,
-					'page_name' => baihu::PAGE,
+					'name'		=> core::POSTS,
+					'page_name' => core::PAGE,
 					'active'	=> 1,
 				],
 				[
-					'name'		=> baihu::TOPICS,
-					'page_name' => baihu::PAGE,
+					'name'		=> core::TOPICS,
+					'page_name' => core::PAGE,
 					'active'	=> 0,
 				],
 				[
-					'name'		=> baihu::ONLINE,
-					'page_name' => baihu::PAGE,
+					'name'		=> core::ONLINE,
+					'page_name' => core::PAGE,
 					'active'	=> 1,
 				],
 				[
-					'name'		=> baihu::INFO,
-					'page_name' => baihu::PAGE,
+					'name'		=> core::INFO,
+					'page_name' => core::PAGE,
 					'active'	=> 1,
 				],
 			];
 
-			$insert_buffer = new \phpbb\db\sql_insert_buffer($this->db, $this->table_prefix . baihu::PLUGINS_ON_PAGE);
+			$insert_buffer = new \phpbb\db\sql_insert_buffer($this->db, $this->table_prefix . core::PLUGINS_ON_PAGE);
 
 			foreach ($on_page as $row)
 			{

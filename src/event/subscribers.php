@@ -10,6 +10,7 @@
 
 namespace baihu\baihu\src\event;
 
+use baihu\baihu\src\enum\core;
 use baihu\baihu\src\plugin\loader as plugins;
 use baihu\baihu\src\user\page;
 use baihu\baihu\src\controller\controller_helper;
@@ -53,7 +54,7 @@ class subscribers implements EventSubscriberInterface
 	*/
 	public function load_available_plugins(): void
 	{
-		if ($this->config['baihu_plugins'] && $page_name = $this->page->get_current_page())
+		if ($this->config[core::PLUGINS] && $page_name = $this->page->get_current_page())
 		{
 			$this->plugins->load_available_plugins($page_name, $this->config);
 		}
@@ -65,7 +66,7 @@ class subscribers implements EventSubscriberInterface
 	public function add_global_variables(): void
 	{
 		$this->template->assign_vars([
-			'U_GZO_ADMIN' => $this->controller_helper->route('baihu_main'),
+			'U_AREAZ_MAIN' => $this->controller_helper->route('areaz_main'),
 		]);
 	}
 }

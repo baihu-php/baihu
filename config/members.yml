@@ -5,24 +5,24 @@ services:
         tags:
             - { name: event.listener }
 
-    ganstaz.gzo.members.tabs:
+    baihu.members.tabs:
         class: baihu\baihu\src\members\manager
         arguments:
-            - '@ganstaz.gzo.members.tabs_collection'
+            - '@baihu.members.tabs.collection'
             - '@controller.helper'
             - '@language'
             - '@template'
             - '%core.root_path%'
             - '%core.php_ext%'
 
-    ganstaz.gzo.members.tabs_collection:
+    baihu.members.tabs.collection:
         class: phpbb\di\ordered_service_collection
         arguments:
             - '@service_container'
         tags:
-            - { name: service_collection, tag: ganstaz.gzo.profile_tabs }
+            - { name: service_collection, tag: baihu.profile.tabs }
 
-    ganstaz.gzo.members.profile_base:
+    baihu.members.tabs.base:
         abstract: true
         arguments:
             - '@auth'
@@ -34,10 +34,10 @@ services:
             - '@user'
 
 # ----- GZO Tabs -----
-    ganstaz.gzo.members.profile:
+    baihu.members.tabs.profile:
         class: baihu\baihu\src\members\tabs\profile
         shared: false
-        parent: ganstaz.gzo.members.profile_base
+        parent: baihu.members.tabs.base
         arguments:
             - '@config'
             - '@group_helper'
@@ -48,14 +48,14 @@ services:
         calls:
             - [set_name, [profile]]
         tags:
-            - { name: ganstaz.gzo.profile_tabs, order: 1 }
+            - { name: baihu.profile.tabs, order: 1 }
 
 # ----- Controllers -----
     baihu.profile_controller:
         class: baihu\baihu\src\controller\member\profile_controller
         autowire: true
         arguments:
-            - '@?ganstaz.gzo.members.tabs'
+            - '@?baihu.members.tabs'
         calls:
             - [set_container, ['@Psr\Container\ContainerInterface']]
         tags: ['container.service_subscriber']

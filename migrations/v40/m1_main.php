@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\migrations\v40;
 
-use baihu\baihu\src\enum\baihu;
+use baihu\baihu\src\enum\core;
 
 class m1_main extends \phpbb\db\migration\migration
 {
@@ -19,7 +19,7 @@ class m1_main extends \phpbb\db\migration\migration
 	 */
 	public function effectively_installed(): bool
 	{
-		return $this->check(baihu::AREAZ) && $this->check(baihu::PLUGINS) && $this->check(baihu::PLUGINS_ON_PAGE);
+		return $this->check(core::AREAZ) && $this->check(core::PLUGINS) && $this->check(core::PLUGINS_ON_PAGE);
 	}
 
 	/**
@@ -45,7 +45,7 @@ class m1_main extends \phpbb\db\migration\migration
 	{
 		return [
 			'add_tables' => [
-				$this->table_prefix . baihu::AREAZ => [
+				$this->table_prefix . core::AREAZ => [
 					'COLUMNS' => [
 						'id'	 => ['UINT', null, 'auto_increment'],
 						'cat'	 => ['VCHAR', ''],
@@ -59,7 +59,7 @@ class m1_main extends \phpbb\db\migration\migration
 					],
 					'PRIMARY_KEY' => ['id'],
 				],
-				$this->table_prefix . baihu::PLUGINS => [
+				$this->table_prefix . core::PLUGINS => [
 					'COLUMNS' => [
 						'id'	   => ['UINT', null, 'auto_increment'],
 						'name'	   => ['VCHAR', ''],
@@ -69,7 +69,7 @@ class m1_main extends \phpbb\db\migration\migration
 					],
 					'PRIMARY_KEY' => ['id'],
 				],
-				$this->table_prefix . baihu::PLUGINS_ON_PAGE => [
+				$this->table_prefix . core::PLUGINS_ON_PAGE => [
 					'COLUMNS' => [
 						'id'		=> ['UINT', null, 'auto_increment'],
 						'name'		=> ['VCHAR', ''],
@@ -89,9 +89,9 @@ class m1_main extends \phpbb\db\migration\migration
 	{
 		return [
 			'drop_tables' => [
-				$this->table_prefix . baihu::AREAZ,
-				$this->table_prefix . baihu::PLUGINS,
-				$this->table_prefix . baihu::PLUGINS_ON_PAGE,
+				$this->table_prefix . core::AREAZ,
+				$this->table_prefix . core::PLUGINS,
+				$this->table_prefix . core::PLUGINS_ON_PAGE,
 			],
 		];
 	}

@@ -17,24 +17,23 @@ use baihu\baihu\src\auth\attribute\is_granted as isGranted;
 // phpcs:enable
 
 use baihu\baihu\src\controller\abstract_controller;
-use baihu\baihu\src\enum\baihu as gzo;
+use baihu\baihu\src\enum\core;
 use Symfony\Component\HttpFoundation\Response;
 
 class index_controller extends abstract_controller
 {
-	#[isGranted('ADMIN', 'a_board', 'GZO_NO_ADMIN', 403)]
+	#[isGranted('ADMIN', 'a_board', 'AREA_NO_ADMIN', 403)]
 	public function index(): Response
 	{
 		$controller_helper = $this->get_controller_helper();
 
 		$controller_helper->get_template()->assign_vars([
-			'GZO_VERSION'	   => gzo::VERSION,
-			'GZO_STYLE'		   => gzo::STYLE,
-
-			'PHP_VERSION_INFO' => PHP_VERSION,
-			'BOARD_VERSION'	   => PHPBB_VERSION,
+			'VERSION'		=> core::VERSION,
+			'STYLE'			=> core::STYLE,
+			'PHP_VERSION'	=> PHP_VERSION,
+			'BOARD_VERSION'	=> PHPBB_VERSION,
 		]);
 
-		return $controller_helper->render('admin/index.twig', $controller_helper->get_language()->lang('GZO_MAIN_PAGE'));
+		return $controller_helper->render('admin/index.twig', $controller_helper->get_language()->lang('AREA_MAIN_PAGE'));
 	}
 }

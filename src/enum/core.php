@@ -10,28 +10,28 @@
 
 namespace baihu\baihu\src\enum;
 
-final class baihu
+final class core
 {
 	// Common
 	public const VERSION = '4.0.0-dev';
 	public const STYLE = 'Tempest';
 	public const VENDOR = 'baihu';
-	public const EXT_NAME = 'baihu_baihu';
+	public const EXT_NAME = self::VENDOR . '_baihu';
 	public const DATE_FORMAT = 'Y-m-d H:i';
 	public const MAIN_MIGRATION = '\baihu\baihu\migrations\v40\m1_main';
 
 	// Area
-	public const GZO_IN_AREA = 'GZO_IN_AREA';
-	// public const GZO_IN_ADMIN = 'IN_ADMIN';
-	public const TYPE = 'baihu';
+	public const TYPE = 'areaz';
+	public const IN_AREAZ = 'IN_AREAZ';
+	public const AREA_DEFAULT_ICON = 'AREA_DEFAULT_ICON';
 	public const AREA_DASHBOARD = 'DASHBOARD';
-	public const AREA_CONFIG = 'GZO_CONFIG';
-	public const AREA_PLUGINS = 'GZO_PLUGINS';
+	public const AREA_CONFIG = 'CONFIG';
+	public const AREA_PLUGINS = 'PLUGINS';
 
 	// Tables
-	public const AREAZ = 'baihu_areaz';
-	public const PLUGINS = 'baihu_plugins';
-	public const PLUGINS_ON_PAGE = 'baihu_plugins_on_page';
+	public const AREAZ = self::VENDOR . '_areaz';
+	public const PLUGINS = self::VENDOR . '_plugins';
+	public const PLUGINS_ON_PAGE = self::VENDOR . '_plugins_on_page';
 
 	// Plugins
 	public const PROFILE = self::VENDOR . '_mini_profile';
@@ -46,8 +46,8 @@ final class baihu
 	public const PAGE = 'app';
 
 	// Sections
-	public const TOP = 'baihu_top';
-	public const SIDE = 'baihu_side';
-	public const BLOCK = 'baihu_block';
-	public const BOTTOM = 'baihu_bottom';
+	public const TOP = self::VENDOR . '_top';
+	public const SIDE = self::VENDOR . '_side';
+	public const BLOCK = self::VENDOR . '_block';
+	public const BOTTOM = self::VENDOR . '_bottom';
 }

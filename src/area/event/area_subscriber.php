@@ -10,22 +10,22 @@
 
 namespace baihu\baihu\src\area\event;
 
-use baihu\baihu\src\enum\baihu;
+use baihu\baihu\src\enum\core;
 use baihu\baihu\src\event\events;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class area_subscriber implements EventSubscriberInterface
 {
-	public function gzo_modify_data($event): void
+	public function area_modify_data($event): void
 	{
 		$area = $event['areas'];
-		$area[baihu::TYPE] = [
-			'type'		=> baihu::TYPE,
+		$area[core::TYPE] = [
+			'type'		=> core::TYPE,
 			'auth'		=> 'a_',
-			'lang'		=> 'area_gzo',
+			'lang'		=> 'area_baihu',
 			'ext_name'	=> 'baihu/baihu',
 			'dashboard' => 'DASHBOARD',
-			'route'		=> 'baihu_main',
+			'route'		=> core::TYPE . '_main',
 		];
 
 		$event['areas'] = $area;
@@ -34,7 +34,7 @@ class area_subscriber implements EventSubscriberInterface
 	public static function getSubscribedEvents(): array
 	{
 		return [
-			events::GZO_AREA_MODIFY_DATA => 'gzo_modify_data'
+			events::BAIHU_AREA_MODIFY_DATA => 'area_modify_data'
 		];
 	}
 }

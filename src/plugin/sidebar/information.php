@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\src\plugin\sidebar;
 
-use baihu\baihu\src\enum\baihu;
+use baihu\baihu\src\enum\core;
 use baihu\baihu\src\event\events;
 use baihu\baihu\src\plugin\plugin;
 
@@ -21,14 +21,14 @@ class information extends plugin
 	*/
 	public function load_plugin(): void
 	{
-		/** @event events::GZO_INFORMATION_BEFORE */
-		$this->dispatcher->trigger_event(events::GZO_INFORMATION_BEFORE);
+		/** @event events::BAIHU_INFORMATION_BEFORE */
+		$this->dispatcher->trigger_event(events::BAIHU_INFORMATION_BEFORE);
 
 		// Set template vars
 		$this->template->assign_vars([
 			'phpbb_version' => (string) PHPBB_VERSION,
-			'gzo_version'	=> (string) baihu::VERSION,
-			'gzo_style'		=> (string) baihu::STYLE,
+			'gzo_version'	=> (string) core::VERSION,
+			'gzo_style'		=> (string) core::STYLE,
 		]);
 	}
 }

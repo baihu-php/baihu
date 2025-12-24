@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\migrations\v40;
 
-use baihu\baihu\src\enum\baihu;
+use baihu\baihu\src\enum\core;
 
 class m5_config extends \phpbb\db\migration\migration
 {
@@ -19,7 +19,7 @@ class m5_config extends \phpbb\db\migration\migration
 	 */
 	public static function depends_on(): array
 	{
-		return [baihu::MAIN_MIGRATION];
+		return [core::MAIN_MIGRATION];
 	}
 
 	/**
@@ -44,11 +44,11 @@ class m5_config extends \phpbb\db\migration\migration
 			// ['config.add', ['baihu_recent_posts_fid', 0]],
 			// ['config.add', ['baihu_recent_topics_fid', 0]],
 
-			['config.add', ['baihu_plugins', true]],
-			['config.add', [baihu::SIDE, true]],
-			['config.add', [baihu::TOP, true]],
-			['config.add', [baihu::BOTTOM, true]],
-			['config.add', [baihu::BLOCK, true]],
+			['config.add', [core::PLUGINS, true]],
+			['config.add', [core::SIDE, true]],
+			['config.add', [core::TOP, true]],
+			['config.add', [core::BOTTOM, true]],
+			['config.add', [core::BLOCK, true]],
 		];
 	}
 }

@@ -75,7 +75,7 @@ class online extends plugin
 			'S_DISPLAY_BIRTHDAY_LIST' => $this->info->show_birthdays(),
 		]);
 
-		/** events::GZO_ONLINE_DATA_AFTER */
-		$this->dispatcher->trigger_event(events::GZO_ONLINE_DATA_AFTER);
+		/** events::BAIHU_ONLINE_DATA_AFTER */
+		$this->dispatcher->trigger_event(events::BAIHU_ONLINE_DATA_AFTER);
 	}
 }

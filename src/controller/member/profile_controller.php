@@ -35,7 +35,7 @@ class profile_controller extends abstract_controller
 		$current->load($username);
 
 		$current_tab = $language->lang(ucfirst($tab));
-		$page_title = $current->is_active_session() ? $language->lang('GZO_YOUR', $current_tab) : $language->lang('GZO_OTHER', $username, $current_tab);
+		$page_title = $current->is_active_session() ? $language->lang('CURRENT_USERS_PROFILE_TAB', $current_tab) : $language->lang('USERS_PROFILE_TAB', $username, $current_tab);
 
 		$page_title = $tab !== 'profile' ? $page_title : $username;
 

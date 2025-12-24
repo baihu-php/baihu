@@ -21,15 +21,15 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, [
 	// Navigation
 	'DASHBOARD' => 'Dashboard',
-	'GZO_MAIN_PAGE' => 'GZO Admin',
+	'AREA_MAIN_PAGE' => 'Baihu AreaZ',
 
 	// Drawer
-	'GZO_GENERAL'	=> 'General',
-	'GZO_LEGAL'		=> 'Help & Legal',
+	'DRAWER_GENERAL' => 'General',
+	'DRAWER_LEGAL'	 => 'Help & Legal',
 
-	'GZO_LIKE' => 'Like',
+	'BAIHU_LIKE' => 'Like',
 
-	'NEWS'			=> 'News',
+	'NEWS' => 'News',
 
 	'LATEST_NEWS'  => 'Viewing category',
 	'ARTICLE'	   => 'Viewing article',
@@ -48,16 +48,16 @@ $lang = array_merge($lang, [
 	'hour'	  => '%d hour',
 	'minute'  => '%d minute',
 	'second'  => '%d second',
-	'gzo_ago' => [
+	'time_ago' => [
 		1 => '%2$s ago',
 		2 => '%2$ss ago',
 	],
 
-	'GZO_PROFILE' => 'Overview',
-	'GZO_YOUR'	  => 'Your %s',
-	'GZO_OTHER'	  => '%s / %s',
+	// 'GZO_PROFILE' => 'Overview',
+	'CURRENT_USERS_PROFILE_TAB' => 'Your %s',
+	'USERS_PROFILE_TAB' => '%s / %s',
 
-	'GZO_PER_DAY' => '%s per day <strong>%s</strong>',
+	'BAIHU_STATS_PER_DAY' => '%s per day <strong>%s</strong>',
 
 	'LEADERS'		=> 'Top posters',
 	'RECENT_POSTS'	=> 'Recent posts',
@@ -68,6 +68,7 @@ $lang = array_merge($lang, [
 	'NEW_PM'  => ' new message',
 	'NEW_PMS' => ' new messages',
 
+	// TODO: To be removed
 	'PHPBB_VERSION' => 'phpBB version',
 	'PHPBB_STYLE'	=> 'Board style',
 	'GZO_VERSION'	=> 'GZO version',
@@ -87,6 +88,6 @@ $lang = array_merge($lang, [
 	'STATUS' => 'Status: %s',
 
 	// Auth
-	'GZO_NO_ADMIN'	  => 'You are not authorized to access this area!',
-	'GZO_USER_ACCESS' => 'You do not have permissions to access this area!',
+	'AREA_NO_ADMIN'	   => 'You are not authorized to access this area!',
+	'AREA_USER_ACCESS' => 'You do not have permissions to access this area!',
 ]);

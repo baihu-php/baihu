@@ -39,7 +39,7 @@ class auth_kernel_subscriber implements EventSubscriberInterface
 		{
 			if (!$this->auth->is_granted($attribute))
 			{
-				throw new http_exception($attribute->status_code ?? 403, $attribute->message ?? 'GZO_NO_ADMIN');
+				throw new http_exception($attribute->status_code ?? 403, $attribute->message ?? 'AREA_NO_ADMIN');
 			}
 		}
 	}

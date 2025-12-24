@@ -12,7 +12,7 @@
 					</span>
 
 					<span class="gzo-bar-user">
-						{{- gzo_username('username', article.author, article.author_name, article.author_color, 'gzo-bar-author') -}}
+						{{- baihu_username('username', article.author, article.author_name, article.author_color, 'gzo-bar-author') -}}
 						<small class="gzo-bar-user-title">{{ article.author_rank }}</small>
 					</span>
 
@@ -48,8 +48,8 @@
 				<span class="gzo-bar-item gzo-action gzo-post-action" href="" data-tooltip="true" title="{{ lang('REPLIES') ~ ': ' ~ article.replies }}">
 					{{ Icon('gzo', 'mdi--comments-text-outline', lang('REPLIES'), true, 'gzo-icon gzo-action-icon') }}
 				</span>
-				<span class="gzo-bar-item gzo-action gzo-post-action" href="" data-tooltip="true" title="{{ lang('GZO_LIKE') }}">
-					{{ Icon('gzo', 'mdi--heart-outline', lang('GZO_LIKE'), true, 'gzo-icon gzo-action-icon') }}
+				<span class="gzo-bar-item gzo-action gzo-post-action" href="" data-tooltip="true" title="{{ lang('BAIHU_LIKE') }}">
+					{{ Icon('gzo', 'mdi--heart-outline', lang('BAIHU_LIKE'), true, 'gzo-icon gzo-action-icon') }}
 				</span>
 			</div>
 		</div>

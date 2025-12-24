@@ -43,7 +43,7 @@ class subscribers implements EventSubscriberInterface
 	{
 		if ($this->page->get_current_page() === 'memberlist')
 		{
-			$url = $this->controller_helper->route('ganstaz_gzo_member', ['username' => $this->users_loader->get_username((int) $event['user_id'])]);
+			$url = $this->controller_helper->route('baihu_member', ['username' => $this->users_loader->get_username((int) $event['user_id'])]);
 
 			$response = new RedirectResponse($url);
 			$response->send();
@@ -72,7 +72,7 @@ class subscribers implements EventSubscriberInterface
 		{
 			$user  = $event['username'];
 			$color = $event['username_colour'];
-			$route = $this->controller_helper->route('ganstaz_gzo_member', ['username' => $user]);
+			$route = $this->controller_helper->route('baihu_member', ['username' => $user]);
 
 			// TODO: remove this html ASAP
 			// Can be removed/modified when html part will be removed from phpBB
