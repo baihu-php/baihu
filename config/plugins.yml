@@ -23,29 +23,17 @@ services:
 
     baihu.plugin.base:
         abstract: true
-        autowire: false
-        arguments:
-            - '@config'
-            - '@controller.helper'
-            - '@dbal.conn'
-            - '@event_dispatcher'
-            - '@template'
-            - '@baihu.users_loader'
-            - '%core.root_path%'
-            - '%core.php_ext%'
 
     baihu.posts:
         class: baihu\baihu\src\plugin\article\posts
-        shared: false
         parent: baihu.plugin.base
         autowire: false
         arguments:
-            - '@auth'
-            - '@language'
             - '@pagination'
             - '@text_formatter.renderer'
-            - '@user'
-            # - '@baihu.helper'
+        calls:
+            - [set_container, ['@Psr\Container\ContainerInterface']]
+        tags: ['container.service_subscriber']
 
     baihu\baihu\src\plugin\loader: '@baihu.plugin.loader'
     baihu\baihu\src\plugin\data: '@baihu.plugin.data'
@@ -61,79 +49,77 @@ services:
 
     baihu.baihu.plugin.mini_profile:
         class: baihu\baihu\src\plugin\sidebar\mini_profile
-        shared: false
-        parent: baihu.plugin.base
         calls:
             - [loadable, [false]]
-            - [dynamic_id, [false]]
-            - [set_type, [block]]
+            - [dynamic, [false]]
+            - [block, [true]]
+            - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
             - { name: baihu.plugin }
+            - { name: container.service_subscriber }
 
     baihu.baihu.plugin.information:
         class: baihu\baihu\src\plugin\sidebar\information
-        shared: false
-        parent: baihu.plugin.base
         calls:
             - [loadable, [true]]
-            - [dynamic_id, [false]]
-            - [set_type, [block]]
+            - [dynamic, [false]]
+            - [block, [true]]
+            - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
             - { name: baihu.plugin }
+            - { name: container.service_subscriber }
 
     baihu.baihu.plugin.group:
         class: baihu\baihu\src\plugin\sidebar\group
-        shared: false
-        parent: baihu.plugin.base
         calls:
             - [loadable, [true]]
-            - [dynamic_id, [true]]
-            - [set_type, [block]]
+            - [dynamic, [true]]
+            - [block, [true]]
+            - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
             - { name: baihu.plugin }
+            - { name: container.service_subscriber }
 
     baihu.baihu.plugin.top_posters:
         class: baihu\baihu\src\plugin\sidebar\top_posters
-        shared: false
-        parent: baihu.plugin.base
         calls:
             - [loadable, [true]]
-            - [dynamic_id, [false]]
-            - [set_type, [block]]
+            - [dynamic, [false]]
+            - [block, [true]]
+            - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
             - { name: baihu.plugin }
+            - { name: container.service_subscriber }
 
     baihu.baihu.plugin.recent_posts:
         class: baihu\baihu\src\plugin\sidebar\recent_posts
-        shared: false
-        parent: baihu.plugin.base
         calls:
             - [loadable, [true]]
-            - [dynamic_id, [true]]
-            - [set_type, [block]]
+            - [dynamic, [true]]
+            - [block, [true]]
+            - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
             - { name: baihu.plugin }
+            - { name: container.service_subscriber }
 
     baihu.baihu.plugin.recent_topics:
         class: baihu\baihu\src\plugin\sidebar\recent_topics
-        shared: false
-        parent: baihu.plugin.base
         calls:
             - [loadable, [true]]
-            - [dynamic_id, [true]]
-            - [set_type, [block]]
+            - [dynamic, [true]]
+            - [block, [true]]
+            - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
             - { name: baihu.plugin }
+            - { name: container.service_subscriber }
 
     baihu.baihu.plugin.online:
         class: baihu\baihu\src\plugin\block\online
-        shared: false
-        parent: baihu.plugin.base
-        arguments:
-            - '@baihu.info'
         calls:
             - [loadable, [true]]
-            - [dynamic_id, [false]]
-            - [set_type, [block]]
+            - [dynamic, [false]]
+            - [block, [true]]
+            - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
             - { name: baihu.plugin }
+            - { name: container.service_subscriber }
