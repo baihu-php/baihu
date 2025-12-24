@@ -13,12 +13,13 @@ services:
             - '%baihu.tables.plugins%'
             - '%baihu.tables.plugins_on_page%'
 
-    baihu\baihu\src\plugin\loader: '@baihu.plugin.loader'
-
     baihu.plugin.data:
         class: baihu\baihu\src\plugin\data
 
-    baihu\baihu\src\plugin\data: '@baihu.plugin.data'
+    baihu.plugin_subscriber:
+        class: baihu\baihu\src\plugin\event\plugin_subscriber
+        tags:
+            - { name: event.listener }
 
     baihu.plugin.base:
         abstract: true
@@ -46,6 +47,8 @@ services:
             - '@user'
             # - '@baihu.helper'
 
+    baihu\baihu\src\plugin\loader: '@baihu.plugin.loader'
+    baihu\baihu\src\plugin\data: '@baihu.plugin.data'
     baihu\baihu\src\plugin\article\posts: '@baihu.posts'
 
 # ----- Plugins -----
