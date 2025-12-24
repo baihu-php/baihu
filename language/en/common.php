@@ -48,7 +48,7 @@ $lang = array_merge($lang, [
 	'hour'	  => '%d hour',
 	'minute'  => '%d minute',
 	'second'  => '%d second',
-	'gzo_ago' => [
+	'time_ago' => [
 		1 => '%2$s ago',
 		2 => '%2$ss ago',
 	],

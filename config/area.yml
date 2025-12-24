@@ -34,11 +34,11 @@ services:
             - [set_container, ['@Psr\Container\ContainerInterface']]
         tags: ['container.service_subscriber']
 
-    # ganstaz.gzo.admin.settings_controller:
-    #     class: ganstaz\gzo\src\controller\admin\settings_controller
+    # baihu.admin.settings_controller:
+    #     class: baihu\baihu\src\controller\admin\settings_controller
     #     autowire: true
     #     arguments:
-    #         - '@ganstaz.gzo.settings'
+    #         - '@baihu.core.settings'
     #     calls:
     #         - [set_container, ['@Psr\Container\ContainerInterface']]
     #     tags: ['container.service_subscriber']

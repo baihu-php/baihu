@@ -24,7 +24,8 @@ $lang = array_merge($lang, [
 	'PLUGINS'  => 'Plugins',
 
 	// Pages
-	'AREA_MAIN_PAGE_DESC' => 'Welcome to GZO Admin Dashboard!',
+	// 'AREA_MAIN_PAGE' => '...',
+	'AREA_MAIN_PAGE_DESC' => 'Welcome to Baihu AreaZ',
 
 	'SETTINGS' => 'Global settings',
 	'PAGES'	   => 'Page settings',

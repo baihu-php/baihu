@@ -94,7 +94,7 @@ final class loader
 
 		if ($plugin->type === 'block')
 		{
-			$name = $this->remove_gzo_prefix($row['name'], $row['ext_name']);
+			$name = $this->remove_baihu_prefix($row['name'], $row['ext_name']);
 
 			$this->data->set_section_data($row['section'], $name, $row['ext_name']);
 		}
@@ -113,7 +113,7 @@ final class loader
 	 * @param string $name
 	 * @param string $ext_name
 	 */
-	public function remove_gzo_prefix(string $name, string $ext_name): string
+	public function remove_baihu_prefix(string $name, string $ext_name): string
 	{
 		return str_contains($ext_name, core::VENDOR) ? str_replace(core::VENDOR . '_', '', $name) : $name;
 	}

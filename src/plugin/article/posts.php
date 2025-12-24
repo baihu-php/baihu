@@ -261,7 +261,7 @@ final class posts extends plugin
 		extract($this->dispatcher->trigger_event(events::BAIHU_ARTICLE_MODIFY_TEMPLATE_DATA, compact($vars)));
 
 		// Assign breadcrumb data
-		$this->controller_helper->assign_breadcrumb($template_data['title'], 'ganstaz_gzo_first_post', ['aid' => $topic_id]);
+		$this->controller_helper->assign_breadcrumb($template_data['title'], 'baihu_first_post', ['aid' => $topic_id]);
 
 		$this->template->assign_block_vars('articles', $template_data);
 

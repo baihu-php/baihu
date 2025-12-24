@@ -11,8 +11,6 @@
 namespace baihu\baihu\src\controller;
 
 use baihu\baihu\src\controller\controller_helper;
-// use ganstaz\gzo\src\entity\manager as em;
-// use ganstaz\gzo\src\form\form;
 
 use Psr\Container\ContainerInterface;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
@@ -38,9 +36,7 @@ abstract class abstract_controller implements ServiceSubscriberInterface
 	public static function getSubscribedServices(): array
 	{
 		return [
-			'baihu.controller_helper' => controller_helper::class,
-			// 'ganstaz.gzo.entity.manager' => '?'.em::class,
-			// 'ganstaz.gzo.form' => '?'.form::class
+			'baihu.controller_helper' => controller_helper::class
 		];
    }
 

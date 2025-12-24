@@ -52,7 +52,7 @@ class time
 		$uot = (string) key($unit);
 		$int = (int) $unit[$uot];
 
-		return $this->language->lang('gzo_ago', $int, $this->language->lang($uot, $int));
+		return $this->language->lang('time_ago', $int, $this->language->lang($uot, $int));
 	}
 
 	/**

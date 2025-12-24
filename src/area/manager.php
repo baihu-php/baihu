@@ -24,7 +24,7 @@ final class manager
 	protected readonly string $type;
 	protected array|bool $areas = [];
 	protected array|bool $navigation = [];
-	protected array $icons = ['GZO_DEFAULT' => 'ic--outline-home'];
+	protected array $icons = [core::AREA_DEFAULT_ICON => 'ic--outline-home'];
 
 	public function __construct(
 		protected auth $auth,
@@ -140,7 +140,7 @@ final class manager
 		{
 			$this->template->assign_block_vars('menu', [
 				'heading' => $category,
-				'icon'	  => $this->icons[$category] ?? $this->icons['GZO_DEFAULT'],
+				'icon'	  => $this->icons[$category] ?? $this->icons[core::AREA_DEFAULT_ICON],
 			]);
 
 			foreach ($data as $item)
