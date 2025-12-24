@@ -22,7 +22,7 @@ use phpbb\config\config;
 use phpbb\group\helper as group;
 use phpbb\profilefields\manager as cp;
 
-final class profile extends profile_base
+final class profile extends base
 {
 	public function __construct
 	(

@@ -19,7 +19,7 @@ use phpbb\template\template;
 use phpbb\user;
 use phpbb\exception\http_exception;
 
-abstract class profile_base implements tabs_interface
+abstract class base implements tabs_interface
 {
 	protected string $name;
 	protected string $icon = 'bug';
