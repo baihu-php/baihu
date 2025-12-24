@@ -33,12 +33,3 @@ services:
         calls:
             - [set_container, ['@Psr\Container\ContainerInterface']]
         tags: ['container.service_subscriber']
-
-    # baihu.admin.settings_controller:
-    #     class: baihu\baihu\src\controller\admin\settings_controller
-    #     autowire: true
-    #     arguments:
-    #         - '@baihu.core.settings'
-    #     calls:
-    #         - [set_container, ['@Psr\Container\ContainerInterface']]
-    #     tags: ['container.service_subscriber']
