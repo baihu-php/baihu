@@ -17,7 +17,7 @@ use baihu\baihu\src\auth\attribute\is_granted as isGranted;
 // phpcs:enable
 
 use baihu\baihu\src\controller\abstract_controller;
-use baihu\baihu\src\enum\baihu as gzo;
+use baihu\baihu\src\enum\core;
 use Symfony\Component\HttpFoundation\Response;
 
 class index_controller extends abstract_controller
@@ -28,8 +28,8 @@ class index_controller extends abstract_controller
 		$controller_helper = $this->get_controller_helper();
 
 		$controller_helper->get_template()->assign_vars([
-			'VERSION'		=> gzo::VERSION,
-			'STYLE'			=> gzo::STYLE,
+			'VERSION'		=> core::VERSION,
+			'STYLE'			=> core::STYLE,
 			'PHP_VERSION'	=> PHP_VERSION,
 			'BOARD_VERSION'	=> PHPBB_VERSION,
 		]);

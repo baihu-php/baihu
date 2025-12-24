@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\src\plugin\sidebar;
 
-use baihu\baihu\src\enum\baihu;
+use baihu\baihu\src\enum\core;
 use baihu\baihu\src\event\events;
 use baihu\baihu\src\plugin\plugin;
 
@@ -27,8 +27,8 @@ class information extends plugin
 		// Set template vars
 		$this->template->assign_vars([
 			'phpbb_version' => (string) PHPBB_VERSION,
-			'gzo_version'	=> (string) baihu::VERSION,
-			'gzo_style'		=> (string) baihu::STYLE,
+			'gzo_version'	=> (string) core::VERSION,
+			'gzo_style'		=> (string) core::STYLE,
 		]);
 	}
 }

@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\src\area;
 
-use baihu\baihu\src\enum\baihu as gzo;
+use baihu\baihu\src\enum\core;
 use baihu\baihu\src\event\events;
 use baihu\baihu\src\controller\controller_helper;
 use phpbb\auth\auth;
@@ -76,10 +76,10 @@ final class manager
 
 		$this->controller_helper->add_language($area['lang'], $area['ext_name']);
 
-		if (($this->navigation = $this->cache->get('_gzo_area')) === false)
+		if (($this->navigation = $this->cache->get('_baihu_areaz')) === false)
 		{
 			$sql = 'SELECT *
-					FROM ' . $this->table . gzo::AREAZ . '
+					FROM ' . $this->table . core::AREAZ . '
 					ORDER BY id';
 			$result = $this->db->sql_query($sql);
 
@@ -89,7 +89,7 @@ final class manager
 			}
 			$this->db->sql_freeresult($result);
 
-			$this->cache->put('_gzo_area', $this->navigation);
+			$this->cache->put('_baihu_areaz', $this->navigation);
 		}
 
 		foreach ($this->navigation[$this->type] as $cat => $data)
@@ -166,6 +166,6 @@ final class manager
 
 	public function set_template_var(bool $value): void
 	{
-		$this->template->assign_var(gzo::IN_AREAZ, $value);
+		$this->template->assign_var(core::IN_AREAZ, $value);
 	}
 }

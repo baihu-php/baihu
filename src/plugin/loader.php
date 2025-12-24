@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\src\plugin;
 
-use baihu\baihu\src\enum\baihu;
+use baihu\baihu\src\enum\core;
 use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
 use phpbb\di\service_collection;
@@ -115,6 +115,6 @@ final class loader
 	 */
 	public function remove_gzo_prefix(string $name, string $ext_name): string
 	{
-		return str_contains($ext_name, baihu::VENDOR) ? str_replace(baihu::VENDOR . '_', '', $name) : $name;
+		return str_contains($ext_name, core::VENDOR) ? str_replace(core::VENDOR . '_', '', $name) : $name;
 	}
 }

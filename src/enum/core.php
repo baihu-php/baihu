@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\src\enum;
 
-final class baihu
+final class core
 {
 	// Common
 	public const VERSION = '4.0.0-dev';

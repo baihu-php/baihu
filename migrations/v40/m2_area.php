@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\migrations\v40;
 
-use baihu\baihu\src\enum\baihu;
+use baihu\baihu\src\enum\core;
 
 class m2_area extends \phpbb\db\migration\migration
 {
@@ -19,7 +19,7 @@ class m2_area extends \phpbb\db\migration\migration
 	*/
 	public static function depends_on(): array
 	{
-		return [baihu::MAIN_MIGRATION];
+		return [core::MAIN_MIGRATION];
 	}
 
 	/**
@@ -37,13 +37,13 @@ class m2_area extends \phpbb\db\migration\migration
 	*/
 	public function add_area_data(): void
 	{
-		if ($this->db_tools->sql_table_exists($this->table_prefix . baihu::AREAZ))
+		if ($this->db_tools->sql_table_exists($this->table_prefix . core::AREAZ))
 		{
 			$items = [
 				[
-					'cat'	 => baihu::AREA_DASHBOARD,
+					'cat'	 => core::AREA_DASHBOARD,
 					'title'	 => '',
-					'type'	 => baihu::TYPE,
+					'type'	 => core::TYPE,
 					'parent' => 1,
 					'auth'	 => '',
 					'route'	 => '',
@@ -51,9 +51,9 @@ class m2_area extends \phpbb\db\migration\migration
 					'icon'	 => '',
 				],
 				[
-					'cat'	 => baihu::AREA_CONFIG,
+					'cat'	 => core::AREA_CONFIG,
 					'title'	 => '',
-					'type'	 => baihu::TYPE,
+					'type'	 => core::TYPE,
 					'parent' => 1,
 					'auth'	 => '',
 					'route'	 => '',
@@ -61,9 +61,9 @@ class m2_area extends \phpbb\db\migration\migration
 					'icon'	 => 'fa--cogs',
 				],
 				[
-					'cat'	 => baihu::AREA_PLUGINS,
+					'cat'	 => core::AREA_PLUGINS,
 					'title'	 => '',
-					'type'	 => baihu::TYPE,
+					'type'	 => core::TYPE,
 					'parent' => 1,
 					'auth'	 => '',
 					'route'	 => '',
@@ -71,9 +71,9 @@ class m2_area extends \phpbb\db\migration\migration
 					'icon'	 => 'dashicons--plugins',
 				],
 				[
-					'cat'	 => baihu::AREA_DASHBOARD,
+					'cat'	 => core::AREA_DASHBOARD,
 					'title'	 => 'AREA_MAIN_PAGE',
-					'type'	 => baihu::TYPE,
+					'type'	 => core::TYPE,
 					'parent' => 0,
 					'auth'	 => '',
 					'route'	 => 'areaz_main',
@@ -81,9 +81,9 @@ class m2_area extends \phpbb\db\migration\migration
 					'icon'	 => 'mdi--view-dashboard-outline',
 				],
 				[
-					'cat'	 => baihu::AREA_CONFIG,
+					'cat'	 => core::AREA_CONFIG,
 					'title'	 => 'SETTINGS',
-					'type'	 => baihu::TYPE,
+					'type'	 => core::TYPE,
 					'parent' => 0,
 					'auth'	 => '',
 					'route'	 => 'areaz_settings',
@@ -91,9 +91,9 @@ class m2_area extends \phpbb\db\migration\migration
 					'icon'	 => '',
 				],
 				[
-					'cat'	 => baihu::AREA_CONFIG,
+					'cat'	 => core::AREA_CONFIG,
 					'title'	 => 'PLUGINS',
-					'type'	 => baihu::TYPE,
+					'type'	 => core::TYPE,
 					'parent' => 0,
 					'auth'	 => '',
 					'route'	 => 'areaz_plugins',
@@ -101,9 +101,9 @@ class m2_area extends \phpbb\db\migration\migration
 					'icon'	 => '',
 				],
 				[
-					'cat'	 => baihu::AREA_CONFIG,
+					'cat'	 => core::AREA_CONFIG,
 					'title'	 => 'PAGES',
-					'type'	 => baihu::TYPE,
+					'type'	 => core::TYPE,
 					'parent' => 0,
 					'auth'	 => '',
 					'route'	 => 'areaz_pages',
@@ -112,7 +112,7 @@ class m2_area extends \phpbb\db\migration\migration
 				],
 			];
 
-			$insert_buffer = new \phpbb\db\sql_insert_buffer($this->db, $this->table_prefix . baihu::AREAZ);
+			$insert_buffer = new \phpbb\db\sql_insert_buffer($this->db, $this->table_prefix . core::AREAZ);
 
 			foreach ($items as $item)
 			{

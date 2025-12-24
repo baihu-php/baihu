@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\src\area\event;
 
-use baihu\baihu\src\enum\baihu;
+use baihu\baihu\src\enum\core;
 use baihu\baihu\src\event\events;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -19,13 +19,13 @@ class area_subscriber implements EventSubscriberInterface
 	public function area_modify_data($event): void
 	{
 		$area = $event['areas'];
-		$area[baihu::TYPE] = [
-			'type'		=> baihu::TYPE,
+		$area[core::TYPE] = [
+			'type'		=> core::TYPE,
 			'auth'		=> 'a_',
 			'lang'		=> 'area_baihu',
 			'ext_name'	=> 'baihu/baihu',
 			'dashboard' => 'DASHBOARD',
-			'route'		=> baihu::TYPE . '_main',
+			'route'		=> core::TYPE . '_main',
 		];
 
 		$event['areas'] = $area;
