@@ -73,7 +73,7 @@
 							{% block gzo_main_content %}{% endblock %}
 
 							{% block gzo_main_content_bottom %}
-								{{ gzo_block('baihu_bottom') }}
+								{{ baihu_blocks('baihu_bottom') }}
 								{% EVENT gzo_main_middle %}
 							{% endblock %}
 						</div>
@@ -81,7 +81,7 @@
 						{% block gzo_main_right %}
 							{% if config('baihu_side') %}
 								<div class="gzo-section-side">
-									{{ gzo_block('baihu_side') }}
+									{{ baihu_blocks('baihu_side') }}
 								</div>
 							{% endif %}
 						{% endblock %}

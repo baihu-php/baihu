@@ -30,7 +30,7 @@ class extension extends \Twig\Extension\AbstractExtension
 	public function getFunctions(): array
 	{
 		return [
-			new TwigFunction('gzo_block', [$this, 'load_blocks'], ['needs_environment' => true, 'needs_context' => true]),
+			new TwigFunction('baihu_blocks', [$this, 'load_blocks'], ['needs_environment' => true, 'needs_context' => true]),
 			new TwigFunction('link', [$this, 'link'], ['needs_environment' => true]),
 			new TwigFunction('get_group_name', [$this, 'get_group_name']),
 		];
