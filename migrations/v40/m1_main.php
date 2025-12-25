@@ -63,9 +63,9 @@ class m1_main extends \phpbb\db\migration\migration
 					'COLUMNS' => [
 						'id'	   => ['UINT', null, 'auto_increment'],
 						'name'	   => ['VCHAR', ''],
-						'ext_name' => ['VCHAR', ''],
-						'position' => ['UINT', 0],
-						'section'  => ['VCHAR', ''],
+						'ext_name' => ['VCHAR:255', ''],
+						'position' => ['UINT:10', 0],
+						'section'  => ['VCHAR:255', ''],
 					],
 					'PRIMARY_KEY' => ['id'],
 				],
@@ -73,8 +73,9 @@ class m1_main extends \phpbb\db\migration\migration
 					'COLUMNS' => [
 						'id'		=> ['UINT', null, 'auto_increment'],
 						'name'		=> ['VCHAR', ''],
-						'page_name' => ['VCHAR', ''],
+						'page_name' => ['VCHAR:255', ''],
 						'active'	=> ['BOOL', 0],
+						'dynamic'	=> ['BOOL', 0],
 					],
 					'PRIMARY_KEY' => ['id'],
 				],

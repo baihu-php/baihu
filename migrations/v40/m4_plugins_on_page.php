@@ -40,37 +40,44 @@ class m4_plugins_on_page extends \phpbb\db\migration\migration
 				[
 					'name'		=> core::PROFILE,
 					'page_name' => core::PAGE,
-					'active'	=> 1,
+					'active'	=> true,
+					'dynamic'	=> false,
 				],
 				[
 					'name'		=> core::GROUP,
 					'page_name' => core::PAGE,
-					'active'	=> 1,
+					'active'	=> true,
+					'dynamic'	=> false,
 				],
 				[
 					'name'		=> core::POSTER,
 					'page_name' => core::PAGE,
-					'active'	=> 1,
+					'active'	=> true,
+					'dynamic'	=> false,
 				],
 				[
 					'name'		=> core::POSTS,
 					'page_name' => core::PAGE,
-					'active'	=> 1,
+					'active'	=> true,
+					'dynamic'	=> false,
 				],
 				[
 					'name'		=> core::TOPICS,
 					'page_name' => core::PAGE,
-					'active'	=> 0,
+					'active'	=> false,
+					'dynamic'	=> false,
 				],
 				[
 					'name'		=> core::ONLINE,
 					'page_name' => core::PAGE,
-					'active'	=> 1,
+					'active'	=> true,
+					'dynamic'	=> false,
 				],
 				[
 					'name'		=> core::INFO,
 					'page_name' => core::PAGE,
-					'active'	=> 1,
+					'active'	=> true,
+					'dynamic'	=> false,
 				],
 			];
 
