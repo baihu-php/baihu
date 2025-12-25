@@ -73,12 +73,6 @@ class m4_plugins_on_page extends \phpbb\db\migration\migration
 					'active'	=> true,
 					'dynamic'	=> false,
 				],
-				[
-					'name'		=> core::INFO,
-					'page_name' => core::PAGE,
-					'active'	=> true,
-					'dynamic'	=> false,
-				],
 			];
 
 			$insert_buffer = new \phpbb\db\sql_insert_buffer($this->db, $this->table_prefix . core::PLUGINS_ON_PAGE);

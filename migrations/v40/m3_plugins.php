@@ -73,12 +73,6 @@ class m3_plugins extends \phpbb\db\migration\migration
 					'position' => 1,
 					'section'  => core::BOTTOM,
 				],
-				[
-					'name'	   => core::INFO,
-					'ext_name' => core::EXT_NAME,
-					'position' => 2,
-					'section'  => core::SIDE,
-				],
 			];
 
 			$insert_buffer = new \phpbb\db\sql_insert_buffer($this->db, $this->table_prefix . core::PLUGINS);

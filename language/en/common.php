@@ -68,11 +68,6 @@ $lang = array_merge($lang, [
 	'NEW_PM'  => ' new message',
 	'NEW_PMS' => ' new messages',
 
-	// TODO: To be removed
-	'PHPBB_VERSION' => 'phpBB version',
-	'PHPBB_STYLE'	=> 'Board style',
-	'GZO_VERSION'	=> 'GZO version',
-	'GZO_STYLE'		=> 'GZO style',
 
 	'IN_TOPIC'	=> 'In ',
 

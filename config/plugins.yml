@@ -60,8 +60,6 @@ services:
             - { name: baihu.plugin }
             - { name: container.service_subscriber }
 
-    baihu.baihu.plugin.information:
-        class: baihu\baihu\src\plugin\sidebar\information
         calls:
             - [loadable, [true]]
             - [block, [true]]
