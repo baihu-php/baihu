@@ -39,10 +39,10 @@ class m5_config extends \phpbb\db\migration\migration
 
 			['config.add', ['baihu_app_global', false]],
 			// Plugins
-			['config.add', ['baihu_the_team_fid', 5]],
-			// ['config.add', ['baihu_top_posters_fid', 0]],
-			// ['config.add', ['baihu_recent_posts_fid', 0]],
-			// ['config.add', ['baihu_recent_topics_fid', 0]],
+			['config.add', ['baihu_the_team_id', 5]],
+			// ['config.add', ['baihu_top_posters_id', 0]],
+			// ['config.add', ['baihu_recent_posts_id', 0]],
+			// ['config.add', ['baihu_recent_topics_id', 0]],
 
 			['config.add', [core::PLUGINS, true]],
 			['config.add', [core::SIDE, true]],

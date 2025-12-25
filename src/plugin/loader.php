@@ -97,7 +97,7 @@ final class loader
 			$this->plugins[$row['name']] = $plugin;
 		}
 
-		if ($plugin->type === 'block')
+		if ($plugin->block)
 		{
 			$name = $this->get_block_name($row['name'], $row['ext_name']);
 
