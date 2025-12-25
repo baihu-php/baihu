@@ -48,6 +48,5 @@ final class core
 	// Sections
 	public const TOP = self::VENDOR . '_top';
 	public const SIDE = self::VENDOR . '_side';
-	public const BLOCK = self::VENDOR . '_block';
 	public const BOTTOM = self::VENDOR . '_bottom';
 }

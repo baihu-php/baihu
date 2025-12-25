@@ -48,7 +48,6 @@ class m5_config extends \phpbb\db\migration\migration
 			['config.add', [core::SIDE, true]],
 			['config.add', [core::TOP, true]],
 			['config.add', [core::BOTTOM, true]],
-			['config.add', [core::BLOCK, true]],
 		];
 	}
 }
