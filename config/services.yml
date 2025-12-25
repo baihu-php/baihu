@@ -31,3 +31,5 @@ services:
             - '@user'
             - '%core.root_path%'
             - '%core.php_ext%'
+
+    baihu\baihu\src\info: '@baihu.info'

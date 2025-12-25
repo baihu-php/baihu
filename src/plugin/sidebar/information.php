@@ -12,20 +12,20 @@ namespace baihu\baihu\src\plugin\sidebar;
 
 use baihu\baihu\src\enum\core;
 use baihu\baihu\src\event\events;
-use baihu\baihu\src\plugin\plugin;
+use baihu\baihu\src\plugin\base;
 
-class information extends plugin
+class information extends base
 {
 	/**
 	* {@inheritdoc}
 	*/
-	public function load_plugin(): void
+	public function load(int|null $id = null): void
 	{
 		/** @event events::BAIHU_INFORMATION_BEFORE */
-		$this->dispatcher->trigger_event(events::BAIHU_INFORMATION_BEFORE);
+		$this->get_dispatcher()->trigger_event(events::BAIHU_INFORMATION_BEFORE);
 
 		// Set template vars
-		$this->template->assign_vars([
+		$this->get_template()->assign_vars([
 			'phpbb_version' => (string) PHPBB_VERSION,
 			'gzo_version'	=> (string) core::VERSION,
 			'gzo_style'		=> (string) core::STYLE,

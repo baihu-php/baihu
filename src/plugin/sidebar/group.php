@@ -10,44 +10,47 @@
 
 namespace baihu\baihu\src\plugin\sidebar;
 
-use baihu\baihu\src\plugin\plugin;
+use baihu\baihu\src\plugin\base;
 
-class group extends plugin
+class group extends base
 {
 	/**
 	* {@inheritdoc}
 	*/
-	public function load_plugin(): void
+	public function load(int|null $id = null): void
 	{
 		// Will have a dynamic config value later
-		$group_id = (int) $this->config['baihu_the_team_fid'] ?: 5;
+		$group_id = (int) $this->get_config()['baihu_the_team_id'] ?: 5;
+		$db = $this->get_db();
 
 		$sql = 'SELECT group_name
 				FROM ' . GROUPS_TABLE . '
 				WHERE group_id = ' . $group_id;
-		$result = $this->db->sql_query($sql, 3600);
-		$group_name = $this->db->sql_fetchfield('group_name');
-		$this->db->sql_freeresult($result);
+		$result = $db->sql_query($sql, 3600);
+		$group_name = $db->sql_fetchfield('group_name');
+		$db->sql_freeresult($result);
 
-		$this->template->assign_var('team_name', $group_name);
+		$template = $this->get_template();
+		$template->assign_var('team_name', $group_name);
 
+		$users_loader = $this->get_users_loader();
 		$sql = 'SELECT u.user_id, u.username, u.user_posts, u.user_rank, u.user_colour, u.user_avatar, u.user_avatar_type, u.user_avatar_width, u.user_avatar_height
-				FROM ' . USER_GROUP_TABLE . ' ug, ' . $this->users_loader->users_table . ' u
+				FROM ' . USER_GROUP_TABLE . ' ug, ' . $users_loader->users_table . ' u
 				WHERE ug.user_id = u.user_id
 					AND ug.user_pending = 0
 					AND ug.group_id = ' . $group_id;
-		$result = $this->db->sql_query($sql, 3600);
+		$result = $db->sql_query($sql, 3600);
 
-		while ($row = $this->db->sql_fetchrow($result))
+		while ($row = $db->sql_fetchrow($result))
 		{
-			$this->users_loader->load_user($row);
+			$users_loader->load_user($row);
 			$user_id = (int) $row['user_id'];
 
-			$this->template->assign_block_vars('the_team', array_merge($this->users_loader->get_username_data($user_id), [
-				'avatar' => [$this->users_loader->get_avatar_data($user_id)],
-				'rank'   => $this->users_loader->get_rank_data($row)['rank_title']
+			$template->assign_block_vars('the_team', array_merge($users_loader->get_username_data($user_id), [
+				'avatar' => [$users_loader->get_avatar_data($user_id)],
+				'rank'	 => $users_loader->get_rank_data($row)['rank_title']
 			]));
 		}
-		$this->db->sql_freeresult($result);
+		$db->sql_freeresult($result);
 	}
 }

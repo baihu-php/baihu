@@ -11,43 +11,29 @@
 namespace baihu\baihu\src\plugin\block;
 
 use baihu\baihu\src\event\events;
-use baihu\baihu\src\plugin\plugin;
-use baihu\baihu\src\user\loader as users_loader;
-use phpbb\config\config;
-use phpbb\controller\helper as controller;
-use phpbb\db\driver\driver_interface;
-use phpbb\event\dispatcher;
-use phpbb\template\template;
+use baihu\baihu\src\plugin\base;
 
 use baihu\baihu\src\info;
 
-class online extends plugin
+class online extends base
 {
 	public function __construct(
-		config $config,
-		controller $controller,
-		driver_interface $db,
-		dispatcher $dispatcher,
-		template $template,
-		users_loader $users_loader,
-		$root_path,
-		$php_ext,
 		protected info $info
 	)
 	{
-		parent::__construct($config, $controller, $db, $dispatcher, $template, $users_loader, $root_path, $php_ext);
 	}
 
 	/**
 	* {@inheritdoc}
 	*/
-	public function load_plugin(): void
+	public function load(int|null $id = null): void
 	{
-		$total_posts  = (int) $this->config['num_posts'];
-		$total_topics = (int) $this->config['num_topics'];
-		$total_users  = (int) $this->config['num_users'];
+		$config = $this->get_config();
+		$total_posts  = (int) $config['num_posts'];
+		$total_topics = (int) $config['num_topics'];
+		$total_users  = (int) $config['num_users'];
 
-		$boarddays = (time() - $this->config['board_startdate']) / 86400;
+		$boarddays = (time() - $config['board_startdate']) / 86400;
 
 		$posts_per_day	= sprintf('%.2f', $total_posts / $boarddays);
 		$topics_per_day = sprintf('%.2f', $total_topics / $boarddays);
@@ -61,13 +47,13 @@ class online extends plugin
 
 		$this->info->legend();
 
-		$this->template->assign_vars([
+		$this->get_template()->assign_vars([
 			'TOTAL_POSTS'  => $total_posts,
 			'TOTAL_TOPICS' => $total_topics,
 			'TOTAL_USERS'  => $total_users,
-			'N_USER_ID'	   => (int) $this->config['newest_user_id'],
-			'N_USER_NAME'  => $this->config['newest_username'],
-			'N_USER_COLOR' => $this->config['newest_user_colour'],
+			'N_USER_ID'	   => (int) $config['newest_user_id'],
+			'N_USER_NAME'  => $config['newest_username'],
+			'N_USER_COLOR' => $config['newest_user_colour'],
 
 			'ppd' => $posts_per_day,
 			'tpd' => $topics_per_day,
@@ -76,6 +62,6 @@ class online extends plugin
 		]);
 
 		/** events::BAIHU_ONLINE_DATA_AFTER */
-		$this->dispatcher->trigger_event(events::BAIHU_ONLINE_DATA_AFTER);
+		$this->get_dispatcher()->trigger_event(events::BAIHU_ONLINE_DATA_AFTER);
 	}
 }
