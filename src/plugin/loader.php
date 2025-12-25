@@ -82,7 +82,7 @@ final class loader
 	 */
 	private function set_plugin_data(array $row): void
 	{
-		if (null === $plugin = $this->plugins_collection[$this->get_service_name($row['name'], $row['ext_name'])] ?? null)
+		if (null === $plugin = $this->plugins_collection[$row['name']] ?? null)
 		{
 			return;
 		}
@@ -99,27 +99,21 @@ final class loader
 
 		if ($plugin->type === 'block')
 		{
-			$name = $this->remove_baihu_prefix($row['name'], $row['ext_name']);
+			$name = $this->get_block_name($row['name'], $row['ext_name']);
 
 			$this->data->set_section_data($row['section'], $name, $row['ext_name']);
 		}
 	}
 
 	/**
-	 * @param string $service
-	 * @param string $ext_name
-	 */
-	public function get_service_name(string $service, string $ext_name): string
-	{
-		return str_replace('_', '.', $ext_name) . '.plugin.' . utf8_substr($service, utf8_strpos($service, '_') + 1);
-	}
-
-	/**
 	 * @param string $name
 	 * @param string $ext_name
 	 */
-	public function remove_baihu_prefix(string $name, string $ext_name): string
+	public function get_block_name(string $name, string $ext_name): string
 	{
+		$name = str_replace(['.', '_plugin_'], '_', $name);
+		$name = utf8_substr($name, utf8_strpos($name, '_') + 1);
+
 		return str_contains($ext_name, core::VENDOR) ? str_replace(core::VENDOR . '_', '', $name) : $name;
 	}
 }
