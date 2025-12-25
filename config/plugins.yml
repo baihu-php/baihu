@@ -51,7 +51,6 @@ services:
         class: baihu\baihu\src\plugin\sidebar\mini_profile
         calls:
             - [loadable, [false]]
-            - [dynamic, [false]]
             - [block, [true]]
             - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
@@ -62,7 +61,6 @@ services:
         class: baihu\baihu\src\plugin\sidebar\information
         calls:
             - [loadable, [true]]
-            - [dynamic, [false]]
             - [block, [true]]
             - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
@@ -73,7 +71,6 @@ services:
         class: baihu\baihu\src\plugin\sidebar\group
         calls:
             - [loadable, [true]]
-            - [dynamic, [true]]
             - [block, [true]]
             - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
@@ -84,7 +81,6 @@ services:
         class: baihu\baihu\src\plugin\sidebar\top_posters
         calls:
             - [loadable, [true]]
-            - [dynamic, [false]]
             - [block, [true]]
             - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
@@ -95,7 +91,6 @@ services:
         class: baihu\baihu\src\plugin\sidebar\recent_posts
         calls:
             - [loadable, [true]]
-            - [dynamic, [true]]
             - [block, [true]]
             - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
@@ -106,7 +101,6 @@ services:
         class: baihu\baihu\src\plugin\sidebar\recent_topics
         calls:
             - [loadable, [true]]
-            - [dynamic, [true]]
             - [block, [true]]
             - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:
@@ -117,7 +111,6 @@ services:
         class: baihu\baihu\src\plugin\block\online
         calls:
             - [loadable, [true]]
-            - [dynamic, [false]]
             - [block, [true]]
             - [set_container, ['@Psr\Container\ContainerInterface']]
         tags:

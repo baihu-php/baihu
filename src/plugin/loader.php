@@ -33,7 +33,7 @@ final class loader
 	 * @param string $page_name
 	 * @param object $config
 	 */
-	public function load_available_plugins(string $page_name, config $config): void
+	public function load_available_plugins(string $page_name, config $config, int|null $id = null): void
 	{
 		$this->get_requested_plugins($page_name, $config);
 
@@ -41,7 +41,7 @@ final class loader
 		{
 			foreach ($this->plugins as $item)
 			{
-				$item->load_plugin();
+				$item->load($id);
 			}
 		}
 	}
@@ -53,7 +53,7 @@ final class loader
 	protected function get_requested_plugins(string $page_name, config $config): void
 	{
 		$sql_array = [
-			'SELECT'	=> 'p.name, p.ext_name, p.section, op.page_name',
+			'SELECT'	=> 'p.name, p.ext_name, p.section, op.page_name, op.dynamic',
 			'FROM'		=> [
 				$this->plugins_table => 'p',
 				$this->plugins_on_page_table => 'op',
@@ -85,6 +85,11 @@ final class loader
 		if (null === $plugin = $this->plugins_collection[$this->get_service_name($row['name'], $row['ext_name'])] ?? null)
 		{
 			return;
+		}
+
+		if ($row['dynamic'])
+		{
+			$plugin->dynamic_id(true);
 		}
 
 		if ($plugin->loadable)

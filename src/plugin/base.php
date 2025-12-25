@@ -28,9 +28,9 @@ abstract class base implements ServiceSubscriberInterface
 	public readonly bool $loadable;
 
 	/**
-	 *	@var bool Returns true if data id (for example $forum_id) in plugin is changeable
+	 *	@var bool Returns true if data id (for example $forum_id) for plugin is changeable
 	 */
-	public readonly bool $dynamic;
+	public bool $dynamic_id = false;
 
 	/**
 	 * @var bool Return true if plugin type is block
@@ -111,9 +111,9 @@ abstract class base implements ServiceSubscriberInterface
 	/**
 	 * @param bool $set Is id changeable
 	 */
-	public function dynamic(bool $set): void
+	public function dynamic_id(bool $set): void
 	{
-		$this->dynamic = $set;
+		$this->dynamic_id = $set;
 	}
 
 	/**
