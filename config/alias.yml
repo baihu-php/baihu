@@ -7,6 +7,7 @@ services:
     phpbb\group\helper: '@group_helper'
     phpbb\language\language: '@language'
     phpbb\request\request: '@request'
+    phpbb\routing\helper: '@routing.helper'
     phpbb\pagination: '@pagination'
     # phpbb\template\context: '@template_context'
     phpbb\template\template: '@template'
