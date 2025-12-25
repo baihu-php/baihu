@@ -24,6 +24,9 @@ class index_controller extends abstract_controller
 		$controller_helper = $this->get_controller_helper();
 		$id = (int) $controller_helper->get_config()['baihu_fid'];
 
+		// Assign breadcrumb
+		$controller_helper->assign_breadcrumb($this->posts->get_category_name($id), 'baihu_articles', ['fid' => $id]);
+
 		$this->posts->trim_messages(true)
 			->load($id);
 

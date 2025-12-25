@@ -55,31 +55,19 @@ final class posts extends base
 	}
 
 	/**
-	* News categories
-	*/
-	public function categories(int $fid): string
+	 * Get forum category name
+	 */
+	public function get_category_name(int $fid): string
 	{
 		$db = $this->get_db();
-		$sql_ary = [
-			'SELECT' => 'forum_id, forum_name',
-			'FROM'	 => [
-				FORUMS_TABLE => 'f',
-			],
-
-			'WHERE'	 => 'forum_type = ' . FORUM_POST,
-		];
-
-		$sql = $db->sql_build_query('SELECT', $sql_ary);
-		$result = $db->sql_query($sql, 86400);
-
-		$forum_ary = [];
-		while ($row = $db->sql_fetchrow($result))
-		{
-			$forum_ary[(int) $row['forum_id']] = (string) $row['forum_name'];
-		}
+		$sql = 'SELECT forum_name
+				FROM ' . FORUMS_TABLE . '
+				WHERE forum_id = ' . $fid;
+		$result = $db->sql_query($sql, 3600);
+		$category_name = $db->sql_fetchfield('forum_name');
 		$db->sql_freeresult($result);
 
-		return $forum_ary[$fid] ?? '';
+		return $category_name ?? '';
 	}
 
 	/**
@@ -97,9 +85,6 @@ final class posts extends base
 
 			login_box('', $this->language->lang('LOGIN_VIEWFORUM'));
 		}
-
-		// Assign breadcrumb TODO: Move into controller
-		// $controller_helper->assign_breadcrumb($this->categories($forum_id), 'baihu_articles', ['fid' => $forum_id]);
 
 		// Build sql data
 		$db = $this->get_db();
