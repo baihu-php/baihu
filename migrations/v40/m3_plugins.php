@@ -68,10 +68,7 @@ class m3_plugins extends \phpbb\db\migration\migration
 					'section'  => core::SIDE,
 				],
 				[
-					'name'	   => core::ONLINE,
 					'ext_name' => core::EXT_NAME,
-					'position' => 1,
-					'section'  => core::BOTTOM,
 				],
 			];
 

@@ -107,13 +107,3 @@ services:
         tags:
             - { name: baihu.plugin }
             - { name: container.service_subscriber }
-
-    baihu.baihu.plugin.online:
-        class: baihu\baihu\src\plugin\block\online
-        calls:
-            - [loadable, [true]]
-            - [block, [true]]
-            - [set_container, ['@Psr\Container\ContainerInterface']]
-        tags:
-            - { name: baihu.plugin }
-            - { name: container.service_subscriber }

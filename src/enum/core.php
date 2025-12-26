@@ -40,7 +40,6 @@ final class core
 	public const POSTER = self::PLUGIN_PREFIX . 'top_posters';
 	public const POSTS = self::PLUGIN_PREFIX . 'recent_posts';
 	public const TOPICS = self::PLUGIN_PREFIX . 'recent_topics';
-	public const ONLINE = self::PLUGIN_PREFIX . 'online';
 
 	// Pages
 	public const PAGE = 'app';
