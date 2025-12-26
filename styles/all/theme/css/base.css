@@ -1204,6 +1204,7 @@ pre code {
 	.gzo-bar-info {
 		color: var(--gray-1300);
 		max-width: max-content;
+		overflow-x: hidden;
 	}
 
 	.gzo-bar-title {
@@ -1330,8 +1331,9 @@ main {
 	h3 {
 		font-size: 1.2rem;
 		color: var(--blue-gray-1200);
-		overflow-x: clip;
+		overflow-x: hidden;
 		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	.gzo-section-main {
@@ -1562,4 +1564,7 @@ dt {
 dd {
 	margin: 0;
 	grid-column-start: 2;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
