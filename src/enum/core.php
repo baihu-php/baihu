@@ -34,13 +34,13 @@ final class core
 	public const PLUGINS_ON_PAGE = self::VENDOR . '_plugins_on_page';
 
 	// Plugins
-	public const PROFILE = self::VENDOR . '_mini_profile';
-	public const GROUP = self::VENDOR . '_group';
-	public const POSTER = self::VENDOR . '_top_posters';
-	public const POSTS = self::VENDOR . '_recent_posts';
-	public const TOPICS = self::VENDOR . '_recent_topics';
-	public const ONLINE = self::VENDOR . '_online';
-	public const INFO = self::VENDOR . '_information';
+	public const PLUGIN_PREFIX = 'baihu.baihu.plugin.';
+	public const PROFILE = self::PLUGIN_PREFIX . 'mini_profile';
+	public const STATS = self::PLUGIN_PREFIX . 'statistics';
+	public const GROUP = self::PLUGIN_PREFIX . 'group';
+	public const POSTER = self::PLUGIN_PREFIX . 'top_posters';
+	public const POSTS = self::PLUGIN_PREFIX . 'recent_posts';
+	public const TOPICS = self::PLUGIN_PREFIX . 'recent_topics';
 
 	// Pages
 	public const PAGE = 'app';
@@ -48,6 +48,5 @@ final class core
 	// Sections
 	public const TOP = self::VENDOR . '_top';
 	public const SIDE = self::VENDOR . '_side';
-	public const BLOCK = self::VENDOR . '_block';
 	public const BOTTOM = self::VENDOR . '_bottom';
 }

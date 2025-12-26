@@ -33,7 +33,7 @@ final class loader
 	 * @param string $page_name
 	 * @param object $config
 	 */
-	public function load_available_plugins(string $page_name, config $config): void
+	public function load_available_plugins(string $page_name, config $config, int|null $id = null): void
 	{
 		$this->get_requested_plugins($page_name, $config);
 
@@ -41,7 +41,7 @@ final class loader
 		{
 			foreach ($this->plugins as $item)
 			{
-				$item->load_plugin();
+				$item->load($id);
 			}
 		}
 	}
@@ -53,7 +53,7 @@ final class loader
 	protected function get_requested_plugins(string $page_name, config $config): void
 	{
 		$sql_array = [
-			'SELECT'	=> 'p.name, p.ext_name, p.section, op.page_name',
+			'SELECT'	=> 'p.name, p.ext_name, p.section, op.page_name, op.dynamic',
 			'FROM'		=> [
 				$this->plugins_table => 'p',
 				$this->plugins_on_page_table => 'op',
@@ -61,7 +61,7 @@ final class loader
 			'WHERE'		=> "p.name = op.name
 				AND op.page_name = '" . $this->db->sql_escape($page_name)  . "'" . '
 				AND op.active = 1',
-			'ORDER_BY'	=> 'p.position',
+			'ORDER_BY'	=> 'op.position',
 		];
 
 		$sql = $this->db->sql_build_query('SELECT', $sql_array);
@@ -82,9 +82,14 @@ final class loader
 	 */
 	private function set_plugin_data(array $row): void
 	{
-		if (null === $plugin = $this->plugins_collection[$this->get_service_name($row['name'], $row['ext_name'])] ?? null)
+		if (null === $plugin = $this->plugins_collection[$row['name']] ?? null)
 		{
 			return;
+		}
+
+		if ($row['dynamic'])
+		{
+			$plugin->dynamic_id(true);
 		}
 
 		if ($plugin->loadable)
@@ -92,29 +97,23 @@ final class loader
 			$this->plugins[$row['name']] = $plugin;
 		}
 
-		if ($plugin->type === 'block')
+		if ($plugin->block)
 		{
-			$name = $this->remove_baihu_prefix($row['name'], $row['ext_name']);
+			$name = $this->get_block_name($row['name'], $row['ext_name']);
 
 			$this->data->set_section_data($row['section'], $name, $row['ext_name']);
 		}
 	}
 
 	/**
-	 * @param string $service
-	 * @param string $ext_name
-	 */
-	public function get_service_name(string $service, string $ext_name): string
-	{
-		return str_replace('_', '.', $ext_name) . '.plugin.' . utf8_substr($service, utf8_strpos($service, '_') + 1);
-	}
-
-	/**
 	 * @param string $name
 	 * @param string $ext_name
 	 */
-	public function remove_baihu_prefix(string $name, string $ext_name): string
+	public function get_block_name(string $name, string $ext_name): string
 	{
+		$name = str_replace(['.', '_plugin_'], '_', $name);
+		$name = utf8_substr($name, utf8_strpos($name, '_') + 1);
+
 		return str_contains($ext_name, core::VENDOR) ? str_replace(core::VENDOR . '_', '', $name) : $name;
 	}
 }

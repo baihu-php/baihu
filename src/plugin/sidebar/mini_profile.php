@@ -10,8 +10,14 @@
 
 namespace baihu\baihu\src\plugin\sidebar;
 
-use baihu\baihu\src\plugin\plugin;
+use baihu\baihu\src\plugin\base;
 
-class mini_profile extends plugin
+class mini_profile extends base
 {
+	/**
+	* {@inheritdoc}
+	*/
+	public function load(int|null $id = null): void
+	{
+	}
 }

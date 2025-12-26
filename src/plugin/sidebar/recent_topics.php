@@ -10,29 +10,32 @@
 
 namespace baihu\baihu\src\plugin\sidebar;
 
-use baihu\baihu\src\plugin\plugin;
+use baihu\baihu\src\plugin\base;
 
-class recent_topics extends plugin
+class recent_topics extends base
 {
 	/**
 	* {@inheritdoc}
 	*/
-	public function load_plugin(): void
+	public function load(int|null $id = null): void
 	{
+		$db = $this->get_db();
+		$config = $this->get_config();
+
 		$sql = 'SELECT topic_id, topic_title
 				FROM ' . TOPICS_TABLE . '
 				WHERE topic_status <> ' . ITEM_MOVED . '
 					AND topic_visibility = 1
 				ORDER BY topic_id DESC';
-		$result = $this->db->sql_query_limit($sql, (int) $this->config['baihu_limit'], 0, 3600);
+		$result = $db->sql_query_limit($sql, (int) $config['baihu_limit'], 0, 3600);
 
-		while ($row = $this->db->sql_fetchrow($result))
+		while ($row = $db->sql_fetchrow($result))
 		{
-			$this->template->assign_block_vars('recent_topics', [
-				'link'	=> $this->controller_helper->route('baihu_recent_topic', ['t' => $row['topic_id']]),
-				'title' => $this->truncate($row['topic_title'], $this->config['baihu_title_length']),
+			$this->get_template()->assign_block_vars('recent_topics', [
+				'link'	=> $this->route('baihu_recent_topic', ['t' => $row['topic_id']]),
+				'title' => $this->truncate($row['topic_title'], $config['baihu_title_length']),
 			]);
 		}
-		$this->db->sql_freeresult($result);
+		$db->sql_freeresult($result);
 	}
 }
