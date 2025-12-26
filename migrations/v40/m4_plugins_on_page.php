@@ -46,13 +46,13 @@ class m4_plugins_on_page extends \phpbb\db\migration\migration
 				[
 					'name'		=> core::STATS,
 					'page_name' => core::PAGE,
-					'active'	=> true,
+					'active'	=> false,
 					'dynamic'	=> false,
 				],
 				[
 					'name'		=> core::GROUP,
 					'page_name' => core::PAGE,
-					'active'	=> true,
+					'active'	=> false,
 					'dynamic'	=> false,
 				],
 				[
