@@ -10,7 +10,6 @@
 
 namespace baihu\baihu\src\plugin\sidebar;
 
-use baihu\baihu\src\enum\core;
 use baihu\baihu\src\event\events;
 use baihu\baihu\src\plugin\base;
 
