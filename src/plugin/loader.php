@@ -61,7 +61,7 @@ final class loader
 			'WHERE'		=> "p.name = op.name
 				AND op.page_name = '" . $this->db->sql_escape($page_name)  . "'" . '
 				AND op.active = 1',
-			'ORDER_BY'	=> 'p.position',
+			'ORDER_BY'	=> 'op.position',
 		];
 
 		$sql = $this->db->sql_build_query('SELECT', $sql_array);

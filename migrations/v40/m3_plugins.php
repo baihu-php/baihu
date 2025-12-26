@@ -40,37 +40,31 @@ class m3_plugins extends \phpbb\db\migration\migration
 				[
 					'name'	   => core::PROFILE,
 					'ext_name' => core::EXT_NAME,
-					'position' => 1,
 					'section'  => core::SIDE,
 				],
 				[
 					'name'	   => core::STATS,
 					'ext_name' => core::EXT_NAME,
-					'position' => 2,
 					'section'  => core::SIDE,
 				],
 				[
 					'name'	   => core::GROUP,
 					'ext_name' => core::EXT_NAME,
-					'position' => 3,
 					'section'  => core::SIDE,
 				],
 				[
 					'name'	   => core::POSTER,
 					'ext_name' => core::EXT_NAME,
-					'position' => 4,
 					'section'  => core::SIDE,
 				],
 				[
 					'name'	   => core::POSTS,
 					'ext_name' => core::EXT_NAME,
-					'position' => 5,
 					'section'  => core::SIDE,
 				],
 				[
 					'name'	   => core::TOPICS,
 					'ext_name' => core::EXT_NAME,
-					'position' => 6,
 					'section'  => core::SIDE,
 				],
 			];
