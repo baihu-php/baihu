@@ -21,6 +21,8 @@ final class events
 	/** Area base class */
 	public const BAIHU_AREA_MODIFY_NAVIGATION = 'baihu.area_modify_navigation';
 
+	/** Statistics plugin */
+	public const BAIHU_STATISTICS_BEFORE = 'baihu.statistics_before';
 
 	/** Posts plugin */
 	public const BAIHU_POSTS_MODIFY_CATEGORY_DATA = 'baihu.posts_modify_category_data';

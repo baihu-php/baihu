@@ -36,6 +36,7 @@ final class core
 	// Plugins
 	public const PLUGIN_PREFIX = 'baihu.baihu.plugin.';
 	public const PROFILE = self::PLUGIN_PREFIX . 'mini_profile';
+	public const STATS = self::PLUGIN_PREFIX . 'statistics';
 	public const GROUP = self::PLUGIN_PREFIX . 'group';
 	public const POSTER = self::PLUGIN_PREFIX . 'top_posters';
 	public const POSTS = self::PLUGIN_PREFIX . 'recent_posts';

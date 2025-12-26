@@ -57,7 +57,8 @@ $lang = array_merge($lang, [
 	'CURRENT_USERS_PROFILE_TAB' => 'Your %s',
 	'USERS_PROFILE_TAB' => '%s / %s',
 
-	'BAIHU_STATS_PER_DAY' => '%s per day <strong>%s</strong>',
+	'BAIHU_STATS_PER_DAY' => '%s per day',
+	'BAIHU_PER_DAY' => 'Per day',
 
 	'LEADERS'		=> 'Top posters',
 	'RECENT_POSTS'	=> 'Recent posts',
@@ -68,6 +69,10 @@ $lang = array_merge($lang, [
 	'NEW_PM'  => ' new message',
 	'NEW_PMS' => ' new messages',
 
+	// Statistics
+	'BAIHU_TOPICS'  => 'Topics',
+	'BAIHU_MEMBERS' => 'Members',
+	'BAIHU_NEWEST'  => 'Newest',
 
 	'IN_TOPIC'	=> 'In ',
 
