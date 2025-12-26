@@ -15,6 +15,7 @@ use baihu\baihu\src\plugin\loader as plugins;
 use baihu\baihu\src\user\page;
 use phpbb\config\config;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 class plugin_subscriber implements EventSubscriberInterface
 {
@@ -40,7 +41,7 @@ class plugin_subscriber implements EventSubscriberInterface
 	public static function getSubscribedEvents(): array
 	{
 		return [
-			'core.user_setup_after' => 'load_available_plugins',
+			KernelEvents::CONTROLLER => 'load_available_plugins',
 		];
 	}
 }

@@ -52,6 +52,8 @@ final class loader
 		{
 			$this->users[$data['user_id']] = $data;
 		}
+
+		$this->check_for_additional_data($data);
 	}
 
 	public function get_user(int $user_id): array
@@ -64,6 +66,21 @@ final class loader
 		$this->load_by_id($user_id);
 
 		return $this->get_user($user_id);
+	}
+
+	public function check_for_additional_data(array $data): void
+	{
+		if ($this->users[$data['user_id']] !== $this->filter_user_data($data))
+		{
+			$this->users[$data['user_id']] = array_merge($this->users[$data['user_id']], $this->filter_user_data($data));
+		}
+	}
+
+	public function filter_user_data(array $row): array
+	{
+		return array_filter($row, function($key) {
+			return strpos($key, 'user') === 0;
+		}, ARRAY_FILTER_USE_KEY);
 	}
 
 	public function get_username(int $user_id): string

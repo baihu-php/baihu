@@ -130,13 +130,16 @@ final class posts extends base
 	{
 		$build = new \baihu\baihu\src\db\helper($this->get_db());
 		$build
-			->select('t.topic_id, t.topic_title, t.topic_time, t.topic_views, t.topic_posts_approved, p.post_id, p.poster_id, p.post_text')
+			->select('t.topic_id, t.topic_title, t.topic_time, t.topic_views, t.topic_posts_approved, p.post_id, p.poster_id, p.post_text,
+				u.user_id, u.username, u.user_posts, u.user_rank, u.user_colour, u.user_avatar, u.user_avatar_type, u.user_avatar_width, u.user_avatar_height')
 			->from([
 				TOPICS_TABLE => 't',
 				POSTS_TABLE => 'p',
+				USERS_TABLE => 'u',
 			])
 			->where('t.' . $type . '_id = ' . $id . '
 				AND p.post_id = t.topic_first_post_id
+				AND u.user_id = p.poster_id
 				AND t.topic_status <> ' . ITEM_MOVED . '
 				AND t.topic_visibility = 1')
 			->order($this->order, $type === 'forum');
@@ -150,6 +153,7 @@ final class posts extends base
 	public function get_template_data(array $row): array
 	{
 		$users_loader = $this->get_users_loader();
+		$users_loader->load_user($row);
 		$user_id = (int) $row['poster_id'];
 		$user = $users_loader->get_user($user_id);
 		$rank = $users_loader->get_rank_data($user);
@@ -166,8 +170,8 @@ final class posts extends base
 			'author_color'	  => $user['user_colour'],
 			'author_profile'  => $this->route('baihu_member', ['username' => $user['username']]),
 			'author_avatar'	  => [$users_loader->get_avatar_data($user_id)],
-			'author_rank'	  => $rank['rank_title'],
-			'author_rank_img' => $rank['rank_img'],
+			'author_rank'	  => $rank['rank_title'] ?? '',
+			'author_rank_img' => $rank['rank_img'] ?? '',
 
 			'views'		 => $row['topic_views'],
 			'replies'	 => $row['topic_posts_approved'] - 1,
