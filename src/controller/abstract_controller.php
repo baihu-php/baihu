@@ -78,12 +78,15 @@ abstract class abstract_controller implements ServiceSubscriberInterface
 
 		$headers = !empty($this->user->data['is_bot']) ? ['X-PHPBB-IS-BOT' => 'yes'] : [];
 
+		$display_template = true;
+
 		/**
 		 * @event core.page_footer_after
 		 */
-		$this->dispatcher->trigger_event('core.page_footer_after', compact($vars));
+		$vars = ['display_template'];
+		extract($this->dispatcher->trigger_event('core.page_footer_after', compact($vars)));
 
-		$response = new Response($this->template->assign_display('body'), $status_code, $headers);
+		$response = new Response($display_template ? $this->template->assign_display('body') : '', $status_code, $headers);
 
 		return $response;
 	}
