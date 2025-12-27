@@ -68,11 +68,12 @@ class subscribers implements EventSubscriberInterface
 	*/
 	public function modify_username_string($event): void
 	{
+		$user  = $event['username'];
+		$route = $this->controller_helper->route('baihu_member', ['username' => $user]);
+
 		if ($event['mode'] === 'full')
 		{
-			$user  = $event['username'];
 			$color = $event['username_colour'];
-			$route = $this->controller_helper->route('baihu_member', ['username' => $user]);
 
 			// TODO: remove this html ASAP
 			// Can be removed/modified when html part will be removed from phpBB
@@ -82,6 +83,11 @@ class subscribers implements EventSubscriberInterface
 				$username_string = '<a href="' . $route . '" style="color:' . $color . ';" class="username-coloured">' . $user . '</a>';
 			}
 
+			$event['username_string'] = $username_string;
+		}
+		else if ($event['mode'] === 'profile')
+		{
+			$username_string = $this->controller_helper->route('baihu_member', ['username' => $user]);
 			$event['username_string'] = $username_string;
 		}
 	}
