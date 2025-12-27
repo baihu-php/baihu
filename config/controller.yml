@@ -2,6 +2,9 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        bind:
+            string $php_ext: '%core.php_ext%'
+            string $admin_path: '%core.root_path%%core.adm_relative_path%'
 
     baihu.abstract_controller:
         abstract: true
@@ -19,14 +22,8 @@ services:
 # ----- Controllers -----
     baihu.index_controller:
         class: baihu\baihu\src\controller\index_controller
-        calls:
-            - [set_container, ['@Psr\Container\ContainerInterface']]
         tags: ['container.service_subscriber']
 
     baihu.posts_controller:
         class: baihu\baihu\src\controller\posts_controller
-        arguments:
-            - '%core.php_ext%'
-        calls:
-            - [set_container, ['@Psr\Container\ContainerInterface']]
         tags: ['container.service_subscriber']
