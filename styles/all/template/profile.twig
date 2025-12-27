@@ -13,7 +13,7 @@
 
 				<dt>{{ lang('USERNAME') ~ lang('COLON') }}</dt>
 				<dd>
-					{% if USER_COLOR %}<span style="color: {{ USER_COLOR }}; font-weight: bold;">{% else %}<span>{% endif %}{{ USERNAME }}</span>
+					{{- baihu_username('username', user_id, username, color, '') -}}
 					{% if U_USER_ADMIN %} [ <a href="{{ U_USER_ADMIN }}">{{ lang('USER_ADMIN') }}</a> ]{% endif %}
 					{% if U_USER_BAN %} [ <a href="{{ U_USER_BAN }}">{{ lang('USER_BAN') }}</a> ]{% endif %}
 					{% if U_SWITCH_PERMISSIONS %} [ <a href="{{ U_SWITCH_PERMISSIONS }}">{{ lang('USE_PERMISSIONS') }}</a> ]{% endif %}
