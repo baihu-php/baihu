@@ -8,25 +8,11 @@ services:
 
     baihu.controller_helper:
         class: baihu\baihu\src\controller\controller_helper
-        decorates: controller.helper
         autowire: false
         arguments:
-            - '@auth'
-            - '@cache.driver'
-            - '@config'
-            - '@cron.manager'
-            - '@dbal.conn'
-            - '@event_dispatcher'
             - '@language'
-            - '@request'
             - '@routing.helper'
-            - '@symfony_request'
             - '@template'
-            - '@user'
-            - '%core.root_path%'
-            - '%core.adm_relative_path%'
-            - '%core.php_ext%'
-            - '%debug.sql_explain%'
 
     baihu\baihu\src\controller\controller_helper: '@baihu.controller_helper'
 

@@ -10,8 +10,8 @@
 
 namespace baihu\baihu\src\members;
 
+use baihu\baihu\src\controller\controller_helper;
 use phpbb\di\service_collection;
-use phpbb\controller\helper as controller_helper;
 use phpbb\language\language;
 use phpbb\template\template;
 

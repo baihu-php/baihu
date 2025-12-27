@@ -42,7 +42,7 @@ class subscribers implements EventSubscriberInterface
 	 */
 	public function add_global_variables(): void
 	{
-		$this->controller_helper->get_template()->assign_vars([
+		$this->controller_helper->template->assign_vars([
 			'U_AREAZ_MAIN' => $this->controller_helper->route('areaz_main'),
 		]);
 	}
