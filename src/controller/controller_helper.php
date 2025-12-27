@@ -10,13 +10,24 @@
 
 namespace baihu\baihu\src\controller;
 
-use phpbb\controller\helper as phpbb_helper;
+use phpbb\language\language;
+use phpbb\routing\helper as routing_helper;
+use phpbb\template\template;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
 * Controller helper class
 */
-class controller_helper extends phpbb_helper
+class controller_helper
 {
+	public function __construct(
+		protected language $language,
+		protected routing_helper $routing_helper,
+		public readonly template $template
+	)
+	{
+	}
+
 	public function add_language(string $name, string $path): self
 	{
 		$this->language->add_lang($name, $path);
@@ -34,18 +45,11 @@ class controller_helper extends phpbb_helper
 		return $this;
 	}
 
-	public function get_config()
+	/**
+	 * Borrowed from the phpBB Controller helper class
+	 */
+	public function route(string $route, array $params = [], bool $is_amp = true, bool|string $session_id = false, int $reference_type = UrlGeneratorInterface::ABSOLUTE_PATH): string
 	{
-		return $this->config;
-	}
-
-	public function get_language()
-	{
-		return $this->language;
-	}
-
-	public function get_template()
-	{
-		return $this->template;
+		return $this->routing_helper->route($route, $params, $is_amp, $session_id, $reference_type);
 	}
 }

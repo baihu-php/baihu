@@ -15,21 +15,24 @@ use Symfony\Component\HttpFoundation\Response;
 
 class index_controller extends abstract_controller
 {
-	public function __construct(protected posts $posts)
+	public static function getSubscribedServices(): array
 	{
+		return array_merge(parent::getSubscribedServices(), [
+			'baihu.posts' => '?'.posts::class,
+		]);
 	}
 
 	public function index(): Response
 	{
-		$controller_helper = $this->get_controller_helper();
-		$id = (int) $controller_helper->get_config()['baihu_fid'];
+		$id = (int) $this->config['baihu_fid'];
+		$posts = $this->container->get('baihu.posts');
 
 		// Assign breadcrumb
-		$controller_helper->assign_breadcrumb($this->posts->get_category_name($id), 'baihu_articles', ['fid' => $id]);
+		$this->get_controller_helper()->assign_breadcrumb($posts->get_category_name($id), 'baihu_articles', ['fid' => $id]);
 
-		$this->posts->trim_messages(true)
+		$posts->trim_messages(true)
 			->load($id);
 
-		return $controller_helper->render('index.twig', $controller_helper->get_language()->lang('HOME'), 200, true);
+		return $this->render('index.twig', $this->language->lang('HOME'), 200, true);
 	}
 }

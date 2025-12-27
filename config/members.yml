@@ -1,19 +1,28 @@
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            string $php_ext: '%core.php_ext%'
+            string $admin_path: '%core.root_path%%core.adm_relative_path%'
+
     baihu.members.subscribers:
         class: baihu\baihu\src\members\event\subscribers
-        autowire: true
         tags:
             - { name: event.listener }
 
     baihu.members.tabs:
         class: baihu\baihu\src\members\manager
+        autowire: false
         arguments:
             - '@baihu.members.tabs.collection'
-            - '@controller.helper'
+            - '@baihu.controller_helper'
             - '@language'
             - '@template'
             - '%core.root_path%'
             - '%core.php_ext%'
+
+    baihu\baihu\src\members\manager: '@baihu.members.tabs'
 
     baihu.members.tabs.collection:
         class: phpbb\di\ordered_service_collection
@@ -24,6 +33,7 @@ services:
 
     baihu.members.tabs.base:
         abstract: true
+        autowire: false
         arguments:
             - '@auth'
             - '@dbal.conn'
@@ -36,7 +46,7 @@ services:
 # ----- GZO Tabs -----
     baihu.members.tabs.profile:
         class: baihu\baihu\src\members\tabs\profile
-        shared: false
+        autowire: false
         parent: baihu.members.tabs.base
         arguments:
             - '@config'
@@ -53,18 +63,8 @@ services:
 # ----- Controllers -----
     baihu.profile_controller:
         class: baihu\baihu\src\controller\member\profile_controller
-        autowire: true
-        arguments:
-            - '@?baihu.members.tabs'
-        calls:
-            - [set_container, ['@Psr\Container\ContainerInterface']]
         tags: ['container.service_subscriber']
 
     baihu.members_controller:
         class: baihu\baihu\src\controller\member\members_controller
-        autowire: true
-        arguments:
-            - '%core.php_ext%'
-        calls:
-            - [set_container, ['@Psr\Container\ContainerInterface']]
         tags: ['container.service_subscriber']

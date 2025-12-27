@@ -16,29 +16,31 @@ use Symfony\Component\HttpFoundation\Response;
 
 class profile_controller extends abstract_controller
 {
-	public function __construct(protected manager $manager)
+	public static function getSubscribedServices(): array
 	{
+		return array_merge(parent::getSubscribedServices(), [
+			'baihu.members.tabs' => '?'.manager::class,
+		]);
 	}
 
 	public function index($username, $tab): Response
 	{
-		$controller_helper = $this->get_controller_helper();
-		$language = $controller_helper->get_language();
+		$manager = $this->container->get('baihu.members.tabs');
 
 		// Load language
-		$language->add_lang('memberlist');
+		$this->language->add_lang('memberlist');
 
-		$this->manager->generate_tabs_menu($username, $tab);
-		$this->manager->generate_breadcrumb($username, $tab);
+		$manager->generate_tabs_menu($username, $tab);
+		$manager->generate_breadcrumb($username, $tab);
 
-		$current = $this->manager->get($tab);
+		$current = $manager->get($tab);
 		$current->load($username);
 
-		$current_tab = $language->lang(ucfirst($tab));
-		$page_title = $current->is_active_session() ? $language->lang('CURRENT_USERS_PROFILE_TAB', $current_tab) : $language->lang('USERS_PROFILE_TAB', $username, $current_tab);
+		$current_tab = $this->language->lang(ucfirst($tab));
+		$page_title = $current->is_active_session() ? $this->language->lang('CURRENT_USERS_PROFILE_TAB', $current_tab) : $this->language->lang('USERS_PROFILE_TAB', $username, $current_tab);
 
 		$page_title = $tab !== 'profile' ? $page_title : $username;
 
-		return $controller_helper->render("{$current->namespace()}$tab.twig", $page_title, 200, true);
+		return $this->render("{$current->namespace()}$tab.twig", $page_title, 200, true);
 	}
 }

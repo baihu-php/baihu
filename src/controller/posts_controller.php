@@ -15,10 +15,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class posts_controller extends abstract_controller
 {
-	public function __construct(protected string $php_ext)
-	{
-	}
-
 	/**
 	 * Article controller for route /article/{aid}
 	 */
