@@ -85,7 +85,7 @@ class subscribers implements EventSubscriberInterface
 
 			$event['username_string'] = $username_string;
 		}
-		elseif ($event['mode'] === 'profile')
+		else if ($event['mode'] === 'profile')
 		{
 			$username_string = $this->controller_helper->route('baihu_member', ['username' => $user]);
 			$event['username_string'] = $username_string;
