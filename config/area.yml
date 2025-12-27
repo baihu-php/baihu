@@ -32,4 +32,7 @@ services:
         class: baihu\baihu\src\controller\admin\index_controller
         calls:
             - [set_container, ['@Psr\Container\ContainerInterface']]
+
+    baihu.admin_redirect:
+        class: baihu\baihu\src\controller\admin\admin_redirect_main
         tags: ['container.service_subscriber']

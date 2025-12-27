@@ -2,6 +2,11 @@ baihu_area_routing:
     resource: area_routes.yml
     prefix: /admin
 
+# Redirect to admin main (legacy)
+baihu_admin_redirect:
+    path: /admin/main
+    controller: baihu.admin_redirect:index
+
 # Main page
 baihu_main_index:
     path: /
