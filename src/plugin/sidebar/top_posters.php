@@ -19,7 +19,6 @@ class top_posters extends base
 	*/
 	public function load(int|null $id = null): void
 	{
-		$db = $this->get_db();
 		$users_loader = $this->get_users_loader();
 
 		$sql = 'SELECT user_id, username, user_posts, user_colour, user_avatar, user_avatar_type, user_avatar_width, user_avatar_height
@@ -28,18 +27,18 @@ class top_posters extends base
 					AND user_type <> ' . (int) USER_IGNORE . '
 					AND user_posts > 0
 				ORDER BY user_posts DESC';
-		$result = $db->sql_query_limit($sql, (int) $this->get_config()['baihu_users_per_list'], 0, 3600);
+		$result = $this->db->sql_query_limit($sql, (int) $this->config['baihu_users_per_list'], 0, 3600);
 
-		while ($row = $db->sql_fetchrow($result))
+		while ($row = $this->db->sql_fetchrow($result))
 		{
 			$users_loader->load_user($row);
 			$user_id = (int) $row['user_id'];
 
-			$this->get_template()->assign_block_vars('top_posters', array_merge($users_loader->get_username_data($user_id), [
+			$this->template->assign_block_vars('top_posters', array_merge($users_loader->get_username_data($user_id), [
 				'avatar' => [$users_loader->get_avatar_data($user_id)],
 				'posts'	 => (int) $row['user_posts']
 			]));
 		}
-		$db->sql_freeresult($result);
+		$this->db->sql_freeresult($result);
 	}
 }
