@@ -15,21 +15,21 @@ baihu_main_index:
 # Articles
 baihu_articles:
     path: /articles/{fid}
-    controller: baihu.posts_controller:articles
+    controller: baihu.posts_redirect_controller:articles
     requirements:
         id: \d+
 
 # Redirect to topic page
 baihu_article:
     path: /article/{aid}
-    controller: baihu.posts_controller:article
+    controller: baihu.posts_redirect_controller:article
     requirements:
         aid: \d+
 
 # Redirect to recent post
 baihu_recent_post:
     path: /recent-post/aid-{aid}-p-{post_id}
-    controller: baihu.posts_controller:recent_post
+    controller: baihu.posts_redirect_controller:recent_post
     requirements:
         aid: \d+
         post_id: \d+
@@ -37,7 +37,7 @@ baihu_recent_post:
 # Redirect to recent topic
 baihu_recent_topic:
     path: /recent-article/{aid}
-    controller: baihu.posts_controller:recent_topic
+    controller: baihu.posts_redirect_controller:recent_topic
     requirements:
         aid: \d+
 

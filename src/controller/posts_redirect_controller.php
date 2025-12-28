@@ -13,7 +13,7 @@ namespace baihu\baihu\src\controller;
 use phpbb\exception\http_exception;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class posts_controller extends abstract_controller
+class posts_redirect_controller extends abstract_controller
 {
 	/**
 	 * Article controller for route /article/{aid}
@@ -29,9 +29,7 @@ class posts_controller extends abstract_controller
 			't' => $aid
 		];
 
-		$url = append_sid(generate_board_url() . "/viewtopic.{$this->php_ext}", $params, false);
-
-		return new RedirectResponse($url);
+		return $this->redirect_to_legacy_page('viewtopic', $params);
 	}
 
 	/**
@@ -48,9 +46,7 @@ class posts_controller extends abstract_controller
 			'f' => $fid
 		];
 
-		$url = append_sid(generate_board_url() . "/viewforum.{$this->php_ext}", $params, false);
-
-		return new RedirectResponse($url);
+		return $this->redirect_to_legacy_page('viewforum', $params);
 	}
 
 	/**
@@ -60,7 +56,7 @@ class posts_controller extends abstract_controller
 	public function post(int $fid): RedirectResponse
 	{
 		// Borrowed from Ideas extension (phpBB)
-		if ($this->user->data['user_id'] == ANONYMOUS)
+		if ($this->get_user()->data['user_id'] == ANONYMOUS)
 		{
 			throw new http_exception(404, 'LOGIN_REQUIRED');
 		}
@@ -70,9 +66,7 @@ class posts_controller extends abstract_controller
 			'f'	   => $fid,
 		];
 
-		$url = append_sid(generate_board_url() . "/posting.{$this->php_ext}", $params, false);
-
-		return new RedirectResponse($url);
+		return $this->redirect_to_legacy_page('posting', $params);
 	}
 
 	/**
@@ -94,9 +88,7 @@ class posts_controller extends abstract_controller
 			't' => "{$aid}#p{$post_id}",
 		];
 
-		$url = append_sid(generate_board_url() . "/viewtopic.{$this->php_ext}", $params, false);
-
-		return new RedirectResponse($url);
+		return $this->redirect_to_legacy_page('viewtopic', $params);
 	}
 
 	/**
@@ -113,8 +105,6 @@ class posts_controller extends abstract_controller
 			't' => $aid
 		];
 
-		$url = append_sid(generate_board_url() . "/viewtopic.{$this->php_ext}", $params, false);
-
-		return new RedirectResponse($url);
+		return $this->redirect_to_legacy_page('viewtopic', $params);
 	}
 }

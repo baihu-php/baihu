@@ -24,6 +24,6 @@ services:
         class: baihu\baihu\src\controller\index_controller
         tags: ['container.service_subscriber']
 
-    baihu.posts_controller:
-        class: baihu\baihu\src\controller\posts_controller
+    baihu.posts_redirect_controller:
+        class: baihu\baihu\src\controller\posts_redirect_controller
         tags: ['container.service_subscriber']
