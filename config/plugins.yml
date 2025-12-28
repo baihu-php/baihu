@@ -26,16 +26,6 @@ services:
 
     baihu.posts:
         class: baihu\baihu\src\plugin\article\posts
-        parent: baihu.plugin.base
-        autowire: false
-        arguments:
-            - '@auth'
-            - '@language'
-            - '@pagination'
-            - '@text_formatter.renderer'
-            - '@user'
-        calls:
-            - [set_container, ['@Psr\Container\ContainerInterface']]
         tags: ['container.service_subscriber']
 
     baihu\baihu\src\plugin\loader: '@baihu.plugin.loader'

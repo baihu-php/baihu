@@ -10,14 +10,14 @@
 
 namespace baihu\baihu\src\plugin;
 
+use baihu\baihu\src\controller\controller_helper;
 use baihu\baihu\src\user\loader as users_loader;
 use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
 use phpbb\event\dispatcher;
-use phpbb\routing\helper as routing_helper;
+use phpbb\language\language;
 use phpbb\template\template;
 use Psr\Container\ContainerInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
 abstract class base implements ServiceSubscriberInterface
@@ -37,67 +37,43 @@ abstract class base implements ServiceSubscriberInterface
 	 */
 	public readonly bool $block;
 
-	/**
-	 * @var ContainerInterface
-	 */
-	protected ContainerInterface $container;
-
-	public function set_container(ContainerInterface $container): ContainerInterface|null
+	public function __construct(
+		protected ContainerInterface $container,
+		protected config $config,
+		protected driver_interface $db,
+		protected template $template
+	)
 	{
-		$previous = $this->container ?? null;
-		$this->container = $container;
-
-		return $previous;
 	}
 
 	public static function getSubscribedServices(): array
 	{
 		return [
-			'baihu.users_loader' => users_loader::class,
-			'config'			 => config::class,
-			'dbal.conn'			 => driver_interface::class,
-			'event_dispatcher'	 => dispatcher::class,
-			'routing.helper'	 => routing_helper::class,
-			'template'			 => template::class
+			'baihu.controller_helper' => '?'.controller_helper::class,
+			'baihu.users_loader' => '?'.users_loader::class,
+			'event_dispatcher'	 => '?'.dispatcher::class,
+			'language' => '?'.language::class
 		];
 	}
 
-	public function get_config(): config
+	protected function get_controller_helper(): controller_helper
 	{
-		return $this->container->get('config');
+		return $this->container->get('baihu.controller_helper');
 	}
 
-	public function get_db(): driver_interface
+	protected function get_users_loader(): users_loader
 	{
-		return $this->container->get('dbal.conn');
+		return $this->container->get('baihu.users_loader');
 	}
 
-	public function get_dispatcher(): dispatcher
+	protected function get_dispatcher(): dispatcher
 	{
 		return $this->container->get('event_dispatcher');
 	}
 
-	public function get_routing_helper(): routing_helper
+	protected function get_language(): language
 	{
-		return $this->container->get('routing.helper');
-	}
-
-	public function get_template(): template
-	{
-		return $this->container->get('template');
-	}
-
-	/**
-	 * Borrowed from the phpBB Controller helper class
-	 */
-	public function route($route, array $params = [], $is_amp = true, $session_id = false, $reference_type = UrlGeneratorInterface::ABSOLUTE_PATH)
-	{
-		return $this->get_routing_helper()->route($route, $params, $is_amp, $session_id, $reference_type);
-	}
-
-	public function get_users_loader(): users_loader
-	{
-		return $this->container->get('baihu.users_loader');
+		return $this->container->get('language');
 	}
 
 	/**
@@ -132,7 +108,7 @@ abstract class base implements ServiceSubscriberInterface
 	/**
 	 * Truncate title
 	 */
-	public function truncate(string $title, int $length, string|null $ellips = null): string
+	protected function truncate(string $title, int $length, string|null $ellips = null): string
 	{
 		return truncate_string(censor_text($title), $length, 255, false, $ellips ?? '...');
 	}
