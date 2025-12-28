@@ -11,7 +11,6 @@
 namespace baihu\baihu\src\controller;
 
 use baihu\baihu\src\controller\controller_helper;
-
 use phpbb\auth\auth;
 use phpbb\config\config;
 use phpbb\event\dispatcher;

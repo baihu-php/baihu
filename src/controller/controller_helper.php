@@ -16,8 +16,8 @@ use phpbb\template\template;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
-* Controller helper class
-*/
+ * Controller helper class
+ */
 class controller_helper
 {
 	public function __construct(

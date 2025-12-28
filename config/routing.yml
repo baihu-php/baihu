@@ -52,6 +52,7 @@ baihu_member_tab:
     path: /u/{username}/tab/{tab}
     controller: baihu.profile_controller:index
 
+# Redirect to memberlist (legacy)
 baihu_members_redirect:
     path: /members
     controller: baihu.members.redirect_controller:index
