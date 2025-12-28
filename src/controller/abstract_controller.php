@@ -59,6 +59,16 @@ abstract class abstract_controller implements ServiceSubscriberInterface
 		return $this->container->get('baihu.controller_helper');
 	}
 
+	protected function get_auth(): auth
+	{
+		return $this->container->get('auth');
+	}
+
+	protected function get_user(): user
+	{
+		return $this->container->get('user');
+	}
+
 	/**
 	* Automate setting up the page and creating the response object.
 	*/
@@ -75,9 +85,9 @@ abstract class abstract_controller implements ServiceSubscriberInterface
 		 */
 		$this->dispatcher->trigger_event('baihu.core.page_footer');
 
-		$response = new Response($display_template ? $this->template->assign_display('body') : '', $status_code, $headers);
+		$headers = !empty($this->get_user()->data['is_bot']) ? ['X-PHPBB-IS-BOT' => 'yes'] : [];
 
-		return $response;
+		return new Response($this->template->assign_display('body'), $status_code, $headers);
 	}
 
 	/**

@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class controller_helper
 {
 	public function __construct(
-		protected language $language,
+		public readonly language $language,
 		protected routing_helper $routing_helper,
 		public readonly template $template
 	)
