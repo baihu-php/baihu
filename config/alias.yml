@@ -16,5 +16,5 @@ services:
     # phpbb\template\context: '@template_context'
     phpbb\template\template: '@template'
     # phpbb\template\twig\environment: '@template.twig.environment'
-    # phpbb\textformatter\s9e\renderer: '@text_formatter.s9e.renderer'
+    phpbb\textformatter\s9e\renderer: '@text_formatter.s9e.renderer'
     phpbb\user: '@user'
