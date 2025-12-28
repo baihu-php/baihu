@@ -22,13 +22,13 @@ use phpbb\template\template;
 use phpbb\user;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-// use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
 /**
-* Provides base functionality for controllers (Borrowed from phpBB Controller helper class)
-*/
+ * Provides base functionality for controllers (Borrowed from phpBB Controller helper class)
+ */
 abstract class abstract_controller implements ServiceSubscriberInterface
 {
 	public function __construct(
@@ -52,7 +52,7 @@ abstract class abstract_controller implements ServiceSubscriberInterface
 			'symfony_request' => symfony_request::class,
 			'user' => user::class,
 		];
-   }
+	}
 
 	protected function get_controller_helper(): controller_helper
 	{
@@ -67,6 +67,33 @@ abstract class abstract_controller implements ServiceSubscriberInterface
 	protected function get_user(): user
 	{
 		return $this->container->get('user');
+	}
+
+	/**
+	 * Borrowed from Symfony Abstract Controller class
+	 *
+	 * @author Fabien Potencier <fabien@symfony.com>
+	 */
+	protected function redirect(string $url, int $status = 302): RedirectResponse
+	{
+		return new RedirectResponse($url, $status);
+	}
+
+	/**
+	 * Borrowed from Symfony Abstract Controller class
+	 *
+	 * @author Fabien Potencier <fabien@symfony.com>
+	 */
+	protected function redirect_to_route(string $route, array $parameters = [], int $status = 302): RedirectResponse
+	{
+		return $this->redirect($this->get_controller_helper()->route($route, $parameters), $status);
+	}
+
+	protected function redirect_to_legacy_page(string $page, array $parameters = [], int $status = 302): RedirectResponse
+	{
+		$url = append_sid(generate_board_url() . "/{$page}.{$this->php_ext}", $parameters, false);
+
+		return $this->redirect($url, $status);
 	}
 
 	/**
