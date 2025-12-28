@@ -24,12 +24,12 @@ class recent_topics extends base
 				WHERE topic_status <> ' . ITEM_MOVED . '
 					AND topic_visibility = 1
 				ORDER BY topic_id DESC';
-		$result = $this->db->sql_query_limit($sql, (int) $config['baihu_limit'], 0, 3600);
+		$result = $this->db->sql_query_limit($sql, (int) $this->config['baihu_limit'], 0, 3600);
 
 		while ($row = $this->db->sql_fetchrow($result))
 		{
 			$this->template->assign_block_vars('recent_topics', [
-				'link'	=> $this->get_controller_helper()->route('baihu_recent_topic', ['t' => $row['topic_id']]),
+				'link'	=> $this->get_controller_helper()->route('baihu_recent_topic', ['aid' => $row['topic_id']]),
 				'title' => $this->truncate($row['topic_title'], $this->config['baihu_title_length']),
 			]);
 		}
