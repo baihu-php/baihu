@@ -93,7 +93,7 @@ class manager
 
 	public function generate_breadcrumb(string $username, string $tab): void
 	{
-		$this->controller_helper->assign_breadcrumb('MEMBERLIST', 'baihu_members')
+		$this->controller_helper->assign_breadcrumb('MEMBERLIST', 'baihu_members_redirect')
 			->assign_breadcrumb($username, 'baihu_member', ['username' => $username]);
 
 		if ($tab !== 'profile')

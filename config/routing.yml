@@ -52,6 +52,6 @@ baihu_member_tab:
     path: /u/{username}/tab/{tab}
     controller: baihu.profile_controller:index
 
-baihu_members:
+baihu_members_redirect:
     path: /members
-    controller: baihu.members_controller:index
+    controller: baihu.members.redirect_controller:index

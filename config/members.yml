@@ -65,6 +65,6 @@ services:
         class: baihu\baihu\src\controller\member\profile_controller
         tags: ['container.service_subscriber']
 
-    baihu.members_controller:
-        class: baihu\baihu\src\controller\member\members_controller
+    baihu.members.redirect_controller:
+        class: baihu\baihu\src\controller\member\redirect_controller
         tags: ['container.service_subscriber']
