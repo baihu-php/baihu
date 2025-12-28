@@ -13,16 +13,10 @@ namespace baihu\baihu\src\controller\member;
 use baihu\baihu\src\controller\abstract_controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class members_controller extends abstract_controller
+class redirect_controller extends abstract_controller
 {
-	public function __construct(protected string $php_ext)
-	{
-	}
-
 	public function index(): RedirectResponse
 	{
-		$url = append_sid(generate_board_url() . "/memberlist.{$this->php_ext}", [], false);
-
-		return new RedirectResponse($url);
+		return $this->redirect_to_legacy_page('memberlist', []);
 	}
 }

@@ -2,6 +2,9 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        bind:
+            string $php_ext: '%core.php_ext%'
+            string $admin_path: '%core.root_path%%core.adm_relative_path%'
 
     baihu.area.manager:
         class: baihu\baihu\src\area\manager
@@ -30,6 +33,8 @@ services:
 # ----- Controllers -----
     baihu.admin_controller:
         class: baihu\baihu\src\controller\admin\index_controller
-        calls:
-            - [set_container, ['@Psr\Container\ContainerInterface']]
+        tags: ['container.service_subscriber']
+
+    baihu.admin_redirect:
+        class: baihu\baihu\src\controller\admin\admin_redirect_main
         tags: ['container.service_subscriber']

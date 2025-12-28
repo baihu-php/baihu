@@ -10,8 +10,8 @@
 
 namespace baihu\baihu\src\members;
 
+use baihu\baihu\src\controller\controller_helper;
 use phpbb\di\service_collection;
-use phpbb\controller\helper as controller_helper;
 use phpbb\language\language;
 use phpbb\template\template;
 
@@ -93,7 +93,7 @@ class manager
 
 	public function generate_breadcrumb(string $username, string $tab): void
 	{
-		$this->controller_helper->assign_breadcrumb('MEMBERLIST', 'baihu_members')
+		$this->controller_helper->assign_breadcrumb('MEMBERLIST', 'baihu_members_redirect')
 			->assign_breadcrumb($username, 'baihu_member', ['username' => $username]);
 
 		if ($tab !== 'profile')
