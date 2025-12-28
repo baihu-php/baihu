@@ -14,7 +14,6 @@ use baihu\baihu\src\plugin\base;
 
 use phpbb\auth\auth;
 use phpbb\exception\http_exception;
-use phpbb\language\language;
 use phpbb\pagination;
 use phpbb\textformatter\s9e\renderer;
 use phpbb\user;
@@ -26,20 +25,19 @@ final class posts extends base
 	protected bool $is_trimmed = false;
 	protected string $order = 'p.post_id DESC';
 
-	public function __construct
-	(
-		protected auth $auth,
-		protected language $language,
-		protected pagination $pagination,
-		protected renderer $renderer,
-		protected user $user
-	)
+	public static function getSubscribedServices(): array
 	{
+		return array_merge(parent::getSubscribedServices(), [
+			'auth' => '?'.auth::class,
+			'pagination' => '?'.pagination::class,
+			'text_formatter.s9e.renderer' => '?'.renderer::class,
+			'user' => '?'.user::class
+		]);
 	}
 
 	public function set_page_offset(int $page): self
 	{
-		$this->page = ($page - 1) * (int) $this->get_config()['baihu_limit'];
+		$this->page = ($page - 1) * (int) $this->config['baihu_limit'];
 
 		return $this;
 	}
@@ -59,13 +57,12 @@ final class posts extends base
 	 */
 	public function get_category_name(int $fid): string
 	{
-		$db = $this->get_db();
 		$sql = 'SELECT forum_name
 				FROM ' . FORUMS_TABLE . '
 				WHERE forum_id = ' . $fid;
-		$result = $db->sql_query($sql, 3600);
-		$category_name = $db->sql_fetchfield('forum_name');
-		$db->sql_freeresult($result);
+		$result = $this->db->sql_query($sql, 3600);
+		$category_name = $this->db->sql_fetchfield('forum_name');
+		$this->db->sql_freeresult($result);
 
 		return $category_name ?? '';
 	}
@@ -76,37 +73,36 @@ final class posts extends base
 	public function load(int|null $forum_id = null): void
 	{
 		// Check permissions
-		if (!$this->auth->acl_gets('f_list', 'f_read', $forum_id))
+		if (!$this->container->get('auth')->acl_gets('f_list', 'f_read', $forum_id))
 		{
-			if ($this->user->data['user_id'] != ANONYMOUS)
+			if ($this->container->get('user')->data['user_id'] != ANONYMOUS)
 			{
 				throw new http_exception(403, 'SORRY_AUTH_READ', [$forum_id]);
 			}
 
-			login_box('', $this->language->lang('LOGIN_VIEWFORUM'));
+			login_box('', $this->get_language()->lang('LOGIN_VIEWFORUM'));
 		}
 
 		// Build sql data
-		$db = $this->get_db();
 		$sql_ary = $this->get_sql_data($forum_id);
-		$sql = $db->sql_build_query('SELECT', $sql_ary);
-		$result = $db->sql_query_limit($sql, (int) $this->get_config()['baihu_limit'], $this->page, 60);
+		$sql = $this->db->sql_build_query('SELECT', $sql_ary);
+		$result = $this->db->sql_query_limit($sql, (int) $this->config['baihu_limit'], $this->page, 60);
 
-		while ($row = $db->sql_fetchrow($result))
+		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$this->get_template()->assign_block_vars('articles', $this->get_template_data($row));
+			$this->template->assign_block_vars('articles', $this->get_template_data($row));
 		}
-		$db->sql_freeresult($result);
+		$this->db->sql_freeresult($result);
 
 		// Pagination
-		if ($this->get_config()['baihu_pagination'] && null !== $this->page)
+		if ($this->config['baihu_pagination'] && null !== $this->page)
 		{
 			// Get total posts
 			$sql_ary['SELECT'] = 'COUNT(p.post_id) AS num_posts';
-			$sql = $db->sql_build_query('SELECT', $sql_ary);
-			$result = $db->sql_query($sql);
-			$total = (int) $db->sql_fetchfield('num_posts');
-			$db->sql_freeresult($result);
+			$sql = $this->db->sql_build_query('SELECT', $sql_ary);
+			$result = $this->db->sql_query($sql);
+			$total = (int) $this->db->sql_fetchfield('num_posts');
+			$this->db->sql_freeresult($result);
 
 			$base = [
 				'routes' => [
@@ -116,9 +112,9 @@ final class posts extends base
 				'params' => ['id' => $forum_id],
 			];
 
-			$this->pagination->generate_template_pagination($base, 'pagination', 'page', $total, (int) $this->get_config()['baihu_limit'], $this->page);
+			$this->container->get('pagination')->generate_template_pagination($base, 'pagination', 'page', $total, (int) $this->config['baihu_limit'], $this->page);
 
-			$this->get_template()->assign_var('total_news', $total);
+			$this->template->assign_var('total_news', $total);
 		}
 	}
 
@@ -128,7 +124,7 @@ final class posts extends base
 	*/
 	public function get_sql_data(int $id, string $type = 'forum'): array
 	{
-		$build = new \baihu\baihu\src\db\helper($this->get_db());
+		$build = new \baihu\baihu\src\db\helper($this->db);
 		$build
 			->select('t.topic_id, t.topic_title, t.topic_time, t.topic_views, t.topic_posts_approved, p.post_id, p.poster_id, p.post_text,
 				u.user_id, u.username, u.user_posts, u.user_rank, u.user_colour, u.user_avatar, u.user_avatar_type, u.user_avatar_width, u.user_avatar_height')
@@ -157,18 +153,19 @@ final class posts extends base
 		$user_id = (int) $row['poster_id'];
 		$user = $users_loader->get_user($user_id);
 		$rank = $users_loader->get_rank_data($user);
-		$text = $this->renderer->render($row['post_text']);
+		$helper = $this->get_controller_helper();
+		$text = $this->container->get('text_formatter.s9e.renderer')->render($row['post_text']);
 
 		return [
 			'id'			  => $row['post_id'],
-			'link'			  => $this->route('baihu_article', ['aid' => $row['topic_id']]),
-			'title'			  => $this->truncate($row['topic_title'], $this->get_config()['baihu_title_length']),
-			'date'			  => $this->user->format_date($row['topic_time']),
+			'link'			  => $helper->route('baihu_article', ['aid' => $row['topic_id']]),
+			'title'			  => $this->truncate($row['topic_title'], $this->config['baihu_title_length']),
+			'date'			  => $this->container->get('user')->format_date($row['topic_time']),
 
 			'author'		  => $user_id,
 			'author_name'	  => $user['username'],
 			'author_color'	  => $user['user_colour'],
-			'author_profile'  => $this->route('baihu_member', ['username' => $user['username']]),
+			'author_profile'  => $helper->route('baihu_member', ['username' => $user['username']]),
 			'author_avatar'	  => [$users_loader->get_avatar_data($user_id)],
 			'author_rank'	  => $rank['rank_title'] ?? '',
 			'author_rank_img' => $rank['rank_img'] ?? '',
@@ -187,11 +184,11 @@ final class posts extends base
 	{
 		$this->is_trimmed = false;
 
-		if (utf8_strlen($text) > (int) $this->get_config()['baihu_content_length'])
+		if (utf8_strlen($text) > (int) $this->config['baihu_content_length'])
 		{
 			$this->is_trimmed = true;
 
-			$offset = ((int) $this->get_config()['baihu_content_length'] - 3) - utf8_strlen($text);
+			$offset = ((int) $this->config['baihu_content_length'] - 3) - utf8_strlen($text);
 			$text	= utf8_substr($text, 0, utf8_strrpos($text, ' ', $offset));
 		}
 
