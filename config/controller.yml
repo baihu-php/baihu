@@ -11,11 +11,6 @@ services:
 
     baihu.controller_helper:
         class: baihu\baihu\src\controller\controller_helper
-        autowire: false
-        arguments:
-            - '@language'
-            - '@routing.helper'
-            - '@template'
 
     baihu\baihu\src\controller\controller_helper: '@baihu.controller_helper'
 
