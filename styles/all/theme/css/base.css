@@ -1346,7 +1346,7 @@ main {
 
 	.gzo-section-main,
 	.gzo-section-side {
-		div:last-of-type {
+		div:last-of-type, article:last-of-type {
 			margin-bottom: 0;
 		}
 	}
