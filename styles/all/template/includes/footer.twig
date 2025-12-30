@@ -1,6 +1,6 @@
 <div class="gzo-footer">
 
-    {% EVENT gzo_footer_copyright_prepend %}
+    {% EVENT baihu_footer_copyright_prepend %}
 
 	<p class="gzo-footer-copyright">{{ CREDIT_LINE }}</p>
 
@@ -11,6 +11,7 @@
 			<span>{{ DEBUG_OUTPUT }}</span>
 		</p>
 	{% endif %}
+	{% EVENT baihu_footer_copyright_append %}
 
 		{# <div id="darkenwrapper" class="darkenwrapper" data-ajax-error-title="{L_AJAX_ERROR_TITLE}" data-ajax-error-text="{L_AJAX_ERROR_TEXT}" data-ajax-error-text-abort="{L_AJAX_ERROR_TEXT_ABORT}" data-ajax-error-text-timeout="{L_AJAX_ERROR_TEXT_TIMEOUT}" data-ajax-error-text-parsererror="{L_AJAX_ERROR_TEXT_PARSERERROR}">
 			<div id="darken" class="darken">&nbsp;</div>

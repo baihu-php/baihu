@@ -2,7 +2,7 @@
 	{% set MICRODATA = 'itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope' %}
 	{% set navlink_position = 1 %}
 
-	{% EVENT gzo_header_breadcrumbs_before %}
+	{% EVENT baihu_header_breadcrumbs_before %}
 
 	<ol class="gzo-crumbs" itemscope itemtype="https://schema.org/BreadcrumbList" role="list">
 		{% if not IN_AREAZ %}
@@ -17,7 +17,7 @@
 				</li>
 			{% endif %}
 
-			{% EVENT gzo_header_breadcrumb_prepend %}
+			{% EVENT baihu_header_breadcrumb_prepend %}
 
 			<li class="gzo-crumbs-item" {{ MICRODATA }} role="listitem">
 				<a class="gzo-crumbs-link" itemprop="item" href="{{ U_INDEX }}" accesskey="h" data-navbar-reference="index">
@@ -36,7 +36,7 @@
 			{% set NAVLINK_NAME = navlink.BREADCRUMB_NAME | default(navlink.FORUM_NAME) %}
 			{% set NAVLINK_LINK = navlink.U_BREADCRUMB | default(navlink.U_VIEW_FORUM) %}
 
-			{% EVENT gzo_header_navlink_prepend %}
+			{% EVENT baihu_header_navlink_prepend %}
 
 			<li class="gzo-crumbs-item" {{ MICRODATA }}{% if navlink.MICRODATA %} {{ navlink.MICRODATA }}{% endif %}>
 				<a class="gzo-crumbs-link" itemprop="item" href="{{ NAVLINK_LINK }}" title="{{ NAVLINK_NAME }}">
@@ -52,14 +52,14 @@
 				<meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" />
 			</li>
 
-			{% EVENT gzo_header_navlink_append %}
+			{% EVENT baihu_header_navlink_append %}
 
 		{% endfor %}
 
-		{% EVENT gzo_header_breadcrumb_append %}
+		{% EVENT baihu_header_breadcrumb_append %}
 
 	</ol>
 
-	{% EVENT gzo_header_breadcrumbs_after %}
+	{% EVENT baihu_header_breadcrumbs_after %}
 
 </nav>

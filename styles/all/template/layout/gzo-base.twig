@@ -25,11 +25,11 @@
 			{% INCLUDECSS '@baihu_baihu/css/area.css' %}
 		{% endif %}
 
-		{% EVENT gzo_header_head_append %}
+		{% EVENT baihu_header_head_append %}
 
 		{$STYLESHEETS}
 
-		{% EVENT gzo_header_stylesheets_after %}
+		{% EVENT baihu_header_stylesheets_after %}
 
 	</head>
 
@@ -63,7 +63,7 @@
 					<section class="gzo-content-main">
 
 						{% block gzo_main_left %}
-							{% EVENT gzo_main_left %}
+							{% EVENT baihu_main_left %}
 						{% endblock %}
 
 						{# GZO main section #}
@@ -74,7 +74,7 @@
 
 							{% block gzo_main_content_bottom %}
 								{{ baihu_blocks('baihu_bottom') }}
-								{% EVENT gzo_main_middle %}
+								{% EVENT baihu_main_middle %}
 							{% endblock %}
 						</div>
 
@@ -137,11 +137,11 @@
 			{% INCLUDEJS '@baihu_baihu/js/dashboard.js' %}
 		{% endif %}
 
-		{% EVENT gzo_footer_after %}
+		{% EVENT baihu_footer_after %}
 
 		{$SCRIPTS}
 
-		{% EVENT gzo_footer_body_after %}
+		{% EVENT baihu_footer_body_after %}
 
 	</body>
 
