@@ -37,7 +37,7 @@
 		{% if U_ACP %}
 			<li class="gzo-navigation-item">
 				<a class="gzo-navigation-link" href="{{ U_AREAZ_MAIN }}">
-					{{ Icon('gzo', 'mdi--administrator-outline', lang('AREA_MAIN_PAGE'), true) -}}
+					{{ Icon('gzo', 'admin', lang('AREA_MAIN_PAGE'), true) -}}
 					<span class="gzo-navigation-text">{{ lang('AREA_MAIN_PAGE') }}</span>
 				</a>
 			</li>
@@ -61,48 +61,56 @@
 
 		<li class="gzo-navigation-divider"></li>
 
-		{% if not S_IS_BOT and (S_DISPLAY_MEMBERLIST or U_TEAM) %}
-
+		{% if S_DISPLAY_SEARCH %}
 			<li class="gzo-navigation-item">
 				<button class="gzo-navigation-link gzo-navigation-btn" data-toggle="side-menu">
-					{{ Icon('gzo', 'mdi--hamburger-menu', lang('QUICK_LINKS'), true) -}}
+					{{ Icon('gzo', 'mdi--file-settings-outline', lang('QUICK_LINKS'), true) -}}
 					<span class="gzo-navigation-text">{{ lang('QUICK_LINKS') }}</span>
 				</button>
 
 				<ul class="gzo-navigation-menu gzo-action-toggle gzo-side-menu">
+					{% if S_REGISTERED_USER %}
 					<li class="gzo-navigation-item">
-						<a class="gzo-navigation-link">
-							{{ Icon('gzo', 'mdi--users-outline', lang('MEMBERLIST'), true) -}}
-							<span class="gzo-navigation-text">test</span>
+						<a class="gzo-navigation-link" href="{{ U_SEARCH_SELF }}" role="menuitem">
+							{{ Icon('gzo', 'tabler--file-text-spark', lang('SEARCH_SELF'), true) -}}
+							<span class="gzo-navigation-text">{{ lang('SEARCH_SELF') }}</span>
+						</a>
+					</li>
+					{% endif %}
+
+					{% if S_USER_LOGGED_IN %}
+					<li class="gzo-navigation-item">
+						<a class="gzo-navigation-link" href="{{ U_SEARCH_NEW }}" role="menuitem">
+							{{ Icon('gzo', 'unknown', lang('SEARCH_NEW'), true) -}}
+							<span class="gzo-navigation-text">{{ lang('SEARCH_NEW') }}</span>
+						</a>
+					</li>
+					{% endif %}
+					{% if S_LOAD_UNREADS %}
+					<li class="gzo-navigation-item">
+						<a class="gzo-navigation-link" href="{{ U_SEARCH_UNREAD }}" role="menuitem">
+							{{ Icon('gzo', 'mdi--file-text-outline', lang('SEARCH_UNREAD'), true) -}}
+							<span class="gzo-navigation-text">{{ lang('SEARCH_UNREAD') }}</span>
+						</a>
+					</li>
+					{% endif %}
+					<li class="gzo-navigation-item">
+						<a class="gzo-navigation-link" href="{{ U_SEARCH_UNANSWERED }}" role="menuitem">
+							{{ Icon('gzo', 'file-alert', lang('SEARCH_UNANSWERED'), true) -}}
+							<span class="gzo-navigation-text">{{ lang('SEARCH_UNANSWERED') }}</span>
 						</a>
 					</li>
 					<li class="gzo-navigation-item">
-						<a class="gzo-navigation-link">
-							{{ Icon('gzo', 'mdi--users-outline', lang('MEMBERLIST'), true) -}}
-							<span class="gzo-navigation-text">test</span>
-						</a>
-					</li>
-					<li class="gzo-navigation-item">
-						<a class="gzo-navigation-link">
-							{{ Icon('gzo', 'mdi--users-outline', lang('MEMBERLIST'), true) -}}
-							<span class="gzo-navigation-text">test</span>
-						</a>
-					</li>
-					<li class="gzo-navigation-item">
-						<a class="gzo-navigation-link">
-							{{ Icon('gzo', 'mdi--users-outline', lang('MEMBERLIST'), true) -}}
-							<span class="gzo-navigation-text">test</span>
-						</a>
-					</li>
-					<li class="gzo-navigation-item">
-						<a class="gzo-navigation-link">
-							{{ Icon('gzo', 'mdi--users-outline', lang('MEMBERLIST'), true) -}}
-							<span class="gzo-navigation-text">test</span>
+						<a class="gzo-navigation-link" href="{{ U_SEARCH_ACTIVE_TOPICS }}" role="menuitem">
+							{{ Icon('gzo', 'active', lang('SEARCH_ACTIVE_TOPICS'), true) -}}
+							<span class="gzo-navigation-text">{{ lang('SEARCH_ACTIVE_TOPICS') }}</span>
 						</a>
 					</li>
 				</ul>
 			</li>
+		{% endif %}
 
+		{% if not S_IS_BOT and (S_DISPLAY_MEMBERLIST or U_TEAM) %}
 			{% if S_DISPLAY_MEMBERLIST %}
 				<li class="gzo-navigation-item">
 					<a class="gzo-navigation-link" href="{{ U_MEMBERLIST }}">
