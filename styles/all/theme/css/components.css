@@ -502,63 +502,63 @@
 }
 
 /* Navigation */
-.gzo-navigation {
-	--gzo-navigation-bg-hover: var(--indigo-50);
-	--gzo-navigation-color: var(--blue-gray-200);
-	--gzo-navigation-border: 1px solid var(--gzo-navigation-color);
-	--gzo-navigation-link: var(--gray-600);
+.navigation {
+	--navigation-bg-hover: var(--indigo-50);
+	--navigation-color: var(--blue-gray-200);
+	--navigation-border: 1px solid var(--navigation-color);
+	--navigation-link: var(--gray-600);
 
 	text-wrap: nowrap;
 	margin-bottom: 0;
 	padding: var(--gzo-spacing-2);
 
-	.gzo-navigation-divider {
-		background-color: var(--gzo-navigation-color);
+	.navigation-divider {
+		background-color: var(--navigation-color);
 		height: 1px;
 	}
 
-	.gzo-navigation-category {
+	.navigation-category {
 		font-size: var(--gzo-font-size);
 		font-weight: var(--gzo-font-weight);
 		display: block;
 		padding: var(--gzo-spacing);
 	}
 
-	.gzo-navigation-link {
-		--gzo-navigation-spacing: 0.75rem;
+	.navigation-link {
+		--navigation-spacing: 0.75rem;
 
-		color: var(--gzo-navigation-link);
+		color: var(--navigation-link);
 		white-space: nowrap;
 		position: relative;
 		display: block;
 		overflow: hidden;
-		padding: var(--gzo-navigation-spacing);
+		padding: var(--navigation-spacing);
 		transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 		transform: translate3d(0, 0, 0);
 
 		&:hover {
-			background-color: var(--gzo-navigation-bg-hover);
+			background-color: var(--navigation-bg-hover);
 			color: var(--gzo-link-hover);
 		}
 	}
 
-	.gzo-navigation-text {
+	.navigation-text {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		padding-inline-start: 0.5rem;
 		vertical-align: middle;
 	}
 
-	.gzo-navigation-btn {
-		--gzo-btn-width: calc(var(--gzo-navigation-spacing) * 2);
+	.navigation-btn {
+		--gzo-btn-width: calc(var(--navigation-spacing) * 2);
 
 		width: calc(100% - var(--gzo-btn-width));
 	}
 
-	.gzo-navigation-menu {
-		background-color: var(--gzo-navigation-bg-hover);
-		border-top: var(--gzo-navigation-border);
-		border-bottom: var(--gzo-navigation-border);
+	.navigation-menu {
+		background-color: var(--navigation-bg-hover);
+		border-top: var(--navigation-border);
+		border-bottom: var(--navigation-border);
 		display: none;
 		margin: 0;
 		padding: 0;
@@ -566,7 +566,7 @@
 		transform: scaleY(0);
 		transform-origin: top;
 
-		.gzo-navigation-link:hover {
+		.navigation-link:hover {
 			background-color: var(--indigo-100);
 		}
 

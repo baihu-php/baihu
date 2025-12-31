@@ -17,7 +17,7 @@ $(function() { // Avoid conflicts with other libraries
 	});
 
 	// Inner menus in sidebars
-	$('.gzo-navigation-btn').click(function() {
+	$('.navigation-btn').click(function() {
 		const data_toggle = $(this).attr('data-toggle');
 
 		if (data_toggle) {
