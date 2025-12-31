@@ -17,7 +17,7 @@
 			<link href="{{ T_ASSETS_PATH }}/cookieconsent/cookieconsent.min.css?assets_version={{ T_ASSETS_VERSION }}" rel="stylesheet">
 		{% endif %}
 
-		{# GZO theme #}
+		{# Baihu theme #}
 		{% INCLUDECSS '@baihu_baihu/css/theme.css' %}
 
 		{# GZO area #}
@@ -41,7 +41,7 @@
 
 				<div id="gzo-overlay"></div>
 
-				{# GZO navbar section #}
+				{# Baihu navbar section #}
 				{% block gzo_top_bar %}
 					{{ include('@baihu_baihu/includes/search.twig') }}
 					{{ include('@baihu_baihu/includes/topbar.twig') }}
@@ -49,47 +49,47 @@
 
 				{% block gzo_header %}{% endblock %}
 
-				{% block gzo_crumb %}
-					{{ include('@baihu_baihu/includes/crumbs.twig') }}
-				{% endblock %}
-
 			</header>
 
 			{% block gzo_main_before %}{% endblock %}
 			<main class="gzo-container">
 
-					{% block gzo_main_content_before %}{% endblock %}
+				{# Baihu crumbs #}
+				{% block gzo_crumb %}
+					{{ include('@baihu_baihu/includes/crumbs.twig') }}
+				{% endblock %}
 
-					<section class="gzo-content-main">
+				{% block gzo_main_content_before %}{% endblock %}
 
-						{% block gzo_main_left %}
-							{% EVENT baihu_main_left %}
+				<section class="gzo-content-main">
+
+					{% block gzo_main_left %}
+						{% EVENT baihu_main_left %}
+					{% endblock %}
+
+					{# Baihu main section #}
+					<div class="gzo-section-main">
+						{% block gzo_main_content_top %}{% endblock %}
+
+						{% block gzo_main_content %}{% endblock %}
+
+						{% block gzo_main_content_bottom %}
+							{{ baihu_blocks('baihu_bottom') }}
+							{% EVENT baihu_main_middle %}
 						{% endblock %}
+					</div>
 
-						{# GZO main section #}
-						<div class="gzo-section-main">
-							{% block gzo_main_content_top %}{% endblock %}
+					{% block gzo_main_right %}
+						{% if config('baihu_side') %}
+							<div class="gzo-section-side">
+								{{ baihu_blocks('baihu_side') }}
+							</div>
+						{% endif %}
+					{% endblock %}
 
-							{% block gzo_main_content %}{% endblock %}
+				</section>
 
-							{% block gzo_main_content_bottom %}
-								{{ baihu_blocks('baihu_bottom') }}
-								{% EVENT baihu_main_middle %}
-							{% endblock %}
-						</div>
-
-						{% block gzo_main_right %}
-							{% if config('baihu_side') %}
-								<div class="gzo-section-side">
-									{{ baihu_blocks('baihu_side') }}
-								</div>
-							{% endif %}
-						{% endblock %}
-
-					</section>
-
-					{% block gzo_main_content_after %}{% endblock %}
-
+				{% block gzo_main_content_after %}{% endblock %}
 
 			</main>
 
