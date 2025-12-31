@@ -1,19 +1,19 @@
 <article class="block gzo-post">
 
-	<div class="gzo-bar block-bar">
+	<div class="bar block-bar">
 
-		<div class="gzo-bar-left">
-			<div class="gzo-bar-item">
+		<div class="bar-left">
+			<div class="bar-item">
 
-				<button class="gzo-bar-profile action" data-toggle="author-aid-{{ article.id }}">
+				<button class="bar-profile action" data-toggle="author-aid-{{ article.id }}">
 
 					<span class="gzo-avatar-wrap gzo-avatar gzo-avatar-sm">
 						{{ avatar('user', article.author_avatar[0], '', false, true, 'gzo-avatar-sm', true) }}
 					</span>
 
-					<span class="gzo-bar-user">
-						{{- baihu_username('username', article.author, article.author_name, article.author_color, 'gzo-bar-author') -}}
-						<small class="gzo-bar-user-title">{{ article.author_rank }}</small>
+					<span class="bar-user">
+						{{- baihu_username('username', article.author, article.author_name, article.author_color, 'bar-author') -}}
+						<small class="bar-user-title">{{ article.author_rank }}</small>
 					</span>
 
 				</button>
@@ -22,9 +22,9 @@
 			</div>
 		</div>
 
-		<div class="gzo-bar-right">
+		<div class="bar-right">
 
-			<span class="gzo-bar-item gzo-bar-info gzo-post-meta-time u-hidden-xs-down">
+			<span class="bar-item bar-info gzo-post-meta-time u-hidden-xs-down">
 				<time class="gzo-post-meta-time-text" datetime="{{ article.date }}" title="{{ article.date }}" data-short="{{ article.date }}">{{ article.date }}</time>
 			</span>
 		</div>
@@ -38,18 +38,18 @@
 			{{ article.text ~ (article.is_trimmed ? lang('ELLIPSIS') ~ link({'href': article.link}, lang('READ_FULL'))) }}
 		</div>
 
-		<div class="gzo-bar gzo-post-action-bar">
-			<div class="gzo-bar-left gzo-post-action-bar-right"></div>
-			<div class="gzo-bar-right gzo-post-action-bar-right">
+		<div class="bar gzo-post-action-bar">
+			<div class="bar-left gzo-post-action-bar-right"></div>
+			<div class="bar-right gzo-post-action-bar-right">
 
-				<span class="gzo-bar-item action gzo-post-action" data-tooltip="true" title="{{ lang('VIEWS') ~ ': ' ~ article.views }}">
-					{{ Icon('gzo', 'fa-regular--eye', lang('VIEWS'), true, 'gzo-icon action-icon') }}
+				<span class="bar-item action gzo-post-action" data-tooltip="true" title="{{ lang('VIEWS') ~ ': ' ~ article.views }}">
+					{{ Icon('gzo', 'fa-regular--eye', lang('VIEWS'), true, 'icon action-icon') }}
 				</span>
-				<span class="gzo-bar-item action gzo-post-action" href="" data-tooltip="true" title="{{ lang('REPLIES') ~ ': ' ~ article.replies }}">
-					{{ Icon('gzo', 'mdi--comments-text-outline', lang('REPLIES'), true, 'gzo-icon action-icon') }}
+				<span class="bar-item action gzo-post-action" href="" data-tooltip="true" title="{{ lang('REPLIES') ~ ': ' ~ article.replies }}">
+					{{ Icon('gzo', 'mdi--comments-text-outline', lang('REPLIES'), true, 'icon action-icon') }}
 				</span>
-				<span class="gzo-bar-item action gzo-post-action" href="" data-tooltip="true" title="{{ lang('BAIHU_LIKE') }}">
-					{{ Icon('gzo', 'mdi--heart-outline', lang('BAIHU_LIKE'), true, 'gzo-icon action-icon') }}
+				<span class="bar-item action gzo-post-action" href="" data-tooltip="true" title="{{ lang('BAIHU_LIKE') }}">
+					{{ Icon('gzo', 'mdi--heart-outline', lang('BAIHU_LIKE'), true, 'icon action-icon') }}
 				</span>
 			</div>
 		</div>

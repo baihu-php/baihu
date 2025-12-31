@@ -161,10 +161,10 @@
 	--gzo-border-color: var(--gzo-color-border);
 
 	/* Icon sizes */
-	--gzo-icon-sm: 16px;
-	--gzo-icon-md: 24px;
-	--gzo-icon-lg: 40px;
-	--gzo-icon-xxl: 200px;
+	--icon-sm: 16px;
+	--icon-md: 24px;
+	--icon-lg: 40px;
+	--icon-xxl: 200px;
 
 	/* Spacing sizes */
 	--gzo-spacing: 1rem;

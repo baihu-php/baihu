@@ -1156,44 +1156,44 @@ pre code {
 
 /* Icon */
 .o-icon,
-.gzo-icon {
+.icon {
 	vertical-align: middle;
-	width: var(--gzo-icon-md);
-	height: var(--gzo-icon-md);
+	width: var(--icon-md);
+	height: var(--icon-md);
 	overflow: clip;
 
-	&.gzo-icon-lg {
-		width: var(--gzo-icon-xxl);
-		height: var(--gzo-icon-xxl);
+	&.icon-lg {
+		width: var(--icon-xxl);
+		height: var(--icon-xxl);
 	}
 }
 
 /* Bar */
-.gzo-bar {
+.bar {
 	background-color: var(--gray-100);
 	display: grid;
 	grid-template-columns: auto auto;
 
-	.gzo-bar-left,
-	.gzo-bar-right {
+	.bar-left,
+	.bar-right {
 		position: relative;
 		display: flex;
 	}
 
-	.gzo-bar-right {
+	.bar-right {
 		flex-direction: row;
 		flex-wrap: wrap;
 		align-self: flex-end;
 		margin-left: auto;
 	}
 
-	.gzo-bar-item {
+	.bar-item {
 		position: relative;
 	}
 
-	.gzo-bar-info,
-	.gzo-bar-title,
-	.gzo-bar-logo {
+	.bar-info,
+	.bar-title,
+	.bar-logo {
 		display: inline-flex;
 		justify-content: center;
 		align-items: center;
@@ -1201,13 +1201,13 @@ pre code {
 		padding-inline: var(--gzo-spacing);
 	}
 
-	.gzo-bar-info {
+	.bar-info {
 		color: var(--gray-1300);
 		max-width: max-content;
 		overflow-x: hidden;
 	}
 
-	.gzo-bar-title {
+	.bar-title {
 		font-size: 1.25rem;
 		font-weight: var(--gzo-font-weight);
 		line-height: 1;
@@ -1215,18 +1215,18 @@ pre code {
 		margin-bottom: 0;
 	}
 
-	.gzo-bar-profile {
+	.bar-profile {
 		max-width: 296px;
 	}
 
-	.gzo-bar-user {
+	.bar-user {
 		font-size: var(--gzo-font-size);
 		font-weight: var(--gzo-font-weight);
 		line-height: 1.35;
 		letter-spacing: 0.03125em;
 		padding: 0 0.5rem;
 
-		.gzo-bar-user-title {
+		.bar-user-title {
 			font-size: 0.75rem;
 			font-weight: var(--gzo-font-weight);
 			line-height: 1.3333333333;
@@ -1237,14 +1237,14 @@ pre code {
 		}
 	}
 
-	.gzo-bar-logo {
+	.bar-logo {
 		position: relative;
 		overflow: hidden;
 
-		.gzo-bar-logo-icon {
+		.bar-logo-icon {
 			width: 64px;
 			height: auto;
-			max-height: var(--gzo-icon-md);
+			max-height: var(--icon-md);
 		}
 	}
 }
@@ -1433,8 +1433,8 @@ main {
 
 	.gzo-card {
 		--gzo-card-bg: var(--gzo-card-new-bg, var(--block-bg));
-		--gzo-card-icon-bg: var(--gzo-icon-bg, var(--indigo-600));
-		--gzo-card-icon-color: var(--gzo-icon-color, white);
+		--gzo-card-icon-bg: var(--icon-bg, var(--indigo-600));
+		--gzo-card-icon-color: var(--icon-color, white);
 
 		background-color: var(--gzo-card-bg);
 		border-radius: var(--gzo-border-radius);
@@ -1485,10 +1485,10 @@ main {
 	margin-bottom: var(--gzo-spacing-md);
 
 	.block-bar {
-		--gzo-bar-bg: var(--block-bg);
-		--gzo-bar-bg-hover: var(--gray-50);
+		--bar-bg: var(--block-bg);
+		--bar-bg-hover: var(--gray-50);
 
-		background-color: var(--gzo-bar-bg);
+		background-color: var(--bar-bg);
 		border-top-left-radius: var(--gzo-border-radius);
 		border-top-right-radius: var(--gzo-border-radius);
 		border-bottom: 2px solid var(--gzo-border-color);
