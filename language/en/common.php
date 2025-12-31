@@ -20,8 +20,9 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 	// Navigation
-	'DASHBOARD' => 'Dashboard',
+	'DASHBOARD'		 => 'Dashboard',
 	'AREA_MAIN_PAGE' => 'Baihu AreaZ',
+	'BAIHU_CREATE'	 => 'Create',
 
 	// Drawer
 	'DRAWER_GENERAL' => 'General',
@@ -70,9 +71,9 @@ $lang = array_merge($lang, [
 	'NEW_PMS' => ' new messages',
 
 	// Statistics
-	'BAIHU_TOPICS'  => 'Topics',
+	'BAIHU_TOPICS'	=> 'Topics',
 	'BAIHU_MEMBERS' => 'Members',
-	'BAIHU_NEWEST'  => 'Newest',
+	'BAIHU_NEWEST'	=> 'Newest',
 
 	'IN_TOPIC'	=> 'In ',
 

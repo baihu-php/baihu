@@ -4,7 +4,7 @@ $(function() { // Avoid conflicts with other libraries
 
 	$('.gzo-action').click(function() {
 		const data_toggle = $(this).attr('data-toggle');
-		const data_array = ['drawer-left', 'drawer-right', 'notification'];
+		const data_array = ['drawer-left', 'drawer-right', 'notification', 'create'];
 
 		if (data_toggle) {
 			$('#gzo-overlay').addClass('gzo-overlay');

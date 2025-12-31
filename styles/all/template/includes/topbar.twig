@@ -32,16 +32,14 @@
 				{{ Icon('gzo', 'mdi--search', lang('SEARCH'), true) }}
 			</button>
 
-			{% if S_DISPLAY_PM %}
-				<a class="gzo-bar-item gzo-action" href="{{ U_PRIVATEMSGS }}" data-tooltip="true" title="{{ lang('PRIVATE_MESSAGES') }}">
-					{{ Icon('gzo', 'mdi--inbox', lang('PRIVATE_MESSAGES'), true) }}
+			<span class="gzo-bar-item gzo-navbar-item">
 
-					{% if PRIVATE_MESSAGE_COUNT %}
-						<span class="gzo-tag">{{ PRIVATE_MESSAGE_COUNT }}</span>
-					{% endif %}
-					<span class="gzo-action-text u-sr-only">{{ lang('PRIVATE_MESSAGES') }}</span>
-				</a>
-			{% endif %}
+				<button class="gzo-action" data-toggle="create" data-tooltip="true"	 title="{{ lang('BAIHU_CREATE') }}">
+					{{ Icon('gzo', 'add', lang('BAIHU_CREATE'), true) }}
+				</button>
+
+				{{ include('@baihu_baihu/includes/create.twig') }}
+			</span>
 
 			{% if S_NOTIFICATIONS_DISPLAY %}
 				<span class="gzo-bar-item gzo-navbar-item">
@@ -57,6 +55,17 @@
 
 					{{ include('@baihu_baihu/includes/notifications.twig') }}
 				</span>
+			{% endif %}
+
+			{% if S_DISPLAY_PM %}
+				<a class="gzo-bar-item gzo-action" href="{{ U_PRIVATEMSGS }}" data-tooltip="true" title="{{ lang('PRIVATE_MESSAGES') }}">
+					{{ Icon('gzo', 'mdi--inbox', lang('PRIVATE_MESSAGES'), true) }}
+
+					{% if PRIVATE_MESSAGE_COUNT %}
+						<span class="gzo-tag">{{ PRIVATE_MESSAGE_COUNT }}</span>
+					{% endif %}
+					<span class="gzo-action-text u-sr-only">{{ lang('PRIVATE_MESSAGES') }}</span>
+				</a>
 			{% endif %}
 
 			{# Right side drawer #}

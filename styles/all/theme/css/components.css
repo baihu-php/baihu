@@ -224,7 +224,6 @@
 
 /* Crumbs */
 .gzo-crumbs-container {
-	/* padding-inline: var(--gzo-spacing); */
 	margin-bottom: var(--gzo-spacing-md);
 
 	.gzo-crumbs {
@@ -449,6 +448,7 @@
 }
 
 /* Drawer & notification */
+.create-container,
 .gzo-drawer-container,
 .gzo-notification-container {
 	--gzo-drawer-bg: white;
@@ -464,7 +464,8 @@
 	flex-direction: column;
 	opacity: 1;
 	z-index: 999;
-	width: 350px;
+	width: 300px;
+	/* width: 350px; */
 	transition: var(--gzo-transition);
 	transition: all 0.2s ease;
 	transform: scale(0);
@@ -576,7 +577,7 @@
 	}
 }
 
-/* Notifications cointainer */
+.create-container,
 .gzo-notification-container {
 	--gzo-notification-color: var(--indigo-1000);
 	--gzo-notification-hover: var(--indigo-1000);
@@ -588,6 +589,20 @@
 	right: 0;
 	margin-top: 0.0625rem;
 	transform-origin: right top;
+}
+
+/* Notifications cointainer */
+.gzo-notification-container {
+	/* --gzo-notification-color: var(--indigo-1000);
+	--gzo-notification-hover: var(--indigo-1000);
+	--gzo-notification-action: var(--indigo-800);
+
+	color: var(--gzo-notification-color);
+	border-radius: var(--gzo-border-radius);
+	position: absolute;
+	right: 0;
+	margin-top: 0.0625rem;
+	transform-origin: right top; */
 
 	.gzo-notification-action {
 		color: var(--gzo-notification-action);
