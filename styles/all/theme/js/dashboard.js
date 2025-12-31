@@ -4,11 +4,11 @@ $(function() {
 
 	const url = window.location + '';
 	const path = url.replace(window.location.protocol + '//' + window.location.host + '/', '');
-	const element = $('ul.gzo-area-navigation a').filter(function() {
+	const element = $('ul.area-navigation a').filter(function() {
 		return this.href === url || this.href === path;
 	});
 
-	element.parentsUntil('.gzo-area-navigation').each(function() {
+	element.parentsUntil('.area-navigation').each(function() {
 		if ($(this).is('li')) {
 			if ($(this).children('a').length !== 0) {
 				$(this).children('a').addClass('active');
@@ -17,7 +17,7 @@ $(function() {
 				$(this).children('button').addClass('active');
 			}
 
-			$(this).parent('ul.gzo-area-navigation').length === 0
+			$(this).parent('ul.area-navigation').length === 0
 				? $(this).addClass('active')
 				: $(this).addClass('selected');
 		}
@@ -30,7 +30,7 @@ $(function() {
 	});
 
 	element.addClass('active');
-	$('.gzo-area-navigation button').click(function(e) {
+	$('.area-navigation button').click(function(e) {
 		if (!$(this).hasClass('active')) {
 			// hide any open menus and remove all other classes
 			$('ul', $(this).parents('ul:first')).removeClass('is-active');

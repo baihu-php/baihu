@@ -1,5 +1,5 @@
 {% if category.heading === 'DASHBOARD' %}
-	<li class="gzo-area-navigation-item">
+	<li class="area-navigation-item">
 		<a class="gzo-navigation-link" href="{{ path(category.item[0].route) }}">
 			{{- Icon('gzo', category.item[0].icon, lang(category.heading), true) -}}
 			<span class="gzo-navigation-text">{{ lang(category.heading) }}</span>
@@ -8,7 +8,7 @@
 
 		{# {% for item in category.item %}
 
-			<li class="gzo-area-navigation-item">
+			<li class="area-navigation-item">
 
 				<a href="{{ path(item.route) }}" class="gzo-navigation-link">
 					{{- Icon('gzo', item.icon, lang(category.heading), true) -}}
@@ -24,7 +24,7 @@
 	{% endif %}
 
 {% else %}
-	<li class="gzo-area-navigation-item">
+	<li class="area-navigation-item">
 		<button class="gzo-navigation-link gzo-area-btn">
 			{{- Icon('gzo', category.icon, lang(category.heading), true) -}}
 			<span class="gzo-navigation-text">{{ lang(category.heading) }}</span>
@@ -33,7 +33,7 @@
 
 		<ul class="gzo-area-menu gzo-area-menu-line" aria-expanded="false">
 			{% for item in category.item %}
-				<li class="gzo-area-navigation-item">
+				<li class="area-navigation-item">
 					<a class="gzo-navigation-link" href="{{ path(item.route) }}">
 						<span class="gzo-navigation-text gzo-area-menu-text">{{ lang(item.title) }}</span>
 					</a>
