@@ -1250,11 +1250,11 @@ pre code {
 }
 
 /* Action */
-.gzo-action {
-	--gzo-action-bg-hover: transparent;
-	--gzo-action-color: var(--gray-600);
+.action {
+	--action-bg-hover: transparent;
+	--action-color: var(--gray-600);
 
-	color: var(--gzo-action-color);
+	color: var(--action-color);
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
@@ -1263,29 +1263,29 @@ pre code {
 
 	&:hover,
 	&:focus {
-		background-color: var(--gzo-action-bg-hover);
+		background-color: var(--action-bg-hover);
 		outline: 0;
 		color: var(--gzo-link-hover);
 		transition: 0.0125s;
 	}
 
-	.gzo-action-text {
+	.action-text {
 		display: none;
 	}
 
-	.gzo-action-icon + .gzo-action-text,
-	.gzo-action-text + .gzo-action-icon {
+	.action-icon + .action-text,
+	.action-text + .action-icon {
 		padding-left: 0.5rem;
 	}
 
 	@media (min-width: 540px) {
-		.gzo-action-text {
+		.action-text {
 			display: inline-flex;
 		}
 	}
 
 	/* TODO: Remove? */
-	.gzo-action-badge {
+	.action-badge {
 		background-color: var(--red-700);
 		border-radius: 50px;
 		color: var(--red-700);
@@ -1297,7 +1297,7 @@ pre code {
 	}
 
 	@media (min-width: 540px) {
-		.gzo-action-badge {
+		.action-badge {
 			color: var(--gray-50);
 			display: inline-flex;
 		}

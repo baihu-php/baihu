@@ -11,7 +11,7 @@
 	/* background-image: var(--gzo-gradient-3); */
 	align-items: center;
 
-	.gzo-action {
+	.action {
 		color: var(--gzo-topbar-color);
 
 		&:hover,
@@ -51,7 +51,7 @@
 		width: 100%;
 		margin: 0;
 
-		.gzo-action,
+		.action,
 		.gzo-search-field {
 			font-size: var(--gzo-font-size);
 			font-weight: var(--gzo-font-weight-6);
@@ -60,7 +60,7 @@
 			color: var(--gzo-topbar-color);
 		}
 
-		.gzo-action {
+		.action {
 			margin-inline: auto;
 		}
 
@@ -74,7 +74,7 @@
 			padding-inline: var(--gzo-spacing);
 		}
 
-		.gzo-action,
+		.action,
 		.gzo-search-field {
 			&:hover,
 			&:focus {

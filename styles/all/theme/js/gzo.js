@@ -2,7 +2,7 @@ $(function() { // Avoid conflicts with other libraries
 
 	'use strict';
 
-	$('.gzo-action').click(function() {
+	$('.action').click(function() {
 		const data_toggle = $(this).attr('data-toggle');
 		const data_array = ['drawer-left', 'drawer-right', 'notification', 'create'];
 
@@ -27,7 +27,7 @@ $(function() { // Avoid conflicts with other libraries
 
 	// Clear overlay
 	$('#gzo-overlay').click(function() {
-		$('.gzo-action-toggle').removeClass('is-active');
+		$('.action-toggle').removeClass('is-active');
 		$('#gzo-overlay').removeClass('gzo-overlay');
 
 		if ($('html').hasClass('gzo-no-scroll')) {

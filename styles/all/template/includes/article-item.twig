@@ -5,7 +5,7 @@
 		<div class="gzo-bar-left">
 			<div class="gzo-bar-item">
 
-				<button class="gzo-bar-profile gzo-action" data-toggle="author-aid-{{ article.id }}">
+				<button class="gzo-bar-profile action" data-toggle="author-aid-{{ article.id }}">
 
 					<span class="gzo-avatar-wrap gzo-avatar gzo-avatar-sm">
 						{{ avatar('user', article.author_avatar[0], '', false, true, 'gzo-avatar-sm', true) }}
@@ -42,14 +42,14 @@
 			<div class="gzo-bar-left gzo-post-action-bar-right"></div>
 			<div class="gzo-bar-right gzo-post-action-bar-right">
 
-				<span class="gzo-bar-item gzo-action gzo-post-action" data-tooltip="true" title="{{ lang('VIEWS') ~ ': ' ~ article.views }}">
-					{{ Icon('gzo', 'fa-regular--eye', lang('VIEWS'), true, 'gzo-icon gzo-action-icon') }}
+				<span class="gzo-bar-item action gzo-post-action" data-tooltip="true" title="{{ lang('VIEWS') ~ ': ' ~ article.views }}">
+					{{ Icon('gzo', 'fa-regular--eye', lang('VIEWS'), true, 'gzo-icon action-icon') }}
 				</span>
-				<span class="gzo-bar-item gzo-action gzo-post-action" href="" data-tooltip="true" title="{{ lang('REPLIES') ~ ': ' ~ article.replies }}">
-					{{ Icon('gzo', 'mdi--comments-text-outline', lang('REPLIES'), true, 'gzo-icon gzo-action-icon') }}
+				<span class="gzo-bar-item action gzo-post-action" href="" data-tooltip="true" title="{{ lang('REPLIES') ~ ': ' ~ article.replies }}">
+					{{ Icon('gzo', 'mdi--comments-text-outline', lang('REPLIES'), true, 'gzo-icon action-icon') }}
 				</span>
-				<span class="gzo-bar-item gzo-action gzo-post-action" href="" data-tooltip="true" title="{{ lang('BAIHU_LIKE') }}">
-					{{ Icon('gzo', 'mdi--heart-outline', lang('BAIHU_LIKE'), true, 'gzo-icon gzo-action-icon') }}
+				<span class="gzo-bar-item action gzo-post-action" href="" data-tooltip="true" title="{{ lang('BAIHU_LIKE') }}">
+					{{ Icon('gzo', 'mdi--heart-outline', lang('BAIHU_LIKE'), true, 'gzo-icon action-icon') }}
 				</span>
 			</div>
 		</div>

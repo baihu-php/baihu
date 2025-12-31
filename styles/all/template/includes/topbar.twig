@@ -4,20 +4,20 @@
 
 		{# TODO: Should we remove this into area base? #}
 		{# {% if IN_AREAZ %}
-			<button class="gzo-bar-item gzo-action" data-tooltip="true" title="{{ lang('AREA') }}">
+			<button class="gzo-bar-item action" data-tooltip="true" title="{{ lang('AREA') }}">
 				{{ Icon('gzo', 'mdi--hamburger-menu', lang('AREA'), true) }}
 			</button>
 		{% endif %} #}
 
 		{# Here should go brand #}
 		<h1>
-			<a class="gzo-bar-item gzo-action gzo-brand-action" href="{{ path('baihu_main_index') }}" data-tooltip="true" title="{{ SITENAME }}">
+			<a class="gzo-bar-item action gzo-brand-action" href="{{ path('baihu_main_index') }}" data-tooltip="true" title="{{ SITENAME }}">
 				{{ Icon('gzo', 'GZO', SITENAME, true, 'gzo-brand') }}
 			</a>
 		</h1>
 
 		{# Left side drawer #}
-		<button class="gzo-bar-item gzo-action" data-tooltip="true" data-toggle="drawer-left" title="{{ lang('QUICK_LINKS') }}">
+		<button class="gzo-bar-item action" data-tooltip="true" data-toggle="drawer-left" title="{{ lang('QUICK_LINKS') }}">
 			{{ Icon('gzo', 'mdi--more-vert', lang('QUICK_LINKS'), true) }}
 		</button>
 
@@ -28,13 +28,13 @@
 	<div class="gzo-bar-right gzo-navbar-right">
 
 		{% if S_REGISTERED_USER %}
-			<button class="gzo-bar-item gzo-action" data-toggle="search" data-tooltip="true" title="{{ lang('SEARCH') }}">
+			<button class="gzo-bar-item action" data-toggle="search" data-tooltip="true" title="{{ lang('SEARCH') }}">
 				{{ Icon('gzo', 'mdi--search', lang('SEARCH'), true) }}
 			</button>
 
 			<span class="gzo-bar-item gzo-navbar-item">
 
-				<button class="gzo-action" data-toggle="create" data-tooltip="true"	 title="{{ lang('BAIHU_CREATE') }}">
+				<button class="action" data-toggle="create" data-tooltip="true"	 title="{{ lang('BAIHU_CREATE') }}">
 					{{ Icon('gzo', 'add', lang('BAIHU_CREATE'), true) }}
 				</button>
 
@@ -44,13 +44,13 @@
 			{% if S_NOTIFICATIONS_DISPLAY %}
 				<span class="gzo-bar-item gzo-navbar-item">
 
-					<button class="gzo-action" data-toggle="notification" data-tooltip="true" title="{{ lang('NOTIFICATIONS') }}">
+					<button class="action" data-toggle="notification" data-tooltip="true" title="{{ lang('NOTIFICATIONS') }}">
 						{{ Icon('gzo', 'mdi--bell-outline', lang('NOTIFICATIONS'), true) }}
 
 						{% if NOTIFICATIONS_COUNT %}
 							<span class="gzo-tag">{{ NOTIFICATIONS_COUNT }}</span>
 						{% endif %}
-						<span class="gzo-action-text u-sr-only">{{ lang('NOTIFICATIONS') }}</span>
+						<span class="action-text u-sr-only">{{ lang('NOTIFICATIONS') }}</span>
 					</button>
 
 					{{ include('@baihu_baihu/includes/notifications.twig') }}
@@ -58,18 +58,18 @@
 			{% endif %}
 
 			{% if S_DISPLAY_PM %}
-				<a class="gzo-bar-item gzo-action" href="{{ U_PRIVATEMSGS }}" data-tooltip="true" title="{{ lang('PRIVATE_MESSAGES') }}">
+				<a class="gzo-bar-item action" href="{{ U_PRIVATEMSGS }}" data-tooltip="true" title="{{ lang('PRIVATE_MESSAGES') }}">
 					{{ Icon('gzo', 'mdi--inbox', lang('PRIVATE_MESSAGES'), true) }}
 
 					{% if PRIVATE_MESSAGE_COUNT %}
 						<span class="gzo-tag">{{ PRIVATE_MESSAGE_COUNT }}</span>
 					{% endif %}
-					<span class="gzo-action-text u-sr-only">{{ lang('PRIVATE_MESSAGES') }}</span>
+					<span class="action-text u-sr-only">{{ lang('PRIVATE_MESSAGES') }}</span>
 				</a>
 			{% endif %}
 
 			{# Right side drawer #}
-			<button class="gzo-bar-item gzo-action" data-toggle="drawer-right">
+			<button class="gzo-bar-item action" data-toggle="drawer-right">
 
 				<span class="gzo-avatar-wrap gzo-avatar gzo-avatar-sm">
 					{{ avatar('user', CURRENT_USER_AVATAR, '', false, true, 'gzo-avatar-sm', true) }}
@@ -80,7 +80,7 @@
 			{{ include('@baihu_baihu/includes/drawer-right.twig', { 'side': 'right' }) }}
 
 		{% elseif not S_IS_BOT %}
-			<a class="gzo-bar-item gzo-action" href="{{ U_LOGIN_LOGOUT }}" data-tooltip="true" title="{{ lang('LOGIN_LOGOUT') }}">
+			<a class="gzo-bar-item action" href="{{ U_LOGIN_LOGOUT }}" data-tooltip="true" title="{{ lang('LOGIN_LOGOUT') }}">
 				{{ Icon('gzo', 'fa-power-off', lang('LOGIN_LOGOUT'), true) }}
 			</a>
 		{% endif %}
