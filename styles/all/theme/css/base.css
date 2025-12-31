@@ -1318,7 +1318,7 @@ main {
 /* Container */
 .gzo-footer,
 .gzo-container {
-	max-width: 1270px;
+	max-width: 1300px;
 	position: relative;
 	margin-inline: auto;
 }
