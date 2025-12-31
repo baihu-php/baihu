@@ -96,69 +96,69 @@
 	--yellow-700: #f4e02a;
 
 	/* Default colors */
-	--gzo-color-primary: var(--indigo-500);
-	--gzo-color-secondary: var(--gray-600);
-	--gzo-color-success: var(--green-500);
-	--gzo-color-info: var(--cyan-500);
-	--gzo-color-warning: var(--yellow-600);
-	--gzo-color-danger: var(--red-600);
-	--gzo-color-light: var(--gray-100);
-	--gzo-color-dark: var(--gray-900);
+	--color-primary: var(--indigo-500);
+	--color-secondary: var(--gray-600);
+	--color-success: var(--green-500);
+	--color-info: var(--cyan-500);
+	--color-warning: var(--yellow-600);
+	--color-danger: var(--red-600);
+	--color-light: var(--gray-100);
+	--color-dark: var(--gray-900);
 
-	--gzo-color-border: var(--gray-50);
-	--gzo-color-muted: var(--gray-800);
-	--gzo-color-badge: var(--blue-700);
+	--color-border: var(--gray-50);
+	--color-muted: var(--gray-800);
+	--color-badge: var(--blue-700);
 
 	/* Main colors */
-	--gzo-bg-color: var(--indigo-50);
+	--bg-color: var(--indigo-50);
 	--block-bg: white;
-	--gzo-color: var(--gray-1300);
-	--gzo-color-6: var(--gray-600);
+	--color: var(--gray-1300);
+	--color-6: var(--gray-600);
 
 	/* Gradient colors */
-	--gzo-gradient-1: linear-gradient(to right, var(--indigo-600), var(--indigo-700), var(--indigo-800));
-	--gzo-gradient-2: linear-gradient(to right, var(--indigo-600), var(--indigo-700));
-	--gzo-gradient-3: linear-gradient(to right, var(--indigo-700), var(--indigo-600));
-	--gzo-gradient-4: linear-gradient(to right, var(--indigo-700), var(--indigo-800));
-	--gzo-gradient-5: linear-gradient(to right, var(--indigo-800), var(--indigo-700));
+	--gradient-1: linear-gradient(to right, var(--indigo-600), var(--indigo-700), var(--indigo-800));
+	--gradient-2: linear-gradient(to right, var(--indigo-600), var(--indigo-700));
+	--gradient-3: linear-gradient(to right, var(--indigo-700), var(--indigo-600));
+	--gradient-4: linear-gradient(to right, var(--indigo-700), var(--indigo-800));
+	--gradient-5: linear-gradient(to right, var(--indigo-800), var(--indigo-700));
 
-	--gzo-gradient-6: linear-gradient(to right, #8971ea, #7f72ea, #7574ea, #6a75e9, #5f76e8);
+	--gradient-6: linear-gradient(to right, #8971ea, #7f72ea, #7574ea, #6a75e9, #5f76e8);
 
 	/* Link colors */
-	--gzo-link: var(--indigo-800);
-	--gzo-link-hover: var(--indigo-600);
+	--link: var(--indigo-800);
+	--link-hover: var(--indigo-600);
 
 	/* Default settings */
-	--gzo-font-family:
+	--font-family:
 		Roboto, Helvetica, Arial, sans-serif, system-ui, -apple-system,
 		"Segoe UI", "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-	--gzo-font-size: 1rem;
-	--gzo-font-weight: 400;
-	--gzo-font-weight-6: 600;
-	--gzo-font-weight-7: 700;
-	--gzo-line-height: 1.5;
+	--font-size: 1rem;
+	--font-weight: 400;
+	--font-weight-6: 600;
+	--font-weight-7: 700;
+	--line-height: 1.5;
 
-	--gzo-box-shadow: 0 0 40px 0 rgba(94,92,154, .06);
-	--gzo-box-shadow-1:
+	--box-shadow: 0 0 40px 0 rgba(94,92,154, .06);
+	--box-shadow-1:
 		0 11px 15px -7px rgba(0, 0, 0, 0.2),
 		0 24px 38px 3px rgba(0, 0, 0, 0.14);
-	--gzo-box-shadow-2:
+	--box-shadow-2:
 		0 2px 4px -1px rgba(0, 0, 0, 0.2),
 		0 4px 5px 0px rgba(0, 0, 0, 0.14),
 		0 1px 10px 0 rgba(0, 0, 0, 0.12);
-	--gzo-box-shadow-3:
+	--box-shadow-3:
 		0px 3px 1px -2px rgba(0, 0, 0, 0.2),
 		/* 0px 2px 2px 0px rgba(0, 0, 0, 0.14), */
 		0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 
-	--gzo-transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+	--transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
 
 	/* Border */
-	--gzo-border: 1px solid var(--gzo-color-border);
-	--gzo-border-size: 1px;
-	--gzo-border-radius: 8px;
-	--gzo-border-color: var(--gzo-color-border);
+	--border: 1px solid var(--color-border);
+	--border-size: 1px;
+	--border-radius: 8px;
+	--border-color: var(--color-border);
 
 	/* Icon sizes */
 	--icon-sm: 16px;
@@ -167,34 +167,34 @@
 	--icon-xxl: 200px;
 
 	/* Spacing sizes */
-	--gzo-spacing: 1rem;
-	--gzo-spacing-md: 1.5rem;
-	--gzo-spacing-lg: 2rem;
+	--spacing: 1rem;
+	--spacing-md: 1.5rem;
+	--spacing-lg: 2rem;
 
 	/* Spacing 5-25px */
-	--gzo-spacing-1: 0.3125rem;
-	--gzo-spacing-2: 0.625rem;
-	--gzo-spacing-3: 0.9375rem;
-	--gzo-spacing-4: 1.25rem;
-	--gzo-spacing-5: 1.5625rem;
-	--gzo-spacing-6: 1.75rem;
+	--spacing-1: 0.3125rem;
+	--spacing-2: 0.625rem;
+	--spacing-3: 0.9375rem;
+	--spacing-4: 1.25rem;
+	--spacing-5: 1.5625rem;
+	--spacing-6: 1.75rem;
 
 	/* Width / Height sizes */
-	--gzo-size-sm: 56px;
+	--size-sm: 56px;
 
 	/* Container inline-sizes */
-	--gzo-cis-sm: 400px;
-	--gzo-cis-md: 700px;
-	--gzo-cis-lg: 1000px;
+	--cis-sm: 400px;
+	--cis-md: 700px;
+	--cis-lg: 1000px;
 
-	/* --gzo-grid-gutter: 16px;
-	--gzo-grid-gutter-sm: 12px; */
+	/* --grid-gutter: 16px;
+	--grid-gutter-sm: 12px; */
 
 	/* Grid breakpoints */
-	--gzo-xxs: 360px;
-	--gzo-xs: 411px;
-	--gzo-sm: 540px;
-	--gzo-md: 770px;
-	--gzo-lg: 960px;
-	--gzo-xl: 1140px;
+	--xxs: 360px;
+	--xs: 411px;
+	--sm: 540px;
+	--md: 770px;
+	--lg: 960px;
+	--xl: 1140px;
 }

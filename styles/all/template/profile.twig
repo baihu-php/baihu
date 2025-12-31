@@ -4,12 +4,12 @@
 
 	{% EVENT memberlist_view_content_prepend %}
 
-	<div class="gzo-profile-content">
+	<div class="profile-content">
 
-		<div class="block gzo-profile-card">
+		<div class="block profile-card">
 
-			<h5 class="gzo-profile-meta-5">{{ lang('INFORMATION') }}</h5>
-			<dl class="gzo-profile-details-stats">
+			<h5 class="profile-meta-5">{{ lang('INFORMATION') }}</h5>
+			<dl class="profile-details-stats">
 
 				<dt>{{ lang('USERNAME') ~ lang('COLON') }}</dt>
 				<dd>
@@ -63,10 +63,10 @@
 			</dl>
 		</div>
 
-		<div class="block gzo-profile-card">
+		<div class="block profile-card">
 
-			<h5 class="gzo-profile-meta-5">{{ lang('USER_FORUM') }}</h5>
-			<dl class="gzo-profile-details-stats">
+			<h5 class="profile-meta-5">{{ lang('USER_FORUM') }}</h5>
+			<dl class="profile-details-stats">
 
 				{% EVENT memberlist_view_user_statistics_before %}
 
@@ -118,10 +118,10 @@
 		</div>
 
 		{% if SIGNATURE %}
-			<div class="block gzo-profile-card">
-				<h5 class="gzo-profile-meta-5">{{ lang('SIGNATURE') }}</h5>
+			<div class="block profile-card">
+				<h5 class="profile-meta-5">{{ lang('SIGNATURE') }}</h5>
 
-				<div class="gzo-profile-details-stats">{{ SIGNATURE }}</div>
+				<div class="profile-details-stats">{{ SIGNATURE }}</div>
 
 			</div>
 		{% endif %}

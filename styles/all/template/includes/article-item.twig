@@ -1,4 +1,4 @@
-<article class="block gzo-post">
+<article class="block post">
 
 	<div class="bar block-bar">
 
@@ -24,31 +24,31 @@
 
 		<div class="bar-right">
 
-			<span class="bar-item bar-info gzo-post-meta-time u-hidden-xs-down">
-				<time class="gzo-post-meta-time-text" datetime="{{ article.date }}" title="{{ article.date }}" data-short="{{ article.date }}">{{ article.date }}</time>
+			<span class="bar-item bar-info post-meta-time u-hidden-xs-down">
+				<time class="post-meta-time-text" datetime="{{ article.date }}" title="{{ article.date }}" data-short="{{ article.date }}">{{ article.date }}</time>
 			</span>
 		</div>
 	</div>
 
-	<section class="gzo-post-body">
+	<section class="post-body">
 
 		<h3>{{ link({'href': article.link}, article.title) }}</h3>
 
-		<div class="gzo-content">
+		<div class="content">
 			{{ article.text ~ (article.is_trimmed ? lang('ELLIPSIS') ~ link({'href': article.link}, lang('READ_FULL'))) }}
 		</div>
 
-		<div class="bar gzo-post-action-bar">
-			<div class="bar-left gzo-post-action-bar-right"></div>
-			<div class="bar-right gzo-post-action-bar-right">
+		<div class="bar post-action-bar">
+			<div class="bar-left post-action-bar-right"></div>
+			<div class="bar-right post-action-bar-right">
 
-				<span class="bar-item action gzo-post-action" data-tooltip="true" title="{{ lang('VIEWS') ~ ': ' ~ article.views }}">
+				<span class="bar-item action post-action" data-tooltip="true" title="{{ lang('VIEWS') ~ ': ' ~ article.views }}">
 					{{ Icon('gzo', 'fa-regular--eye', lang('VIEWS'), true, 'icon action-icon') }}
 				</span>
-				<span class="bar-item action gzo-post-action" href="" data-tooltip="true" title="{{ lang('REPLIES') ~ ': ' ~ article.replies }}">
+				<span class="bar-item action post-action" href="" data-tooltip="true" title="{{ lang('REPLIES') ~ ': ' ~ article.replies }}">
 					{{ Icon('gzo', 'mdi--comments-text-outline', lang('REPLIES'), true, 'icon action-icon') }}
 				</span>
-				<span class="bar-item action gzo-post-action" href="" data-tooltip="true" title="{{ lang('BAIHU_LIKE') }}">
+				<span class="bar-item action post-action" href="" data-tooltip="true" title="{{ lang('BAIHU_LIKE') }}">
 					{{ Icon('gzo', 'mdi--heart-outline', lang('BAIHU_LIKE'), true, 'icon action-icon') }}
 				</span>
 			</div>

@@ -33,8 +33,8 @@
 
 	<body>
 
-		<div class="gzo-page" id="page-top" data-container="page">
-			<header class="gzo-header-container">
+		<div class="page" id="page-top" data-container="page">
+			<header class="header-container">
 				<div id="overlay"></div>
 
 				{# Baihu navbar section #}
@@ -44,7 +44,7 @@
 				{% endblock %}
 			</header>
 
-			<aside class="gzo-area-sidebar">
+			<aside class="area-sidebar">
 				<nav class="navigation-container">
 					<ul class="navigation area-navigation">
 						{% set divider = menu|length > 1 %}
@@ -55,14 +55,14 @@
 				</nav>
 			</aside>
 
-			<main class="gzo-area-container">
+			<main class="area-container">
 
 				<section class="content-main">
-					<div class="gzo-area-heading">
-						<div class="gzo-area-title">
+					<div class="area-heading">
+						<div class="area-title">
 							{% block gzo_main_heading %}{% endblock %}
 						</div>
-						<div class="gzo-area-crumbs">
+						<div class="area-crumbs">
 							{% block gzo_crumb %}
 								{{- include('@baihu_baihu/includes/crumbs.twig') -}}
 							{% endblock %}

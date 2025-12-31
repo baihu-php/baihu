@@ -2,19 +2,19 @@
 
 {% block gzo_main_content_before %}
 
-	<div class="block gzo-content-header gzo-profile-header">
-		<div class="gzo-content-header-cover gzo-profile-header-cover"></div>
+	<div class="block content-header profile-header">
+		<div class="content-header-cover profile-header-cover"></div>
 
-		{# <div class="gzo-profile-header-info">
-			{{ gzo_avatar(AVATAR_IMG, 'avatar-wrap avatar-ml gzo-profile-header-avatar', true, true, T_THEME_PATH) }}
-			<div class="gzo-profile-header-avatar-wrap">
+		{# <div class="profile-header-info">
+			{{ gzo_avatar(AVATAR_IMG, 'avatar-wrap avatar-ml profile-header-avatar', true, true, T_THEME_PATH) }}
+			<div class="profile-header-avatar-wrap">
 			</div>
 		</div> #}
 
 
 		{% if tabs|length > 1 %}
 
-			<nav class="gzo-content-tabs" role="navigation">
+			<nav class="content-tabs" role="navigation">
 				<ul role="menubar">
 					{% for tab in tabs %}
 						{{ include('@baihu_baihu/includes/tab-item.twig') }}
@@ -27,9 +27,9 @@
 	</div>
 
 		{# Testing tab navigation #}
-		<nav class="gzo-content-tabs" role="navigation">
+		<nav class="content-tabs" role="navigation">
 			<ul role="menubar">
-				<li><a class="gzo-tab-active" href="{{ U_VIEW_PROFILE }}">Profile</a></li>
+				<li><a class="tab-active" href="{{ U_VIEW_PROFILE }}">Profile</a></li>
 				<li><a href="{{ path('baihu_main_index') }}">Test 1</a></li>
 				<li><a href="">Test 2</a></li>
 				<li><a href="">Test 3</a></li>
@@ -39,7 +39,7 @@
 		</nav>
 
 		{# TODO: Needs some work? #}
-		<h2 class="gzo-profile-title">{{ lang('VIEWING_PROFILE', USERNAME) }}</h2>
+		<h2 class="profile-title">{{ lang('VIEWING_PROFILE', USERNAME) }}</h2>
 
 {% endblock %}
 

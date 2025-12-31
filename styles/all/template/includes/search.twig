@@ -1,12 +1,12 @@
-<div class="bar gzo-search action-toggle">
+<div class="bar search action-toggle">
 
-	<form class="gzo-search-form" action="{{ U_SEARCH }}" method="get" id="search" role="search">
+	<form class="search-form" action="{{ U_SEARCH }}" method="get" id="search" role="search">
 
 		<button class="action" type="submit" data-tooltip="true" title="{{ lang('SEARCH') }}">
 			{{ Icon('gzo', 'mdi--search', lang('SEARCH'), true) }}
 		</button>
 
-		<input class="gzo-search-field" name="keywords" id="keywords" type="search" maxlength="128" title="{{ lang('SEARCH_KEYWORDS') }}" value="{{ SEARCH_WORDS }}" placeholder="{{ lang('SEARCH_MINI') }}">
+		<input class="search-field" name="keywords" id="keywords" type="search" maxlength="128" title="{{ lang('SEARCH_KEYWORDS') }}" value="{{ SEARCH_WORDS }}" placeholder="{{ lang('SEARCH_MINI') }}">
 
 		<a class="action" href="{{ U_SEARCH }}" data-tooltip="true" title="{{ lang('SEARCH_ADV') }}">
 			{{ Icon('gzo', 'mdi--settings-outline', lang('SEARCH_ADV'), true) }}
