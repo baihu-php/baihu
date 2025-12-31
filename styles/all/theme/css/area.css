@@ -213,7 +213,7 @@
 	grid-area: main;
 	/* padding-inline: var(--gzo-spacing-md); */
 
-	.gzo-content-main {
+	.content-main {
 		flex-direction: column;
 		margin-inline: var(--gzo-spacing-md);
 		/* max-width: 1270px;
@@ -273,6 +273,6 @@
 } */
 
 /* Footer */
-.gzo-footer-container {
+.footer-container {
 	grid-area: footer;
 }

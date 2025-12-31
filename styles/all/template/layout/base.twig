@@ -47,7 +47,7 @@
 			</header>
 
 			{% block gzo_main_before %}{% endblock %}
-			<main class="gzo-container">
+			<main class="container">
 
 				{# Baihu crumbs #}
 				{% block gzo_crumb %}
@@ -56,14 +56,14 @@
 
 				{% block gzo_main_content_before %}{% endblock %}
 
-				<section class="gzo-content-main">
+				<section class="content-main">
 
 					{% block gzo_main_left %}
 						{% EVENT baihu_main_left %}
 					{% endblock %}
 
 					{# Baihu main section #}
-					<div class="gzo-section-main">
+					<div class="section-main">
 						{% block gzo_main_content_top %}{% endblock %}
 
 						{% block gzo_main_content %}{% endblock %}
@@ -76,7 +76,7 @@
 
 					{% block gzo_main_right %}
 						{% if config('baihu_side') %}
-							<div class="gzo-section-side">
+							<div class="section-side">
 								{{ baihu_blocks('baihu_side') }}
 							</div>
 						{% endif %}
@@ -88,7 +88,7 @@
 
 			</main>
 
-			<footer class="gzo-footer-container" id="page-bottom">
+			<footer class="footer-container" id="page-bottom">
 				{{ include('@baihu_baihu/includes/footer.twig') }}
 			</footer>
 

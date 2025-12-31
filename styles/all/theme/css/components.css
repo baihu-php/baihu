@@ -729,7 +729,7 @@
 }
 
 /* Footer */
-.gzo-footer {
+.footer {
 	text-align: center;
 	/* display: flex;
 	flex-direction: column;
@@ -737,7 +737,7 @@
 	min-height: 90px; */
 	padding-block: var(--gzo-spacing);
 
-	/* .gzo-footer-copyright {
+	/* .footer-copyright {
 		margin: var(--gzo-spacing-2) 0;
 	} */
 
