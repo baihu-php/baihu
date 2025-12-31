@@ -8,7 +8,7 @@ $(function() { // Avoid conflicts with other libraries
 
 		if (data_toggle) {
 			$('#overlay').addClass('overlay');
-			$('.gzo-'+ data_toggle).toggleClass('is-active');
+			$('.baihu-'+ data_toggle).toggleClass('is-active');
 		}
 
 		if (data_array.includes(data_toggle)) {
@@ -21,7 +21,7 @@ $(function() { // Avoid conflicts with other libraries
 		const data_toggle = $(this).attr('data-toggle');
 
 		if (data_toggle) {
-			$('.gzo-'+ data_toggle).toggleClass('is-active');
+			$('.baihu-'+ data_toggle).toggleClass('is-active');
 		}
 	});
 

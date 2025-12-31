@@ -482,13 +482,13 @@
 	top: 0;
 	height: 100%;
 
-	&.gzo-drawer-left {
+	&.baihu-drawer-left {
 		border-top-right-radius: 5px;
 		left: 0;
 		transform-origin: left top;
 	}
 
-	&.gzo-drawer-right {
+	&.baihu-drawer-right {
 		border-top-left-radius: 5px;
 		right: 0;
 		transform-origin: right top;
