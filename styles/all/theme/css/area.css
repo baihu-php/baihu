@@ -77,13 +77,13 @@
 	}
 
 	.area-navigation-item.selected > .navigation-link {
-		background-image: var(--gradient-4);
+		background-image: var(--gradient-78);
 		box-shadow: 0px 7px 12px 0px rgba(95, 118, 232, 0.21);
 		color: white;
 		opacity: 1;
 
 		&:first-child:not(:is(button, area-btn)) {
-			background-image: var(--gradient-2);
+			background-image: var(--gradient-67);
 		}
 	}
 
