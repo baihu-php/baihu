@@ -1532,11 +1532,11 @@ main {
 	}
 }
 
-.gzo-no-scroll {
+.no-scroll {
 	overflow-y: clip;
 }
 
-.gzo-overlay {
+.overlay {
 	background-color: transparent;
 	opacity: 1;
 	z-index: 1;

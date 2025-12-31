@@ -35,7 +35,7 @@ $(function() {
 			// hide any open menus and remove all other classes
 			$('ul', $(this).parents('ul:first')).removeClass('is-active');
 			$('button', $(this).parents('ul:first')).removeClass('active');
-			$('button', $(this).parents('ul:first')).removeClass('gzo-rotate');
+			$('button', $(this).parents('ul:first')).removeClass('rotate');
 
 			// open our new menu and add the open class
 			$(this).next('ul').addClass('is-active');
@@ -49,7 +49,7 @@ $(function() {
 
 		// console.log(this);
 
-		$(this).toggleClass('gzo-rotate');
+		$(this).toggleClass('rotate');
 		e.preventDefault();
 	})
 });

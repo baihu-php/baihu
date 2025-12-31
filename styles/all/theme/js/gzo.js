@@ -7,12 +7,12 @@ $(function() { // Avoid conflicts with other libraries
 		const data_array = ['drawer-left', 'drawer-right', 'notification', 'create'];
 
 		if (data_toggle) {
-			$('#gzo-overlay').addClass('gzo-overlay');
+			$('#overlay').addClass('overlay');
 			$('.gzo-'+ data_toggle).toggleClass('is-active');
 		}
 
 		if (data_array.includes(data_toggle)) {
-			$('html').addClass('gzo-no-scroll');
+			$('html').addClass('no-scroll');
 		}
 	});
 
@@ -26,12 +26,12 @@ $(function() { // Avoid conflicts with other libraries
 	});
 
 	// Clear overlay
-	$('#gzo-overlay').click(function() {
+	$('#overlay').click(function() {
 		$('.action-toggle').removeClass('is-active');
-		$('#gzo-overlay').removeClass('gzo-overlay');
+		$('#overlay').removeClass('overlay');
 
-		if ($('html').hasClass('gzo-no-scroll')) {
-			$('html').removeClass('gzo-no-scroll');
+		if ($('html').hasClass('no-scroll')) {
+			$('html').removeClass('no-scroll');
 		}
 	});
 
