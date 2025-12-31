@@ -41,7 +41,7 @@
 						{{ Icon('gzo', 'mdi--bell-outline', lang('NOTIFICATIONS'), true) }}
 
 						{% if NOTIFICATIONS_COUNT %}
-							<span class="gzo-tag">{{ NOTIFICATIONS_COUNT }}</span>
+							<span class="tag">{{ NOTIFICATIONS_COUNT }}</span>
 						{% endif %}
 						<span class="action-text u-sr-only">{{ lang('NOTIFICATIONS') }}</span>
 					</button>
@@ -55,7 +55,7 @@
 					{{ Icon('gzo', 'mdi--inbox', lang('PRIVATE_MESSAGES'), true) }}
 
 					{% if PRIVATE_MESSAGE_COUNT %}
-						<span class="gzo-tag">{{ PRIVATE_MESSAGE_COUNT }}</span>
+						<span class="tag">{{ PRIVATE_MESSAGE_COUNT }}</span>
 					{% endif %}
 					<span class="action-text u-sr-only">{{ lang('PRIVATE_MESSAGES') }}</span>
 				</a>

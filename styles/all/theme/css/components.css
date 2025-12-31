@@ -550,9 +550,9 @@
 	}
 
 	.navigation-btn {
-		--gzo-btn-width: calc(var(--navigation-spacing) * 2);
+		--btn-width: calc(var(--navigation-spacing) * 2);
 
-		width: calc(100% - var(--gzo-btn-width));
+		width: calc(100% - var(--btn-width));
 	}
 
 	.navigation-menu {

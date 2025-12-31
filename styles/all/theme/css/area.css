@@ -88,10 +88,10 @@
 	}
 
 	.gzo-area-btn {
-		--gzo-btn-width: calc(var(--gzo-spacing) * 3);
+		--btn-width: calc(var(--gzo-spacing) * 3);
 
 		display: block;
-		width: calc(100% - var(--gzo-btn-width));
+		width: calc(100% - var(--btn-width));
 
 		svg:last-child {
 			transition: 0.35s ease;

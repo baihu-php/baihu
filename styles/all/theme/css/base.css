@@ -1047,9 +1047,9 @@ pre code {
 }
 
 /* Tag */
-.gzo-tag {
-	--gzo-tag-bg: var(--indigo-500);
-	--gzo-tag-color: var(--gray-50);
+.tag {
+	--tag-bg: var(--indigo-500);
+	--tag-color: var(--gray-50);
 
 	font-size: 0.75rem;
 	font-weight: var(--gzo-font-weight);
@@ -1058,9 +1058,9 @@ pre code {
 	vertical-align: middle;
 	white-space: nowrap;
 	letter-spacing: 0.0333333333em;
-	background-color: var(--gzo-tag-bg);
+	background-color: var(--tag-bg);
 	border-radius: 2px;
-	color: var(--gzo-tag-color);
+	color: var(--tag-color);
 	display: inline-flex;
 	margin: 0.25rem 0.5rem;
 	padding: 0.25rem 0.5rem;
@@ -1071,7 +1071,7 @@ pre code {
 }
 
 /* Button */
-.gzo-btn {
+.btn {
 	font-size: var(--gzo-font-size);
 	font-weight: var(--gzo-font-weight-7);
 	line-height: var(--gzo-line-height);
@@ -1104,12 +1104,12 @@ pre code {
 	will-change: box-shadow;
 	will-change: transform, opacity;
 
-	.gzo-btn-icon {
+	.btn-icon {
 		margin-right: 0.5rem;
 	}
 
-	.gzo-btn-icon + .gzo-btn,
-	.gzo-btn-text + .gzo-btn-icon {
+	.btn-icon + .btn,
+	.btn-text + .btn-icon {
 		margin-right: 0;
 		margin-left: 0.5rem;
 	}
