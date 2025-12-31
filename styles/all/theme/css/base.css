@@ -1417,20 +1417,20 @@ main {
 }
 
 /* Cards */
-.gzo-cards {
-	--gzo-cards-column-size: var(--gzo-column-size, 300px);
+.cards {
+	--cards-column-size: var(--gzo-column-size, 300px);
 
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(var(--gzo-cards-column-size), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(var(--cards-column-size), 1fr));
 	gap: var(--gzo-spacing);
 	margin-block-end: var(--gzo-spacing-md);
 
-	.gzo-card {
-		--gzo-card-bg: var(--gzo-card-new-bg, var(--block-bg));
-		--gzo-card-icon-bg: var(--icon-bg, var(--indigo-600));
-		--gzo-card-icon-color: var(--icon-color, white);
+	.card {
+		--card-bg: var(--card-new-bg, var(--block-bg));
+		--card-icon-bg: var(--icon-bg, var(--indigo-600));
+		--card-icon-color: var(--icon-color, white);
 
-		background-color: var(--gzo-card-bg);
+		background-color: var(--card-bg);
 		border-radius: var(--gzo-border-radius);
 		box-shadow: var(--gzo-box-shadow);
 		transition: var(--gzo-transition);
@@ -1440,14 +1440,14 @@ main {
 		padding: var(--gzo-spacing-md);
 	}
 
-	.gzo-card-icon {
-		background-color: var(--gzo-card-icon-bg);
+	.card-icon {
+		background-color: var(--card-icon-bg);
 		border-radius: var(--gzo-border-radius);
-		color: var(--gzo-card-icon-color);
+		color: var(--card-icon-color);
 		padding: var(--gzo-spacing);
 	}
 
-	.gzo-card-icon-item {
+	.card-icon-item {
 		padding: var(--gzo-spacing-1);
 		cursor: pointer;
 
@@ -1457,14 +1457,14 @@ main {
 		}
 	}
 
-	.gzo-card-list {
+	.card-list {
 		display: flex;
 		flex-direction: column;
 		/* align-items: end; */
 		margin-inline-start: auto;
 	}
 
-	.gzo-card-item {
+	.card-item {
 		color: var(--gzo-color-6);
 	}
 }
@@ -1496,7 +1496,7 @@ main {
 		margin: 0;
 		padding: var(--gzo-spacing-md);
 
-		.gzo-mini-profile {
+		.mini-profile {
 			margin-block-end: var(--gzo-spacing-md);
 		}
 
@@ -1517,10 +1517,10 @@ main {
 		align-items: center;
 	}
 
-	.gzo-user-status {
+	.user-status {
 		padding-left: var(--gzo-spacing);
 
-		.gzo-user-status-title {
+		.user-status-title {
 			display: block;
 		}
 	}
@@ -1539,7 +1539,7 @@ main {
 	inset: 0;
 }
 
-.gzo-stabilize {
+.stabilize {
 	border-color: var(--blue-gray-200);
 	margin: var(--gzo-spacing-1) var(--gzo-spacing-4);
 }
