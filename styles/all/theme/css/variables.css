@@ -111,7 +111,7 @@
 
 	/* Main colors */
 	--gzo-bg-color: var(--indigo-50);
-	--gzo-block-bg: white;
+	--block-bg: white;
 	--gzo-color: var(--gray-1300);
 	--gzo-color-6: var(--gray-600);
 

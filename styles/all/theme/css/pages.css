@@ -83,7 +83,7 @@
 	}
 
 	.gzo-profile-card {
-		background-color: var(--gzo-block-bg);
+		background-color: var(--block-bg);
 		border-radius: var(--gzo-border-radius);
 		margin-bottom: var(--gzo-spacing-4);
 		padding: var(--gzo-spacing-3);

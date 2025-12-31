@@ -118,7 +118,7 @@
 
 /* Content header */
 .gzo-content-header {
-	background-color: var(--gzo-block-bg);
+	background-color: var(--block-bg);
 	min-height: 200px;
 
 	.gzo-content-header-cover {
@@ -449,7 +449,7 @@
 
 /* Drawer & notification */
 .create-container,
-.gzo-drawer-container,
+.drawer-container,
 .gzo-notification-container {
 	--gzo-drawer-bg: white;
 	--gzo-drawer-bg-hover: var(--indigo-50);
@@ -477,7 +477,7 @@
 }
 
 /* Drawer container */
-.gzo-drawer-container {
+.drawer-container {
 	position: fixed;
 	top: 0;
 	height: 100%;
@@ -494,7 +494,7 @@
 		transform-origin: right top;
 	}
 
-	.gzo-block-info {
+	.block-info {
 		min-width: fit-content;
 		margin-block-end: 0;
 		padding: var(--gzo-spacing-2);
@@ -626,7 +626,7 @@
 	}
 
 	.gzo-notification-footer {
-		background-color: var(--gzo-block-bg);
+		background-color: var(--block-bg);
 		border-top: var(--gzo-drawer-border);
 		border-bottom-right-radius: var(--gzo-border-radius);
 		border-bottom-left-radius: var(--gzo-border-radius);

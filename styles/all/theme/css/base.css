@@ -1432,7 +1432,7 @@ main {
 	margin-block-end: var(--gzo-spacing-md);
 
 	.gzo-card {
-		--gzo-card-bg: var(--gzo-card-new-bg, var(--gzo-block-bg));
+		--gzo-card-bg: var(--gzo-card-new-bg, var(--block-bg));
 		--gzo-card-icon-bg: var(--gzo-icon-bg, var(--indigo-600));
 		--gzo-card-icon-color: var(--gzo-icon-color, white);
 
@@ -1476,16 +1476,16 @@ main {
 }
 
 /* Block */
-.gzo-block {
-	background-color: var(--gzo-block-bg);
+.block {
+	background-color: var(--block-bg);
 	border-radius: var(--gzo-border-radius);
 	box-shadow: var(--gzo-box-shadow);
 	transition: var(--gzo-transition);
 	will-change: box-shadow;
 	margin-bottom: var(--gzo-spacing-md);
 
-	.gzo-block-bar {
-		--gzo-bar-bg: var(--gzo-block-bg);
+	.block-bar {
+		--gzo-bar-bg: var(--block-bg);
 		--gzo-bar-bg-hover: var(--gray-50);
 
 		background-color: var(--gzo-bar-bg);
@@ -1495,7 +1495,7 @@ main {
 		min-width: fit-content;
 	}
 
-	.gzo-block-stats {
+	.block-stats {
 		font-weight: var(--gzo-font-weight);
 		color: var(--blue-gray-1100);
 		list-style: none;
@@ -1506,19 +1506,19 @@ main {
 			margin-block-end: var(--gzo-spacing-md);
 		}
 
-		.gzo-block-stats-text,
-		.gzo-block-stats-link {
+		.block-stats-text,
+		.block-stats-link {
 			padding-left: 0.2rem;
 			vertical-align: middle;
 		}
 	}
 }
 
-.gzo-block-info {
+.block-info {
 	margin-block-end: var(--gzo-spacing);
 	min-width: fit-content;
 
-	&.gzo-block-user {
+	&.block-user {
 		display: flex;
 		align-items: center;
 	}

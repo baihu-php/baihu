@@ -2,7 +2,7 @@
 	{% block block_title %}{{ lang('RECENT_POSTS') }}{% endblock %}
 
 	{% block block_content %}
-		<ul class="gzo-block-stats">
+		<ul class="block-stats">
 			{% for recent in recent_posts %}
 				{{ include('@baihu_baihu/includes/recent-item.twig') }}
 			{% endfor %}
