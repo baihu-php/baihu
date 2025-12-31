@@ -17,36 +17,36 @@
 			<link href="{{ T_ASSETS_PATH }}/cookieconsent/cookieconsent.min.css?assets_version={{ T_ASSETS_VERSION }}" rel="stylesheet">
 		{% endif %}
 
-		{# GZO theme #}
+		{# Baihu theme #}
 		{% INCLUDECSS '@baihu_baihu/css/theme.css' %}
 
-		{# GZO area #}
+		{# Baihu area #}
 		{% INCLUDECSS '@baihu_baihu/css/area.css' %}
 
-		{% EVENT gzo_header_head_append %}
+		{% EVENT baihu_header_head_append %}
 
 		{$STYLESHEETS}
 
-		{% EVENT gzo_header_stylesheets_after %}
+		{% EVENT baihu_header_stylesheets_after %}
 
 	</head>
 
 	<body>
 
-		<div class="gzo-page" id="page-top" data-container="page">
-			<header class="gzo-header-container">
-				<div id="gzo-overlay"></div>
+		<div class="page" id="page-top" data-container="page">
+			<header class="header-container">
+				<div id="overlay"></div>
 
-				{# GZO navbar section #}
+				{# Baihu navbar section #}
 				{% block gzo_top_bar %}
 					{{- include('@baihu_baihu/includes/search.twig') -}}
 					{{- include('@baihu_baihu/includes/topbar.twig') -}}
 				{% endblock %}
 			</header>
 
-			<aside class="gzo-area-sidebar">
-				<nav class="gzo-navigation-container">
-					<ul class="gzo-navigation gzo-area-navigation">
+			<aside class="area-sidebar">
+				<nav class="navigation-container">
+					<ul class="navigation area-navigation">
 						{% set divider = menu|length > 1 %}
 						{% for category in menu %}
 							{{ include('@baihu_baihu/admin/includes/menu-item.twig', {'divider': divider}) }}
@@ -55,28 +55,28 @@
 				</nav>
 			</aside>
 
-			<main class="gzo-area-container">
+			<main class="area-container">
 
-				<section class="gzo-content-main">
-					<div class="gzo-area-heading">
-						<div class="gzo-area-title">
+				<section class="content-main">
+					<div class="area-heading">
+						<div class="area-title">
 							{% block gzo_main_heading %}{% endblock %}
 						</div>
-						<div class="gzo-area-crumbs">
+						<div class="area-crumbs">
 							{% block gzo_crumb %}
 								{{- include('@baihu_baihu/includes/crumbs.twig') -}}
 							{% endblock %}
 						</div>
 					</div>
 
-					<div class="gzo-section-main">
+					<div class="section-main">
 						{% block gzo_main_content %}{% endblock %}
 					</div>
 				</section>
 
 			</main>
 
-			<footer class="gzo-footer-container" id="page-bottom">
+			<footer class="footer-container" id="page-bottom">
 				{{ include('@baihu_baihu/includes/footer.twig') }}
 			</footer>
 
@@ -86,16 +86,17 @@
 		<script src="{{ T_ASSETS_PATH }}/javascript/core.js?assets_version={{ T_ASSETS_VERSION }}"></script>
 		{% INCLUDEJS 'ajax.js' %}
 
-		{% INCLUDEJS '@baihu_baihu/js/gzo.js' %}
+		{% INCLUDEJS '@baihu_baihu/js/baihu.js' %}
 		{% INCLUDEJS '@baihu_baihu/js/core.js' %}
 
+		{# Baihu area dashboard #}
 		{% INCLUDEJS '@baihu_baihu/js/dashboard.js' %}
 
-		{% EVENT gzo_footer_after %}
+		{% EVENT baihu_footer_after %}
 
 		{$SCRIPTS}
 
-		{% EVENT gzo_footer_body_after %}
+		{% EVENT baihu_footer_body_after %}
 
 	</body>
 

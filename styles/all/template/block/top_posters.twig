@@ -3,18 +3,18 @@
 
 	{% block block_content %}
 
-		<div class="gzo-block-stats">
+		<div class="block-stats">
 			{% for top in top_posters %}
 
-				<div class="gzo-block-info gzo-block-user">
+				<div class="block-info block-user">
 
-					<span class="gzo-avatar-wrap gzo-avatar gzo-avatar-sm">
-						{{ avatar('user', top.avatar[0], '', false, true, 'gzo-avatar-sm') }}
+					<span class="avatar-wrap avatar avatar-sm">
+						{{ avatar('user', top.avatar[0], '', false, true, 'avatar-sm') }}
 					</span>
 
-					<span class="gzo-user-status">
-						{{- baihu_username('profile', top.id, top.name, top.color, 'gzo-top-posters-user') -}}
-						<small class="gzo-user-status-title">
+					<span class="user-status">
+						{{- baihu_username('profile', top.id, top.name, top.color, 'top-posters-user') -}}
+						<small class="user-status-title">
 							{{ lang('POSTS') }} {{ top.posts }}
 						</small>
 					</span>

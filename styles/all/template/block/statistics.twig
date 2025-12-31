@@ -2,7 +2,7 @@
 	{% block block_title %}{{ lang('STATISTICS') }}{% endblock %}
 
 	{% block block_content %}
-		<dl class="gzo-block-stats">
+		<dl class="block-stats">
 
 			<dt>{{ lang('POSTS') }}</dt>
 			<dd><strong>{{ TOTAL_POSTS }}</strong></dd>
@@ -23,11 +23,11 @@
 			<dd><strong>{{ upd }}</strong></dd>
 
 			<dt>{{ lang('BAIHU_NEWEST') }}</dt>
-			<dd><strong>{{ baihu_username('profile', N_USER_ID, N_USER_NAME, N_USER_COLOR, 'gzo-newest-user') }}</strong></dd>
+			<dd><strong>{{ baihu_username('profile', N_USER_ID, N_USER_NAME, N_USER_COLOR, 'newest-user') }}</strong></dd>
 
 		</dl>
 
-		{% EVENT gzo_info_after %}
+		{% EVENT baihu_stats_after %}
 	{% endblock %}
 
 {% endembed %}

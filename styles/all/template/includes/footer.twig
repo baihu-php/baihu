@@ -1,16 +1,10 @@
-<div class="gzo-footer">
+<div class="footer">
 
-    {% EVENT gzo_footer_copyright_prepend %}
+    {% EVENT baihu_footer_copyright_prepend %}
 
-	<p class="gzo-footer-copyright">{{ CREDIT_LINE }}</p>
+	<p class="footer-copyright">{{ CREDIT_LINE }}</p>
 
-	{% EVENT gzo_footer_copyright_append %}
-
-	{% if DEBUG_OUTPUT %}
-		<p class="gzo-debug">
-			<span>{{ DEBUG_OUTPUT }}</span>
-		</p>
-	{% endif %}
+	{% EVENT baihu_footer_copyright_append %}
 
 		{# <div id="darkenwrapper" class="darkenwrapper" data-ajax-error-title="{L_AJAX_ERROR_TITLE}" data-ajax-error-text="{L_AJAX_ERROR_TEXT}" data-ajax-error-text-abort="{L_AJAX_ERROR_TEXT_ABORT}" data-ajax-error-text-timeout="{L_AJAX_ERROR_TEXT_TIMEOUT}" data-ajax-error-text-parsererror="{L_AJAX_ERROR_TEXT_PARSERERROR}">
 			<div id="darken" class="darken">&nbsp;</div>
@@ -27,10 +21,10 @@
 				{{ Icon('gzo', 'mdi--close-circle-outline', '', true) }}
 			</a>
 			<div class="alert_text"></div>
-		</div>
+		</div> #}
 		<div>
 			<a id="bottom" class="anchor" accesskey="z"></a>
 			{% if not S_IS_BOT %}{{ RUN_CRON_TASK }}{% endif %}
-		</div> #}
+		</div>
 
 </div>

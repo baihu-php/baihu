@@ -60,7 +60,7 @@ $($tooltip).each(function () {
 	let $that = {};
 	$this.on({
 		mouseenter: () => {
-			$('body').append('<span class="gzo-tooltip" data-tooltip-container="true"></span>');
+			$('body').append('<span class="tooltip" data-tooltip-container="true"></span>');
 			$that = $($tooltipContainer);
 			$that.append($this.attr('title'));
 			const gap = 8; // set equal to default spacing unit size

@@ -1,15 +1,15 @@
 {% embed '@baihu_baihu/includes/drawer-item.twig' %}
 
 	{% block drawer_top %}
-		<div class="gzo-block-info gzo-block-user">
+		<div class="block-info block-user">
 
-			<span class="gzo-avatar-wrap gzo-avatar gzo-avatar-sm">
-				{{ avatar('user', CURRENT_USER_AVATAR, '', false, true, 'gzo-avatar-sm', true) }}
+			<span class="avatar-wrap avatar avatar-sm">
+				{{ avatar('user', CURRENT_USER_AVATAR, '', false, true, 'avatar-sm', true) }}
 			</span>
 
-			<span class="gzo-user-status">
+			<span class="user-status">
 				{{ CURRENT_USERNAME_SIMPLE }}
-				<small class="gzo-user-status-title">
+				<small class="user-status-title">
 					@{{ S_USERNAME }}
 				</small>
 			</span>
@@ -19,113 +19,121 @@
 
 	{% block drawer %}
 
-		<li class="gzo-navigation-item">
-			<a class="gzo-navigation-link" href="{{ U_USER_PROFILE }}" title="{{ lang('READ_PROFILE') }}">
+		<li class="navigation-item">
+			<a class="navigation-link" href="{{ U_USER_PROFILE }}" title="{{ lang('READ_PROFILE') }}">
 				{{ Icon('gzo', 'mdi--account-circle-outline', lang('READ_PROFILE'), true) -}}
-				<span class="gzo-navigation-text">{{ lang('READ_PROFILE') }}</span>
+				<span class="navigation-text">{{ lang('READ_PROFILE') }}</span>
 			</a>
 		</li>
 
-		<li class="gzo-navigation-divider"></li>
-		<li class="gzo-navigation-item">
-			<a class="gzo-navigation-link" href="{{ U_PROFILE }}">
+		<li class="navigation-divider"></li>
+		<li class="navigation-item">
+			<a class="navigation-link" href="{{ U_PROFILE }}">
 				{{ Icon('gzo', 'mdi--settings-outline', lang('PROFILE'), true) -}}
-				<span class="gzo-navigation-text">{{ lang('SETTINGS') }}</span>
+				<span class="navigation-text">{{ lang('SETTINGS') }}</span>
 			</a>
 		</li>
 
 		{% if U_ACP %}
-			<li class="gzo-navigation-item">
-				<a class="gzo-navigation-link" href="{{ U_AREAZ_MAIN }}">
-					{{ Icon('gzo', 'mdi--administrator-outline', lang('AREA_MAIN_PAGE'), true) -}}
-					<span class="gzo-navigation-text">{{ lang('AREA_MAIN_PAGE') }}</span>
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ U_AREAZ_MAIN }}">
+					{{ Icon('gzo', 'admin', lang('AREA_MAIN_PAGE'), true) -}}
+					<span class="navigation-text">{{ lang('AREA_MAIN_PAGE') }}</span>
 				</a>
 			</li>
 
-			<li class="gzo-navigation-item">
-				<a class="gzo-navigation-link" href="{{ U_ACP }}">
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ U_ACP }}">
 					{{ Icon('gzo', 'mdi--administrator-outline', lang('ACP'), true) -}}
-					<span class="gzo-navigation-text">{{ lang('ACP') }}</span>
+					<span class="navigation-text">{{ lang('ACP') }}</span>
 				</a>
 			</li>
 		{% endif %}
 
 		{% if U_MCP %}
-			<li class="gzo-navigation-item">
-				<a class="gzo-navigation-link" href="{{ U_MCP }}">
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ U_MCP }}">
 					{{ Icon('gzo', 'mdi--shield-sword-outline', lang('MCP'), true) -}}
-					<span class="gzo-navigation-text">{{ lang('MCP') }}</span>
+					<span class="navigation-text">{{ lang('MCP') }}</span>
 				</a>
 			</li>
 		{% endif %}
 
-		<li class="gzo-navigation-divider"></li>
+		<li class="navigation-divider"></li>
 
-		{% if not S_IS_BOT and (S_DISPLAY_MEMBERLIST or U_TEAM) %}
-
-			<li class="gzo-navigation-item">
-				<button class="gzo-navigation-link gzo-navigation-btn" data-toggle="side-menu">
-					{{ Icon('gzo', 'mdi--hamburger-menu', lang('QUICK_LINKS'), true) -}}
-					<span class="gzo-navigation-text">{{ lang('QUICK_LINKS') }}</span>
+		{% if S_DISPLAY_SEARCH %}
+			<li class="navigation-item">
+				<button class="navigation-link navigation-btn" data-toggle="side-menu">
+					{{ Icon('gzo', 'mdi--file-settings-outline', lang('QUICK_LINKS'), true) -}}
+					<span class="navigation-text">{{ lang('QUICK_LINKS') }}</span>
 				</button>
 
-				<ul class="gzo-navigation-menu gzo-action-toggle gzo-side-menu">
-					<li class="gzo-navigation-item">
-						<a class="gzo-navigation-link">
-							{{ Icon('gzo', 'mdi--users-outline', lang('MEMBERLIST'), true) -}}
-							<span class="gzo-navigation-text">test</span>
+				<ul class="navigation-menu action-toggle baihu-side-menu">
+					{% if S_REGISTERED_USER %}
+					<li class="navigation-item">
+						<a class="navigation-link" href="{{ U_SEARCH_SELF }}" role="menuitem">
+							{{ Icon('gzo', 'tabler--file-text-spark', lang('SEARCH_SELF'), true) -}}
+							<span class="navigation-text">{{ lang('SEARCH_SELF') }}</span>
 						</a>
 					</li>
-					<li class="gzo-navigation-item">
-						<a class="gzo-navigation-link">
-							{{ Icon('gzo', 'mdi--users-outline', lang('MEMBERLIST'), true) -}}
-							<span class="gzo-navigation-text">test</span>
+					{% endif %}
+
+					{% if S_USER_LOGGED_IN %}
+					<li class="navigation-item">
+						<a class="navigation-link" href="{{ U_SEARCH_NEW }}" role="menuitem">
+							{{ Icon('gzo', 'unknown', lang('SEARCH_NEW'), true) -}}
+							<span class="navigation-text">{{ lang('SEARCH_NEW') }}</span>
 						</a>
 					</li>
-					<li class="gzo-navigation-item">
-						<a class="gzo-navigation-link">
-							{{ Icon('gzo', 'mdi--users-outline', lang('MEMBERLIST'), true) -}}
-							<span class="gzo-navigation-text">test</span>
+					{% endif %}
+					{% if S_LOAD_UNREADS %}
+					<li class="navigation-item">
+						<a class="navigation-link" href="{{ U_SEARCH_UNREAD }}" role="menuitem">
+							{{ Icon('gzo', 'mdi--file-text-outline', lang('SEARCH_UNREAD'), true) -}}
+							<span class="navigation-text">{{ lang('SEARCH_UNREAD') }}</span>
 						</a>
 					</li>
-					<li class="gzo-navigation-item">
-						<a class="gzo-navigation-link">
-							{{ Icon('gzo', 'mdi--users-outline', lang('MEMBERLIST'), true) -}}
-							<span class="gzo-navigation-text">test</span>
+					{% endif %}
+					<li class="navigation-item">
+						<a class="navigation-link" href="{{ U_SEARCH_UNANSWERED }}" role="menuitem">
+							{{ Icon('gzo', 'file-alert', lang('SEARCH_UNANSWERED'), true) -}}
+							<span class="navigation-text">{{ lang('SEARCH_UNANSWERED') }}</span>
 						</a>
 					</li>
-					<li class="gzo-navigation-item">
-						<a class="gzo-navigation-link">
-							{{ Icon('gzo', 'mdi--users-outline', lang('MEMBERLIST'), true) -}}
-							<span class="gzo-navigation-text">test</span>
+					<li class="navigation-item">
+						<a class="navigation-link" href="{{ U_SEARCH_ACTIVE_TOPICS }}" role="menuitem">
+							{{ Icon('gzo', 'active', lang('SEARCH_ACTIVE_TOPICS'), true) -}}
+							<span class="navigation-text">{{ lang('SEARCH_ACTIVE_TOPICS') }}</span>
 						</a>
 					</li>
 				</ul>
 			</li>
+		{% endif %}
 
+		{% if not S_IS_BOT and (S_DISPLAY_MEMBERLIST or U_TEAM) %}
 			{% if S_DISPLAY_MEMBERLIST %}
-				<li class="gzo-navigation-item">
-					<a class="gzo-navigation-link" href="{{ U_MEMBERLIST }}">
+				<li class="navigation-item">
+					<a class="navigation-link" href="{{ U_MEMBERLIST }}">
 						{{ Icon('gzo', 'mdi--users-outline', lang('MEMBERLIST'), true) -}}
-						<span class="gzo-navigation-text">{{ lang('MEMBERLIST') }}</span>
+						<span class="navigation-text">{{ lang('MEMBERLIST') }}</span>
 					</a>
 				</li>
 			{% endif %}
 			{% if U_TEAM %}
-				<li class="gzo-navigation-item">
-					<a class="gzo-navigation-link" href="{{ U_TEAM }}">
+				<li class="navigation-item">
+					<a class="navigation-link" href="{{ U_TEAM }}">
 						{{ Icon('gzo', 'mdi--account-group-outline', lang('THE_TEAM'), true) -}}
-						<span class="gzo-navigation-text">{{ lang('THE_TEAM') }}</span>
+						<span class="navigation-text">{{ lang('THE_TEAM') }}</span>
 					</a>
 				</li>
 			{% endif %}
 		{% endif %}
 
-		<li class="gzo-navigation-divider"></li>
-		<li class="gzo-navigation-item">
-			<a class="gzo-navigation-link" href="{{ U_LOGIN_LOGOUT }}">
+		<li class="navigation-divider"></li>
+		<li class="navigation-item">
+			<a class="navigation-link" href="{{ U_LOGIN_LOGOUT }}">
 				{{ Icon('gzo', 'mdi--exit-to-app', lang('LOGIN_LOGOUT'), true) -}}
-				<span class="gzo-navigation-text">{{ lang('LOGIN_LOGOUT') }}</span>
+				<span class="navigation-text">{{ lang('LOGIN_LOGOUT') }}</span>
 			</a>
 		</li>
 

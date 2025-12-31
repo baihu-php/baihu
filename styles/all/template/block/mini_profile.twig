@@ -9,15 +9,15 @@
 	{% block block_title %}{{ title }}{% endblock %}
 
 	{% block block_content %}
-		<div class="gzo-block-stats">
+		<div class="block-stats">
 
 			{% if S_REGISTERED_USER %}
 
-				<div class="gzo-avatar-wrap gzo-mini-profile gzo-avatar-md">
-					{{ avatar('user', CURRENT_USER_AVATAR, '', false, true, 'gzo-avatar-md', true) }}
+				<div class="avatar-wrap mini-profile avatar-md">
+					{{ avatar('user', CURRENT_USER_AVATAR, '', false, true, 'avatar-md', true) }}
 				</div>
 
-				<div class="gzo-block-info">
+				<div class="block-info">
 					{% if S_DISPLAY_PM %}
 
 						{% set PMC = PRIVATE_MESSAGE_COUNT == 1 ? lang('NEW_PM') : lang('NEW_PMS') %}
