@@ -5,8 +5,6 @@
 
 	.profile-header-cover {
 		background-image: url(./../../../../../test/styles/all/theme/icons/img/testing.webp);
-		/* border-top-left-radius: var(--border-radius);
-		border-top-right-radius: var(--border-radius); */
 		border-radius: var(--border-radius);
 	}
 
@@ -38,7 +36,6 @@
 	}
 
 	.profile-details {
-		font-weight: var(--font-weight);
 		list-style: none;
 		margin: 0;
 		margin-block-start: var(--spacing-md);

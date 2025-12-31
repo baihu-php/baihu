@@ -2,16 +2,11 @@
 	interpolate-size: allow-keywords;
 
 	--gray-50: #f9fafa;
-	--gray-100: #e9ebec;
-	--gray-300: #c8ccd0;
 	--gray-500: #a7adb4;
-	--gray-600: #969ea6;
-	--gray-700: #868f98;
 	--gray-800: #677079;
 	--gray-900: #596169;
 	--gray-1000: #4b5258;
 	--gray-1200: #2f3337;
-	--gray-1300: #212427;
 
 	--blue-gray-200: #d3dee4;
 	--blue-gray-1100: #334752;
@@ -19,7 +14,6 @@
 
 	--indigo-50: #f7f8fc;
 	--indigo-100: #e1e4f4;
-	--indigo-300: #b4bbe4;
 	--indigo-500: #8692d5;
 	--indigo-600: #707ecd;
 	--indigo-700: #5969c5;
@@ -33,13 +27,12 @@
 
 	--red-700: #f3382b;
 
-	--green-500: #8ecd90;
 	--green-700: #63bb66;
 
 	/* Default colors */
 	--color-primary: var(--indigo-500);
-	--color-secondary: var(--gray-600);
-	--color-success: var(--green-500);
+	--color-secondary: var(--gray-500);
+	--color-success: #8ecd90;
 	--color-info: #74d9e7;
 	--color-warning: #f5e447;
 	--color-danger: #f45348;
@@ -54,7 +47,6 @@
 	--bg-color: var(--indigo-50);
 	--block-bg: white;
 	--color: var(--gray-1300);
-	--color-6: var(--gray-600);
 
 	/* Gradient colors */
 	--gradient-67: linear-gradient(to right, var(--indigo-600), var(--indigo-700));
@@ -73,8 +65,6 @@
 
 	--font-weight: 400;
 	--font-weight-6: 600;
-	--font-weight-7: 700;
-
 	--line-height: 1.5;
 
 	--box-shadow: 0 0 40px 0 rgba(94,92,154, .06);

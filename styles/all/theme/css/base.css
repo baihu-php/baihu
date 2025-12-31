@@ -110,7 +110,7 @@ abbr[title] {
 }
 
 abbr[title] {
-	border-bottom: 1px dotted var(--gray-700);
+	border-bottom: 1px dotted var(--gray-500);
 }
 
 ins {
@@ -202,7 +202,7 @@ img[width], img[height] {
 
 hr {
 	border: 0;
-	border-top: 1px solid var(--gray-700);
+	border-top: 1px solid var(--gray-500);
 	display: block;
 	height: 1px;
 	margin: 0 0 1.5rem;
@@ -219,7 +219,7 @@ table {
 
 caption {
 	text-align: left;
-	color: var(--gray-700);
+	color: var(--gray-500);
 	margin: 0;
 	padding-block: 0.5rem;
 	caption-side: bottom;
@@ -515,7 +515,7 @@ select,
 textarea {
 	background-color: var(--gray-50);
 	border: none;
-	color: var(--gray-600);
+	color: var(--gray-500);
 	display: inline-block;
 	height: var(--size-sm);
 }
@@ -571,7 +571,7 @@ select:disabled,
 select[readonly],
 textarea:disabled,
 textarea[readonly] {
-	background-color: var(--gray-700);
+	background-color: var(--gray-500);
 	color: #ffffff;
 	opacity: 1;
 }
@@ -737,7 +737,7 @@ input[type=checkbox]:focus:invalid:focus {
 }
 
 [type=checkbox] + label:before {
-	border: 2px solid var(--gray-300);
+	border: 2px solid var(--gray-500);
 	border-radius: 2px;
 	position: absolute;
 	z-index: 0;
@@ -766,7 +766,7 @@ input[type=checkbox]:focus:invalid:focus {
 
 [type=checkbox]:indeterminate + label:before:disabled {
 	background-color: transparent;
-	border-right: 2px solid var(--gray-700);
+	border-right: 2px solid var(--gray-500);
 }
 
 [type=checkbox]:checked + label:before {
@@ -785,16 +785,16 @@ input[type=checkbox]:focus:invalid:focus {
 }
 
 [type=checkbox]:hover:not(:checked) + label:before {
-	border-color: var(--gray-300);
+	border-color: var(--gray-500);
 }
 
 [type=checkbox]:disabled:checked + label:before {
-	border-right: 2px solid var(--gray-700);
-	border-bottom: 2px solid var(--gray-700);
+	border-right: 2px solid var(--gray-500);
+	border-bottom: 2px solid var(--gray-500);
 }
 
 [type=checkbox]:disabled:not(:checked) + label:before {
-	background-color: var(--gray-700);
+	background-color: var(--gray-500);
 	border: none;
 }
 
@@ -829,7 +829,7 @@ input[type=checkbox]:focus:invalid:focus {
 }
 
 [type=radio]:not(:checked) + label:before, [type=radio]:not(:checked) + label:after {
-	border: 2px solid var(--gray-300);
+	border: 2px solid var(--gray-500);
 }
 
 [type=radio]:not(:checked) + label:after {
@@ -849,36 +849,36 @@ input[type=checkbox]:focus:invalid:focus {
 }
 
 [type=radio]:hover + label:before {
-	border-color: var(--gray-300);
+	border-color: var(--gray-500);
 }
 
 [type=radio]:disabled + label {
-	color: var(--gray-700);
+	color: var(--gray-500);
 }
 
 [type=radio]:disabled:checked + label:before, [type=radio]:disabled:not(:checked) + label:before {
-	border: 2px solid var(--gray-700);
+	border: 2px solid var(--gray-500);
 }
 
 [type=radio]:disabled :checked + label:after {
-	background-color: var(--gray-700);
+	background-color: var(--gray-500);
 	border: none;
 }
 
 ::-webkit-input-placeholder {
-	color: var(--gray-600);
+	color: var(--gray-500);
 }
 
 :-moz-placeholder {
-	color: var(--gray-600);
+	color: var(--gray-500);
 }
 
 ::-moz-placeholder {
-	color: var(--gray-600);
+	color: var(--gray-500);
 }
 
 :-ms-input-placeholder {
-	color: var(--gray-600);
+	color: var(--gray-500);
 }
 
 input:-webkit-autofill,
@@ -913,7 +913,7 @@ table tbody tr {
 }
 
 table tbody tr:hover {
-	background-color: var(--gray-100);
+	background-color: var(--gray-50);
 }
 
 table td,
@@ -945,7 +945,7 @@ table th {
 	text-overflow: ellipsis;
 	vertical-align: bottom;
 	letter-spacing: 0.03125em;
-	background-color: var(--gray-100);
+	background-color: var(--gray-50);
 	border-left: 1px solid var(--gray-500);
 	padding-bottom: 0.5rem;
 }
@@ -970,21 +970,21 @@ kbd {
 	font-weight: var(--font-weight);
 	line-height: var(--line-height);
 	letter-spacing: 0.03125em;
-	background-color: var(--gray-100);
+	background-color: var(--gray-50);
 	border-radius: 2px;
 	color: var(--green-700);
 	padding: 0.125rem 0.25rem;
 }
 
 kbd {
-	background-color: var(--gray-1300);
-	box-shadow: inset 0 -1px 0 var(--gray-1000);
+	background-color: var(--gray-900);
+	box-shadow: inset 0 -1px 0 var(--gray-900);
 	color: var(--gray-50);
 }
 
 kbd kbd {
 	font-size: 100%;
-	font-weight: var(--font-weight-7);
+	font-weight: var(--font-weight-6);
 	box-shadow: none;
 	padding: 0;
 }
@@ -996,12 +996,12 @@ pre {
 	letter-spacing: 0.03125em;
 	word-wrap: break-word;
 	word-break: break-all;
-	background-color: var(--gray-1200);
+	background-color: var(--gray-900);
 	border-width: 0;
 	border-style: solid;
-	border-color: var(--gray-1000);
+	border-color: var(--gray-900);
 	border-radius: 2px;
-	color: var(--gray-300);
+	color: var(--gray-500);
 	display: block;
 	margin-top: 0;
 	margin-bottom: var(--spacing);
@@ -1018,7 +1018,7 @@ pre code {
 }
 
 .text-strong {
-	font-weight: var(--font-weight-7);
+	font-weight: var(--font-weight-6);
 }
 
 .text-italic {
@@ -1068,19 +1068,19 @@ pre code {
 /* Button */
 .btn {
 	font-size: var(--font-size);
-	font-weight: var(--font-weight-7);
+	font-weight: var(--font-weight-6);
 	line-height: var(--line-height);
 	text-align: center;
 	text-decoration: none;
 	vertical-align: middle;
 	letter-spacing: 0.00625em;
-	background-color: var(--gray-100);
+	background-color: var(--gray-50);
 	border: none;
 	border-radius: 2px;
 	outline: none;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	box-shadow: var(--box-shadow-3);
-	color: var(--gray-600);
+	color: var(--gray-500);
 	position: relative;
 	display: inline-flex;
 	overflow: hidden;
@@ -1115,7 +1115,7 @@ pre code {
 
 	&:hover {
 		text-decoration: none;
-		background-color: var(--gray-300);
+		background-color: var(--gray-500);
 		color: var(--blue-700);
 		cursor: pointer;
 	}
@@ -1165,7 +1165,7 @@ pre code {
 
 /* Bar */
 .bar {
-	background-color: var(--gray-100);
+	background-color: var(--gray-50);
 	display: grid;
 	grid-template-columns: auto auto;
 
@@ -1197,7 +1197,7 @@ pre code {
 	}
 
 	.bar-info {
-		color: var(--gray-1300);
+		color: var(--blue-gray-1200);
 		max-width: max-content;
 		overflow-x: hidden;
 	}
@@ -1247,7 +1247,7 @@ pre code {
 /* Action */
 .action {
 	--action-bg-hover: transparent;
-	--action-color: var(--gray-600);
+	--action-color: var(--gray-500);
 
 	color: var(--action-color);
 	display: inline-flex;
@@ -1399,7 +1399,7 @@ main {
 	}
 
 	.avatar-online {
-		background-color: var(--green-500);
+		background-color: var(--color-success);
 		border: var(--avatar-border);
 		border-radius: 50%;
 		position: absolute;
@@ -1460,7 +1460,7 @@ main {
 	}
 
 	.card-item {
-		color: var(--color-6);
+		color: var(--color-secondary);
 	}
 }
 
@@ -1547,7 +1547,6 @@ dl {
 
 dt {
 	font-weight: normal;
-	/* color: var(--gray-700); */
 }
 
 dd {
