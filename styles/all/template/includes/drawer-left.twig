@@ -9,15 +9,15 @@
 		{% EVENT baihu_core_drawer_left_before %}
 
 		<li class="navigation-item">
-			<a class="navigation-link" href="{{ U_FAQ }}"  role="menuitem">
-				{{ Icon('gzo', 'mdi--faq', lang('FAQ'), true) -}}
-				<span class="navigation-text">{{ lang('FAQ') }}</span>
+			<a class="navigation-link" href="{{ U_INDEX }}"	role="menuitem">
+				{{ Icon('gzo', 'mdi--forum-outline', lang('INDEX'), true) -}}
+				<span class="navigation-text">{{ lang('INDEX') }}</span>
 			</a>
 		</li>
 
 		{% if U_CONTACT_US %}
 			<li class="navigation-item">
-				<a class="navigation-link" href="{{ U_CONTACT_US }}"  role="menuitem">
+				<a class="navigation-link" href="{{ U_CONTACT_US }}" role="menuitem">
 					{{ Icon('gzo', 'mdi--email-outline', lang('CONTACT_US'), true) -}}
 					<span class="navigation-text">{{ lang('CONTACT_US') }}</span>
 				</a>
@@ -49,6 +49,13 @@
 			<a class="navigation-link" href="{{ U_TERMS_USE }}" title="{{ lang('TERMS_LINK') }}" role="menuitem">
 				{{- Icon('gzo', 'ant-design--file-done-outlined', lang('TERMS_LINK'), true) -}}
 				<span class="navigation-text">{{- lang('TERMS_LINK') -}}</span>
+			</a>
+		</li>
+
+		<li class="navigation-item">
+			<a class="navigation-link" href="{{ U_FAQ }}" role="menuitem">
+				{{ Icon('gzo', 'mdi--faq', lang('FAQ'), true) -}}
+				<span class="navigation-text">{{ lang('FAQ') }}</span>
 			</a>
 		</li>
 
