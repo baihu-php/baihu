@@ -39,7 +39,7 @@
 	overflow-y: auto;
 
 	@container page (inline-size < 700px) {
-		border-top: 1px solid var(--blue-gray-200);
+		border-top: 1px solid var(--color-light-alt-2);
 		position: fixed;
 		top: unset;
 		bottom: 0;
@@ -72,7 +72,7 @@
 		&:hover {
 			background-color: unset;
 			opacity: 1;
-			color: var(--indigo-500);
+			color: var(--background-color-darker);
 		}
 	}
 
@@ -117,7 +117,7 @@
 		}
 
 		.area-menu-line {
-			border-left: 1px solid var(--blue-gray-200);
+			border-left: 1px solid var(--color-light-alt-2);
 			position: relative;
 			margin-inline-start: var(--spacing-md);
 			display: none;
@@ -126,7 +126,7 @@
 		.area-navigation-item.active .navigation-link::before {
 			content: '';
 			display: block;
-			background: var(--blue-gray-200);
+			background: var(--color-light-alt-2);
 			height: 1px;
 			width: 12px;
 			position: absolute;
@@ -182,8 +182,8 @@
 		}
 
 		.area-menu.is-active {
-			background-color: var(--indigo-50);
-			border-top: 1px solid var(--blue-gray-200);
+			background-color: var(--background-color);
+			border-top: 1px solid var(--color-light-alt-2);
 			transform-origin: bottom;
 			position: fixed;
 			bottom: var(--size-sm);
@@ -209,15 +209,11 @@
 
 /* Main container */
 .area-container {
-	color: var(--indigo-1000);
 	grid-area: main;
-	/* padding-inline: var(--spacing-md); */
 
 	.content-main {
 		flex-direction: column;
 		margin-inline: var(--spacing-md);
-		/* max-width: 1270px;
-		margin-inline: auto; */
 
 		h2 {
 			font-size: 1.75rem;
@@ -238,7 +234,7 @@
 	}
 
 	.area-desc {
-		color: var(--gray-500);
+		color: var(--color-alt-1);
 	}
 
 	.block {
@@ -266,11 +262,6 @@
 		}
 	}
 }
-
-/* .cards .card-test {
-	--card-new-bg: var(--indigo-300);
-	--icon-bg: var(--green-700);
-} */
 
 /* Footer */
 .footer-container {
