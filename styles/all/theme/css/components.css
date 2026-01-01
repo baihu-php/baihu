@@ -237,6 +237,10 @@
 			height: 20px;
 		}
 
+		&:first-of-type {
+			color: var(--link);
+		}
+
 		.crumbs-item {
 			display: flex;
 			align-items: center;
