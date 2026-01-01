@@ -7,34 +7,23 @@
 	<ol class="crumbs" itemscope itemtype="https://schema.org/BreadcrumbList" role="list">
 		{% if not IN_AREAZ %}
 
-			{% if U_SITE_HOME %}
-				<li class="crumbs-item" {{ MICRODATA }} role="listitem">
-
+			<li class="crumbs-item" {{ MICRODATA }} role="listitem">
+				{% if U_SITE_HOME %}
 					<a class="crumbs-link u" itemprop="item" href="{{ U_SITE_HOME }}" data-navbar-reference="home">
 						{{ Icon('gzo', 'ic--outline-home', lang('SITE_HOME'), true, 'crumbs-icon') }}
 						<span class="crumbs-text" itemprop="name">{{ lang('SITE_HOME') }}</span>
 					</a>
-					<meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" />
-				</li>
-			{% endif %}
+				{% else %}
+					<a class="crumbs-link u" itemprop="item" href="{{ U_INDEX }}" accesskey="h" data-navbar-reference="index">
+						{{ Icon('gzo', 'mdi--forum-outline', lang('SITE_HOME'), true, 'crumbs-icon') }}
+						<span class="crumbs-text" itemprop="name">{{ lang('INDEX') }}</span>
+					</a>
+				{% endif %}
+				<meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" />
+			</li>
 
 			{% EVENT baihu_header_breadcrumb_prepend %}
 
-            {# Forum #}
-			<li class="crumbs-item" {{ MICRODATA }} role="listitem">
-
-				{%- if not U_SITE_HOME -%}
-					{{ Icon('gzo', 'mdi--forum-outline', lang('SITE_HOME'), true, 'crumbs-icon') }}
-				{%- else -%}
-					{{ Icon('gzo', 'mdi--chevron-right', '', true, 'crumbs-icon') }}
-				{%- endif -%}
-
-				<a class="crumbs-link u" itemprop="item" href="{{ U_INDEX }}" accesskey="h" data-navbar-reference="index">
-					<span class="crumbs-text" itemprop="name">{{ lang('INDEX') }}</span>
-				</a>
-
-				<meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" />
-			</li>
 		{% endif %}
 
 		{%- for navlink in navlinks -%}
@@ -51,9 +40,10 @@
 					{{ Icon('gzo', 'mdi--chevron-right', '', true, 'crumbs-icon') }}
 				{%- endif -%}
 
-				<a class="crumbs-link u" itemprop="item" href="{{ NAVLINK_LINK }}" title="{{ NAVLINK_NAME }}">
+				<a class="crumbs-link u{% if loop.length > 1 and loop.last %} crumbs-link-disabled{% endif %}" itemprop="item" href="{{ NAVLINK_LINK }}" title="{{ NAVLINK_NAME }}">
 					<span class="crumbs-text" itemprop="name">{{- NAVLINK_NAME -}}</span>
 				</a>
+
 				<meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" />
 			</li>
 
