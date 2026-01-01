@@ -20,7 +20,7 @@
 	{% block drawer %}
 
 		<li class="navigation-item">
-			<a class="navigation-link" href="{{ U_USER_PROFILE }}" title="{{ lang('READ_PROFILE') }}">
+			<a class="navigation-link" href="{{ U_USER_PROFILE }}" title="{{ lang('READ_PROFILE') }}" role="menuitem">
 				{{ Icon('gzo', 'mdi--account-circle-outline', lang('READ_PROFILE'), true) -}}
 				<span class="navigation-text">{{ lang('READ_PROFILE') }}</span>
 			</a>
@@ -28,7 +28,7 @@
 
 		<li class="navigation-divider"></li>
 		<li class="navigation-item">
-			<a class="navigation-link" href="{{ U_PROFILE }}">
+			<a class="navigation-link" href="{{ U_PROFILE }}" role="menuitem">
 				{{ Icon('gzo', 'mdi--settings-outline', lang('PROFILE'), true) -}}
 				<span class="navigation-text">{{ lang('SETTINGS') }}</span>
 			</a>
@@ -36,14 +36,14 @@
 
 		{% if U_ACP %}
 			<li class="navigation-item">
-				<a class="navigation-link" href="{{ U_AREAZ_MAIN }}">
+				<a class="navigation-link" href="{{ U_AREAZ_MAIN }}" role="menuitem">
 					{{ Icon('gzo', 'admin', lang('AREA_MAIN_PAGE'), true) -}}
 					<span class="navigation-text">{{ lang('AREA_MAIN_PAGE') }}</span>
 				</a>
 			</li>
 
 			<li class="navigation-item">
-				<a class="navigation-link" href="{{ U_ACP }}">
+				<a class="navigation-link" href="{{ U_ACP }}" role="menuitem">
 					{{ Icon('gzo', 'mdi--administrator-outline', lang('ACP'), true) -}}
 					<span class="navigation-text">{{ lang('ACP') }}</span>
 				</a>
@@ -52,7 +52,7 @@
 
 		{% if U_MCP %}
 			<li class="navigation-item">
-				<a class="navigation-link" href="{{ U_MCP }}">
+				<a class="navigation-link" href="{{ U_MCP }}" role="menuitem">
 					{{ Icon('gzo', 'mdi--shield-sword-outline', lang('MCP'), true) -}}
 					<span class="navigation-text">{{ lang('MCP') }}</span>
 				</a>
@@ -113,7 +113,7 @@
 		{% if not S_IS_BOT and (S_DISPLAY_MEMBERLIST or U_TEAM) %}
 			{% if S_DISPLAY_MEMBERLIST %}
 				<li class="navigation-item">
-					<a class="navigation-link" href="{{ U_MEMBERLIST }}">
+					<a class="navigation-link" href="{{ U_MEMBERLIST }}" role="menuitem">
 						{{ Icon('gzo', 'mdi--users-outline', lang('MEMBERLIST'), true) -}}
 						<span class="navigation-text">{{ lang('MEMBERLIST') }}</span>
 					</a>
@@ -121,7 +121,7 @@
 			{% endif %}
 			{% if U_TEAM %}
 				<li class="navigation-item">
-					<a class="navigation-link" href="{{ U_TEAM }}">
+					<a class="navigation-link" href="{{ U_TEAM }}" role="menuitem">
 						{{ Icon('gzo', 'mdi--account-group-outline', lang('THE_TEAM'), true) -}}
 						<span class="navigation-text">{{ lang('THE_TEAM') }}</span>
 					</a>
@@ -131,7 +131,7 @@
 
 		<li class="navigation-divider"></li>
 		<li class="navigation-item">
-			<a class="navigation-link" href="{{ U_LOGIN_LOGOUT }}">
+			<a class="navigation-link" href="{{ U_LOGIN_LOGOUT }}" role="menuitem">
 				{{ Icon('gzo', 'mdi--exit-to-app', lang('LOGIN_LOGOUT'), true) -}}
 				<span class="navigation-text">{{ lang('LOGIN_LOGOUT') }}</span>
 			</a>

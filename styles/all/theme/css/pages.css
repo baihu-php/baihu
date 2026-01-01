@@ -66,7 +66,6 @@
 
 	.profile-details-text,
 	.profile-details-link {
-		/* padding-left: 0.5rem; */
 		vertical-align: middle;
 	}
 
@@ -76,11 +75,11 @@
 	}
 
 	.profile-details-icon {
-		color: var(--color-secondary);
+		color: var(--color-alt-1);
 	}
 
 	.profile-card {
-		background-color: var(--block-bg);
+		background-color: var(--block-background-color);
 		border-radius: var(--border-radius);
 		margin-bottom: var(--spacing-4);
 		padding: var(--spacing-3);

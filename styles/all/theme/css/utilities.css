@@ -100,7 +100,7 @@
 		background: transparent !important;
 		box-shadow: none !important;
 		text-shadow: none !important;
-		color: var(--gray-1200) !important;
+		color: var(--color-dark-alt-1) !important;
 	}
 
 	a,
@@ -123,7 +123,7 @@
 
 	pre,
 	blockquote {
-		border: 1px solid var(--gray-500);
+		border: 1px solid var(--color-alt-1);
 		page-break-inside: avoid;
 	}
 
