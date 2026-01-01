@@ -282,7 +282,6 @@ button {
 	cursor: pointer;
 }
 
-
 button:focus-visible {
 	outline: 1px dotted;
 	outline: 4px auto -webkit-focus-ring-color;
@@ -377,6 +376,26 @@ select::-ms-value {
 a {
 	text-decoration: none;
 	color: var(--link);
+	transition: .3s;
+}
+
+.u::after {
+	left: 0;
+}
+
+.u:hover::after {
+	width: 100%;
+}
+
+.u::after {
+	content: "";
+	transition: .3s;
+	backface-visibility: hidden;
+	position: absolute;
+	height: 2px;
+	width: 0;
+	background: currentColor;
+	bottom: -.25em;
 }
 
 a:focus, a:hover {

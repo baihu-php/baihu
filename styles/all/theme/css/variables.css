@@ -42,8 +42,10 @@
 
 	/* Default settings */
 	--font-family:
-		Roboto, Helvetica, Arial, sans-serif, system-ui, -apple-system,
-		"Segoe UI", "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+		Roboto, "Helvetica Neue", Arial, sans-serif, system-ui, -apple-system,
+		"Segoe UI", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+		/* "Noto Sans", "Liberation Sans" */
+
 
 	--font-size: 1rem;
 	--font-weight: 400;
