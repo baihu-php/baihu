@@ -9,7 +9,8 @@
 
 			{% if U_SITE_HOME %}
 				<li class="crumbs-item" {{ MICRODATA }} role="listitem">
-					<a class="crumbs-link" itemprop="item" href="{{ U_SITE_HOME }}" data-navbar-reference="home">
+
+					<a class="crumbs-link u" itemprop="item" href="{{ U_SITE_HOME }}" data-navbar-reference="home">
 						{{ Icon('gzo', 'ic--outline-home', lang('SITE_HOME'), true, 'crumbs-icon') }}
 						<span class="crumbs-text" itemprop="name">{{ lang('SITE_HOME') }}</span>
 					</a>
@@ -19,42 +20,46 @@
 
 			{% EVENT baihu_header_breadcrumb_prepend %}
 
+            {# Forum #}
 			<li class="crumbs-item" {{ MICRODATA }} role="listitem">
-				<a class="crumbs-link" itemprop="item" href="{{ U_INDEX }}" accesskey="h" data-navbar-reference="index">
-					{% if not U_SITE_HOME %}
-						{{ Icon('gzo', 'mdi--forum-outline', lang('SITE_HOME'), true, 'crumbs-icon') }}
-					{% else %}
-						{{ Icon('gzo', 'mdi--chevron-right', '', true, 'crumbs-icon') }}
-					{% endif %}
+
+				{%- if not U_SITE_HOME -%}
+					{{ Icon('gzo', 'mdi--forum-outline', lang('SITE_HOME'), true, 'crumbs-icon') }}
+				{%- else -%}
+					{{ Icon('gzo', 'mdi--chevron-right', '', true, 'crumbs-icon') }}
+				{%- endif -%}
+
+				<a class="crumbs-link u" itemprop="item" href="{{ U_INDEX }}" accesskey="h" data-navbar-reference="index">
 					<span class="crumbs-text" itemprop="name">{{ lang('INDEX') }}</span>
 				</a>
+
 				<meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" />
 			</li>
 		{% endif %}
 
-		{% for navlink in navlinks %}
+		{%- for navlink in navlinks -%}
 			{% set NAVLINK_NAME = navlink.BREADCRUMB_NAME | default(navlink.FORUM_NAME) %}
 			{% set NAVLINK_LINK = navlink.U_BREADCRUMB | default(navlink.U_VIEW_FORUM) %}
 
 			{% EVENT baihu_header_navlink_prepend %}
 
 			<li class="crumbs-item" {{ MICRODATA }}{% if navlink.MICRODATA %} {{ navlink.MICRODATA }}{% endif %}>
-				<a class="crumbs-link" itemprop="item" href="{{ NAVLINK_LINK }}" title="{{ NAVLINK_NAME }}">
-					{% if IN_AREAZ and loop.first %}
-						{{ Icon('gzo', 'mdi--view-dashboard-outline', lang('DASHBOARD'), true, 'crumbs-icon') }}
-					{% else %}
-						{{ Icon('gzo', 'mdi--chevron-right', '', true, 'crumbs-icon') }}
-					{% endif %}
 
-					{# {{ Icon('gzo', 'mdi--chevron-right', '', true, 'crumbs-icon') }} #}
-					<span class="crumbs-text" itemprop="name">{{ NAVLINK_NAME }}</span>
+				{%- if not IN_AREAZ and loop.first -%}
+					{{ Icon('gzo', 'mdi--chevron-right', '', true, 'crumbs-icon') }}
+				{%- elseif not loop.first -%}
+					{{ Icon('gzo', 'mdi--chevron-right', '', true, 'crumbs-icon') }}
+				{%- endif -%}
+
+				<a class="crumbs-link u" itemprop="item" href="{{ NAVLINK_LINK }}" title="{{ NAVLINK_NAME }}">
+					<span class="crumbs-text" itemprop="name">{{- NAVLINK_NAME -}}</span>
 				</a>
 				<meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" />
 			</li>
 
 			{% EVENT baihu_header_navlink_append %}
 
-		{% endfor %}
+		{%- endfor -%}
 
 		{% EVENT baihu_header_breadcrumb_append %}
 
