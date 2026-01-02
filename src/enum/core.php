@@ -13,7 +13,7 @@ namespace baihu\baihu\src\enum;
 final class core
 {
 	// Common
-	public const VERSION = '4.0.0-dev';
+	public const VERSION = '1.0.0-dev';
 	public const STYLE = 'Tempest';
 	public const VENDOR = 'baihu';
 	public const EXT_NAME = self::VENDOR . '_baihu';
