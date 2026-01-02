@@ -68,7 +68,12 @@ class subscribers implements EventSubscriberInterface
 	*/
 	public function modify_username_string($event): void
 	{
-		$user  = $event['username'];
+		$user = $event['username'];
+		if (!$user)
+		{
+			return;
+		}
+
 		$route = $this->controller_helper->route('baihu_member', ['username' => $user]);
 
 		if ($event['mode'] === 'full')
