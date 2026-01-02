@@ -1,4 +1,11 @@
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    baihu.create:
+        class: baihu\baihu\src\user\create
+
     baihu.page:
         class: baihu\baihu\src\user\page
         arguments:
@@ -18,6 +25,7 @@ services:
             - '%core.php_ext%'
             - '%tables.users%'
 
+    baihu\baihu\src\user\create: '@baihu.create'
     baihu\baihu\src\user\page: '@baihu.page'
     baihu\baihu\src\user\loader: '@baihu.users_loader'
     baihu\baihu\src\user\time: '@baihu.time'
