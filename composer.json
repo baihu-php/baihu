@@ -3,7 +3,7 @@
     "type": "phpbb-extension",
     "description": "Baihu Content Management System",
     "homepage": "https://www.github.com/GanstaZ/",
-    "version": "4.0.0-dev",
+    "version": "1.0.0-dev",
     "license": "GPL-2.0-only",
     "authors": [
         {
