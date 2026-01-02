@@ -26,6 +26,13 @@ baihu_article:
     requirements:
         aid: \d+
 
+# Redirect to forum page
+baihu_post_create:
+    path: /post-create/{fid}
+    controller: baihu.posts_redirect_controller:post
+    requirements:
+        fid: \d+
+
 # Redirect to recent post
 baihu_recent_post:
     path: /recent-post/aid-{aid}-p-{post_id}
