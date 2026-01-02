@@ -1,4 +1,32 @@
 <div class="create-container action-toggle baihu-create">
-	testing testing more and more<br>
-	more and more testing to do
+	<nav>
+		<ul class="navigation">
+
+			{% for category in create %}
+				{% set is_forum = category.heading === 'forum' ?: false %}
+				{% set icon = is_forum ? 'mdi--forum-outline' : 'mdi--github' %}
+
+				<li class="navigation-item">
+					<div class="navigation-category">
+						{{ Icon('gzo', icon, lang(category.heading), true) -}}
+						<span class="navigation-text">{{ lang(category.heading) }}</span>
+					</div>
+				</li>
+
+				{% for item in category.item %}
+
+					{% set route = is_forum ? item.route[0].route : item.route %}
+
+					<li class="navigation-item">
+						<a class="navigation-link" href="{{ route }}" title="{{ lang(item.name) }}" role="menuitem">
+							<span class="navigation-text">{{ lang(item.name) }}</span>
+						</a>
+					</li>
+
+				{% endfor %}
+
+			{% endfor %}
+
+		</ul>
+	</nav>
 </div>
