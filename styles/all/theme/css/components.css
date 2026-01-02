@@ -588,13 +588,26 @@
 .create-container {
 	width: 200px;
 
+	svg {
+		width: 20px;
+		height: 20px;
+	}
+
 	.navigation-category {
 		padding: unset;
-		padding-block: var(--spacing-2);
+		padding-block: var(--spacing-1);
 	}
 
 	.navigation-link {
 		padding: var(--spacing-1);
+	}
+
+	.navigation-divider {
+		margin-block: var(--spacing-1);
+	}
+
+	.navigation-divider:last-of-type {
+		display: none;
 	}
 }
 
