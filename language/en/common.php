@@ -23,6 +23,7 @@ $lang = array_merge($lang, [
 	'DASHBOARD'		 => 'Dashboard',
 	'AREA_MAIN_PAGE' => 'Baihu AreaZ',
 	'BAIHU_CREATE'	 => 'Create',
+	'BAIHU_FORUM'	 => 'New forum topic',
 
 	// Drawer
 	'DRAWER_GENERAL' => 'General',

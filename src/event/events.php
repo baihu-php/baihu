@@ -21,6 +21,13 @@ final class events
 	/** Area base class */
 	public const BAIHU_AREA_MODIFY_NAVIGATION = 'baihu.area_modify_navigation';
 
+	/** Core user events */
+	public const BAIHU_CORE_USER_CREATE_DATA = 'baihu.core.user_create_data';
+
+	/** Core page events */
+	public const BAIHU_CORE_PAGE_FOOTER = 'baihu.core.page_footer';
+	public const BAIHU_CORE_PAGE_FOOTER_AFTER = 'baihu.core.page_footer_after';
+
 	/** Statistics plugin */
 	public const BAIHU_STATISTICS_BEFORE = 'baihu.statistics_before';
 
