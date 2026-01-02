@@ -11,6 +11,8 @@
 namespace baihu\baihu\src\event;
 
 use baihu\baihu\src\controller\controller_helper;
+use baihu\baihu\src\event\events;
+use baihu\baihu\src\user\create as user_create;
 use phpbb\auth\auth;
 use phpbb\cache\driver\driver_interface as cache;
 use phpbb\config\config;
@@ -28,7 +30,8 @@ class subscribers implements EventSubscriberInterface
 		protected config $config,
 		protected cron_manager $cron_manager,
 		protected dispatcher $dispatcher,
-		protected user $user
+		protected user $user,
+		protected user_create $user_create
 	)
 	{
 	}
@@ -58,8 +61,13 @@ class subscribers implements EventSubscriberInterface
 		$this->controller_helper->template->assign_vars([
 			'U_AREAZ_MAIN' => $this->controller_helper->route('areaz_main'),
 		]);
+
+		$this->user_create->post_template_data();
 	}
 
+	/**
+	 * baihu.core.page_footer
+	 */
 	public function display_footer(): void
 	{
 		$this->controller_helper->template->assign_vars([
@@ -74,9 +82,8 @@ class subscribers implements EventSubscriberInterface
 		 * @var bool run_cron	 Shall we run cron tasks
 		 */
 		$vars = ['run_cron'];
-		extract($this->dispatcher->trigger_event('core.page_footer', compact($vars)));
+		extract($this->dispatcher->trigger_event(events::BAIHU_CORE_PAGE_FOOTER_AFTER, compact($vars)));
 
-		// Move into subscribers
 		if ($run_cron)
 		{
 			$this->set_cron_task();
