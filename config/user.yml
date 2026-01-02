@@ -8,6 +8,7 @@ services:
 
     baihu.page:
         class: baihu\baihu\src\user\page
+        autowire: false
         arguments:
             - '@config'
             - '@user'
@@ -15,10 +16,10 @@ services:
 
     baihu.time:
         class: baihu\baihu\src\user\time
-        autowire: true
 
     baihu.users_loader:
         class: baihu\baihu\src\user\loader
+        autowire: false
         arguments:
             - '@dbal.conn'
             - '%core.root_path%'

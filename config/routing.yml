@@ -28,7 +28,7 @@ baihu_article:
 
 # Redirect to forum page
 baihu_post_create:
-    path: /post-create/{fid}
+    path: /create-post/{fid}
     controller: baihu.posts_redirect_controller:post
     requirements:
         fid: \d+

@@ -1,20 +1,19 @@
 <div class="create-container action-toggle baihu-create">
 	<nav>
 		<ul class="navigation">
-
 			{% for category in create %}
 				{% set is_forum = category.heading === 'forum' ?: false %}
 				{% set icon = is_forum ? 'mdi--forum-outline' : 'mdi--github' %}
+				{% set heading = is_forum ? 'BAIHU_' ~ category.heading : category.heading %}
 
 				<li class="navigation-item">
 					<div class="navigation-category">
-						{{ Icon('gzo', icon, lang(category.heading), true) -}}
-						<span class="navigation-text">{{ lang(category.heading) }}</span>
+						{{ Icon('gzo', icon, lang(heading|upper), true) -}}
+						<span class="navigation-text">{{ lang(heading|upper) }}</span>
 					</div>
 				</li>
 
 				{% for item in category.item %}
-
 					{% set route = is_forum ? item.route[0].route : item.route %}
 
 					<li class="navigation-item">
@@ -27,7 +26,6 @@
 				<li class="navigation-divider"></li>
 
 			{% endfor %}
-
 		</ul>
 	</nav>
 </div>
