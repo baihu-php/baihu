@@ -63,7 +63,7 @@ class loader
 			$this->template->assign_block_vars('tabs', [
 				'title' => $this->language->lang('GZO_' . strtoupper($tab)),
 				'link' => $route,
-				'icon' => $this->get($tab)->icon(),
+				'icon' => $this->get($tab)->get_icon(),
 			]);
 		}
 	}

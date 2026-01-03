@@ -40,6 +40,6 @@ class profile_controller extends abstract_controller
 
 		$page_title = $tab !== 'profile' ? $page_title : $username;
 
-		return $this->render("{$current->namespace()}$tab.twig", $page_title, 200, true);
+		return $this->render("{$current->get_namespace()}$tab.twig", $page_title, 200, true);
 	}
 }

@@ -10,62 +10,42 @@
 
 namespace baihu\baihu\src\members\tabs;
 
-use phpbb\auth\auth;
-use phpbb\db\driver\driver_interface;
-use phpbb\event\dispatcher;
-use phpbb\controller\helper as controller;
-use phpbb\language\language;
-use phpbb\template\template;
-use phpbb\user;
-
-use phpbb\config\config;
 use phpbb\group\helper as group;
 use phpbb\profilefields\manager as cp;
 
 final class profile extends base
 {
-	public function __construct
-	(
-		auth $auth,
-		driver_interface $db,
-		dispatcher $dispatcher,
-		controller $controller,
-		language $language,
-		template $template,
-		user $user,
-		protected config $config,
-		protected group $group,
-		protected cp $cp,
-		protected readonly string $admin_path,
-		protected readonly string $root_path,
-		protected readonly string $php_ext
-	)
+	public static function getSubscribedServices(): array
 	{
-		parent::__construct($auth, $db, $dispatcher, $controller, $language, $template, $user);
+		return array_merge(parent::getSubscribedServices(), [
+			'group_helper' => '?'.group::class,
+			'profilefields.manager' => '?'.cp::class,
+		]);
 	}
 
-	/**
-	* {@inheritdoc}
-	*/
-	public function namespace(): string
+	public function get_namespace(): string
 	{
 		return '@baihu_baihu/';
 	}
 
-	/**
-	* {@inheritdoc}
-	*/
-	public function icon(): string
+	public function get_icon(): string
 	{
-		return 'book';
+		return 'overview';
 	}
 
-	/**
-	* {@inheritdoc}
-	*/
+	protected function get_group(): group
+	{
+		return $this->container->get('group_helper');
+	}
+
+	protected function get_cp_manager(): cp
+	{
+		return $this->container->get('profilefields.manager');
+	}
+
 	public function load(string $username): void
 	{
-		$member = $this->get_user_data($username);
+		$member = $this->get_member_data($username);
 
 		// a_user admins and founder are able to view inactive users and bots to be able to manage them more easily
 		// Normal users are able to see at least users having only changed their profile settings but not yet reactivated.
@@ -114,9 +94,7 @@ final class profile extends base
 		* @var array	sql_ary			Array containing the query
 		* @since 3.2.6-RC1
 		*/
-		$vars = [
-			'sql_ary',
-		];
+		$vars = ['sql_ary',];
 		extract($this->dispatcher->trigger_event('core.modify_memberlist_viewprofile_group_sql', compact($vars)));
 
 		$result = $this->db->sql_query($this->db->sql_build_query('SELECT', $sql_ary));
@@ -149,7 +127,7 @@ final class profile extends base
 				continue;
 			}
 
-			$row['group_name'] = $this->group->get_name($row['group_name']);
+			$row['group_name'] = $this->get_group()->get_name($row['group_name']);
 
 			$group_sort[$row['group_id']] = utf8_clean_string($row['group_name']);
 			$group_data[$row['group_id']] = $row;
@@ -166,10 +144,7 @@ final class profile extends base
 		* @var array	group_sort			Array containing the sorted group data
 		* @since 3.2.6-RC1
 		*/
-		$vars = [
-			'group_data',
-			'group_sort',
-		];
+		$vars = ['group_data', 'group_sort',];
 		extract($this->dispatcher->trigger_event('core.modify_memberlist_viewprofile_group_data', compact($vars)));
 
 		$group_current = '';
@@ -244,7 +219,6 @@ final class profile extends base
 		// Only check if the user is logged in
 		if ($this->user->data['is_registered'])
 		{
-			// TODO: I don't like this module manager
 			if (!class_exists('p_master'))
 			{
 				include($this->root_path . 'includes/functions_module.' . $this->php_ext);
@@ -265,10 +239,11 @@ final class profile extends base
 
 		// Custom Profile Fields
 		$profile_fields = [];
+		$cp_manager = $this->get_cp_manager();
 		if ($this->config['load_cpf_viewprofile'])
 		{
-			$profile_fields = $this->cp->grab_profile_fields_data($user_id);
-			$profile_fields = (isset($profile_fields[$user_id])) ? $this->cp->generate_profile_fields_template_data($profile_fields[$user_id]) : [];
+			$profile_fields = $cp_manager->grab_profile_fields_data($user_id);
+			$profile_fields = (isset($profile_fields[$user_id])) ? $cp_manager->generate_profile_fields_template_data($profile_fields[$user_id]) : [];
 		}
 
 		/**
@@ -336,7 +311,7 @@ final class profile extends base
 			'U_REMOVE_FRIEND'			=> ($friend && $friends_enabled) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;remove=1&amp;usernames[]=' . $user_id) : '',
 			'U_REMOVE_FOE'				=> ($foe && $foes_enabled) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;remove=1&amp;mode=foes&amp;usernames[]=' . $user_id) : '',
 
-			'U_CANONICAL'				=> $this->controller->route('baihu_member', ['username' => $username]),
+			'U_CANONICAL'				=> $this->controller_helper->route('baihu_member', ['username' => $username]),
 		];
 
 		/**
@@ -344,9 +319,7 @@ final class profile extends base
 		*
 		* @event core.memberlist_modify_view_profile_template_vars
 		*/
-		$vars = [
-			'template_ary',
-		];
+		$vars = ['template_ary',];
 		extract($this->dispatcher->trigger_event('core.memberlist_modify_view_profile_template_vars', compact($vars)));
 
 		// Assign vars to profile controller
@@ -371,13 +344,10 @@ final class profile extends base
 			$this->language->add_lang('acp/common');
 
 			$this->template->assign_vars([
-				'S_USER_INACTIVE'		=> true,
-				'USER_INACTIVE_REASON'	=> $this->get_inactivity_reason($member['user_inactive_reason'])
+				'S_USER_INACTIVE'	   => true,
+				'USER_INACTIVE_REASON' => $this->get_inactivity_reason($member['user_inactive_reason'])
 			]);
 		}
-
-		// TODO: Remove it?
-		make_jumpbox(append_sid("{$this->root_path}viewforum.$this->php_ext"));
 	}
 
 	protected function get_inactivity_reason(string $user_inactive_reason): string
@@ -386,9 +356,9 @@ final class profile extends base
 		{
 			INACTIVE_REGISTER => $this->language->lang('INACTIVE_REASON_REGISTER'),
 			INACTIVE_PROFILE  => $this->language->lang('INACTIVE_REASON_PROFILE'),
-			INACTIVE_MANUAL   => $this->language->lang('INACTIVE_REASON_MANUAL'),
-			INACTIVE_REMIND   => $this->language->lang('INACTIVE_REASON_REMIND'),
-			default		      => $this->language->lang('INACTIVE_REASON_UNKNOWN')
+			INACTIVE_MANUAL	  => $this->language->lang('INACTIVE_REASON_MANUAL'),
+			INACTIVE_REMIND	  => $this->language->lang('INACTIVE_REASON_REMIND'),
+			default			  => $this->language->lang('INACTIVE_REASON_UNKNOWN')
 		};
 	}
 }

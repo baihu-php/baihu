@@ -10,72 +10,73 @@
 
 namespace baihu\baihu\src\members\tabs;
 
+use baihu\baihu\src\controller\controller_helper;
+
 use phpbb\auth\auth;
+use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
 use phpbb\event\dispatcher;
-use phpbb\controller\helper as controller;
 use phpbb\language\language;
 use phpbb\template\template;
 use phpbb\user;
 use phpbb\exception\http_exception;
+use Psr\Container\ContainerInterface;
+use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
-abstract class base implements tabs_interface
+abstract class base implements ServiceSubscriberInterface
 {
 	protected string $name;
-	protected string $icon = 'bug';
 	protected bool $active_session = false;
 
 	public function __construct
 	(
+		protected ContainerInterface $container,
+		protected controller_helper $controller_helper,
 		protected auth $auth,
+		protected config $config,
 		protected driver_interface $db,
 		protected dispatcher $dispatcher,
-		protected controller $controller,
 		protected language $language,
 		protected template $template,
-		protected user $user
+		protected user $user,
+		protected string $php_ext,
+		protected string $admin_path,
+		protected string $root_path
 	)
 	{
 	}
 
-	/**
-	* Returns Twig namespace
-	*/
-	abstract protected function namespace(): string;
+	public static function getSubscribedServices(): array
+	{
+		return [];
+	}
 
 	/**
-	* Load current user
-	*/
+	 * Returns Twig namespace
+	 */
+	abstract protected function get_namespace(): string;
+
+	/**
+	 * Returns an icon
+	 */
+	abstract protected function get_icon(): string;
+
+	/**
+	 * Load current data
+	 */
 	abstract protected function load(string $username): void;
 
-	/**
-	* {@inheritdoc}
-	*/
-	public function set_name(string $name): void
+	public function set_tab_name(string $name): void
 	{
 		$this->name = $name;
 	}
 
-	/**
-	* {@inheritdoc}
-	*/
 	public function get_name(): string
 	{
 		return $this->name;
 	}
 
-	/**
-	* {@inheritdoc}
-	*/
-	public function icon(): string
-	{
-		return 'bug';
-	}
-
-	/**
-	* Get user data
-	*/
-	protected function get_user_data(string $username): array
+	protected function get_member_data(string $username): array
 	{
 		// Can this user view profiles/memberlist?
 		if (!$this->auth->acl_gets('u_viewprofile', 'a_user', 'a_useradd', 'a_userdel'))
@@ -104,10 +105,7 @@ abstract class base implements tabs_interface
 		* @var array	sql_array			Array containing the main query
 		* @since 3.2.6-RC1
 		*/
-		$vars = [
-			'username',
-			'sql_array',
-		];
+		$vars = ['username', 'sql_array',];
 		extract($this->dispatcher->trigger_event('core.memberlist_modify_viewprofile_sql', compact($vars)));
 
 		$sql = $this->db->sql_build_query('SELECT', $sql_array);
