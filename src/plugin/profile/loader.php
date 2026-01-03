@@ -8,25 +8,23 @@
 *
 */
 
-namespace baihu\baihu\src\members;
+namespace baihu\baihu\src\plugin\profile;
 
 use baihu\baihu\src\controller\controller_helper;
+use baihu\baihu\src\enum\core;
 use phpbb\di\service_collection;
 use phpbb\language\language;
 use phpbb\template\template;
 
-/**
-* Tabs manager
-*/
-class manager
+class loader
 {
 	protected static array $tabs = [];
 
 	public function __construct(
-		private service_collection $collection,
-		private controller_helper $controller_helper,
-		private language $language,
-		private template $template
+		protected service_collection $collection,
+		protected controller_helper $controller_helper,
+		protected language $language,
+		protected template $template
 	)
 	{
 		if ($collection)
@@ -38,36 +36,16 @@ class manager
 		}
 	}
 
-	/**
-	* Get tab type by name
-	*/
 	public function get(string $name): object
 	{
 		return self::$tabs[$name] ?? (object) [];
 	}
 
-	/**
-	* Get all available tabs
-	*/
 	public function available(): array
 	{
 		return array_keys(self::$tabs) ?? [];
 	}
 
-	/**
-	* Remove tab
-	*/
-	public function remove(string $name): void
-	{
-		if (isset(self::$tabs[$name]) || array_key_exists($name, self::$tabs))
-		{
-			unset(self::$tabs[$name]);
-		}
-	}
-
-	/**
-	* Generate menu for tabs
-	*/
 	public function generate_tabs_menu(string $username, string $tab): void
 	{
 		if (count($this->available()) === 1)
@@ -78,15 +56,15 @@ class manager
 		foreach ($this->available() as $tab)
 		{
 			$route = $this->controller_helper->route('baihu_member_tab', ['username' => $username, 'tab' => $tab]);
-			if ($tab === 'profile')
+			if ($tab === core::DEFAULT_TAB_NAME)
 			{
 				$route = $this->controller_helper->route('baihu_member', ['username' => $username]);
 			}
 
 			$this->template->assign_block_vars('tabs', [
-				'title' => $this->language->lang('GZO_' . strtoupper($tab)),
+				'title' => $this->language->lang('BAIHU_' . strtoupper($tab)),
 				'link' => $route,
-				'icon' => $this->get($tab)->icon(),
+				'icon' => $this->get($tab)->get_icon(),
 			]);
 		}
 	}
@@ -96,7 +74,7 @@ class manager
 		$this->controller_helper->assign_breadcrumb('MEMBERLIST', 'baihu_members_redirect')
 			->assign_breadcrumb($username, 'baihu_member', ['username' => $username]);
 
-		if ($tab !== 'profile')
+		if ($tab !== core::DEFAULT_TAB_NAME)
 		{
 			$this->controller_helper->assign_breadcrumb(ucfirst($tab), 'baihu_member_tab', ['username' => $username, 'tab' => $tab]);
 		}

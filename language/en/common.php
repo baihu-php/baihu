@@ -55,9 +55,9 @@ $lang = array_merge($lang, [
 		2 => '%2$ss ago',
 	],
 
-	// 'GZO_PROFILE' => 'Overview',
-	'CURRENT_USERS_PROFILE_TAB' => 'Your %s',
-	'USERS_PROFILE_TAB' => '%s / %s',
+	'BAIHU_PROFILE' => 'Overview',
+	'CURRENT_PROFILE_TAB' => 'Your %s',
+	'PROFILE_TAB' => '%s / %s',
 
 	'BAIHU_STATS_PER_DAY' => '%s per day',
 	'BAIHU_PER_DAY' => 'Per day',

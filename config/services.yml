@@ -3,8 +3,8 @@ imports:
     - { resource: area.yml }
     - { resource: auth.yml }
     - { resource: controller.yml }
-    - { resource: members.yml }
     - { resource: plugins.yml }
+    - { resource: profile.yml }
     - { resource: tables.yml }
     - { resource: twig.yml }
     - { resource: user.yml }

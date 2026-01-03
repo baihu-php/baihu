@@ -11,7 +11,8 @@
 namespace baihu\baihu\src\controller\member;
 
 use baihu\baihu\src\controller\abstract_controller;
-use baihu\baihu\src\members\manager;
+use baihu\baihu\src\enum\core;
+use baihu\baihu\src\plugin\profile\loader as tabs_loader;
 use Symfony\Component\HttpFoundation\Response;
 
 class profile_controller extends abstract_controller
@@ -19,28 +20,28 @@ class profile_controller extends abstract_controller
 	public static function getSubscribedServices(): array
 	{
 		return array_merge(parent::getSubscribedServices(), [
-			'baihu.members.tabs' => '?'.manager::class,
+			'baihu.profile.tabs.loader' => '?'.tabs_loader::class,
 		]);
 	}
 
 	public function index($username, $tab): Response
 	{
-		$manager = $this->container->get('baihu.members.tabs');
-
 		// Load language
 		$this->language->add_lang('memberlist');
 
-		$manager->generate_tabs_menu($username, $tab);
-		$manager->generate_breadcrumb($username, $tab);
+		$tabs_loader = $this->container->get('baihu.profile.tabs.loader');
+		$tabs_loader->generate_tabs_menu($username, $tab);
+		$tabs_loader->generate_breadcrumb($username, $tab);
 
-		$current = $manager->get($tab);
-		$current->load($username);
+		// Load requested tab
+		$current_tab = $tabs_loader->get($tab);
+		$current_tab->load($username);
 
-		$current_tab = $this->language->lang(ucfirst($tab));
-		$page_title = $current->is_active_session() ? $this->language->lang('CURRENT_USERS_PROFILE_TAB', $current_tab) : $this->language->lang('USERS_PROFILE_TAB', $username, $current_tab);
+		$page_title = $current_tab->is_active_session()
+			? $this->language->lang('CURRENT_PROFILE_TAB', ucfirst($tab))
+			: $this->language->lang('PROFILE_TAB', $username, ucfirst($tab));
+		$page_title = $tab !== core::DEFAULT_TAB_NAME ? $page_title : $username;
 
-		$page_title = $tab !== 'profile' ? $page_title : $username;
-
-		return $this->render("{$current->namespace()}$tab.twig", $page_title, 200, true);
+		return $this->render("{$current_tab->get_namespace()}$tab.twig", $page_title, 200, true);
 	}
 }

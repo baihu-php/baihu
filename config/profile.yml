@@ -1,0 +1,52 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            string $php_ext: '%core.php_ext%'
+            string $admin_path: '%core.root_path%%core.adm_relative_path%'
+            string $root_path: '%core.root_path%'
+
+    baihu.profile.subscribers:
+        class: baihu\baihu\src\plugin\profile\event\subscribers
+        tags:
+            - { name: event.listener }
+
+    baihu.profile.tabs.collection:
+        class: phpbb\di\ordered_service_collection
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: service_collection, tag: baihu.profile.tabs }
+
+    baihu.profile.tabs.loader:
+        class: baihu\baihu\src\plugin\profile\loader
+        autowire: false
+        arguments:
+            - '@baihu.profile.tabs.collection'
+            - '@baihu.controller_helper'
+            - '@language'
+            - '@template'
+
+    baihu\baihu\src\plugin\profile\loader: '@baihu.profile.tabs.loader'
+
+# ----- Profile Tabs -----
+    baihu.profile.tabs.base:
+        abstract: true
+
+    baihu.profile.tabs.profile:
+        class: baihu\baihu\src\plugin\profile\tabs\profile
+        calls:
+            - [set_tab_name, [profile]]
+        tags:
+            - { name: baihu.profile.tabs, order: 1 }
+            - { name: container.service_subscriber }
+
+# ----- Controllers -----
+    baihu.profile_controller:
+        class: baihu\baihu\src\controller\member\profile_controller
+        tags: ['container.service_subscriber']
+
+    baihu.members.redirect_controller:
+        class: baihu\baihu\src\controller\member\redirect_controller
+        tags: ['container.service_subscriber']

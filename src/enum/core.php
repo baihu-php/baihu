@@ -49,4 +49,7 @@ final class core
 	public const TOP = self::VENDOR . '_top';
 	public const SIDE = self::VENDOR . '_side';
 	public const BOTTOM = self::VENDOR . '_bottom';
+
+	// Profile
+	public const DEFAULT_TAB_NAME = 'profile';
 }

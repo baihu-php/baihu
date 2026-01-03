@@ -9,6 +9,7 @@ services:
     phpbb\group\helper: '@group_helper'
     phpbb\language\language: '@language'
     phpbb\pagination: '@pagination'
+    phpbb\profilefields\manager: '@profilefields.manager'
     phpbb\request\request: '@request'
     phpbb\request\request_interface: '@request'
     phpbb\routing\helper: '@routing.helper'
