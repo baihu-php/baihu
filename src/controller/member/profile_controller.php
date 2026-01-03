@@ -11,7 +11,7 @@
 namespace baihu\baihu\src\controller\member;
 
 use baihu\baihu\src\controller\abstract_controller;
-use baihu\baihu\src\members\manager;
+use baihu\baihu\src\members\loader as tabs_loader;
 use Symfony\Component\HttpFoundation\Response;
 
 class profile_controller extends abstract_controller
@@ -19,17 +19,16 @@ class profile_controller extends abstract_controller
 	public static function getSubscribedServices(): array
 	{
 		return array_merge(parent::getSubscribedServices(), [
-			'baihu.members.tabs' => '?'.manager::class,
+			'baihu.members.tabs.loader' => '?'.tabs_loader::class,
 		]);
 	}
 
 	public function index($username, $tab): Response
 	{
-		$manager = $this->container->get('baihu.members.tabs');
-
 		// Load language
 		$this->language->add_lang('memberlist');
 
+		$manager = $this->container->get('baihu.members.tabs.loader');
 		$manager->generate_tabs_menu($username, $tab);
 		$manager->generate_breadcrumb($username, $tab);
 

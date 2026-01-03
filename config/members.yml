@@ -11,18 +11,16 @@ services:
         tags:
             - { name: event.listener }
 
-    baihu.members.tabs:
-        class: baihu\baihu\src\members\manager
+    baihu.members.tabs.loader:
+        class: baihu\baihu\src\members\loader
         autowire: false
         arguments:
             - '@baihu.members.tabs.collection'
             - '@baihu.controller_helper'
             - '@language'
             - '@template'
-            - '%core.root_path%'
-            - '%core.php_ext%'
 
-    baihu\baihu\src\members\manager: '@baihu.members.tabs'
+    baihu\baihu\src\members\loader: '@baihu.members.tabs.loader'
 
     baihu.members.tabs.collection:
         class: phpbb\di\ordered_service_collection

@@ -15,18 +15,15 @@ use phpbb\di\service_collection;
 use phpbb\language\language;
 use phpbb\template\template;
 
-/**
-* Tabs manager
-*/
-class manager
+class loader
 {
 	protected static array $tabs = [];
 
 	public function __construct(
-		private service_collection $collection,
-		private controller_helper $controller_helper,
-		private language $language,
-		private template $template
+		protected service_collection $collection,
+		protected controller_helper $controller_helper,
+		protected language $language,
+		protected template $template
 	)
 	{
 		if ($collection)
@@ -38,36 +35,16 @@ class manager
 		}
 	}
 
-	/**
-	* Get tab type by name
-	*/
 	public function get(string $name): object
 	{
 		return self::$tabs[$name] ?? (object) [];
 	}
 
-	/**
-	* Get all available tabs
-	*/
 	public function available(): array
 	{
 		return array_keys(self::$tabs) ?? [];
 	}
 
-	/**
-	* Remove tab
-	*/
-	public function remove(string $name): void
-	{
-		if (isset(self::$tabs[$name]) || array_key_exists($name, self::$tabs))
-		{
-			unset(self::$tabs[$name]);
-		}
-	}
-
-	/**
-	* Generate menu for tabs
-	*/
 	public function generate_tabs_menu(string $username, string $tab): void
 	{
 		if (count($this->available()) === 1)
