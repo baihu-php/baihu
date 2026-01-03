@@ -11,6 +11,7 @@
 namespace baihu\baihu\src\members;
 
 use baihu\baihu\src\controller\controller_helper;
+use baihu\baihu\src\enum\core;
 use phpbb\di\service_collection;
 use phpbb\language\language;
 use phpbb\template\template;
@@ -55,7 +56,7 @@ class loader
 		foreach ($this->available() as $tab)
 		{
 			$route = $this->controller_helper->route('baihu_member_tab', ['username' => $username, 'tab' => $tab]);
-			if ($tab === 'profile')
+			if ($tab === core::DEFAULT_TAB_NAME)
 			{
 				$route = $this->controller_helper->route('baihu_member', ['username' => $username]);
 			}
@@ -73,7 +74,7 @@ class loader
 		$this->controller_helper->assign_breadcrumb('MEMBERLIST', 'baihu_members_redirect')
 			->assign_breadcrumb($username, 'baihu_member', ['username' => $username]);
 
-		if ($tab !== 'profile')
+		if ($tab !== core::DEFAULT_TAB_NAME)
 		{
 			$this->controller_helper->assign_breadcrumb(ucfirst($tab), 'baihu_member_tab', ['username' => $username, 'tab' => $tab]);
 		}
