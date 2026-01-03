@@ -12,6 +12,13 @@ services:
         tags:
             - { name: event.listener }
 
+    baihu.members.tabs.collection:
+        class: phpbb\di\ordered_service_collection
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: service_collection, tag: baihu.profile.tabs }
+
     baihu.members.tabs.loader:
         class: baihu\baihu\src\members\loader
         autowire: false
@@ -22,13 +29,6 @@ services:
             - '@template'
 
     baihu\baihu\src\members\loader: '@baihu.members.tabs.loader'
-
-    baihu.members.tabs.collection:
-        class: phpbb\di\ordered_service_collection
-        arguments:
-            - '@service_container'
-        tags:
-            - { name: service_collection, tag: baihu.profile.tabs }
 
 # ----- Profile Tabs -----
     baihu.members.tabs.base:
