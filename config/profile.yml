@@ -7,35 +7,35 @@ services:
             string $admin_path: '%core.root_path%%core.adm_relative_path%'
             string $root_path: '%core.root_path%'
 
-    baihu.members.subscribers:
-        class: baihu\baihu\src\members\event\subscribers
+    baihu.profile.subscribers:
+        class: baihu\baihu\src\plugin\profile\event\subscribers
         tags:
             - { name: event.listener }
 
-    baihu.members.tabs.collection:
+    baihu.profile.tabs.collection:
         class: phpbb\di\ordered_service_collection
         arguments:
             - '@service_container'
         tags:
             - { name: service_collection, tag: baihu.profile.tabs }
 
-    baihu.members.tabs.loader:
-        class: baihu\baihu\src\members\loader
+    baihu.profile.tabs.loader:
+        class: baihu\baihu\src\plugin\profile\loader
         autowire: false
         arguments:
-            - '@baihu.members.tabs.collection'
+            - '@baihu.profile.tabs.collection'
             - '@baihu.controller_helper'
             - '@language'
             - '@template'
 
-    baihu\baihu\src\members\loader: '@baihu.members.tabs.loader'
+    baihu\baihu\src\plugin\profile\loader: '@baihu.profile.tabs.loader'
 
 # ----- Profile Tabs -----
-    baihu.members.tabs.base:
+    baihu.profile.tabs.base:
         abstract: true
 
-    baihu.members.tabs.profile:
-        class: baihu\baihu\src\members\tabs\profile
+    baihu.profile.tabs.profile:
+        class: baihu\baihu\src\plugin\profile\tabs\profile
         calls:
             - [set_tab_name, [profile]]
         tags:

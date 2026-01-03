@@ -8,7 +8,7 @@
 *
 */
 
-namespace baihu\baihu\src\members\tabs;
+namespace baihu\baihu\src\plugin\profile\tabs;
 
 use baihu\baihu\src\controller\controller_helper;
 

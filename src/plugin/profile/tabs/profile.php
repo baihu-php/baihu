@@ -8,7 +8,7 @@
 *
 */
 
-namespace baihu\baihu\src\members\tabs;
+namespace baihu\baihu\src\plugin\profile\tabs;
 
 use phpbb\group\helper as group;
 use phpbb\profilefields\manager as cp;

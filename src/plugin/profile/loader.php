@@ -8,7 +8,7 @@
 *
 */
 
-namespace baihu\baihu\src\members;
+namespace baihu\baihu\src\plugin\profile;
 
 use baihu\baihu\src\controller\controller_helper;
 use baihu\baihu\src\enum\core;

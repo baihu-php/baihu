@@ -8,7 +8,7 @@
 *
 */
 
-namespace baihu\baihu\src\members\event;
+namespace baihu\baihu\src\plugin\profile\event;
 
 use baihu\baihu\src\controller\controller_helper;
 use baihu\baihu\src\user\page;
