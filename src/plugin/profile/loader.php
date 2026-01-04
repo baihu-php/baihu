@@ -13,7 +13,6 @@ namespace baihu\baihu\src\plugin\profile;
 use baihu\baihu\src\controller\controller_helper;
 use baihu\baihu\src\enum\core;
 use phpbb\di\service_collection;
-use phpbb\template\template;
 
 class loader
 {
@@ -21,8 +20,7 @@ class loader
 
 	public function __construct(
 		protected service_collection $collection,
-		protected controller_helper $controller_helper,
-		protected template $template
+		protected controller_helper $controller_helper
 	)
 	{
 		if ($collection)
@@ -59,7 +57,7 @@ class loader
 				$route = $this->controller_helper->route('baihu_member', ['username' => $username]);
 			}
 
-			$this->template->assign_block_vars('tabs', [
+			$this->controller_helper->assign_block_vars('tabs', [
 				'title' => strtoupper($tab),
 				'link' => $route,
 				'icon' => $this->get($tab)->get_icon(),

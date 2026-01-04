@@ -45,7 +45,12 @@ class controller_helper
 		return $this;
 	}
 
-	public function add_canonical(string $route, array $params = [])
+	public function assign_block_vars(string $block_name, array $data = []): void
+	{
+		$this->template->assign_block_vars($block_name, $data);
+	}
+
+	public function add_canonical(string $route, array $params = []): void
 	{
 		$this->template->assign_var('U_CANONICAL', $this->route($route, $params));
 	}
