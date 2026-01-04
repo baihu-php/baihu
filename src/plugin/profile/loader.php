@@ -13,7 +13,6 @@ namespace baihu\baihu\src\plugin\profile;
 use baihu\baihu\src\controller\controller_helper;
 use baihu\baihu\src\enum\core;
 use phpbb\di\service_collection;
-use phpbb\language\language;
 use phpbb\template\template;
 
 class loader
@@ -23,7 +22,6 @@ class loader
 	public function __construct(
 		protected service_collection $collection,
 		protected controller_helper $controller_helper,
-		protected language $language,
 		protected template $template
 	)
 	{
@@ -31,7 +29,7 @@ class loader
 		{
 			foreach ($collection as $tab)
 			{
-				self::$tabs[$tab->get_name()] = $tab;
+				self::$tabs[$tab->name] = $tab;
 			}
 		}
 	}
