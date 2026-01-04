@@ -45,6 +45,11 @@ class controller_helper
 		return $this;
 	}
 
+	public function add_canonical(string $route, array $params = [])
+	{
+		$this->template->assign_var('U_CANONICAL', $this->route($route, $params));
+	}
+
 	/**
 	 * Borrowed from the phpBB Controller helper class
 	 */

@@ -26,9 +26,11 @@ class index_controller extends abstract_controller
 	{
 		$id = (int) $this->config['baihu_fid'];
 		$posts = $this->container->get('baihu.posts');
+		$controller_helper = $this->get_controller_helper();
 
 		// Assign breadcrumb
-		$this->get_controller_helper()->assign_breadcrumb($posts->get_category_name($id), 'baihu_articles', ['fid' => $id]);
+		$controller_helper->assign_breadcrumb($posts->get_category_name($id), 'baihu_articles', ['fid' => $id]);
+		$controller_helper->add_canonical('baihu_main_index');
 
 		$posts->trim_messages(true)
 			->load($id);
