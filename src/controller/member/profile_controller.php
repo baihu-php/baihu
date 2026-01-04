@@ -13,8 +13,12 @@ namespace baihu\baihu\src\controller\member;
 use baihu\baihu\src\controller\abstract_controller;
 use baihu\baihu\src\enum\core;
 use baihu\baihu\src\plugin\profile\loader as tabs_loader;
+// phpcs:disable
+use baihu\baihu\src\security\attribute\is_granted as isGranted;
+// phpcs:enable
 use Symfony\Component\HttpFoundation\Response;
 
+#[isGranted('LIMITED', ['u_viewprofile', 'a_user', 'a_useradd', 'a_userdel'])]
 class profile_controller extends abstract_controller
 {
 	public static function getSubscribedServices(): array

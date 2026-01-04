@@ -11,7 +11,7 @@
 namespace baihu\baihu\src\controller\admin;
 
 // phpcs:disable
-use baihu\baihu\src\auth\attribute\is_granted as isGranted;
+use baihu\baihu\src\security\attribute\is_granted as isGranted;
 // phpcs:enable
 
 use baihu\baihu\src\controller\abstract_controller;
@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class index_controller extends abstract_controller
 {
-	#[isGranted('ADMIN', 'a_board', 'AREA_NO_ADMIN', 403)]
+	#[isGranted('ADMIN', 'a_board', 'AREA_NO_ADMIN')]
 	public function index(): Response
 	{
 		$this->template->assign_vars([
