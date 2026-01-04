@@ -71,12 +71,20 @@ class loader
 
 	public function generate_breadcrumb(string $username, string $tab): void
 	{
+		$route = 'baihu_member';
+		$params = ['username' => $username];
+
 		$this->controller_helper->assign_breadcrumb('MEMBERLIST', 'baihu_members_redirect')
-			->assign_breadcrumb($username, 'baihu_member', ['username' => $username]);
+			->assign_breadcrumb($username, $route, $params);
 
 		if ($tab !== core::DEFAULT_TAB_NAME)
 		{
-			$this->controller_helper->assign_breadcrumb(ucfirst($tab), 'baihu_member_tab', ['username' => $username, 'tab' => $tab]);
+			$route = 'baihu_member_tab';
+			$params = ['username' => $username, 'tab' => $tab];
+
+			$this->controller_helper->assign_breadcrumb(ucfirst($tab), $route, $params);
 		}
+
+		$this->controller_helper->add_canonical($route, $params);
 	}
 }
