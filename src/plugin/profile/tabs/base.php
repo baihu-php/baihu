@@ -10,8 +10,6 @@
 
 namespace baihu\baihu\src\plugin\profile\tabs;
 
-use baihu\baihu\src\controller\controller_helper;
-
 use phpbb\auth\auth;
 use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
@@ -30,7 +28,6 @@ abstract class base implements ServiceSubscriberInterface
 	public function __construct
 	(
 		protected ContainerInterface $container,
-		protected controller_helper $controller_helper,
 		protected config $config,
 		protected driver_interface $db,
 		protected dispatcher $dispatcher,
