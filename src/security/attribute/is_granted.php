@@ -8,7 +8,7 @@
 *
 */
 
-namespace baihu\baihu\src\auth\attribute;
+namespace baihu\baihu\src\security\attribute;
 
 #[\Attribute(\Attribute::IS_REPEATABLE | \Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
 final class is_granted
@@ -22,7 +22,7 @@ final class is_granted
 		/**
 		* Second argument
 		*/
-		public string $option,
+		public array|string $option,
 
 		/**
 		* Exception message
