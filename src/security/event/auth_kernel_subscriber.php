@@ -37,13 +37,13 @@ class auth_kernel_subscriber implements EventSubscriberInterface
 
 		foreach ($attributes as $attribute)
 		{
-			if ($this->authorization->validate_user($attribute->role))
+			if ($this->authorization->limited_access($attribute->role))
 			{
 				$this->authorization->validate_user_data($attribute);
 				break;
 			}
 
-			if (!$this->authorization->is_granted($attribute))
+			if (!$this->authorization->granted($attribute))
 			{
 				throw new http_exception($attribute->status_code ?? 403, $attribute->message ?? 'AREA_NO_ADMIN');
 			}

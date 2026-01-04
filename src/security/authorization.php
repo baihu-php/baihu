@@ -28,7 +28,7 @@ class authorization
 	{
 	}
 
-	public function is_granted(object $data): bool
+	public function granted(object $data): bool
 	{
 		if (!in_array($data->role, self::$roles))
 		{
@@ -40,14 +40,14 @@ class authorization
 			: $this->auth->acl_get($data->option);
 	}
 
-	public function validate_user(string $role)
+	public function limited_access(string $role)
 	{
 		return $role === 'LIMITED' ?: false;
 	}
 
 	public function validate_user_data($data): void
 	{
-		if (!$this->is_granted($data))
+		if (!$this->granted($data))
 		{
 			if ($this->user->data['user_id'] != ANONYMOUS)
 			{
