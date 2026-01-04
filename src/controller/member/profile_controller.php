@@ -34,8 +34,8 @@ class profile_controller extends abstract_controller
 		$this->language->add_lang('memberlist');
 
 		$tabs_loader = $this->container->get('baihu.profile.tabs.loader');
-		$tabs_loader->generate_tabs_menu($username, $tab);
 		$tabs_loader->generate_breadcrumb($username, $tab);
+		$tabs_loader->generate_tabs_menu($username, $tab);
 
 		// Load requested tab
 		$current_tab = $tabs_loader->get($tab);
