@@ -46,6 +46,6 @@ class profile_controller extends abstract_controller
 			: $this->language->lang('PROFILE_TAB', $username, ucfirst($tab));
 		$page_title = $tab === core::DEFAULT_TAB_NAME ? $page_title : $username;
 
-		return $this->render("{$current_tab->get_namespace()}$tab.twig", $page_title, 200, true);
+		return $this->render("{$current_tab->get_namespace()}$tab.twig", $page_title);
 	}
 }

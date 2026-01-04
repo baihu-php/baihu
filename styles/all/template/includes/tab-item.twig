@@ -1,5 +1,7 @@
-<li class="ms1" data-last-responsive="true">
-	<a href="{{ tab.link }}" title="{{ lang(tab.title) }}">
-		{{ Icon('font', tab.icon, lang(tab.title), false) }}</span>
+<li>
+	{% set title = lang('BAIHU_' ~ tab.title) %}
+
+	<a href="{{ tab.link }}" title="{{ lang(title) }}">
+		{# {{ Icon('font', tab.icon, lang(title), false) }} #}
 	</a>
 </li>

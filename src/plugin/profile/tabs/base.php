@@ -23,7 +23,7 @@ use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
 abstract class base implements ServiceSubscriberInterface
 {
-	protected string $name;
+	public readonly string $name;
 
 	public function __construct
 	(
@@ -76,11 +76,6 @@ abstract class base implements ServiceSubscriberInterface
 	public function set_tab_name(string $name): void
 	{
 		$this->name = $name;
-	}
-
-	public function get_name(): string
-	{
-		return $this->name;
 	}
 
 	protected function get_member_data(string $username): array
