@@ -26,7 +26,6 @@ use Symfony\Contracts\Service\ServiceSubscriberInterface;
 abstract class base implements ServiceSubscriberInterface
 {
 	protected string $name;
-	protected bool $active_session = false;
 
 	public function __construct
 	(
@@ -107,16 +106,6 @@ abstract class base implements ServiceSubscriberInterface
 			throw new http_exception(404, 'NO_USER');
 		}
 
-		$this->active_session = $this->user->data['username'] === $member['username'];
-
 		return $member;
-	}
-
-	/**
-	* Is active session
-	*/
-	public function is_active_session(): bool
-	{
-		return $this->active_session;
 	}
 }

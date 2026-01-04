@@ -41,10 +41,10 @@ class profile_controller extends abstract_controller
 		$current_tab = $tabs_loader->get($tab);
 		$current_tab->load($username);
 
-		$page_title = $current_tab->is_active_session()
+		$page_title = $this->get_user()->data['username'] === $username
 			? $this->language->lang('CURRENT_PROFILE_TAB', ucfirst($tab))
 			: $this->language->lang('PROFILE_TAB', $username, ucfirst($tab));
-		$page_title = $tab !== core::DEFAULT_TAB_NAME ? $page_title : $username;
+		$page_title = $tab === core::DEFAULT_TAB_NAME ? $page_title : $username;
 
 		return $this->render("{$current_tab->get_namespace()}$tab.twig", $page_title, 200, true);
 	}
