@@ -57,7 +57,7 @@ $lang = array_merge($lang, [
 
 	'BAIHU_PROFILE' => 'Overview',
 	'CURRENT_PROFILE_TAB' => 'Your %s',
-	'PROFILE_TAB' => '%s / %s',
+	'PROFILE_TAB' => '%s [%s]',
 
 	'BAIHU_STATS_PER_DAY' => '%s per day',
 	'BAIHU_PER_DAY' => 'Per day',
@@ -90,6 +90,7 @@ $lang = array_merge($lang, [
 	'STATUS' => 'Status: %s',
 
 	// Auth
+	'BAIHU_LOGIN'	   => 'You need to login to access this page.',
 	'AREA_NO_ADMIN'	   => 'You are not authorized to access this area!',
-	'AREA_USER_ACCESS' => 'You do not have permissions to access this area!',
+	'AREA_USER_ACCESS' => 'You do not have permissions to access this area.',
 ]);

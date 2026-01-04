@@ -26,19 +26,16 @@ use Symfony\Contracts\Service\ServiceSubscriberInterface;
 abstract class base implements ServiceSubscriberInterface
 {
 	protected string $name;
-	protected bool $active_session = false;
 
 	public function __construct
 	(
 		protected ContainerInterface $container,
 		protected controller_helper $controller_helper,
-		protected auth $auth,
 		protected config $config,
 		protected driver_interface $db,
 		protected dispatcher $dispatcher,
 		protected language $language,
 		protected template $template,
-		protected user $user,
 		protected string $php_ext,
 		protected string $admin_path,
 		protected string $root_path
@@ -48,7 +45,20 @@ abstract class base implements ServiceSubscriberInterface
 
 	public static function getSubscribedServices(): array
 	{
-		return [];
+		return [
+			'auth' => auth::class,
+			'user' => user::class,
+		];
+	}
+
+	protected function get_auth(): auth
+	{
+		return $this->container->get('auth');
+	}
+
+	protected function get_user(): user
+	{
+		return $this->container->get('user');
 	}
 
 	/**
@@ -78,17 +88,6 @@ abstract class base implements ServiceSubscriberInterface
 
 	protected function get_member_data(string $username): array
 	{
-		// Can this user view profiles/memberlist?
-		if (!$this->auth->acl_gets('u_viewprofile', 'a_user', 'a_useradd', 'a_userdel'))
-		{
-			if ($this->user->data['user_id'] != ANONYMOUS)
-			{
-				throw new http_exception(403, 'NO_VIEW_USERS');
-			}
-
-			login_box('', $this->language->lang('LOGIN_EXPLAIN_VIEWPROFILE'));
-		}
-
 		$sql_array = [
 			'SELECT'	=> 'u.*',
 			'FROM'		=> [
@@ -118,16 +117,6 @@ abstract class base implements ServiceSubscriberInterface
 			throw new http_exception(404, 'NO_USER');
 		}
 
-		$this->active_session = $this->user->data['username'] === $member['username'];
-
 		return $member;
-	}
-
-	/**
-	* Is active session
-	*/
-	public function is_active_session(): bool
-	{
-		return $this->active_session;
 	}
 }

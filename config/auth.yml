@@ -1,12 +1,14 @@
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
     baihu.auth:
-        class: baihu\baihu\src\auth\auth
-        arguments:
-            - '@auth'
+        class: baihu\baihu\src\security\authorization
+
+    baihu\baihu\src\security\authorization: '@baihu.auth'
 
     baihu.auth_kernel_subscriber:
-        class: baihu\baihu\src\auth\event\auth_kernel_subscriber
-        arguments:
-            - '@baihu.auth'
+        class: baihu\baihu\src\security\event\auth_kernel_subscriber
         tags:
             - { name: kernel.event_subscriber }

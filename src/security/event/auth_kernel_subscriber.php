@@ -8,10 +8,10 @@
 *
 */
 
-namespace baihu\baihu\src\auth\event;
+namespace baihu\baihu\src\security\event;
 
-use baihu\baihu\src\auth\attribute\is_granted as isGranted;
-use baihu\baihu\src\auth\auth;
+use baihu\baihu\src\security\attribute\is_granted as isGranted;
+use baihu\baihu\src\security\authorization;
 use phpbb\exception\http_exception;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerArgumentsEvent;
@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class auth_kernel_subscriber implements EventSubscriberInterface
 {
-	public function __construct(protected auth $auth)
+	public function __construct(protected authorization $authorization)
 	{
 	}
 
@@ -37,7 +37,13 @@ class auth_kernel_subscriber implements EventSubscriberInterface
 
 		foreach ($attributes as $attribute)
 		{
-			if (!$this->auth->is_granted($attribute))
+			if ($this->authorization->limited_access($attribute->role))
+			{
+				$this->authorization->validate_user_data($attribute);
+				break;
+			}
+
+			if (!$this->authorization->granted($attribute))
 			{
 				throw new http_exception($attribute->status_code ?? 403, $attribute->message ?? 'AREA_NO_ADMIN');
 			}

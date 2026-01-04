@@ -46,10 +46,12 @@ final class profile extends base
 	public function load(string $username): void
 	{
 		$member = $this->get_member_data($username);
+		$auth	= $this->get_auth();
+		$user	= $this->get_user();
 
 		// a_user admins and founder are able to view inactive users and bots to be able to manage them more easily
 		// Normal users are able to see at least users having only changed their profile settings but not yet reactivated.
-		if (!$this->auth->acl_get('a_user') && $this->user->data['user_type'] != USER_FOUNDER)
+		if (!$auth->acl_get('a_user') && $user->data['user_type'] != USER_FOUNDER)
 		{
 			if ($member['user_type'] == USER_IGNORE)
 			{
@@ -65,8 +67,8 @@ final class profile extends base
 
 		// Get group memberships
 		// Also get visiting user's groups to determine hidden group memberships if necessary.
-		$auth_hidden_groups = $user_id === (int) $this->user->data['user_id'] || $this->auth->acl_gets('a_group', 'a_groupadd', 'a_groupdel');
-		$sql_uid_ary = ($auth_hidden_groups) ? [$user_id] : [$user_id, (int) $this->user->data['user_id']];
+		$auth_hidden_groups = $user_id === (int) $user->data['user_id'] || $auth->acl_gets('a_group', 'a_groupadd', 'a_groupdel');
+		$sql_uid_ary = ($auth_hidden_groups) ? [$user_id] : [$user_id, (int) $user->data['user_id']];
 
 		// Do the SQL thang
 		$sql_ary = [
@@ -168,7 +170,7 @@ final class profile extends base
 		$sql = 'SELECT friend, foe
 			FROM ' . ZEBRA_TABLE . "
 			WHERE zebra_id = $user_id
-				AND user_id = {$this->user->data['user_id']}";
+				AND user_id = {$user->data['user_id']}";
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
 
@@ -217,7 +219,7 @@ final class profile extends base
 		$zebra_enabled = $friends_enabled = $foes_enabled = $user_notes_enabled = $warn_user_enabled = false;
 
 		// Only check if the user is logged in
-		if ($this->user->data['is_registered'])
+		if ($user->data['is_registered'])
 		{
 			if (!class_exists('p_master'))
 			{
@@ -269,7 +271,7 @@ final class profile extends base
 		$member['posts_in_queue'] = 0;
 
 		// If the user has m_approve permission or a_user permission, then display unapproved posts
-		if ($this->auth->acl_getf_global('m_approve') || $this->auth->acl_get('a_user'))
+		if ($auth->acl_getf_global('m_approve') || $auth->acl_get('a_user'))
 		{
 			$sql = 'SELECT COUNT(post_id) as posts_in_queue
 				FROM ' . POSTS_TABLE . '
@@ -295,17 +297,17 @@ final class profile extends base
 			'S_GROUP_OPTIONS'			=> $group_options,
 			'S_CUSTOM_FIELDS'			=> isset($profile_fields['row']) && count($profile_fields['row']),
 
-			'U_USER_ADMIN'				=> ($this->auth->acl_get('a_user')) ? append_sid(generate_board_url() . "/{$this->admin_path}index.$this->php_ext", 'i=users&amp;mode=overview&amp;u=' . $user_id, true, $this->user->session_id) : '',
+			'U_USER_ADMIN'				=> ($auth->acl_get('a_user')) ? append_sid(generate_board_url() . "/{$this->admin_path}index.$this->php_ext", 'i=users&amp;mode=overview&amp;u=' . $user_id, true, $user->session_id) : '',
 
-			'U_USER_BAN'				=> ($this->auth->acl_get('m_ban') && $user_id != $this->user->data['user_id']) ? append_sid("{$this->root_path}mcp.$this->php_ext", 'i=ban&amp;mode=user&amp;u=' . $user_id, true, $this->user->session_id) : '',
-			'U_MCP_QUEUE'				=> ($this->auth->acl_getf_global('m_approve')) ? append_sid("{$this->root_path}mcp.$this->php_ext", 'i=queue', true, $this->user->session_id) : '',
+			'U_USER_BAN'				=> ($auth->acl_get('m_ban') && $user_id != $user->data['user_id']) ? append_sid("{$this->root_path}mcp.$this->php_ext", 'i=ban&amp;mode=user&amp;u=' . $user_id, true, $user->session_id) : '',
+			'U_MCP_QUEUE'				=> ($auth->acl_getf_global('m_approve')) ? append_sid("{$this->root_path}mcp.$this->php_ext", 'i=queue', true, $user->session_id) : '',
 
-			'U_SWITCH_PERMISSIONS'		=> ($this->auth->acl_get('a_switchperm') && $this->user->data['user_id'] != $user_id) ? append_sid("{$this->root_path}ucp.$this->php_ext", "mode=switch_perm&amp;u={$user_id}&amp;hash=" . generate_link_hash('switchperm')) : '',
-			'U_EDIT_SELF'				=> ($user_id == $this->user->data['user_id'] && $this->auth->acl_get('u_chgprofileinfo')) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=ucp_profile&amp;mode=profile_info') : '',
+			'U_SWITCH_PERMISSIONS'		=> ($auth->acl_get('a_switchperm') && $user->data['user_id'] != $user_id) ? append_sid("{$this->root_path}ucp.$this->php_ext", "mode=switch_perm&amp;u={$user_id}&amp;hash=" . generate_link_hash('switchperm')) : '',
+			'U_EDIT_SELF'				=> ($user_id == $user->data['user_id'] && $auth->acl_get('u_chgprofileinfo')) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=ucp_profile&amp;mode=profile_info') : '',
 
 			'S_USER_NOTES'				=> $user_notes_enabled,
 			'S_WARN_USER'				=> $warn_user_enabled,
-			'S_ZEBRA'					=> $this->user->data['user_id'] != $user_id && $this->user->data['is_registered'] && $zebra_enabled,
+			'S_ZEBRA'					=> $user->data['user_id'] != $user_id && $user->data['is_registered'] && $zebra_enabled,
 			'U_ADD_FRIEND'				=> (!$friend && !$foe && $friends_enabled) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;add=' . urlencode(html_entity_decode($member['username'], ENT_COMPAT))) : '',
 			'U_ADD_FOE'					=> (!$friend && !$foe && $foes_enabled) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;mode=foes&amp;add=' . urlencode(html_entity_decode($member['username'], ENT_COMPAT))) : '',
 			'U_REMOVE_FRIEND'			=> ($friend && $friends_enabled) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;remove=1&amp;usernames[]=' . $user_id) : '',
