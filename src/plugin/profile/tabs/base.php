@@ -78,17 +78,6 @@ abstract class base implements ServiceSubscriberInterface
 
 	protected function get_member_data(string $username): array
 	{
-		// Can this user view profiles/memberlist?
-		if (!$this->auth->acl_gets('u_viewprofile', 'a_user', 'a_useradd', 'a_userdel'))
-		{
-			if ($this->user->data['user_id'] != ANONYMOUS)
-			{
-				throw new http_exception(403, 'NO_VIEW_USERS');
-			}
-
-			login_box('', $this->language->lang('LOGIN_EXPLAIN_VIEWPROFILE'));
-		}
-
 		$sql_array = [
 			'SELECT'	=> 'u.*',
 			'FROM'		=> [
