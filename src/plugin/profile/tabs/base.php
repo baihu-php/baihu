@@ -31,13 +31,11 @@ abstract class base implements ServiceSubscriberInterface
 	(
 		protected ContainerInterface $container,
 		protected controller_helper $controller_helper,
-		protected auth $auth,
 		protected config $config,
 		protected driver_interface $db,
 		protected dispatcher $dispatcher,
 		protected language $language,
 		protected template $template,
-		protected user $user,
 		protected string $php_ext,
 		protected string $admin_path,
 		protected string $root_path
@@ -47,7 +45,20 @@ abstract class base implements ServiceSubscriberInterface
 
 	public static function getSubscribedServices(): array
 	{
-		return [];
+		return [
+			'auth' => auth::class,
+			'user' => user::class,
+		];
+	}
+
+	protected function get_auth(): auth
+	{
+		return $this->container->get('auth');
+	}
+
+	protected function get_user(): user
+	{
+		return $this->container->get('user');
 	}
 
 	/**
