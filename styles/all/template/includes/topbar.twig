@@ -3,11 +3,9 @@
 	<div class="bar-left navbar-left">
 
 		{# Here should go brand #}
-		<h1>
-			<a class="bar-item action brand-action" href="{{ path('baihu_main_index') }}" data-tooltip="true" title="{{ SITENAME }}">
-				{{ Icon('gzo', 'GZO', SITENAME, true, 'brand') }}
-			</a>
-		</h1>
+		<a class="bar-item action brand-action" href="{{ path('baihu_main_index') }}" data-tooltip="true" title="{{ SITENAME }}">
+			{{ Icon('gzo', 'GZO', SITENAME, true, 'brand') }}
+		</a>
 
 		{# Left side drawer #}
 		<button class="bar-item action" data-tooltip="true" data-toggle="drawer-left" title="{{ lang('QUICK_LINKS') }}">
