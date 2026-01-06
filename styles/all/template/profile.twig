@@ -4,26 +4,16 @@
 
 	{% EVENT memberlist_view_content_prepend %}
 
-	<div class="profile-content">
+	<div class="block profile-block">
+		{# <div class="bar block-bar">
+			<span class="bar-item bar-info">
+				<h3>{{ lang('USER_FORUM') }}</h3>
+			</span>
+		</div> #}
 
-		<div class="block profile-card">
+		<div class="profile-content">Under Construction...</div>
 
-			<h5 class="profile-meta-5">{{ lang('INFORMATION') }}</h5>
-			<dl class="profile-details-stats">
-
-				<dt>{{ lang('USERNAME') ~ lang('COLON') }}</dt>
-				<dd>
-					{{- baihu_username('username', user_id, username, color, '') -}}
-					{% if U_USER_ADMIN %} [ <a href="{{ U_USER_ADMIN }}">{{ lang('USER_ADMIN') }}</a> ]{% endif %}
-					{% if U_USER_BAN %} [ <a href="{{ U_USER_BAN }}">{{ lang('USER_BAN') }}</a> ]{% endif %}
-					{% if U_SWITCH_PERMISSIONS %} [ <a href="{{ U_SWITCH_PERMISSIONS }}">{{ lang('USE_PERMISSIONS') }}</a> ]{% endif %}
-				</dd>
-
-				{% if S_USER_INACTIVE %}<dt>{{ lang('USER_IS_INACTIVE') ~ lang('COLON') }}</dt> <dd>{{ USER_INACTIVE_REASON }}</dd>{% endif %}
-				{% if AGE is not empty %}<dt>{{ lang('AGE') ~ lang('COLON') }}</dt> <dd>{{ AGE }}</dd>{% endif %}
-
-				{% EVENT ganstaz_gzo_age_after %}
-
+			{# <h5 class="profile-meta-5">{{ lang('USER_FORUM') }}</h5> #}
 				{# {% if S_GROUP_OPTIONS %}
 					{% import '@baihu_baihu/macros/forms.twig' as form %}
 
@@ -33,100 +23,20 @@
 					</dd>
 				{% endif %} #}
 
-				{% EVENT memberlist_view_non_contact_custom_fields_before %}
-
-				{% for cf in custom_fields %}
-					{% if cf.S_PROFILE_CONTACT == false %}
-						<dt>{{ cf.PROFILE_FIELD_NAME ~ lang('COLON') }}</dt> <dd>{{ cf.PROFILE_FIELD_VALUE }}</dd>
-					{% endif %}
-				{% endfor %}
-
-				{% EVENT memberlist_view_non_contact_custom_fields_after %}
-				{% EVENT memberlist_view_zebra_before %}
-
-				{% if S_USER_LOGGED_IN and S_ZEBRA %}
-					{% if U_REMOVE_FRIEND %}
-						<dt>&nbsp;</dt> <dd class="zebra"><a href="{{ U_REMOVE_FRIEND }}" data-ajax="zebra"><strong>{{ lang('REMOVE_FRIEND') }}</strong></a></dd>
-					{% elseif U_REMOVE_FOE %}
-						<dt>&nbsp;</dt> <dd class="zebra"><a href="{{ U_REMOVE_FOE }}" data-ajax="zebra"><strong>{{ lang('REMOVE_FOE') }}</strong></a></dd>
-					{% else %}
-						{% if U_ADD_FRIEND %}
-							<dt>&nbsp;</dt> <dd class="zebra"><a href="{{ U_ADD_FRIEND }}" data-ajax="zebra"><strong>{{ lang('ADD_FRIEND') }}</strong></a></dd>
-						{% endif %}
-						{% if U_ADD_FOE %}
-							<dt>&nbsp;</dt> <dd class="zebra"><a href="{{ U_ADD_FOE }}" data-ajax="zebra"><strong>{{ lang('ADD_FOE') }}</strong></a></dd>
-						{% endif %}
-					{% endif %}
-				{% endif %}
-
-				{% EVENT memberlist_view_zebra_after %}
-			</dl>
-		</div>
-
-		<div class="block profile-card">
-
-			<h5 class="profile-meta-5">{{ lang('USER_FORUM') }}</h5>
-			<dl class="profile-details-stats">
-
-				{% EVENT memberlist_view_user_statistics_before %}
-
-				<dt>{{ lang('JOINED') ~ lang('COLON') }}</dt> <dd>{{ JOINED }}</dd>
-
-				{% EVENT ganstaz_gzo_joined_after %}
-
-				<dt>{{ lang('LAST_ACTIVE') ~ lang('COLON') }}</dt> <dd>{{ LAST_ACTIVE }}</dd>
-				{% if S_WARNINGS %}
-					<dt>{{ lang('WARNINGS') ~ lang('COLON') }}</dt>
-					<dd>
-						{{ WARNINGS }}
-						{% if U_NOTES or U_WARN %}[
-							{% if U_NOTES %}<a href="{{ U_NOTES }}">{{ lang('VIEW_NOTES') }}</a>{% endif %}
-							{% if U_WARN %}{% if U_NOTES %} | {% endif %}<a href="{{ U_WARN }}">{{ lang('WARN_USER') }}</a>{% endif %} ]
-						{% endif %}
-					</dd>
-				{% endif %}
-
-				<dt>{{ lang('TOTAL_POSTS') ~ lang('COLON') }}</dt>
-				<dd>{{ POSTS }} {% if S_DISPLAY_SEARCH %}| <a href="{{ U_SEARCH_USER }}">{{ lang('SEARCH_USER_POSTS') }}</a>{% endif %}
-					{% if POSTS_PCT %}<br>({{ POSTS_PCT }} / {{ POSTS_DAY }}){% endif %}
-					{% if POSTS_IN_QUEUE and U_MCP_QUEUE %}
-						<br>(<a href="{{ U_MCP_QUEUE }}">{{ lang('POSTS_IN_QUEUE') }}</a>){% elseif POSTS_IN_QUEUE %}<br>({{ lang('POSTS_IN_QUEUE') }})
-					{% endif %}
-				</dd>
-
-				{% if S_SHOW_ACTIVITY and POSTS %}
-					<dt>{{ lang('ACTIVE_IN_FORUM') ~ lang('COLON') }}</dt>
-					<dd>
-						{% if ACTIVE_FORUM != '' %}
-							<a href="{{ U_ACTIVE_FORUM }}">{{ ACTIVE_FORUM }}</a><br>({{ ACTIVE_FORUM_POSTS }} / {{ ACTIVE_FORUM_PCT }})
-						{% else %} -
-						{% endif %}
-					</dd>
-
-					<dt>{{ lang('ACTIVE_IN_TOPIC') ~ lang('COLON') }}</dt>
-					<dd>
-						{% if ACTIVE_TOPIC != '' %}
-							<a href="{{ U_ACTIVE_TOPIC }}">{{ ACTIVE_TOPIC }}</a><br>({{ ACTIVE_TOPIC_POSTS }} / {{ ACTIVE_TOPIC_PCT }})
-						{% else %} -
-						{% endif %}
-					</dd>
-				{% endif %}
-
-				{% EVENT memberlist_view_user_statistics_after %}
-
-			</dl>
-		</div>
-
-		{% if SIGNATURE %}
-			<div class="block profile-card">
-				<h5 class="profile-meta-5">{{ lang('SIGNATURE') }}</h5>
-
-				<div class="profile-details-stats">{{ SIGNATURE }}</div>
-
-			</div>
-		{% endif %}
-
 	</div>
+
+	{% if SIGNATURE %}
+		<div class="block profile-block">
+			<div class="bar block-bar">
+				<span class="bar-item bar-info">
+					<h3>{{ lang('SIGNATURE') }}</h3>
+				</span>
+			</div>
+
+			<div class="profile-content">{{ SIGNATURE }}</div>
+
+		</div>
+	{% endif %}
 
 	{% EVENT memberlist_view_content_append %}
 

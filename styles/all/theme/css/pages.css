@@ -87,28 +87,83 @@
 	}
 }
 
-/* Profile content */
-.profile-content {
+/* Profile left side */
+.profile-block {
+	.block-stats {
+		color: var(--color-text);
+		padding: unset;
+	}
+
 	.profile-meta {
 		text-align: center;
 		margin: 0;
 		padding: var(--spacing-3);
 
-		.profile-user-title {
-			opacity: 0.38;
-		}
-
 		.profile-group img {
 			max-width: 200px;
 		}
 	}
+}
+
+.profile-details {
+	font-size: var(--font-size);
+
+	h4 {
+		font-size: var(--font-size);
+	}
+
+	.profile-details-divider {
+		background-color: var(--border-color);
+		height: 1px;
+	}
+
+	.profile-details-item {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-md);
+		white-space: nowrap;
+		position: relative;
+		overflow: hidden;
+		padding: var(--spacing-2) var(--spacing);
+	}
+
+	.profile-details-link {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border-radius: inherit;
+
+		&:hover {
+			background-color: color-mix(in hsl, hsl(229.09, 75.86%, 65.88%) 4%, transparent);
+		}
+	}
+
+	.profile-details-title {
+		opacity: 0.5;
+	}
+
+	.profile-details-item-hero {
+		font-weight: var(--font-weight-6);
+		margin-left: auto
+	}
+
+	.profile-details-divider:last-of-type {
+		display: none;
+	}
+}
+
+/* Profile content */
+.profile-content {
+	padding: var(--spacing-4);
 
 	.profile-meta-5 {
 		font-size: var(--font-size);
 		margin-bottom: var(--spacing-3);
 	}
 
-	.profile-details-text,
+	/* .profile-details-text,
 	.profile-details-link {
 		vertical-align: middle;
 	}
@@ -136,5 +191,5 @@
 
 	.profile-card:last-of-type {
 		margin-bottom: 0;
-	}
+	} */
 }
