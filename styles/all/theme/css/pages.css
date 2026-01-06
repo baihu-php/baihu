@@ -127,6 +127,10 @@
 		padding: var(--spacing-2) var(--spacing);
 	}
 
+	.profile-navigation-link {
+		padding-inline: var(--spacing);
+	}
+
 	.profile-details-link {
 		position: absolute;
 		top: 0;

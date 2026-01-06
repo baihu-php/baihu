@@ -54,57 +54,42 @@
 			</span>
 		</div>
 
-		<ul class="block-stats profile-details">
+		<ul class="navigation block-stats profile-details">
 			{% if U_EMAIL %}
-				<li class="profile-details-item">
-					{{ link({'class': 'profile-details-link', 'href': U_EMAIL, 'title': lang('SEND_EMAIL_USER')}) }}
-
-					<span class="profile-details-icon">{{ Icon('gzo', 'email') }}</span>
-					<span class="profile-details-status">
-						<h4>{{ lang('SEND_EMAIL_USER') }}</h4>
-						{# <small class="profile-details-title">{% if POSTS_PCT %}{{ POSTS_PCT }}{% endif %}</small> #}
-					</span>
-
+				<li class="navigation-item">
+					<a class="navigation-link profile-navigation-link" href="{{ U_EMAIL }}" title="{{ lang('SEND_EMAIL_USER') }}" role="menuitem">
+						{{- Icon('gzo', 'email') -}}
+						<span class="navigation-text">{{ lang('SEND_EMAIL_USER') }}</span>
+					</a>
 				</li>
 			{% endif %}
 
 			{% if U_PM %}
-				<li class="profile-details-item">
-					{{ link({'class': 'profile-details-link', 'href': U_PM, 'title': lang('SEND_PRIVATE_MESSAGE')}) }}
-
-					<span class="profile-details-icon">{{ Icon('gzo', 'mdi--comment-account-outline') }}</span>
-					<span class="profile-details-status">
-						<h4>{{ lang('SEND_PRIVATE_MESSAGE') }}</h4>
-						{# <small class="profile-details-title">{% if POSTS_PCT %}{{ POSTS_PCT }}{% endif %}</small> #}
-					</span>
-
+				<li class="navigation-item">
+					<a class="navigation-link profile-navigation-link" href="{{ U_PM }}" title="{{ lang('SEND_PRIVATE_MESSAGE') }}" role="menuitem">
+						{{- Icon('gzo', 'mdi--comment-account-outline') -}}
+						<span class="navigation-text">{{ lang('SEND_PRIVATE_MESSAGE') }}</span>
+					</a>
 				</li>
 			{% endif %}
 
 			{% EVENT memberlist_view_contact_custom_fields_before %}
 
 			{% for cf in custom_fields %}
-
 				{% if cf.S_PROFILE_CONTACT %}
-
 					{% if cf.PROFILE_FIELD_CONTACT %}
 						{% set field_icon = S_PROFILE_PHPBB_WEBSITE ? 'tabler--world-www' : '' %}
 
-						<li class="profile-details-item">
-							{{ link({'class': 'profile-details-link', 'href': cf.PROFILE_FIELD_CONTACT, 'title': cf.PROFILE_FIELD_DESC}) }}
-
-							<span class="profile-details-icon">{{ Icon('gzo', 'tabler--world-www', cf.PROFILE_FIELD_DESC) }}</span>
-							<span class="profile-details-status">
-								<h4>{{ cf.PROFILE_FIELD_DESC }}</h4>
-								{# <small class="profile-details-title">{% if POSTS_PCT %}{{ POSTS_PCT }}{% endif %}</small> #}
-							</span>
-
+						<li class="navigation-item">
+							<a class="navigation-link profile-navigation-link" href="{{ cf.PROFILE_FIELD_CONTACT }}" title="{{ lang(cf.PROFILE_FIELD_DESC) }}" role="menuitem">
+								{{- Icon('gzo', 'tabler--world-www') -}}
+								<span class="navigation-text">{{ lang(cf.PROFILE_FIELD_DESC) }}</span>
+							</a>
 						</li>
 					{% else %}
 						{# Needs work #}
 						<li>{{ cf.PROFILE_FIELD_VALUE }}</li>
 					{% endif %}
-
 				{% endif %}
 			{% endfor %}
 
