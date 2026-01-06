@@ -23,11 +23,21 @@ $lang = array_merge($lang, [
 	'DASHBOARD'		 => 'Dashboard',
 	'AREA_MAIN_PAGE' => 'Baihu AreaZ',
 	'BAIHU_CREATE'	 => 'Create',
+	'BAIHU_TOOLS'	 => 'Tools',
 	'BAIHU_FORUM'	 => 'New forum topic',
+	'BAIHU_ACHIEVEMENTS' => 'Achievements',
+	'BAIHU_RANK'	 => 'Rank',
+	'BAIHU_CONTACT'	 => 'Contact',
 
 	// Drawer
 	'DRAWER_GENERAL' => 'General',
 	'DRAWER_LEGAL'	 => 'Help & Legal',
+
+	'BAIHU_POSTS_IN_QUEUE' => [
+		0 => 'No posts in queue',
+		1 => 'Post in queue',
+		2 => 'Posts in queue',
+	],
 
 	'BAIHU_LIKE' => 'Like',
 
