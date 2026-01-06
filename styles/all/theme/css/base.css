@@ -1484,6 +1484,7 @@ main {
 /* Block */
 .block {
 	background-color: var(--block-background-color);
+	border: var(--border);
 	border-radius: var(--border-radius);
 	box-shadow: var(--box-shadow);
 	transition: var(--transition);
@@ -1497,7 +1498,7 @@ main {
 		background-color: var(--bar-bg);
 		border-top-left-radius: var(--border-radius);
 		border-top-right-radius: var(--border-radius);
-		border-bottom: 2px solid var(--border-color);
+		border-bottom: var(--border);
 		min-width: fit-content;
 	}
 
