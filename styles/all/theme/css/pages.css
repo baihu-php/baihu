@@ -1,45 +1,89 @@
 /* Profile page */
 .profile-header {
-	border-radius: var(--border-radius);
-	margin-block-end: var(--spacing-md);
-
 	.profile-header-cover {
-		background-image: url(./../../../../../test/styles/all/theme/icons/img/testing.webp);
+		background-image: url(./../../../../../test/styles/all/theme/icons/img/baihu-header.png);
 		border-radius: var(--border-radius);
 	}
 
-	/* .profile-header-info {
+	.profile-header-info {
+		display: flex;
+		align-items: center;
 		position: relative;
-		height: 100px;
+		flex-wrap: wrap;
+		gap: var(--spacing-2);
+		padding: var(--spacing-2) var(--spacing-lg);
+
+		.profile-header-avatar-wrap {
+			flex-basis: 100px;
+			margin-inline: 0;
+			margin-inline-end: var(--spacing);
+			align-self: flex-end;
+			position: relative;
+		}
 
 		.profile-header-avatar {
 			position: absolute;
-			top: -2rem;
-			margin-left: 2rem;
+			bottom: 0;
 		}
-	} */
-}
-
-.profile-title {
-	font-size: var(--spacing-md);
-	margin-block-end: var(--spacing-md);
-}
-
-/* Profile left side */
-.profile {
-	padding-block: var(--spacing);
-	margin: 0;
-
-	.profile-avatar-wrap {
-		width: 336px;
-		margin-inline: auto;
 	}
 
-	.profile-details {
-		list-style: none;
-		margin: 0;
-		margin-block-start: var(--spacing-md);
-		padding-inline: var(--spacing);
+	.profile-header-avatar-wrap {
+		&.avatar-md {
+			width: .5rem;
+			height: .5rem;
+		}
+
+		.avatar-online {
+			top: unset;
+			bottom: 170%;
+		}
+	}
+
+	.profile-header-meta {
+		display: flex;
+		align-items: center;
+
+		h1 {
+			font-size: 1.5rem;
+		}
+
+		.profile-header-tools {
+			position: relative;
+			margin-inline-start: var(--spacing-2);
+		}
+	}
+
+	.profile-header-time,
+	.profile-header-title {
+		opacity: 0.5;
+	}
+
+	.profile-header-stats {
+		display: flex;
+		gap: var(--spacing-2);
+
+		h4 {
+			font-size: var(--font-size);
+		}
+
+		div {
+			border-inline-start: 1px solid var(--color-light-alt-1);
+			padding: var(--spacing-1) var(--spacing-lg);
+		}
+
+		@container page (inline-size < 741px) {
+			text-align: center;
+			flex: 1 1 100%;
+			border-block-start: 1px solid var(--color-light-alt-1);
+
+			div {
+				flex: 1 1 auto;
+			}
+
+			div:first-of-type {
+				border-inline-start: unset;
+			}
+		}
 	}
 }
 

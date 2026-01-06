@@ -1,0 +1,122 @@
+<div class="popover baihu-container action-toggle baihu-profile-header-tools">
+	<nav>
+		<ul class="navigation">
+
+		{% if U_EDIT_SELF %}
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ U_EDIT_SELF }}" title="{{ lang('EDIT_PROFILE') }}" role="menuitem">
+					{{- Icon('gzo', 'mdi--account-edit-outline', lang('EDIT_PROFILE'), true, 'action-icon') -}}
+					<span class="navigation-text">{{ lang('EDIT_PROFILE') }}</span>
+				</a>
+			</li>
+		{% endif %}
+
+		{% EVENT memberlist_view_zebra_before %}
+
+		{% if S_USER_LOGGED_IN and S_ZEBRA %}
+			{% set u_add_remove_friend = '' %}
+			{% set l_add_remove_friend = '' %}
+			{% set i_add_remove_friend = '' %}
+			{% set u_add_remove_foe = '' %}
+			{% set l_add_remove_foe = '' %}
+			{% set i_add_remove_foe = '' %}
+
+			{% if U_REMOVE_FRIEND %}
+				{% set u_add_remove_friend = U_REMOVE_FRIEND %}
+				{% set l_add_remove_friend = lang('REMOVE_FRIEND') %}
+				{% set i_add_remove_friend = 'person_remove' %}
+
+			{% elseif U_REMOVE_FOE %}
+				{% set u_add_remove_foe = U_REMOVE_FOE %}
+				{% set l_add_remove_foe = lang('REMOVE_FOE') %}
+				{% set i_add_remove_foe = 'person_remove' %}
+
+			{% else %}
+				{% if U_ADD_FRIEND %}
+					{% set u_add_remove_friend = U_ADD_FRIEND %}
+					{% set l_add_remove_friend = lang('ADD_FRIEND') %}
+					{% set i_add_remove_friend = 'person_add' %}
+
+				{% endif %}
+				{% if U_ADD_FOE %}
+					{% set u_add_remove_foe = U_ADD_FOE %}
+					{% set l_add_remove_foe = lang('ADD_FOE') %}
+					{% set i_add_remove_foe = 'person_add' %}
+
+				{% endif %}
+			{% endif %}
+
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ u_add_remove_friend }}" title="{{ lang(l_add_remove_friend) }}" data-ajax="zebra" role="menuitem">
+					{{- Icon('gzo', i_add_remove_friend, lang(l_add_remove_friend), true, 'action-icon') -}}
+					<span class="navigation-text">{{ lang(l_add_remove_friend) }}</span>
+				</a>
+			</li>
+
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ u_add_remove_foe }}" title="{{ lang(l_add_remove_foe) }}" data-ajax="zebra" role="menuitem">
+					{{- Icon('gzo', i_add_remove_foe, lang(l_add_remove_foe), true, 'action-icon') -}}
+					<span class="navigation-text">{{ lang(l_add_remove_foe) }}</span>
+				</a>
+			</li>
+		{% endif %}
+
+		{% EVENT memberlist_view_zebra_after %}
+
+		<li class="navigation-divider"></li>
+		{% if U_USER_ADMIN %}
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ U_USER_ADMIN }}" title="{{ lang('USER_ADMIN') }}" role="menuitem">
+					{{- Icon('gzo', 'manage_accounts', lang('USER_ADMIN'), true, 'action-icon') -}}
+					<span class="navigation-text">{{ lang('USER_ADMIN') }}</span>
+				</a>
+			</li>
+		{% endif %}
+
+		{% if U_SWITCH_PERMISSIONS %}
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ U_SWITCH_PERMISSIONS }}" title="{{ lang('USE_PERMISSIONS') }}" role="menuitem">
+					{{- Icon('gzo', 'user_attributes', lang('USE_PERMISSIONS'), true, 'action-icon') -}}
+					<span class="navigation-text">{{ lang('USE_PERMISSIONS') }}</span>
+				</a>
+			</li>
+		{% endif %}
+
+		<li class="navigation-divider"></li>
+		{% if U_USER_BAN %}
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ U_USER_BAN }}" title="{{ lang('USER_BAN') }}" role="menuitem">
+					{{- Icon('gzo', 'gavel', lang('USER_BAN'), true, 'action-icon') -}}
+					<span class="navigation-text">{{ lang('USER_BAN') }}</span>
+				</a>
+			</li>
+		{% endif %}
+
+		{% if S_WARNINGS %}
+			{% if U_NOTES or U_WARN %}
+				{% if U_NOTES %}
+				<li class="navigation-item">
+					<a class="navigation-link" href="{{ U_NOTES }}" title="{{ lang('VIEW_NOTES') }}" role="menuitem">
+						{{- Icon('gzo', 'problem', lang('VIEW_NOTES'), true, 'action-icon') -}}
+						<span class="navigation-text">{{ lang('VIEW_NOTES') }}</span>
+					</a>
+				</li>
+
+				{% endif %}
+
+				{% if U_WARN %}
+				<li class="navigation-item">
+					<a class="navigation-link" href="{{ U_WARN }}" title="{{ lang('WARN_USER') }}" role="menuitem">
+						{{- Icon('gzo', 'mdi--shield-alert-outline', lang('WARN_USER'), true, 'action-icon') -}}
+						<span class="navigation-text">{{ lang('WARN_USER') }}</span>
+					</a>
+				</li>
+				{% endif %}
+
+			{% endif %}
+
+		{% endif %}
+
+		</ul>
+	</nav>
+</div>

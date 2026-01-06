@@ -2,19 +2,56 @@
 
 {% block gzo_main_content_before %}
 
-	<div class="block content-header profile-header">
-		<div class="content-header-cover profile-header-cover"></div>
+	<header class="block content-header profile-header">
 
-		{# <div class="profile-header-info">
-			{{ gzo_avatar(AVATAR_IMG, 'avatar-wrap avatar-ml profile-header-avatar', true, true, T_THEME_PATH) }}
-			<div class="profile-header-avatar-wrap">
+		<div class="content-header-cover-container">
+			<div class="content-header-cover profile-header-cover"></div>
+		</div>
+
+		<div class="profile-header-info">
+			<div class="avatar-wrap profile-header-avatar-wrap avatar-md">
+				{{ avatar('user', AVATAR, '', false, true, 'profile-header-avatar avatar-md', S_ONLINE) }}
 			</div>
-		</div> #}
+
+			<div class="profile-header-meta">
+				<span class="profile-header-status">
+					<h1>{{- baihu_username('username', user_id, username, color, 'profile-user') -}}</h1>
+					{% if RANK_TITLE %}
+						<small class="profile-header-title">{{ RANK_TITLE }}</small>
+					{% endif %}
+				</span>
+
+				<span class="profile-header-tools">
+					<button class="action" data-tooltip="true" data-toggle="profile-header-tools" title="{{ lang('BAIHU_TOOLS') }}">
+						{{ Icon('gzo', 'mdi--more-vert', lang('BAIHU_TOOLS'), true) }}
+					</button>
+
+					{{ include('@baihu_baihu/includes/tools.twig') }}
+				</span>
+
+			</div>
+
+			<div class="profile-header-stats">
+				<div>
+					<h4>{{ lang('JOINED') }}</h4>
+					<small class="profile-header-time">
+						<time class="profile-header-time-text" datetime="{{ JOINED }}" title="{{ JOINED }}" data-short="{{ JOINED }}">{{ JOINED }}</time>
+					</small>
+				</div>
+				<div>
+					<h4>{{ lang('LAST_ACTIVE') }}</h4>
+					<small class="profile-header-time">
+						<time class="profile-header-time-text" datetime="{{ LAST_ACTIVE }}" title="{{ LAST_ACTIVE }}" data-short="{{ LAST_ACTIVE }}">{{ LAST_ACTIVE }}</time>
+					</small>
+				</div>
+			</div>
+
+		</div>
 
 
 		{% if tabs|length > 1 %}
 
-			<nav class="content-tabs" role="navigation">
+			<nav class="block content-tabs" role="navigation">
 				<ul role="menubar">
 					{% for tab in tabs %}
 						{{ include('@baihu_baihu/includes/tab-item.twig') }}
@@ -24,22 +61,18 @@
 
 		{% endif %}
 
-	</div>
+	</header>
 
-		{# Testing tab navigation #}
-		<nav class="content-tabs" role="navigation">
+		{# <h2>Testing tab navigation</h2> #}
+		<nav class="block content-tabs" role="navigation">
 			<ul role="menubar">
 				<li><a class="tab-active" href="{{ U_VIEW_PROFILE }}">Profile</a></li>
-				<li><a href="{{ path('baihu_main_index') }}">Test 1</a></li>
-				<li><a href="">Test 2</a></li>
-				<li><a href="">Test 3</a></li>
-				<li><a href="">Test 4</a></li>
-				<li><a href="">Test 5</a></li>
+				<li><a href="{{ path('baihu_main_index') }}">Achievements</a></li>
+				<li><a href="">Guilds</a></li>
+				<li><a href="">SubForum</a></li>
+				<li><a href="">Zodiac</a></li>
 			</ul>
 		</nav>
-
-		{# TODO: Needs some work? #}
-		<h2 class="profile-title">{{ lang('VIEWING_PROFILE', USERNAME) }}</h2>
 
 {% endblock %}
 
