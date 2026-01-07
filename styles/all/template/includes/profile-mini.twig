@@ -1,4 +1,4 @@
-<div class="block post-profile action-toggle baihu-author-aid-{{ article.id }}">
+<div class="block profile-block post-profile action-toggle baihu-author-aid-{{ article.id }}">
 
 	<a href="{{ article.author_profile }}">
 		<div class="avatar-wrap avatar-lg">
@@ -6,15 +6,15 @@
 		</div>
 	</a>
 
-	<h4 class="post-profile-meta">
-		{{- baihu_username('profile', article.author, article.author_name, article.author_color, 'post-profile-user') -}}
+	<h4 class="profile-meta">
+		{{- baihu_username('profile', article.author, article.author_name, article.author_color, 'profile-user') -}}
 
 		{% if article.author_rank %}
-			<small class="post-profile-user-title">{{ article.author_rank }}</small>
+			<small class="profile-user-title">{{ article.author_rank }}</small>
 		{% endif %}
 
 		{% if article.author_rank_img %}
-			<span class="post-profile-rank">{{ article.author_rank_img }}</span>
+			<span class="profile-rank">{{ article.author_rank_img }}</span>
 		{% endif %}
 	</h4>
 

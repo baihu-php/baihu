@@ -467,24 +467,10 @@
 	&.is-active {
 		transform: scale(1);
 	}
+}
 
-	.post-profile-meta {
-		text-align: center;
-		margin: 0;
-		padding: 16px;
 
-		.post-profile-user:hover {
-			text-decoration: underline;
-			transition: 0.5s;
-		}
 
-		.post-profile-user-title {
-			opacity: 0.38;
-		}
-	}
-
-	.post-profile-rank img {
-		max-width: 200px;
 	}
 }
 

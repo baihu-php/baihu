@@ -13,7 +13,7 @@
 				<li class="profile-details-item">
 					<span class="profile-details-status">
 						<h4>{{ lang('USER_IS_INACTIVE') }}</h4>
-						<small class="profile-details-title">{{ USER_INACTIVE_REASON }}</small>
+						<small class="profile-title">{{ USER_INACTIVE_REASON }}</small>
 					</span>
 				</li>
 			{% endif %}
@@ -22,7 +22,7 @@
 				<li class="profile-details-item">
 					<span class="profile-details-status">
 						<h4>{{ lang('AGE') }}</h4>
-						<small class="profile-details-title">{{ AGE }}</small>
+						<small class="profile-title">{{ AGE }}</small>
 					</span>
 				</li>
 				<li class="profile-details-divider"></li>
@@ -35,7 +35,7 @@
 					{% if cf.S_PROFILE_CONTACT == false %}
 						<span class="profile-details-status">
 							<h4>{{ cf.PROFILE_FIELD_NAME }}</h4>
-							<small class="profile-details-title">{{ cf.PROFILE_FIELD_VALUE }}</small>
+							<small class="profile-title">{{ cf.PROFILE_FIELD_VALUE }}</small>
 						</span>
 					{% endif %}
 				{% endfor %}
@@ -99,32 +99,6 @@
 	</div>
 	{% EVENT memberlist_view_contact_after %}
 
-	{% if RANK_TITLE %}
-	<div class="block profile-block">
-		<div class="bar block-bar">
-			<span class="bar-item bar-info">
-				<h3>{{ lang('BAIHU_RANK') }}</h3>
-			</span>
-		</div>
-
-		<div class="block-stats profile-details">
-		<h3 class="profile-meta">
-
-			{# {{- baihu_username('profile', user_id, username, color, 'profile-user-link') -}} #}
-
-			{% EVENT memberlist_view_rank_avatar_before %}
-
-
-			{% if RANK_IMG %}
-				<span class="profile-group">{{ RANK_IMG }}</span>
-			{% endif %}
-
-			{% EVENT memberlist_view_rank_avatar_after %}
-		</h3>
-		</div>
-	</div>
-	{% endif %}
-
 	<div class="block profile-block">
 		<div class="bar block-bar">
 			<span class="bar-item bar-info">
@@ -143,7 +117,7 @@
 
 				<span class="profile-details-status">
 					<h4>{{ lang('TOTAL_POSTS') }}</h4>
-					<small class="profile-details-title">{% if POSTS_PCT %}{{ POSTS_PCT }}{% endif %}</small>
+					<small class="profile-title">{% if POSTS_PCT %}{{ POSTS_PCT }}{% endif %}</small>
 				</span>
 
 				<span class="profile-details-item-hero">{{ POSTS }}</span>
@@ -159,7 +133,7 @@
 
 				<span class="profile-details-status">
 					<h4>{{ lang('BAIHU_POSTS_IN_QUEUE', POSTS_IN_QUEUE) }}</h4>
-					<small class="profile-details-title">test</small>
+					<small class="profile-title">test</small>
 				</span>
 
 				<span class="profile-details-item-hero">{{ POSTS_IN_QUEUE }}</span>
@@ -174,7 +148,7 @@
 
 				<div>
 					<h4>{{ lang('ACTIVE_IN_TOPIC') }}</h4>
-					<small class="profile-details-title">{% if POSTS_PCT %}{{ POSTS_PCT }}{% endif %}</small>
+					<small class="profile-title">{% if POSTS_PCT %}{{ POSTS_PCT }}{% endif %}</small>
 				</div>
 
 				<div class="profile-details-item-hero">{{ POSTS }}</div>

@@ -58,13 +58,26 @@
 		padding: unset;
 	}
 
+	.profile-title {
+		opacity: 0.5;
+	}
+
 	.profile-meta {
 		text-align: center;
 		margin: 0;
 		padding: var(--spacing-3);
 
-		.profile-group img {
-			max-width: 200px;
+		.profile-rank img {
+			max-inline-size: 200px;
+		}
+
+		.profile-user:hover {
+			text-decoration: underline;
+			transition: 0.5s;
+		}
+
+		.profile-user-title {
+			opacity: 0.38;
 		}
 	}
 }
@@ -106,10 +119,6 @@
 		&:hover {
 			background-color: color-mix(in hsl, hsl(229.09, 75.86%, 65.88%) 4%, transparent);
 		}
-	}
-
-	.profile-details-title {
-		opacity: 0.5;
 	}
 
 	.profile-details-item-hero {
