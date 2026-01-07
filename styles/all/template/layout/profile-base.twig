@@ -8,12 +8,12 @@
 			<div class="content-header-cover profile-header-cover"></div>
 		</div>
 
-		<div class="profile-header-info">
-			<div class="avatar-wrap profile-header-avatar-wrap avatar-md">
-				{{ avatar('user', AVATAR, '', false, true, 'profile-header-avatar avatar-md', S_ONLINE) }}
+		<div class="content-header-info">
+			<div class="avatar-wrap header-avatar-wrap header-avatar-size">
+				{{ avatar('user', AVATAR, '', false, true, 'content-header-avatar avatar-md', S_ONLINE) }}
 			</div>
 
-			<div class="profile-header-meta">
+			<div class="content-header-meta">
 				<span class="profile-header-status">
 					<h1>{{- baihu_username('username', user_id, username, color, 'profile-user') -}}</h1>
 					{% if RANK_TITLE %}

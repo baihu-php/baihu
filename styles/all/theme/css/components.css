@@ -117,12 +117,11 @@
 
 /* Content header */
 .content-header {
-	/* background-color: var(--block-background-color); */
-	min-height: 200px;
+	min-block-size: 200px;
 
 	.content-header-cover-container {
 		padding: var(--spacing-2);
-		padding-bottom: 0;
+		padding-block-end: 0;
 	}
 
 	.content-header-cover {
@@ -131,13 +130,44 @@
 		background-size: cover;
 		height: 300px;
 	}
-}
 
-/* Header */
-.content-header-cover {
-	background-image: url(../../template/icons/img/testing.webp);
-	border-bottom-left-radius: var(--border-radius);
-	border-bottom-right-radius: var(--border-radius);
+	.content-header-info {
+		display: flex;
+		align-items: center;
+		position: relative;
+		flex-wrap: wrap;
+		gap: var(--spacing-2);
+		padding: var(--spacing-2) var(--spacing-lg);
+
+		.header-avatar-wrap {
+			flex-basis: 100px;
+			margin-inline: 0;
+			margin-inline-end: var(--spacing);
+			align-self: flex-end;
+			position: relative;
+		}
+
+		.content-header-avatar {
+			position: absolute;
+			bottom: 0;
+		}
+	}
+
+	.header-avatar-wrap {
+		&.header-avatar-size {
+			width: 0.5rem;
+			height: 0.5rem;
+		}
+	}
+
+	.content-header-meta {
+		display: inline-flex;
+		align-items: center;
+
+		h1 {
+			font-size: 1.5rem;
+		}
+	}
 }
 
 /* Content tabs */
