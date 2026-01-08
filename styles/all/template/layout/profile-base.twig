@@ -14,7 +14,13 @@
 			</div>
 			<div class="content-header-meta">
 				<span class="profile-header-status">
-					<h1>{{- baihu_username('username', user_id, username, color, 'profile-user') -}}</h1>
+					<h1>
+						{# <button class="profile-btn" popovertarget="profile"> #}
+						{{- baihu_username('username', user_id, username, color, 'profile-user') -}}
+						{# </button> #}
+
+						{# {{ include('@baihu_baihu/includes/profile-item.twig') }} #}
+					</h1>
 					{% if RANK_TITLE %}
 						<small class="profile-header-title">{{ RANK_TITLE }}</small>
 					{% endif %}

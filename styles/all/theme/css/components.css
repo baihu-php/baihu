@@ -469,10 +469,40 @@
 	}
 }
 
+/* .profile-btn {
+	anchor-name: --profile-btn;
+}
 
+.profile {
+	position: absolute;
+	width: 336px;
+	padding: unset;
+	padding-block-start: var(--spacing);
+	margin-block-end: unset;
+	inset: auto;
+	position-anchor: profile-btn;
+	top: anchor(bottom);
+	left: anchor(left);
+	transition: all 0.2s ease allow-discrete;
+	scale: 1;
+	transform-origin: left top;
+	opacity: 1;
 
+	:popover-open {
+		display: grid;
+		opacity: 0;
+		scale: 0;
 	}
 }
+
+@starting-style {
+	.profile {
+		&:popover-open {
+			opacity: 0;
+			scale: 0;
+		}
+	}
+} */
 
 /* Containers */
 .popover,
