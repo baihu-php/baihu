@@ -9,7 +9,7 @@
 				{# <button class="bar-profile action profile-btn" popovertarget="author-aid-{{ article.id }}"> #}
 
 					<span class="avatar-wrap avatar avatar-sm">
-						{{ avatar('user', article.author_avatar[0], '', false, true, 'avatar-sm', true) }}
+						{{ avatar('user', article.author_avatar[0], '', false, true, 'avatar-sm', S_ONLINE ?? false) }}
 					</span>
 
 					<span class="bar-user">
@@ -27,7 +27,7 @@
 					article.author_color,
 					article.author_rank,
 					article.author_rank_img,
-					true,
+					S_ONLINE ?? false,
 					article.id
 				) }}
 
@@ -44,9 +44,12 @@
 
 	<section class="post-body">
 
-		<h3>{{ link({'href': article.link}, article.title) }}</h3>
+		<h3 class="block-title post-title">{{ link({'href': article.link}, article.title) }}</h3>
 		{% if S_PROFILE_POSTS %}
-			<h5>{{ lang('BAIHU_POSTED_IN', article.s_first_post_id) }} {{ link({'href': path('baihu_articles', {'fid': article.category_id})}, article.category_name) }}</h5>
+			<h5>{{ Icon('gzo', 'mdi--file-outline', lang('IN_TOPIC')) }}
+				<span class="post-body-info-text">{{ lang('BAIHU_POSTED_IN', article.s_first_post_id) }}</span>
+				{{ link({'href': path('baihu_articles', {'fid': article.category_id})}, article.category_name) }}
+			</h5>
 		{% endif %}
 
 		<div class="content">

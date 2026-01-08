@@ -1335,13 +1335,6 @@ main {
 	display: flex;
 	gap: var(--spacing-4);
 
-	h3 {
-		font-size: 1.2rem;
-		overflow-x: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
-
 	.section-main {
 		flex: 3;
 	}
@@ -1490,6 +1483,20 @@ main {
 	transition: var(--transition);
 	will-change: box-shadow;
 	margin-bottom: var(--spacing-md);
+
+    .block-title {
+	    font-size: clamp(1rem, 2.5vw, 1.2rem);;
+	    font-weight: var(--font-weight);
+	    letter-spacing: normal;
+	    overflow-x: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    margin-bottom: 0;
+
+	    .post-title-inherit {
+		    font: inherit;
+	   }
+    }
 
 	.block-bar {
 		--bar-bg: var(--block-background-color);

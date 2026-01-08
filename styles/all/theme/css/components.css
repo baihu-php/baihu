@@ -394,27 +394,37 @@
 		min-height: 192px;
 		margin-bottom: 0;
 		padding: var(--spacing-4);
+
+		.post-body-info-text {
+			margin-inline: var(--spacing-1);
+			opacity: 0.8;
+		}
 	}
 
 	h5 {
 		font-size: calc(var(--font-size) - 0.2rem);
+		display: inline-flex;
+		align-items: center;
+		margin-block-start: var(--spacing-1);
+
+		svg {
+			width: 16px;
+			height: 16px;
+		}
+	}
+}
+
+.post-title-announcement {
+    font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+
+	.post-title-inherit {
+		font: inherit;
 	}
 }
 
 .post-announcement {
 	.content {
 		margin-top: 0;
-	}
-}
-
-.post-title {
-	font-size: clamp(1.375rem, 2.5vw, 1.75rem);;
-	letter-spacing: normal;
-	font-weight: var(--font-weight);
-	margin-bottom: 0;
-
-	.post-title-inherit {
-		font: inherit;
 	}
 }
 
