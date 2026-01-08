@@ -108,7 +108,6 @@ final class profile extends base
 		// Do the relevant calculations
 		$percentage = ($this->config['num_posts']) ? min(100, ($member['user_posts'] / $this->config['num_posts']) * 100) : 0;
 
-
 		// We need to check if the modules 'zebra', 'notes' and 'warn' are accessible to decide if we can display appropriate links
 		$zebra_enabled = $friends_enabled = $foes_enabled = $user_notes_enabled = $warn_user_enabled = false;
 
