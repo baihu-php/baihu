@@ -39,7 +39,6 @@
 						</span>
 					{% endif %}
 				{% endfor %}
-
 			</li>
 			{% EVENT memberlist_view_non_contact_custom_fields_after %}
 		</ul>
@@ -109,8 +108,6 @@
 		<ul class="block-stats profile-details">
 			{% EVENT memberlist_view_user_statistics_before %}
 
-			{# {{ POSTS_DAY }} #}
-
 			<li class="profile-details-item">
 				{% if POSTS and S_DISPLAY_SEARCH %}<a class="profile-details-link" href="{{ U_SEARCH_USER }}" title="{{ lang('SEARCH_USER_POSTS') }}"></a>{% endif %}
 				<span class="profile-details-icon">{{ Icon('gzo', 'mdi--comment-text-outline') }}</span>
@@ -142,17 +139,6 @@
 			{% endif %}
 
 			<li class="profile-details-divider"></li>
-			{# <li class="profile-details-item">
-
-				<div class="">{{ Icon('gzo', 'tabler--file-text-spark') }}</div>
-
-				<div>
-					<h4>{{ lang('ACTIVE_IN_TOPIC') }}</h4>
-					<small class="profile-title">{% if POSTS_PCT %}{{ POSTS_PCT }}{% endif %}</small>
-				</div>
-
-				<div class="profile-details-item-hero">{{ POSTS }}</div>
-			</li> #}
 
 			{% EVENT memberlist_view_user_statistics_after %}
 		</ul>
