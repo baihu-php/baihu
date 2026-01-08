@@ -126,7 +126,7 @@ final class posts extends base
 	{
 		$build = new \baihu\baihu\src\db\helper($this->db);
 		$build
-			->select('t.topic_id, t.topic_title, t.topic_time, t.topic_views, t.topic_posts_approved, p.post_id, p.poster_id, p.post_text,
+			->select('t.topic_id, t.topic_title, t.topic_time, t.topic_views, t.topic_posts_approved, p.post_id, p.poster_id, p.post_text, p.post_time,
 				u.user_id, u.username, u.user_posts, u.user_rank, u.user_colour, u.user_avatar, u.user_avatar_type, u.user_avatar_width, u.user_avatar_height')
 			->from([
 				TOPICS_TABLE => 't',
@@ -160,7 +160,7 @@ final class posts extends base
 			'id'			  => $row['post_id'],
 			'link'			  => $helper->route('baihu_article', ['aid' => $row['topic_id']]),
 			'title'			  => $this->truncate($row['topic_title'], $this->config['baihu_title_length']),
-			'date'			  => $this->container->get('user')->format_date($row['topic_time']),
+			'date'			  => $this->container->get('user')->format_date($row['post_time']),
 
 			'author'		  => $user_id,
 			'author_name'	  => $user['username'],

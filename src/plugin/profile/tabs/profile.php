@@ -368,7 +368,7 @@ final class profile extends base
 
 	protected function get_user_posts(array $member)
 	{
-		$sql = 'SELECT t.topic_id, t.topic_title, t.topic_time, t.topic_views, t.topic_posts_approved, p.post_id, p.poster_id, p.post_text
+		$sql = 'SELECT t.topic_id, t.topic_title, t.topic_time, t.topic_views, t.topic_posts_approved, p.post_id, p.poster_id, p.post_text, p.post_time
 				FROM ' . POSTS_TABLE . ' p, ' . TOPICS_TABLE . ' t
 				WHERE t.topic_id = p.topic_id
 					AND p.poster_id = ' . (int) $member['user_id'] . '
