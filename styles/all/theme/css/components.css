@@ -395,6 +395,10 @@
 		margin-bottom: 0;
 		padding: var(--spacing-4);
 	}
+
+	h5 {
+		font-size: calc(var(--font-size) - 0.2rem);
+	}
 }
 
 .post-announcement {

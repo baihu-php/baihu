@@ -45,6 +45,9 @@
 	<section class="post-body">
 
 		<h3>{{ link({'href': article.link}, article.title) }}</h3>
+		{% if S_PROFILE_POSTS %}
+			<h5>{{ lang('BAIHU_POSTED_IN', article.s_first_post_id) }} {{ link({'href': path('baihu_articles', {'fid': article.category_id})}, article.category_name) }}</h5>
+		{% endif %}
 
 		<div class="content">
 			{{ article.text ~ (article.is_trimmed ? lang('ELLIPSIS') ~ link({'href': article.link}, lang('READ_FULL'))) }}

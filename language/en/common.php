@@ -25,9 +25,14 @@ $lang = array_merge($lang, [
 	'BAIHU_CREATE'	 => 'Create',
 	'BAIHU_TOOLS'	 => 'Tools',
 	'BAIHU_FORUM'	 => 'New forum topic',
+
 	'BAIHU_ACHIEVEMENTS' => 'Achievements',
 	'BAIHU_RANK'	 => 'Rank',
 	'BAIHU_CONTACT'	 => 'Contact',
+	'BAIHU_POSTED_IN' => [
+		0 => 'Replied to a topic in',
+		1 => 'Posted a topic in',
+	],
 
 	// Drawer
 	'DRAWER_GENERAL' => 'General',
