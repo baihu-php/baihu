@@ -452,7 +452,7 @@
 }
 
 /* Post Profile */
-.post-profile {
+.profile {
 	box-shadow: var(--box-shadow);
 	position: absolute;
 	z-index: 999;

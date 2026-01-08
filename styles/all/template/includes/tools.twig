@@ -82,7 +82,6 @@
 			</li>
 		{% endif %}
 
-		<li class="navigation-divider"></li>
 		{% if U_USER_BAN %}
 			<li class="navigation-item">
 				<a class="navigation-link" href="{{ U_USER_BAN }}" title="{{ lang('USER_BAN') }}" role="menuitem">
@@ -93,6 +92,7 @@
 		{% endif %}
 
 		{% if S_WARNINGS %}
+		<li class="navigation-divider"></li>
 			{% if U_NOTES or U_WARN %}
 				{% if U_NOTES %}
 				<li class="navigation-item">
