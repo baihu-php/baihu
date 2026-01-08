@@ -10,6 +10,7 @@
 
 namespace baihu\baihu\src\plugin\profile\tabs;
 
+use baihu\baihu\src\plugin\article\posts;
 use phpbb\group\helper as group;
 use phpbb\profilefields\manager as cp;
 
@@ -20,6 +21,7 @@ final class profile extends base
 		return array_merge(parent::getSubscribedServices(), [
 			'group_helper' => '?'.group::class,
 			'profilefields.manager' => '?'.cp::class,
+			'baihu.posts' => '?'. posts::class,
 		]);
 	}
 
@@ -348,6 +350,8 @@ final class profile extends base
 				'USER_INACTIVE_REASON' => $this->get_inactivity_reason($member['user_inactive_reason'])
 			]);
 		}
+
+		$this->get_user_posts($member);
 	}
 
 	protected function get_inactivity_reason(string $user_inactive_reason): string
@@ -360,5 +364,26 @@ final class profile extends base
 			INACTIVE_REMIND	  => $this->language->lang('INACTIVE_REASON_REMIND'),
 			default			  => $this->language->lang('INACTIVE_REASON_UNKNOWN')
 		};
+	}
+
+	protected function get_user_posts(array $member)
+	{
+		$sql = 'SELECT t.topic_id, t.topic_title, t.topic_time, t.topic_views, t.topic_posts_approved, p.post_id, p.poster_id, p.post_text
+				FROM ' . POSTS_TABLE . ' p, ' . TOPICS_TABLE . ' t
+				WHERE t.topic_id = p.topic_id
+					AND p.poster_id = ' . (int) $member['user_id'] . '
+					AND t.topic_status <> ' . ITEM_MOVED . '
+					AND t.topic_visibility = 1
+				ORDER BY p.post_id DESC';
+		$result = $this->db->sql_query_limit($sql, (int) $this->config['baihu_limit'], 0, 60);
+
+		$posts = $this->container->get('baihu.posts');
+		$posts->trim_messages(true);
+
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$this->template->assign_block_vars('user_posts', $posts->get_template_data(array_merge($row, $member)));
+		}
+		$this->db->sql_freeresult($result);
 	}
 }

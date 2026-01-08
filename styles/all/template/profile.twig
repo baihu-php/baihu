@@ -4,11 +4,11 @@
 
 	{% EVENT memberlist_view_content_prepend %}
 
-	<div class="block profile-block">
-
-		<div class="profile-content">Under Construction...</div>
-
-	</div>
+	{% if user_posts %}
+		{% for article in user_posts %}
+			{{ include('@baihu_baihu/includes/article-item.twig') }}
+		{% endfor %}
+	{% endif %}
 
 	{% if SIGNATURE %}
 		<div class="block profile-block">
