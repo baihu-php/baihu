@@ -1,0 +1,25 @@
+{% macro baihu_profile(avatar, user_id, username, color, rank_title, rank_img, s_online = false, id) %}
+
+	{# <div class="block profile profile-block" id="profile" popover> #}
+	<div class="block profile-block post-profile action-toggle baihu-author-aid-{{ id }}">
+
+		<a href="{{ path('baihu_member', {'username': username}) }}">
+			<div class="avatar-wrap avatar-lg">
+				{{ avatar('user', avatar, '', false, true, 'avatar-lg', s_online) }}
+			</div>
+		</a>
+
+		<h4 class="profile-meta">
+			{{- baihu_username('profile', user_id, username, color, 'profile-user') -}}
+
+			{% if rank_title %}
+				<small class="profile-title">{{ rank_title }}</small>
+			{% endif %}
+
+			{% if rank_img %}
+				<span class="profile-rank">{{ rank_img }}</span>
+			{% endif %}
+		</h4>
+
+	</div>
+{% endmacro %}

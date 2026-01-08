@@ -6,6 +6,7 @@
 			<div class="bar-item">
 
 				<button class="bar-profile action" data-toggle="author-aid-{{ article.id }}">
+				{# <button class="bar-profile action profile-btn" popovertarget="author-aid-{{ article.id }}"> #}
 
 					<span class="avatar-wrap avatar avatar-sm">
 						{{ avatar('user', article.author_avatar[0], '', false, true, 'avatar-sm', true) }}
@@ -17,7 +18,18 @@
 					</span>
 
 				</button>
-				{{- include('@baihu_baihu/includes/profile-mini.twig', article) -}}
+
+				{% from '@baihu_baihu/macros/user/profile.twig' import baihu_profile %}
+				{{ baihu_profile(
+					article.author_avatar[0],
+					article.author,
+					article.author_name,
+					article.author_color,
+					article.author_rank,
+					article.author_rank_img,
+					true,
+					article.id
+				) }}
 
 			</div>
 		</div>
