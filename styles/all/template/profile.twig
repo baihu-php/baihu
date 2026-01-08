@@ -10,19 +10,6 @@
 		{% endfor %}
 	{% endif %}
 
-	{% if SIGNATURE %}
-		<div class="block profile-block">
-			<div class="bar block-bar">
-				<span class="bar-item bar-info">
-					<h3>{{ lang('SIGNATURE') }}</h3>
-				</span>
-			</div>
-
-			<div class="profile-content">{{ SIGNATURE }}</div>
-
-		</div>
-	{% endif %}
-
 	{% EVENT memberlist_view_content_append %}
 
 {% endblock %}
