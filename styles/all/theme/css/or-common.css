@@ -1,10 +1,8 @@
 /* For forum styles */
 .rank-img img {
-	max-width: 192px;
+	max-inline-size: 192px;
 }
 
 a.avatar.avatar img {
-	max-width: 100px;
-	/* border-radius: 50%;
-	border-style: none; */
+	max-inline-size: 100px;
 }

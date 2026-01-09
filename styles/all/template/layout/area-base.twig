@@ -38,7 +38,7 @@
 				<div id="overlay"></div>
 
 				{# Baihu navbar section #}
-				{% block gzo_top_bar %}
+				{% block baihu_header %}
 					{{- include('@baihu_baihu/includes/search.twig') -}}
 					{{- include('@baihu_baihu/includes/topbar.twig') -}}
 				{% endblock %}
@@ -60,17 +60,17 @@
 				<section class="content-main">
 					<div class="area-heading">
 						<div class="area-title">
-							{% block gzo_main_heading %}{% endblock %}
+							{% block baihu_main_heading %}{% endblock %}
 						</div>
 						<div class="area-crumbs">
-							{% block gzo_crumb %}
+							{% block baihu_crumb %}
 								{{- include('@baihu_baihu/includes/crumbs.twig') -}}
 							{% endblock %}
 						</div>
 					</div>
 
 					<div class="section-main">
-						{% block gzo_main_content %}{% endblock %}
+						{% block baihu_main_content %}{% endblock %}
 					</div>
 				</section>
 
