@@ -26,6 +26,7 @@ $lang = array_merge($lang, [
 	'BAIHU_TOOLS'	 => 'Tools',
 	'BAIHU_FORUM'	 => 'New forum topic',
 
+	'BAIHU_NO_ACTIVITY'	 => 'No activity at current moment',
 	'BAIHU_ACHIEVEMENTS' => 'Achievements',
 	'BAIHU_RANK'	 => 'Rank',
 	'BAIHU_CONTACT'	 => 'Contact',

@@ -4,11 +4,13 @@
 
 	{% EVENT memberlist_view_content_prepend %}
 
-	{% if user_posts %}
-		{% for article in user_posts %}
-			{{ include('@baihu_baihu/includes/article-item.twig') }}
-		{% endfor %}
-	{% endif %}
+	{% for article in user_posts %}
+		{{ include('@baihu_baihu/includes/article-item.twig') }}
+	{% else %}
+		<article class="block post">
+			<div class="profile-content">{{ lang('BAIHU_NO_ACTIVITY') }}</div>
+		</article>
+	{% endfor %}
 
 	{% EVENT memberlist_view_content_append %}
 
