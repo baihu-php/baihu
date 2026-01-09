@@ -133,39 +133,4 @@
 /* Profile content */
 .profile-content {
 	padding: var(--spacing-4);
-
-	.profile-meta-5 {
-		font-size: var(--font-size);
-		margin-bottom: var(--spacing-3);
-	}
-
-	/* .profile-details-text,
-	.profile-details-link {
-		vertical-align: middle;
-	}
-
-	.profile-details-icon + .profile-details-link,
-	.profile-details-link + .profile-details-icon {
-		padding-left: 0.5rem;
-	}
-
-	.profile-details-icon {
-		color: var(--color-alt-1);
-	}
-
-	.profile-card {
-		background-color: var(--block-background-color);
-		border-radius: var(--border-radius);
-		margin-bottom: var(--spacing-4);
-		padding: var(--spacing-3);
-
-		.profile-details-stats {
-			margin-bottom: 0;
-			padding-left: var(--spacing);
-		}
-	}
-
-	.profile-card:last-of-type {
-		margin-bottom: 0;
-	} */
 }
