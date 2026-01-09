@@ -90,7 +90,7 @@
 
 	.profile-details-divider {
 		background-color: var(--border-color);
-		height: 1px;
+		block-size: 1px;
 	}
 
 	.profile-details-item {
@@ -122,7 +122,7 @@
 
 	.profile-details-item-hero {
 		font-weight: var(--font-weight-6);
-		margin-left: auto
+		margin-inline-start: auto;
 	}
 
 	.profile-details-divider:last-of-type {

@@ -34,8 +34,8 @@
 	top: var(--size-sm);
 	grid-area: sidebar;
 	align-self: start;
-	width: 270px;
-	height: calc(100dvh - var(--size-sm));
+	inline-size: 270px;
+	block-size: calc(100dvh - var(--size-sm));
 	overflow-y: auto;
 
 	@container page (inline-size < 700px) {
@@ -44,8 +44,8 @@
 		top: unset;
 		bottom: 0;
 		z-index: 11;
-		height: var(--size-sm);
-		width: 100%;
+		block-size: var(--size-sm);
+		inline-size: 100%;
 	}
 }
 
@@ -63,8 +63,7 @@
 		font-size: var(--font-size);
 		display: flex;
 		align-items: center;
-
-		height: var(--size-sm);
+		block-size: var(--size-sm);
 		padding: unset;
 		padding-inline: var(--spacing);
 
@@ -91,7 +90,7 @@
 		--btn-width: calc(var(--spacing) * 3);
 
 		display: block;
-		width: calc(100% - var(--btn-width));
+		inline-size: calc(100% - var(--btn-width));
 
 		svg:last-child {
 			transition: 0.35s ease;
@@ -127,8 +126,8 @@
 			content: '';
 			display: block;
 			background: var(--color-light-alt-2);
-			height: 1px;
-			width: 12px;
+			inline-size: 12px;
+			block-size: 1px;
 			position: absolute;
 			left: 0;
 			top: calc(var(--size-sm) / 2);
@@ -167,8 +166,8 @@
 		.area-btn {
 			display: flex;
 			justify-content: center;
-			width: var(--size-sm);
-			height: var(--size-sm);
+			inline-size: var(--size-sm);
+			block-size: var(--size-sm);
 			padding: 0;
 		}
 
@@ -190,13 +189,13 @@
 			left: 0;
 			display: flex;
 			overflow-x: auto;
-			height: var(--size-sm);
-			width: 100%;
+			block-size: var(--size-sm);
+			inline-size: 100%;
 			padding: 0;
 			margin: 0;
 
 			.navigation-link {
-				width: auto;
+				inline-size: auto;
 				justify-content: center;
 			}
 
