@@ -11,15 +11,19 @@
 namespace baihu\baihu\src\plugin\profile\tabs;
 
 use baihu\baihu\src\plugin\article\posts;
+use phpbb\auth\auth;
 use phpbb\profilefields\manager as cp;
+use phpbb\user;
 
 final class profile extends base
 {
 	public static function getSubscribedServices(): array
 	{
 		return array_merge(parent::getSubscribedServices(), [
+			'baihu.posts' => '?'.posts::class,
+			'auth' => '?'.auth::class,
 			'profilefields.manager' => '?'.cp::class,
-			'baihu.posts' => '?'. posts::class,
+			'user' => '?'.user::class,
 		]);
 	}
 
@@ -33,21 +37,10 @@ final class profile extends base
 		return 'overview';
 	}
 
-	protected function get_group(): group
+	public function load(array $member): void
 	{
-		return $this->container->get('group_helper');
-	}
-
-	protected function get_cp_manager(): cp
-	{
-		return $this->container->get('profilefields.manager');
-	}
-
-	public function load(string $username): void
-	{
-		$member = $this->get_member_data($username);
-		$auth	= $this->get_auth();
-		$user	= $this->get_user();
+		$auth = $this->container->get('auth');
+		$user = $this->container->get('user');
 
 		// a_user admins and founder are able to view inactive users and bots to be able to manage them more easily
 		// Normal users are able to see at least users having only changed their profile settings but not yet reactivated.
@@ -65,74 +58,12 @@ final class profile extends base
 
 		$user_id = (int) $member['user_id'];
 
-		// What colour is the zebra
-		$sql = 'SELECT friend, foe
-			FROM ' . ZEBRA_TABLE . "
-			WHERE zebra_id = $user_id
-				AND user_id = {$user->data['user_id']}";
-		$result = $this->db->sql_query($sql);
-		$row = $this->db->sql_fetchrow($result);
-
-		$foe = $row ? (bool) $row['foe'] : false;
-		$friend = $row ? (bool) $row['friend'] : false;
-
-		$this->db->sql_freeresult($result);
-
-		if ($this->config['load_onlinetrack'])
-		{
-			$sql = 'SELECT MAX(session_time) AS session_time, MIN(session_viewonline) AS session_viewonline
-				FROM ' . SESSIONS_TABLE . "
-				WHERE session_user_id = $user_id";
-			$result = $this->db->sql_query($sql);
-			$row = $this->db->sql_fetchrow($result);
-			$this->db->sql_freeresult($result);
-
-			$member['session_time'] = (isset($row['session_time'])) ? $row['session_time'] : 0;
-			$member['session_viewonline'] = (isset($row['session_viewonline'])) ? $row['session_viewonline'] : 0;
-			unset($row);
-		}
-
-		// Display a listing of board admins, moderators
-		if (!function_exists('display_user_activity'))
-		{
-			include($this->root_path . 'includes/functions_display.' . $this->php_ext);
-		}
-
-		if ($this->config['load_user_activity'])
-		{
-			display_user_activity($member);
-		}
-
 		// Do the relevant calculations
 		$percentage = ($this->config['num_posts']) ? min(100, ($member['user_posts'] / $this->config['num_posts']) * 100) : 0;
 
-		// We need to check if the modules 'zebra', 'notes' and 'warn' are accessible to decide if we can display appropriate links
-		$zebra_enabled = $friends_enabled = $foes_enabled = $user_notes_enabled = $warn_user_enabled = false;
-
-		// Only check if the user is logged in
-		if ($user->data['is_registered'])
-		{
-			if (!class_exists('p_master'))
-			{
-				include($this->root_path . 'includes/functions_module.' . $this->php_ext);
-			}
-			$module = new \p_master();
-
-			$module->list_modules('ucp');
-			$module->list_modules('mcp');
-
-			$user_notes_enabled = $module->loaded('mcp_notes', 'user_notes');
-			$warn_user_enabled = $module->loaded('mcp_warn', 'warn_user');
-			$zebra_enabled = $module->loaded('ucp_zebra');
-			$friends_enabled = $module->loaded('ucp_zebra', 'friends');
-			$foes_enabled = $module->loaded('ucp_zebra', 'foes');
-
-			unset($module);
-		}
-
 		// Custom Profile Fields
 		$profile_fields = [];
-		$cp_manager = $this->get_cp_manager();
+		$cp_manager = $this->container->get('profilefields.manager');
 		if ($this->config['load_cpf_viewprofile'])
 		{
 			$profile_fields = $cp_manager->grab_profile_fields_data($user_id);
@@ -144,20 +75,8 @@ final class profile extends base
 		*
 		* @event core.memberlist_view_profile
 		*/
-		$vars = [
-			'member',
-			'user_notes_enabled',
-			'warn_user_enabled',
-			'zebra_enabled',
-			'friends_enabled',
-			'foes_enabled',
-			'friend',
-			'foe',
-			'profile_fields',
-		];
+		$vars = ['member', 'profile_fields',];
 		extract($this->dispatcher->trigger_event('core.memberlist_view_profile', compact($vars)));
-
-		$this->template->assign_vars(phpbb_show_profile($member, $user_notes_enabled, $warn_user_enabled));
 
 		$member['posts_in_queue'] = 0;
 
@@ -175,37 +94,14 @@ final class profile extends base
 
 		// Define the main array of vars to assign to memberlist_view.html
 		$template_ary = [
-			'L_POSTS_IN_QUEUE'			=> $this->language->lang('NUM_POSTS_IN_QUEUE', $member['posts_in_queue']),
-			'POSTS_IN_QUEUE'			=> $member['posts_in_queue'],
+			'POSTS_IN_QUEUE'   => $member['posts_in_queue'],
+			'L_POSTS_IN_QUEUE' => $this->language->lang('NUM_POSTS_IN_QUEUE', $member['posts_in_queue']),
+			'U_MCP_QUEUE'	   => ($auth->acl_getf_global('m_approve')) ? append_sid("{$this->root_path}mcp.$this->php_ext", 'i=queue', true, $user->session_id) : '',
 
-			'POSTS_PCT'					=> $this->language->lang('POST_PCT', $percentage),
+			'POSTS_PCT'		   => $this->language->lang('POST_PCT', $percentage),
 
-			'S_CUSTOM_FIELDS'			=> isset($profile_fields['row']) && count($profile_fields['row']),
-
-			'U_USER_ADMIN'				=> ($auth->acl_get('a_user')) ? append_sid(generate_board_url() . "/{$this->admin_path}index.$this->php_ext", 'i=users&amp;mode=overview&amp;u=' . $user_id, true, $user->session_id) : '',
-
-			'U_USER_BAN'				=> ($auth->acl_get('m_ban') && $user_id != $user->data['user_id']) ? append_sid("{$this->root_path}mcp.$this->php_ext", 'i=ban&amp;mode=user&amp;u=' . $user_id, true, $user->session_id) : '',
-			'U_MCP_QUEUE'				=> ($auth->acl_getf_global('m_approve')) ? append_sid("{$this->root_path}mcp.$this->php_ext", 'i=queue', true, $user->session_id) : '',
-
-			'U_SWITCH_PERMISSIONS'		=> ($auth->acl_get('a_switchperm') && $user->data['user_id'] != $user_id) ? append_sid("{$this->root_path}ucp.$this->php_ext", "mode=switch_perm&amp;u={$user_id}&amp;hash=" . generate_link_hash('switchperm')) : '',
-			'U_EDIT_SELF'				=> ($user_id == $user->data['user_id'] && $auth->acl_get('u_chgprofileinfo')) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=ucp_profile&amp;mode=profile_info') : '',
-
-			'S_USER_NOTES'				=> $user_notes_enabled,
-			'S_WARN_USER'				=> $warn_user_enabled,
-			'S_ZEBRA'					=> $user->data['user_id'] != $user_id && $user->data['is_registered'] && $zebra_enabled,
-			'U_ADD_FRIEND'				=> (!$friend && !$foe && $friends_enabled) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;add=' . urlencode(html_entity_decode($member['username'], ENT_COMPAT))) : '',
-			'U_ADD_FOE'					=> (!$friend && !$foe && $foes_enabled) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;mode=foes&amp;add=' . urlencode(html_entity_decode($member['username'], ENT_COMPAT))) : '',
-			'U_REMOVE_FRIEND'			=> ($friend && $friends_enabled) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;remove=1&amp;usernames[]=' . $user_id) : '',
-			'U_REMOVE_FOE'				=> ($foe && $foes_enabled) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;remove=1&amp;mode=foes&amp;usernames[]=' . $user_id) : '',
+			'S_CUSTOM_FIELDS'  => isset($profile_fields['row']) && count($profile_fields['row']),
 		];
-
-		/**
-		* Modify user's template vars before we display the profile
-		*
-		* @event core.memberlist_modify_view_profile_template_vars
-		*/
-		$vars = ['template_ary',];
-		extract($this->dispatcher->trigger_event('core.memberlist_modify_view_profile_template_vars', compact($vars)));
 
 		// Assign vars to profile controller
 		$this->template->assign_vars($template_ary);

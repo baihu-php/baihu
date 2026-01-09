@@ -12,6 +12,21 @@ services:
         tags:
             - { name: event.listener }
 
+    baihu.profile.loader:
+        class: baihu\baihu\src\plugin\profile\loader
+        autowire: false
+        arguments:
+            - '@baihu.controller_helper'
+            - '@baihu.profile.tabs.collection'
+            - '@dbal.conn'
+            - '@event_dispatcher'
+            - '%core.root_path%%core.adm_relative_path%'
+            - '%core.php_ext%'
+            - '%core.root_path%'
+
+    baihu\baihu\src\plugin\profile\loader: '@baihu.profile.loader'
+
+# ----- Profile Tabs -----
     baihu.profile.tabs.collection:
         class: phpbb\di\ordered_service_collection
         arguments:
@@ -19,16 +34,6 @@ services:
         tags:
             - { name: service_collection, tag: baihu.profile.tabs }
 
-    baihu.profile.tabs.loader:
-        class: baihu\baihu\src\plugin\profile\loader
-        autowire: false
-        arguments:
-            - '@baihu.profile.tabs.collection'
-            - '@baihu.controller_helper'
-
-    baihu\baihu\src\plugin\profile\loader: '@baihu.profile.tabs.loader'
-
-# ----- Profile Tabs -----
     baihu.profile.tabs.base:
         abstract: true
 

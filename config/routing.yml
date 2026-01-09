@@ -53,10 +53,10 @@ baihu_member:
     path: /u/{username}
     controller: baihu.profile_controller:index
     defaults:
-        tab: profile
+        tid: profile
 
 baihu_member_tab:
-    path: /u/{username}/tab/{tab}
+    path: /u/{username}/tab/{tid}
     controller: baihu.profile_controller:index
 
 # Redirect to memberlist (legacy)
