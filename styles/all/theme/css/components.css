@@ -415,7 +415,7 @@
 }
 
 .post-title-announcement {
-    font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+	font-size: clamp(1.375rem, 2.5vw, 1.75rem);
 
 	.post-title-inherit {
 		font: inherit;
@@ -658,6 +658,11 @@
 
 .baihu-container {
 	width: 240px;
+
+	ul {
+		list-style: none;
+		margin-inline-start: 0;
+	}
 
 	svg {
 		width: 20px;
