@@ -27,6 +27,7 @@ $lang = array_merge($lang, [
 	'BAIHU_FORUM'	 => 'New forum topic',
 
 	'BAIHU_NO_ACTIVITY'	 => 'No activity at current moment',
+	'BAIHU_NO_FRIENDS'	 => 'No friends at the moment',
 	'BAIHU_ACHIEVEMENTS' => 'Achievements',
 	'BAIHU_RANK'	 => 'Rank',
 	'BAIHU_CONTACT'	 => 'Contact',
@@ -72,6 +73,7 @@ $lang = array_merge($lang, [
 	],
 
 	'BAIHU_PROFILE' => 'Overview',
+	'BAIHU_FRIENDS' => 'Friends',
 	'CURRENT_PROFILE_TAB' => 'Your %s',
 	'PROFILE_TAB' => '%s [%s]',
 
@@ -104,6 +106,8 @@ $lang = array_merge($lang, [
 	],
 
 	'STATUS' => 'Status: %s',
+
+	'BAIHU_UC' => 'Under construction...',
 
 	// Auth
 	'BAIHU_LOGIN'	   => 'You need to login to access this page.',
