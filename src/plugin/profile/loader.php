@@ -54,7 +54,7 @@ class loader
 		return array_keys(self::$tabs) ?? [];
 	}
 
-	public function generate_tabs_menu(string $username): void
+	public function generate_tabs_menu(string $username, string $tid): void
 	{
 		if (count($this->available()) === 1)
 		{
@@ -70,9 +70,10 @@ class loader
 			}
 
 			$this->controller_helper->assign_block_vars('tabs', [
-				'title' => strtoupper($tab),
-				'link' => $route,
-				'icon' => $this->get_tab($tab)->get_icon(),
+				'title'  => $tab,
+				'link'   => $route,
+				'icon'   => $this->get_tab($tab)->get_icon(),
+				'active' => $tab === $tid,
 			]);
 		}
 	}

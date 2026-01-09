@@ -37,7 +37,7 @@ class profile_controller extends abstract_controller
 		$member = $profile_loader->get_member_data($username);
 		$profile_loader->build_profile_data($member, $this->get_auth(), $this->config, $this->get_user());
 		$profile_loader->generate_breadcrumb($username, $tid);
-		$profile_loader->generate_tabs_menu($username);
+		$profile_loader->generate_tabs_menu($username, $tid);
 
 		// Load requested tab
 		$current_tab = $profile_loader->get_tab($tid);

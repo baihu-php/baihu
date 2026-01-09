@@ -175,11 +175,9 @@
 	margin-block-end: var(--spacing-md);
 
 	ul {
-		display: flex;
+		display: inline-flex;
 		align-items: center;
-		margin: 0;
-		padding: 0;
-		list-style: none;
+		margin-block-end: 0;
 	}
 
 	li a {
@@ -187,7 +185,8 @@
 		color: var(--color-alt-1);
 		display: block;
 		height: var(--size-sm);
-		padding: 1.125rem;
+		padding-block: 1.125rem;
+		padding-inline: var(--spacing);
 
 		&:hover,
 		&:focus-visible {
