@@ -64,7 +64,9 @@
 {% endblock %}
 
 {% block gzo_main_left %}
-	{{ include('@baihu_baihu/includes/profile-side.twig') }}
+	<aside class="section-side">
+		{% block baihu_profile_aside %}{% endblock %}
+	</aside>
 {% endblock %}
 
 {% block gzo_main_right %}{% endblock %}
