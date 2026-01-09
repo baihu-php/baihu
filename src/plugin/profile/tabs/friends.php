@@ -12,16 +12,6 @@ namespace baihu\baihu\src\plugin\profile\tabs;
 
 final class friends extends base
 {
-	// public static function getSubscribedServices(): array
-	// {
-	// 	return array_merge(parent::getSubscribedServices(), [
-	// 		'baihu.posts' => '?'.posts::class,
-	// 		'auth' => '?'.auth::class,
-	// 		'profilefields.manager' => '?'.cp::class,
-	// 		'user' => '?'.user::class,
-	// 	]);
-	// }
-
 	public function get_namespace(): string
 	{
 		return '@baihu_baihu/';
