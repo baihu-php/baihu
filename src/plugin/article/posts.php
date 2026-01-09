@@ -126,7 +126,7 @@ final class posts extends base
 	{
 		$build = new \baihu\baihu\src\db\helper($this->db);
 		$build
-			->select('t.topic_id, t.topic_title, t.topic_time, t.topic_views, t.topic_posts_approved, p.post_id, p.poster_id, p.post_text,
+			->select('t.topic_id, t.topic_first_post_id, t.forum_id, t.topic_title, t.topic_time, t.topic_views, t.topic_posts_approved, p.post_id, p.poster_id, p.post_text, p.post_time,
 				u.user_id, u.username, u.user_posts, u.user_rank, u.user_colour, u.user_avatar, u.user_avatar_type, u.user_avatar_width, u.user_avatar_height')
 			->from([
 				TOPICS_TABLE => 't',
@@ -157,14 +157,18 @@ final class posts extends base
 		$text = $this->container->get('text_formatter.s9e.renderer')->render($row['post_text']);
 
 		return [
-			'id'			  => $row['post_id'],
+			'id'			  => (int) $row['post_id'],
 			'link'			  => $helper->route('baihu_article', ['aid' => $row['topic_id']]),
 			'title'			  => $this->truncate($row['topic_title'], $this->config['baihu_title_length']),
-			'date'			  => $this->container->get('user')->format_date($row['topic_time']),
+			'date'			  => $this->container->get('user')->format_date($row['post_time']),
+			's_first_post_id' => $row['topic_first_post_id'] === $row['post_id'] ?: 0,
+			'category_id'	  => (int) $row['forum_id'],
+			'category_name'	  => $this->get_category_name($row['forum_id']),
 
 			'author'		  => $user_id,
 			'author_name'	  => $user['username'],
 			'author_color'	  => $user['user_colour'],
+
 			'author_profile'  => $helper->route('baihu_member', ['username' => $user['username']]),
 			'author_avatar'	  => [$users_loader->get_avatar_data($user_id)],
 			'author_rank'	  => $rank['rank_title'] ?? '',
@@ -175,6 +179,11 @@ final class posts extends base
 			'text'		 => $this->trim_messages ? $this->trim_message($text) : $text,
 			'is_trimmed' => $this->is_trimmed,
 		];
+	}
+
+	public function set_profile_posts(bool $bool): void
+	{
+		$this->template->assign_var('S_PROFILE_POSTS', $bool);
 	}
 
 	/**

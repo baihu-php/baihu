@@ -1,7 +1,8 @@
 <li>
-	{% set title = lang('BAIHU_' ~ tab.title) %}
+	{% set title = lang('BAIHU_' ~ tab.title|upper) %}
 
-	<a href="{{ tab.link }}" title="{{ lang(title) }}">
-		{# {{ Icon('font', tab.icon, lang(title), false) }} #}
+	<a{% if tab.active %} class="tab-active"{% endif %} href="{{ tab.link }}" title="{{ title }}">
+		{{ Icon('gzo', tab.icon, lang('BAIHU_TOOLS')) }}
+		{{ title }}
 	</a>
 </li>

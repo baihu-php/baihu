@@ -2,49 +2,71 @@
 
 {% block gzo_main_content_before %}
 
-	<div class="block content-header profile-header">
-		<div class="content-header-cover profile-header-cover"></div>
+	<header class="block content-header profile-header">
 
-		{# <div class="profile-header-info">
-			{{ gzo_avatar(AVATAR_IMG, 'avatar-wrap avatar-ml profile-header-avatar', true, true, T_THEME_PATH) }}
-			<div class="profile-header-avatar-wrap">
+		<div class="content-header-cover-container">
+			<div class="content-header-cover profile-header-cover"></div>
+		</div>
+
+		<div class="content-header-info">
+			<div class="avatar-wrap header-avatar-wrap header-avatar-size">
+				{{ avatar('user', AVATAR, '', false, true, 'content-header-avatar avatar-md', S_ONLINE) }}
 			</div>
-		</div> #}
+			<div class="content-header-meta">
+				<span class="profile-header-status">
+					<h1>
+						{# <button class="profile-btn" popovertarget="profile"> #}
+						{{- baihu_username('username', user_id, username, color, 'profile-user') -}}
+						{# </button> #}
 
+						{# {{ include('@baihu_baihu/includes/profile-item.twig') }} #}
+					</h1>
+					{% if RANK_TITLE %}
+						<small class="profile-header-title">{{ RANK_TITLE }}</small>
+					{% endif %}
+				</span>
+				<span class="profile-header-tools">
+					<button class="action" data-tooltip="true" data-toggle="profile-header-tools" title="{{ lang('BAIHU_TOOLS') }}">
+						{{ Icon('gzo', 'mdi--more-vert', lang('BAIHU_TOOLS'), true) }}
+					</button>
 
-		{% if tabs|length > 1 %}
+					{{ include('@baihu_baihu/includes/tools.twig') }}
+				</span>
+			</div>
+			<div class="profile-header-stats">
+				<div>
+					<h4>{{ lang('JOINED') }}</h4>
+					<small class="profile-header-time">
+						<time class="profile-header-time-text" datetime="{{ JOINED }}" title="{{ JOINED }}" data-short="{{ JOINED }}">{{ JOINED }}</time>
+					</small>
+				</div>
+				<div>
+					<h4>{{ lang('LAST_ACTIVE') }}</h4>
+					<small class="profile-header-time">
+						<time class="profile-header-time-text" datetime="{{ LAST_ACTIVE }}" title="{{ LAST_ACTIVE }}" data-short="{{ LAST_ACTIVE }}">{{ LAST_ACTIVE }}</time>
+					</small>
+				</div>
+			</div>
+		</div>
 
-			<nav class="content-tabs" role="navigation">
-				<ul role="menubar">
-					{% for tab in tabs %}
-						{{ include('@baihu_baihu/includes/tab-item.twig') }}
-					{% endfor %}
-				</ul>
-			</nav>
+	</header>
 
-		{% endif %}
-
-	</div>
-
-		{# Testing tab navigation #}
-		<nav class="content-tabs" role="navigation">
+	{% if tabs %}
+		<nav class="block content-tabs" role="navigation">
 			<ul role="menubar">
-				<li><a class="tab-active" href="{{ U_VIEW_PROFILE }}">Profile</a></li>
-				<li><a href="{{ path('baihu_main_index') }}">Test 1</a></li>
-				<li><a href="">Test 2</a></li>
-				<li><a href="">Test 3</a></li>
-				<li><a href="">Test 4</a></li>
-				<li><a href="">Test 5</a></li>
+				{% for tab in tabs %}
+					{{ include('@baihu_baihu/includes/tab-item.twig') }}
+				{% endfor %}
 			</ul>
 		</nav>
-
-		{# TODO: Needs some work? #}
-		<h2 class="profile-title">{{ lang('VIEWING_PROFILE', USERNAME) }}</h2>
+	{% endif %}
 
 {% endblock %}
 
 {% block gzo_main_left %}
-	{{ include('@baihu_baihu/includes/profile-side.twig', {'path': T_THEME_PATH}) }}
+	<aside class="section-side">
+		{% block baihu_profile_aside %}{% endblock %}
+	</aside>
 {% endblock %}
 
 {% block gzo_main_right %}{% endblock %}

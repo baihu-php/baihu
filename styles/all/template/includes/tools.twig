@@ -1,0 +1,93 @@
+<div class="popover baihu-container action-toggle baihu-profile-header-tools">
+	<ul class="navigation">
+
+		{% if U_EDIT_SELF %}
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ U_EDIT_SELF }}" title="{{ lang('EDIT_PROFILE') }}" role="menuitem">
+					{{- Icon('gzo', 'mdi--account-edit-outline', lang('EDIT_PROFILE'), true, 'action-icon') -}}
+					<span class="navigation-text">{{ lang('EDIT_PROFILE') }}</span>
+				</a>
+			</li>
+		{% endif %}
+
+		{% EVENT memberlist_view_zebra_before %}
+
+		{% if S_USER_LOGGED_IN and S_ZEBRA %}
+			{% if U_REMOVE_FRIEND %}
+				{{ _self.zebra(U_REMOVE_FRIEND, 'REMOVE_FRIEND', 'person_remove') }}
+			{% elseif U_REMOVE_FOE %}
+				{{ _self.zebra(U_REMOVE_FOE, 'REMOVE_FOE', 'person_remove') }}
+			{% else %}
+				{% if U_ADD_FRIEND %}
+					{{ _self.zebra(U_ADD_FRIEND, 'ADD_FRIEND', 'person_add') }}
+				{% endif %}
+				{% if U_ADD_FOE %}
+					{{ _self.zebra(U_ADD_FOE, 'ADD_FOE', 'person_add') }}
+				{% endif %}
+			{% endif %}
+
+			{% macro zebra(action, name, icon) %}
+				<li class="navigation-item">
+					<a class="navigation-link" href="{{ action }}" title="{{ lang(name) }}" data-ajax="zebra" role="menuitem">
+						{{- Icon('gzo', icon, lang(name), true, 'action-icon') -}}
+						<span class="navigation-text">{{ lang(name) }}</span>
+					</a>
+				</li>
+			{% endmacro %}
+		{% endif %}
+
+		{% EVENT memberlist_view_zebra_after %}
+
+		<li class="navigation-divider"></li>
+		{% if U_USER_ADMIN %}
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ U_USER_ADMIN }}" title="{{ lang('USER_ADMIN') }}" role="menuitem">
+					{{- Icon('gzo', 'manage_accounts', lang('USER_ADMIN'), true, 'action-icon') -}}
+					<span class="navigation-text">{{ lang('USER_ADMIN') }}</span>
+				</a>
+			</li>
+		{% endif %}
+
+		{% if U_SWITCH_PERMISSIONS %}
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ U_SWITCH_PERMISSIONS }}" title="{{ lang('USE_PERMISSIONS') }}" role="menuitem">
+					{{- Icon('gzo', 'user_attributes', lang('USE_PERMISSIONS'), true, 'action-icon') -}}
+					<span class="navigation-text">{{ lang('USE_PERMISSIONS') }}</span>
+				</a>
+			</li>
+		{% endif %}
+
+		{% if U_USER_BAN %}
+			<li class="navigation-item">
+				<a class="navigation-link" href="{{ U_USER_BAN }}" title="{{ lang('USER_BAN') }}" role="menuitem">
+					{{- Icon('gzo', 'gavel', lang('USER_BAN'), true, 'action-icon') -}}
+					<span class="navigation-text">{{ lang('USER_BAN') }}</span>
+				</a>
+			</li>
+		{% endif %}
+
+		{% if S_WARNINGS %}
+		<li class="navigation-divider"></li>
+			{% if U_NOTES or U_WARN %}
+				{% if U_NOTES %}
+				<li class="navigation-item">
+					<a class="navigation-link" href="{{ U_NOTES }}" title="{{ lang('VIEW_NOTES') }}" role="menuitem">
+						{{- Icon('gzo', 'problem', lang('VIEW_NOTES'), true, 'action-icon') -}}
+						<span class="navigation-text">{{ lang('VIEW_NOTES') }}</span>
+					</a>
+				</li>
+				{% endif %}
+
+				{% if U_WARN %}
+				<li class="navigation-item">
+					<a class="navigation-link" href="{{ U_WARN }}" title="{{ lang('WARN_USER') }}" role="menuitem">
+						{{- Icon('gzo', 'mdi--shield-alert-outline', lang('WARN_USER'), true, 'action-icon') -}}
+						<span class="navigation-text">{{ lang('WARN_USER') }}</span>
+					</a>
+				</li>
+				{% endif %}
+			{% endif %}
+		{% endif %}
+
+	</ul>
+</div>

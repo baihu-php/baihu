@@ -6,9 +6,10 @@
 			<div class="bar-item">
 
 				<button class="bar-profile action" data-toggle="author-aid-{{ article.id }}">
+				{# <button class="bar-profile action profile-btn" popovertarget="author-aid-{{ article.id }}"> #}
 
 					<span class="avatar-wrap avatar avatar-sm">
-						{{ avatar('user', article.author_avatar[0], '', false, true, 'avatar-sm', true) }}
+						{{ avatar('user', article.author_avatar[0], '', false, true, 'avatar-sm', S_ONLINE ?? false) }}
 					</span>
 
 					<span class="bar-user">
@@ -17,7 +18,18 @@
 					</span>
 
 				</button>
-				{{- include('@baihu_baihu/includes/profile-mini.twig', article) -}}
+
+				{% from '@baihu_baihu/macros/user/profile.twig' import baihu_profile %}
+				{{ baihu_profile(
+					article.author_avatar[0],
+					article.author,
+					article.author_name,
+					article.author_color,
+					article.author_rank,
+					article.author_rank_img,
+					S_ONLINE ?? false,
+					article.id
+				) }}
 
 			</div>
 		</div>
@@ -32,7 +44,13 @@
 
 	<section class="post-body">
 
-		<h3>{{ link({'href': article.link}, article.title) }}</h3>
+		<h3 class="block-title post-title">{{ link({'href': article.link}, article.title) }}</h3>
+		{% if S_PROFILE_POSTS %}
+			<h5>{{ Icon('gzo', 'mdi--file-outline', lang('IN_TOPIC')) }}
+				<span class="post-body-info-text">{{ lang('BAIHU_POSTED_IN', article.s_first_post_id) }}</span>
+				{{ link({'href': path('baihu_articles', {'fid': article.category_id})}, article.category_name) }}
+			</h5>
+		{% endif %}
 
 		<div class="content">
 			{{ article.text ~ (article.is_trimmed ? lang('ELLIPSIS') ~ link({'href': article.link}, lang('READ_FULL'))) }}

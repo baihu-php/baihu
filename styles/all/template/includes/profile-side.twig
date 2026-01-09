@@ -1,96 +1,147 @@
-<aside class="section-side block profile">
+<aside class="section-side">
 
-	<div class="profile-avatar-wrap">
-		<div class="avatar-wrap avatar-lg">
-			{{ avatar('user', AVATAR, '', false, true, 'avatar-lg', true) }}
+	{% if AGE is not empty %}
+	<div class="block profile-block">
+		<div class="bar block-bar">
+			<span class="bar-item bar-info">
+				<h3 class="block-title">{{ lang('INFORMATION') }}</h3>
+			</span>
 		</div>
+
+		<ul class="block-stats profile-details">
+			{% if S_USER_INACTIVE %}
+				<li class="profile-details-item">
+					<span class="profile-details-status">
+						<h4>{{ lang('USER_IS_INACTIVE') }}</h4>
+						<small class="profile-title">{{ USER_INACTIVE_REASON }}</small>
+					</span>
+				</li>
+			{% endif %}
+
+			{% if AGE is not empty %}
+				<li class="profile-details-item">
+					<span class="profile-details-status">
+						<h4>{{ lang('AGE') }}</h4>
+						<small class="profile-title">{{ AGE }}</small>
+					</span>
+				</li>
+				<li class="profile-details-divider"></li>
+			{% endif %}
+
+			{% EVENT memberlist_view_non_contact_custom_fields_before %}
+
+			<li class="profile-details-item">
+				{% for cf in custom_fields %}
+					{% if cf.S_PROFILE_CONTACT == false %}
+						<span class="profile-details-status">
+							<h4>{{ cf.PROFILE_FIELD_NAME }}</h4>
+							<small class="profile-title">{{ cf.PROFILE_FIELD_VALUE }}</small>
+						</span>
+					{% endif %}
+				{% endfor %}
+			</li>
+			{% EVENT memberlist_view_non_contact_custom_fields_after %}
+		</ul>
 	</div>
+	{% endif %}
 
-	<div class="profile-content">
+	{% EVENT memberlist_view_contact_before %}
+	<div class="block profile-block">
+		<div class="bar block-bar">
+			<span class="bar-item bar-info">
+				<h3 class="block-title">{{ lang('BAIHU_CONTACT') }}</h3>
+			</span>
+		</div>
 
-		<h3 class="profile-meta">
-			{{- baihu_username('username', user_id, username, color, 'profile-user') -}}
-
-			{# <br>
-			{{- baihu_username('profile', user_id, username, color, 'profile-user-link') -}} #}
-
-			{% EVENT memberlist_view_rank_avatar_before %}
-
-			{% if RANK_TITLE %}
-				<small class="profile-user-title">{{ RANK_TITLE }}</small>
-			{% endif %}
-
-			{% if RANK_IMG %}
-				<span class="profile-group">{{ RANK_IMG }}</span>
-			{% endif %}
-
-			{% EVENT memberlist_view_rank_avatar_after %}
-		</h3>
-
-		{% if U_EDIT_SELF %}
-			<div class="profile-bar">
-				<a href="{{ U_EDIT_SELF }}" class="bar-item action" title="{{ lang('EDIT_PROFILE') }}">
-					{{- Icon('gzo', 'lucide--edit', lang('LOGIN_LOGOUT'), true, 'action-icon') -}}<span class="action-text">{{ lang('EDIT_PROFILE') }}</span>
-				</a>
-			</div>
-		{% endif %}
-
-		{% EVENT memberlist_view_contact_before %}
-
-		<hr class="stabilize">
-		<ul class="profile-details">
-			<h4 class="profile-meta-5">{{ lang('CONTACT_USER') }}</h4>
-
+		<ul class="navigation block-stats profile-details">
 			{% if U_EMAIL %}
-				<li>
-					{{ Icon('gzo', 'mdi--envelope', lang('SEND_EMAIL_USER'), true, 'profile-details-icon')
-						~ link({'class': 'profile-details-link', 'href': U_EMAIL, 'title': lang('SEND_EMAIL_USER')}, lang('SEND_EMAIL_USER'))
-					}}
-				{# <a href="{{ U_EMAIL }}" class="profile-details-link" title="{{ lang('EDIT_PROFILE') }}">
-					<span class="profile-details-text">{{ lang('EDIT_PROFILE') }}</span>{{- Icon('gzo', 'mdi--envelope', lang('SEND_EMAIL_USER'), true, 'profile-details-text-icon') -}}
-				</a> #}
+				<li class="navigation-item">
+					<a class="navigation-link profile-navigation-link" href="{{ U_EMAIL }}" title="{{ lang('SEND_EMAIL_USER') }}" role="menuitem">
+						{{- Icon('gzo', 'email') -}}
+						<span class="navigation-text">{{ lang('SEND_EMAIL_USER') }}</span>
+					</a>
 				</li>
 			{% endif %}
 
 			{% if U_PM %}
-				<li>
-					{{ Icon('gzo', 'mdi--inbox', lang('PRIVATE_MESSAGES'), true, 'profile-details-icon')
-						~ link({'class': 'profile-details-link', 'href': U_PM, 'title': lang('SEND_PRIVATE_MESSAGE')}, lang('SEND_PRIVATE_MESSAGE'))
-					}}
+				<li class="navigation-item">
+					<a class="navigation-link profile-navigation-link" href="{{ U_PM }}" title="{{ lang('SEND_PRIVATE_MESSAGE') }}" role="menuitem">
+						{{- Icon('gzo', 'mdi--comment-account-outline') -}}
+						<span class="navigation-text">{{ lang('SEND_PRIVATE_MESSAGE') }}</span>
+					</a>
 				</li>
 			{% endif %}
 
 			{% EVENT memberlist_view_contact_custom_fields_before %}
 
 			{% for cf in custom_fields %}
-
 				{% if cf.S_PROFILE_CONTACT %}
-
 					{% if cf.PROFILE_FIELD_CONTACT %}
-						{% set field_icon = S_PROFILE_PHPBB_WEBSITE ? 'mdi--globe' : '' %}
-						<li>
-							{{ Icon('gzo', 'mdi--globe', cf.PROFILE_FIELD_DESC, true, 'profile-details-icon')
-								~ link({'class': 'profile-details-link', 'href': cf.PROFILE_FIELD_CONTACT, 'title': cf.PROFILE_FIELD_DESC}, cf.PROFILE_FIELD_DESC)
-							}}
+						{% set field_icon = S_PROFILE_PHPBB_WEBSITE ? 'tabler--world-www' : '' %}
+
+						<li class="navigation-item">
+							<a class="navigation-link profile-navigation-link" href="{{ cf.PROFILE_FIELD_CONTACT }}" title="{{ lang(cf.PROFILE_FIELD_DESC) }}" role="menuitem">
+								{{- Icon('gzo', 'tabler--world-www') -}}
+								<span class="navigation-text">{{ lang(cf.PROFILE_FIELD_DESC) }}</span>
+							</a>
 						</li>
 					{% else %}
+						{# Needs work #}
 						<li>{{ cf.PROFILE_FIELD_VALUE }}</li>
 					{% endif %}
-
 				{% endif %}
 			{% endfor %}
 
-			{# TODO: Remove? #}
-			{% if S_PROFILE_FIELD1 %}
-				{# NOTE: Use a construct like this to include admin defined profile fields. Replace FIELD1 with the name of your field. #}
-				<li>{{ PROFILE_FIELD1_NAME ~ lang('COLON') }} {{ PROFILE_FIELD1_VALUE }}</li>
-			{% endif %}
-
 			{% EVENT memberlist_view_contact_custom_fields_after %}
-
 		</ul>
 
-		{% EVENT memberlist_view_contact_after %}
+	</div>
+	{% EVENT memberlist_view_contact_after %}
+
+	<div class="block profile-block">
+		<div class="bar block-bar">
+			<span class="bar-item bar-info">
+				<h3 class="block-title">{{ lang('STATISTICS') }}</h3>
+			</span>
+		</div>
+
+		<ul class="block-stats profile-details">
+			{% EVENT memberlist_view_user_statistics_before %}
+
+			<li class="profile-details-item">
+				{% if POSTS and S_DISPLAY_SEARCH %}<a class="profile-details-link" href="{{ U_SEARCH_USER }}" title="{{ lang('SEARCH_USER_POSTS') }}"></a>{% endif %}
+				<span class="profile-details-icon">{{ Icon('gzo', 'mdi--comment-text-outline') }}</span>
+
+				<span class="profile-details-status">
+					<h4>{{ lang('TOTAL_POSTS') }}</h4>
+					<small class="profile-title">{% if POSTS_PCT %}{{ POSTS_PCT }}{% endif %}</small>
+				</span>
+
+				<span class="profile-details-item-hero">{{ POSTS }}</span>
+			</li>
+
+			{% if POSTS_IN_QUEUE %}
+			<li class="profile-details-divider"></li>
+			<li class="profile-details-item">
+				{% if U_MCP_QUEUE %}
+					<a class="profile-details-link" href="{{ U_MCP_QUEUE }}" title="{{ lang('BAIHU_POSTS_IN_QUEUE', POSTS_IN_QUEUE) }}"></a>
+				{% endif %}
+				<span class="profile-details-icon">{{ Icon('gzo', 'mdi--comment-text-outline') }}</span>
+
+				<span class="profile-details-status">
+					<h4>{{ lang('BAIHU_POSTS_IN_QUEUE', POSTS_IN_QUEUE) }}</h4>
+					<small class="profile-title">test</small>
+				</span>
+
+				<span class="profile-details-item-hero">{{ POSTS_IN_QUEUE }}</span>
+			</li>
+
+			{% endif %}
+
+			<li class="profile-details-divider"></li>
+
+			{% EVENT memberlist_view_user_statistics_after %}
+		</ul>
 
 	</div>
 
