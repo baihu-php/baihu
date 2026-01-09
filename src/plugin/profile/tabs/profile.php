@@ -11,7 +11,6 @@
 namespace baihu\baihu\src\plugin\profile\tabs;
 
 use baihu\baihu\src\plugin\article\posts;
-use phpbb\group\helper as group;
 use phpbb\profilefields\manager as cp;
 
 final class profile extends base
@@ -19,7 +18,6 @@ final class profile extends base
 	public static function getSubscribedServices(): array
 	{
 		return array_merge(parent::getSubscribedServices(), [
-			'group_helper' => '?'.group::class,
 			'profilefields.manager' => '?'.cp::class,
 			'baihu.posts' => '?'. posts::class,
 		]);

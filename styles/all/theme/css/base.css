@@ -1414,9 +1414,8 @@ main {
 		border-radius: 50%;
 		position: absolute;
 		z-index: 101;
-		top: 12%;
+		bottom: 12%;
 		right: 0;
-		float: left;
 		padding: 8%;
 	}
 }
