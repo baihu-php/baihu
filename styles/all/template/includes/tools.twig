@@ -14,51 +14,27 @@
 		{% EVENT memberlist_view_zebra_before %}
 
 		{% if S_USER_LOGGED_IN and S_ZEBRA %}
-			{% set u_add_remove_friend = '' %}
-			{% set l_add_remove_friend = '' %}
-			{% set i_add_remove_friend = '' %}
-			{% set u_add_remove_foe = '' %}
-			{% set l_add_remove_foe = '' %}
-			{% set i_add_remove_foe = '' %}
-
 			{% if U_REMOVE_FRIEND %}
-				{% set u_add_remove_friend = U_REMOVE_FRIEND %}
-				{% set l_add_remove_friend = lang('REMOVE_FRIEND') %}
-				{% set i_add_remove_friend = 'person_remove' %}
-
+				{{ _self.zebra(U_REMOVE_FRIEND, 'REMOVE_FRIEND', 'person_remove') }}
 			{% elseif U_REMOVE_FOE %}
-				{% set u_add_remove_foe = U_REMOVE_FOE %}
-				{% set l_add_remove_foe = lang('REMOVE_FOE') %}
-				{% set i_add_remove_foe = 'person_remove' %}
-
+				{{ _self.zebra(U_REMOVE_FOE, 'REMOVE_FOE', 'person_remove') }}
 			{% else %}
 				{% if U_ADD_FRIEND %}
-					{% set u_add_remove_friend = U_ADD_FRIEND %}
-					{% set l_add_remove_friend = lang('ADD_FRIEND') %}
-					{% set i_add_remove_friend = 'person_add' %}
-
+					{{ _self.zebra(U_ADD_FRIEND, 'ADD_FRIEND', 'person_add') }}
 				{% endif %}
 				{% if U_ADD_FOE %}
-					{% set u_add_remove_foe = U_ADD_FOE %}
-					{% set l_add_remove_foe = lang('ADD_FOE') %}
-					{% set i_add_remove_foe = 'person_add' %}
-
+					{{ _self.zebra(U_ADD_FOE, 'ADD_FOE', 'person_add') }}
 				{% endif %}
 			{% endif %}
 
-			<li class="navigation-item">
-				<a class="navigation-link" href="{{ u_add_remove_friend }}" title="{{ lang(l_add_remove_friend) }}" data-ajax="zebra" role="menuitem">
-					{{- Icon('gzo', i_add_remove_friend, lang(l_add_remove_friend), true, 'action-icon') -}}
-					<span class="navigation-text">{{ lang(l_add_remove_friend) }}</span>
-				</a>
-			</li>
-
-			<li class="navigation-item">
-				<a class="navigation-link" href="{{ u_add_remove_foe }}" title="{{ lang(l_add_remove_foe) }}" data-ajax="zebra" role="menuitem">
-					{{- Icon('gzo', i_add_remove_foe, lang(l_add_remove_foe), true, 'action-icon') -}}
-					<span class="navigation-text">{{ lang(l_add_remove_foe) }}</span>
-				</a>
-			</li>
+			{% macro zebra(action, name, icon) %}
+				<li class="navigation-item">
+					<a class="navigation-link" href="{{ action }}" title="{{ lang(name) }}" data-ajax="zebra" role="menuitem">
+						{{- Icon('gzo', icon, lang(name), true, 'action-icon') -}}
+						<span class="navigation-text">{{ lang(name) }}</span>
+					</a>
+				</li>
+			{% endmacro %}
 		{% endif %}
 
 		{% EVENT memberlist_view_zebra_after %}
