@@ -70,9 +70,9 @@ class loader
 			}
 
 			$this->controller_helper->assign_block_vars('tabs', [
-				'title'  => $tab,
-				'link'   => $route,
-				'icon'   => $this->get_tab($tab)->get_icon(),
+				'title'	 => $tab,
+				'link'	 => $route,
+				'icon'	 => $this->get_tab($tab)->get_icon(),
 				'active' => $tab === $tid,
 			]);
 		}
