@@ -45,6 +45,14 @@ services:
             - { name: baihu.profile.tabs, order: 1 }
             - { name: container.service_subscriber }
 
+    baihu.profile.tabs.friends:
+        class: baihu\baihu\src\plugin\profile\tabs\friends
+        calls:
+            - [set_tab_name, [friends]]
+        tags:
+            - { name: baihu.profile.tabs, order: 4 }
+            - { name: container.service_subscriber }
+
 # ----- Controllers -----
     baihu.profile_controller:
         class: baihu\baihu\src\controller\member\profile_controller
