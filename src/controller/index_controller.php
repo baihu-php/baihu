@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\src\controller;
 
-use baihu\baihu\src\plugin\article\posts;
+use baihu\baihu\src\plugin\posts\posts;
 use Symfony\Component\HttpFoundation\Response;
 
 class index_controller extends abstract_controller

@@ -10,7 +10,7 @@
 
 namespace baihu\baihu\src\plugin\profile\tabs;
 
-use baihu\baihu\src\plugin\article\posts;
+use baihu\baihu\src\plugin\posts\posts;
 use phpbb\auth\auth;
 use phpbb\profilefields\manager as cp;
 use phpbb\user;
