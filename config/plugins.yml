@@ -21,24 +21,24 @@ services:
         tags:
             - { name: event.listener }
 
-    baihu.plugin.base:
-        abstract: true
-
     baihu.posts:
-        class: baihu\baihu\src\plugin\article\posts
+        class: baihu\baihu\src\plugin\posts\posts
         tags: ['container.service_subscriber']
 
     baihu\baihu\src\plugin\loader: '@baihu.plugin.loader'
     baihu\baihu\src\plugin\data: '@baihu.plugin.data'
-    baihu\baihu\src\plugin\article\posts: '@baihu.posts'
+    baihu\baihu\src\plugin\posts\posts: '@baihu.posts'
 
-# ----- Plugins collection -----
+# ----- Plugins -----
     baihu.plugin.collection:
         class: phpbb\di\service_collection
         arguments:
             - '@service_container'
         tags:
             - { name: service_collection, tag: baihu.plugin }
+
+    baihu.plugin.base:
+        abstract: true
 
     baihu.baihu.plugin.mini_profile:
         class: baihu\baihu\src\plugin\sidebar\mini_profile

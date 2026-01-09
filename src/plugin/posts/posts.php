@@ -8,11 +8,12 @@
 *
 */
 
-namespace baihu\baihu\src\plugin\article;
+namespace baihu\baihu\src\plugin\posts;
 
 use baihu\baihu\src\plugin\base;
 
 use phpbb\auth\auth;
+use phpbb\cache\driver\driver_interface as cache;
 use phpbb\exception\http_exception;
 use phpbb\pagination;
 use phpbb\textformatter\s9e\renderer;
@@ -29,6 +30,7 @@ final class posts extends base
 	{
 		return array_merge(parent::getSubscribedServices(), [
 			'auth' => '?'.auth::class,
+			'cache.driver' => '?'.cache::class,
 			'pagination' => '?'.pagination::class,
 			'text_formatter.s9e.renderer' => '?'.renderer::class,
 			'user' => '?'.user::class
@@ -57,14 +59,24 @@ final class posts extends base
 	 */
 	public function get_category_name(int $fid): string
 	{
-		$sql = 'SELECT forum_name
-				FROM ' . FORUMS_TABLE . '
-				WHERE forum_id = ' . $fid;
-		$result = $this->db->sql_query($sql, 3600);
-		$category_name = $this->db->sql_fetchfield('forum_name');
-		$this->db->sql_freeresult($result);
+		$cache = $this->container->get('cache.driver');
+		if (($forum_ary = $cache->get('_baihu_forum_names')) === false)
+		{
+			$sql = 'SELECT forum_id, forum_name
+					FROM ' . FORUMS_TABLE . '
+					WHERE forum_type = ' . FORUM_POST;
+			$result = $this->db->sql_query($sql);
 
-		return $category_name ?? '';
+			while ($row = $this->db->sql_fetchrow($result))
+			{
+				$forum_ary[(int) $row['forum_id']] = $row['forum_name'];
+			}
+			$this->db->sql_freeresult($result);
+
+			$cache->put('_baihu_forum_names', $forum_ary);
+		}
+
+		return $forum_ary[$fid] ?? '';
 	}
 
 	/**
