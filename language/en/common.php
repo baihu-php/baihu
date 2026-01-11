@@ -66,6 +66,11 @@ $lang = array_merge($lang, [
 
 	'IN_TOPIC'	 => 'In',
 
+	'BAIHU_BEFRIEND'	=> 'Add friend',
+	'BAIHU_UNFRIEND'	=> 'Remove friend',
+	'BAIHU_BLACKLIST'	=> 'Blacklist',
+	'BAIHU_UNBLACKLIST' => 'Remove from Blacklist',
+
 	'BAIHU_LIKE' => 'Like',
 	'BAIHU_UC'	 => 'Under construction...',
 

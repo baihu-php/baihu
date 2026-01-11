@@ -166,25 +166,22 @@ class loader
 
 		// Main array of vars
 		$template_ary = [
-			'U_USER_ADMIN' => ($auth->acl_get('a_user')) ? append_sid(generate_board_url() . "/{$this->admin_path}index.$this->php_ext", 'i=users&amp;mode=overview&amp;u=' . $user_id, true, $user->session_id) : '',
+			'U_USER_ADMIN'	=> ($auth->acl_get('a_user')) ? append_sid(generate_board_url() . "/{$this->admin_path}index.$this->php_ext", 'i=users&amp;mode=overview&amp;u=' . $user_id, true, $user->session_id) : '',
 
-			'U_USER_BAN'   => ($auth->acl_get('m_ban') && $user_id != $user->data['user_id']) ? append_sid("{$this->root_path}mcp.$this->php_ext", 'i=ban&amp;mode=user&amp;u=' . $user_id, true, $user->session_id) : '',
+			'U_USER_BAN'	=> ($auth->acl_get('m_ban') && $user_id != $user->data['user_id']) ? append_sid("{$this->root_path}mcp.$this->php_ext", 'i=ban&amp;mode=user&amp;u=' . $user_id, true, $user->session_id) : '',
 
 			'U_SWITCH_PERMISSIONS' => ($auth->acl_get('a_switchperm') && $user->data['user_id'] != $user_id) ? append_sid("{$this->root_path}ucp.$this->php_ext", "mode=switch_perm&amp;u={$user_id}&amp;hash=" . generate_link_hash('switchperm')) : '',
-			'U_EDIT_SELF'  => ($user_id == $user->data['user_id'] && $auth->acl_get('u_chgprofileinfo')) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=ucp_profile&amp;mode=profile_info') : '',
+			'U_EDIT_SELF'	=> ($user_id == $user->data['user_id'] && $auth->acl_get('u_chgprofileinfo')) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=ucp_profile&amp;mode=profile_info') : '',
 
-			'S_USER_NOTES' => $user_notes_enabled,
-			'S_WARN_USER'  => $warn_user_enabled,
+			'S_USER_NOTES'	=> $user_notes_enabled,
+			'S_WARN_USER'	=> $warn_user_enabled,
 
-			'S_ZEBRA'	   => $user->data['user_id'] != $user_id && $user->data['is_registered'],
+			'S_ZEBRA'		=> $user->data['user_id'] != $user_id && $user->data['is_registered'],
+			'U_BEFRIEND'	=> (!$friend && !$blacklist) ? $this->controller_helper->route('baihu_member_friend_add', ['user_id' => $user_id]) : '',
+			'U_UNFRIEND'	=> ($friend) ? $this->controller_helper->route('baihu_member_friend_remove', ['user_id' => $user_id]) : '',
 
-			'U_ADD_FRIEND' => (!$friend && !$blacklist) ? $this->controller_helper->route('baihu_member_friend_add', ['user_id' => $user_id]) : '',
-
-			'U_ADD_FOE'	   => (!$friend && !$blacklist) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;mode=foes&amp;add=' . urlencode(html_entity_decode($member['username'], ENT_COMPAT))) : '',
-
-			'U_REMOVE_FRIEND' => ($friend) ? $this->controller_helper->route('baihu_member_friend_remove', ['user_id' => $user_id]) : '',
-
-			'U_REMOVE_FOE'	  => ($blacklist) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;remove=1&amp;mode=foes&amp;usernames[]=' . $user_id) : '',
+			'U_BLACKLIST'	=> (!$friend && !$blacklist) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;mode=foes&amp;add=' . urlencode(html_entity_decode($member['username'], ENT_COMPAT))) : '',
+			'U_UNBLACKLIST' => ($blacklist) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;remove=1&amp;mode=foes&amp;usernames[]=' . $user_id) : '',
 		];
 
 		/**
