@@ -51,6 +51,7 @@ final class manager
 	{
 		if (confirm_box(true))
 		{
+			// Load action (Insert, Delete, Update)
 			$this->{$mode}($table, $data);
 
 			return $this->message($message);
@@ -71,20 +72,13 @@ final class manager
 		{
 			return new JsonResponse(
 				[
-					'success'		 => true,
-					'MESSAGE_TITLE'	 => $message_title,
-					'MESSAGE_TEXT'	 => $message_text,
-					// 'REFRESH_DATA'	 => ['time' => 3, 'url' => $this->u_action],
-					'refresh' => true
+					'success'		=> true,
+					'MESSAGE_TITLE' => $message_title,
+					'MESSAGE_TEXT'	=> $message_text,
+					'refresh'		=> true
 				],
 				$code
 			);
 		}
-	}
-
-	public function set_u_action($action): self
-	{
-		$this->u_action = $action;
-		return $this;
 	}
 }

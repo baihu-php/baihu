@@ -23,7 +23,6 @@ class zebra_controller extends abstract_controller
 	{
 		$this->language->add_lang('ucp');
 		$entity_manager = $this->get_entity_manager();
-		$entity_manager->set_u_action($this->get_current_url());
 
 		if ($user_id)
 		{
@@ -41,7 +40,6 @@ class zebra_controller extends abstract_controller
 	{
 		$this->language->add_lang('ucp');
 		$entity_manager = $this->get_entity_manager();
-		$entity_manager->set_u_action($this->get_current_url());
 
 		if ($user_id)
 		{
