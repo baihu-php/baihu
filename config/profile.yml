@@ -58,6 +58,10 @@ services:
         class: baihu\baihu\src\controller\member\profile_controller
         tags: ['container.service_subscriber']
 
+    baihu.profile.zebra_controller:
+        class: baihu\baihu\src\controller\member\zebra_controller
+        tags: ['container.service_subscriber']
+
     baihu.members.redirect_controller:
         class: baihu\baihu\src\controller\member\redirect_controller
         tags: ['container.service_subscriber']

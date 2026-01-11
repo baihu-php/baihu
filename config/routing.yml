@@ -48,14 +48,26 @@ baihu_recent_topic:
     requirements:
         aid: \d+
 
-# Members
+# Members / Profile
 baihu_member:
     path: /u/{username}
     controller: baihu.profile_controller:index
     defaults:
         tid: profile
 
-baihu_member_tab:
+baihu_member_friend_add:
+    path: /u/add-friend/{user_id}
+    controller: baihu.profile.zebra_controller:create
+    requirements:
+        user_id: \d+
+
+baihu_member_friend_remove:
+    path: /u/delete-friend/{user_id}
+    controller: baihu.profile.zebra_controller:delete
+    requirements:
+        user_id: \d+
+
+baihu_profile_tab:
     path: /u/{username}/tab/{tid}
     controller: baihu.profile_controller:index
 
