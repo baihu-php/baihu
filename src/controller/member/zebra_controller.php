@@ -11,20 +11,35 @@
 namespace baihu\baihu\src\controller\member;
 
 use baihu\baihu\src\controller\abstract_controller;
+use baihu\baihu\src\plugin\profile\model\zebra;
 // phpcs:disable
 use baihu\baihu\src\security\attribute\is_granted as isGranted;
 // phpcs:enable
+
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 #[isGranted('LIMITED', ['u_viewprofile', 'a_user', 'a_useradd', 'a_userdel'])]
 class zebra_controller extends abstract_controller
 {
-	public function create(int $user_id): JsonResponse
+	public static function getSubscribedServices(): array
+	{
+		return array_merge(parent::getSubscribedServices(), [
+			'baihu.profile.model.zebra' => '?'.zebra::class,
+		]);
+	}
+
+	public function create(int $user_id): JsonResponse|Response
 	{
 		$this->language->add_lang('ucp');
 		$entity_manager = $this->get_entity_manager();
 
-		if ($user_id)
+		// Load zebra data
+		$zebra = $this->container->get('baihu.profile.model.zebra')->get_data($user_id, $this->get_user());
+		$friend = $zebra['friend'];
+		$blacklist = $zebra['blacklist'];
+
+		if (!$friend && !$blacklist)
 		{
 			return $entity_manager->action(
 				'create',
@@ -34,14 +49,16 @@ class zebra_controller extends abstract_controller
 				['submit' => true]
 			);
 		}
+
+		return $this->message('HELLO');
 	}
 
-	public function delete(int $user_id): JsonResponse
+	public function delete(int $user_id): JsonResponse|Response
 	{
 		$this->language->add_lang('ucp');
 		$entity_manager = $this->get_entity_manager();
 
-		if ($user_id)
+		if ($this->container->get('baihu.profile.model.zebra')->get_data($user_id, $this->get_user())['friend'])
 		{
 			return $entity_manager->action(
 				'delete',
@@ -51,5 +68,7 @@ class zebra_controller extends abstract_controller
 				['submit' => true]
 			);
 		}
+
+		return $this->message('HELLO');
 	}
 }
