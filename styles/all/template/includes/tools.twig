@@ -13,16 +13,16 @@
 		{% EVENT memberlist_view_zebra_before %}
 
 		{% if S_USER_LOGGED_IN and S_ZEBRA %}
-			{% if U_REMOVE_FRIEND %}
-				{{ _self.zebra(U_REMOVE_FRIEND, 'REMOVE_FRIEND', 'person_remove') }}
-			{% elseif U_REMOVE_FOE %}
-				{{ _self.zebra(U_REMOVE_FOE, 'REMOVE_FOE', 'person_remove') }}
+			{% if U_UNFRIEND %}
+				{{ _self.zebra(U_UNFRIEND, 'BAIHU_UNFRIEND', 'person_remove') }}
+			{% elseif U_UNBLACKLIST %}
+				{{ _self.zebra(U_UNBLACKLIST, 'BAIHU_UNBLACKLIST', 'person_remove') }}
 			{% else %}
-				{% if U_ADD_FRIEND %}
-					{{ _self.zebra(U_ADD_FRIEND, 'ADD_FRIEND', 'person_add') }}
+				{% if U_BEFRIEND %}
+					{{ _self.zebra(U_BEFRIEND, 'BAIHU_BEFRIEND', 'person_add') }}
 				{% endif %}
-				{% if U_ADD_FOE %}
-					{{ _self.zebra(U_ADD_FOE, 'ADD_FOE', 'person_add') }}
+				{% if U_BLACKLIST %}
+					{{ _self.zebra(U_BLACKLIST, 'BAIHU_BLACKLIST', 'person_add') }}
 				{% endif %}
 			{% endif %}
 
