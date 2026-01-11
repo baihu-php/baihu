@@ -17,6 +17,7 @@ services:
         autowire: false
         arguments:
             - '@baihu.controller_helper'
+            - '@baihu.profile.model.zebra'
             - '@baihu.profile.tabs.collection'
             - '@dbal.conn'
             - '@event_dispatcher'
@@ -24,7 +25,11 @@ services:
             - '%core.php_ext%'
             - '%core.root_path%'
 
+    baihu.profile.model.zebra:
+        class: baihu\baihu\src\plugin\profile\model\zebra
+
     baihu\baihu\src\plugin\profile\loader: '@baihu.profile.loader'
+    baihu\baihu\src\plugin\profile\model\zebra: '@baihu.profile.model.zebra'
 
 # ----- Profile Tabs -----
     baihu.profile.tabs.collection:

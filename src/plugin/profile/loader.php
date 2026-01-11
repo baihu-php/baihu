@@ -12,7 +12,7 @@ namespace baihu\baihu\src\plugin\profile;
 
 use baihu\baihu\src\controller\controller_helper;
 use baihu\baihu\src\enum\core;
-
+use baihu\baihu\src\plugin\profile\model\zebra;
 use phpbb\auth\auth;
 use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
@@ -27,6 +27,7 @@ class loader
 
 	public function __construct(
 		protected controller_helper $controller_helper,
+		protected zebra $zebra,
 		protected service_collection $collection,
 		protected driver_interface $db,
 		protected dispatcher $dispatcher,
@@ -137,19 +138,6 @@ class loader
 		$user_notes_enabled = true;
 		$warn_user_enabled = true;
 
-		// What colour is the zebra
-		$sql = 'SELECT friend, foe
-			FROM ' . ZEBRA_TABLE . "
-			WHERE zebra_id = $user_id
-				AND user_id = {$user->data['user_id']}";
-		$result = $this->db->sql_query($sql);
-		$row = $this->db->sql_fetchrow($result);
-
-		$foe = $row ? (bool) $row['foe'] : false;
-		$friend = $row ? (bool) $row['friend'] : false;
-
-		$this->db->sql_freeresult($result);
-
 		if ($config['load_onlinetrack'])
 		{
 			$sql = 'SELECT MAX(session_time) AS session_time, MIN(session_viewonline) AS session_viewonline
@@ -171,7 +159,12 @@ class loader
 
 		$this->controller_helper->template->assign_vars(phpbb_show_profile($member, $user_notes_enabled, $warn_user_enabled));
 
-		// Define the main array of vars to assign to memberlist_view.html
+		// Load zebra data
+		$zebra = $this->zebra->get_data($user_id, $user);
+		$friend = $zebra['friend'];
+		$blacklist = $zebra['blacklist'];
+
+		// Main array of vars
 		$template_ary = [
 			'U_USER_ADMIN' => ($auth->acl_get('a_user')) ? append_sid(generate_board_url() . "/{$this->admin_path}index.$this->php_ext", 'i=users&amp;mode=overview&amp;u=' . $user_id, true, $user->session_id) : '',
 
@@ -185,9 +178,13 @@ class loader
 
 			'S_ZEBRA'	   => $user->data['user_id'] != $user_id && $user->data['is_registered'],
 
-			'U_ADD_FRIEND' => (!$friend && !$foe) ? $this->controller_helper->route('baihu_member_friend_add', ['user_id' => $user_id]) : '',
+			'U_ADD_FRIEND' => (!$friend && !$blacklist) ? $this->controller_helper->route('baihu_member_friend_add', ['user_id' => $user_id]) : '',
 
-			'U_ADD_FOE'	   => (!$friend && !$foe) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;mode=foes&amp;add=' . urlencode(html_entity_decode($member['username'], ENT_COMPAT))) : '',
+			'U_ADD_FOE'	   => (!$friend && !$blacklist) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;mode=foes&amp;add=' . urlencode(html_entity_decode($member['username'], ENT_COMPAT))) : '',
+
+			'U_REMOVE_FRIEND' => ($friend) ? $this->controller_helper->route('baihu_member_friend_remove', ['user_id' => $user_id]) : '',
+
+			'U_REMOVE_FOE'	  => ($blacklist) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;remove=1&amp;mode=foes&amp;usernames[]=' . $user_id) : '',
 		];
 
 		/**
