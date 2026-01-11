@@ -32,6 +32,7 @@ class profile_controller extends abstract_controller
 	{
 		// Load language
 		$this->language->add_lang('memberlist');
+		$this->language->add_lang('profile', 'baihu/baihu');
 
 		$profile_loader = $this->container->get('baihu.profile.loader');
 		$member = $profile_loader->get_member_data($username);

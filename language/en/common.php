@@ -23,42 +23,15 @@ $lang = array_merge($lang, [
 	'DASHBOARD'		 => 'Dashboard',
 	'AREA_MAIN_PAGE' => 'Baihu AreaZ',
 	'BAIHU_CREATE'	 => 'Create',
-	'BAIHU_TOOLS'	 => 'Tools',
 	'BAIHU_FORUM'	 => 'New forum topic',
 
-	'BAIHU_NO_ACTIVITY'	 => 'No activity at current moment',
-	'BAIHU_NO_FRIENDS'	 => 'No friends at the moment',
-	'BAIHU_ACHIEVEMENTS' => 'Achievements',
-	'BAIHU_RANK'	 => 'Rank',
-	'BAIHU_CONTACT'	 => 'Contact',
-	'BAIHU_POSTED_IN' => [
-		0 => 'Replied to a topic in',
-		1 => 'Posted a topic in',
-	],
-
 	// Drawer
-	'DRAWER_GENERAL' => 'General',
-	'DRAWER_LEGAL'	 => 'Help & Legal',
+	'DRAWER_GENERAL'  => 'General',
+	'DRAWER_LEGAL'	  => 'Help & Legal',
 
-	'BAIHU_POSTS_IN_QUEUE' => [
-		0 => 'No posts in queue',
-		1 => 'Post in queue',
-		2 => 'Posts in queue',
-	],
+	'BAIHU_READ_FULL' => 'Read full post',
 
-	'BAIHU_LIKE' => 'Like',
-
-	'NEWS' => 'News',
-
-	'LATEST_NEWS'  => 'Viewing category',
-	'ARTICLE'	   => 'Viewing article',
-	'READ_FULL'	   => 'Read full article',
-	'CATEGORIES'   => 'Categories',
-	'NEW_ARTICLE'  => 'New article',
-	'POST_ARTICLE' => 'Post new article',
-	'VIEW_NEWS'	   => 'News id - %s',
-	'VIEW_ARTICLE' => 'Article id - %s',
-
+	// Time ago
 	'UNKNOWN' => 'Unknown',
 	'year'	  => '%d year',
 	'month'	  => '%d month',
@@ -72,14 +45,7 @@ $lang = array_merge($lang, [
 		2 => '%2$ss ago',
 	],
 
-	'BAIHU_PROFILE' => 'Overview',
-	'BAIHU_FRIENDS' => 'Friends',
-	'CURRENT_PROFILE_TAB' => 'Your %s',
-	'PROFILE_TAB' => '%s [%s]',
-
-	'BAIHU_STATS_PER_DAY' => '%s per day',
-	'BAIHU_PER_DAY' => 'Per day',
-
+	// Blocks
 	'LEADERS'		=> 'Top posters',
 	'RECENT_POSTS'	=> 'Recent posts',
 	'RECENT_TOPICS' => 'Recent topics',
@@ -93,21 +59,15 @@ $lang = array_merge($lang, [
 	'BAIHU_TOPICS'	=> 'Topics',
 	'BAIHU_MEMBERS' => 'Members',
 	'BAIHU_NEWEST'	=> 'Newest',
+	'BAIHU_STATS_PER_DAY' => '%s per day',
+	'BAIHU_PER_DAY' => 'Per day',
 
-	'IN_TOPIC'	=> 'In ',
+	'BAIHU_CONTACT'	=> 'Contact',
 
-	'DAYS_HERE' => 'Membership',
-	'PROGRESS'	=> 'Progress',
-	'LEVEL'		=> 'Level',
+	'IN_TOPIC'	 => 'In',
 
-	'STATUSES'	=> [
-		0 => 'Fresh As A Mint',
-		1 => 'Self Made',
-	],
-
-	'STATUS' => 'Status: %s',
-
-	'BAIHU_UC' => 'Under construction...',
+	'BAIHU_LIKE' => 'Like',
+	'BAIHU_UC'	 => 'Under construction...',
 
 	// Auth
 	'BAIHU_LOGIN'	   => 'You need to login to access this page.',
