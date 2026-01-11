@@ -63,7 +63,7 @@ class loader
 
 		foreach ($this->available() as $tab)
 		{
-			$route = $this->controller_helper->route('baihu_member_tab', ['username' => $username, 'tid' => $tab]);
+			$route = $this->controller_helper->route('baihu_profile_tab', ['username' => $username, 'tid' => $tab]);
 			if ($tab === core::DEFAULT_TAB_NAME)
 			{
 				$route = $this->controller_helper->route('baihu_member', ['username' => $username]);
@@ -88,7 +88,7 @@ class loader
 
 		if ($tab !== core::DEFAULT_TAB_NAME)
 		{
-			$route = 'baihu_member_tab';
+			$route = 'baihu_profile_tab';
 			$params = ['username' => $username, 'tid' => $tab];
 
 			$this->controller_helper->assign_breadcrumb(ucfirst($tab), $route, $params);
@@ -137,6 +137,19 @@ class loader
 		$user_notes_enabled = true;
 		$warn_user_enabled = true;
 
+		// What colour is the zebra
+		$sql = 'SELECT friend, foe
+			FROM ' . ZEBRA_TABLE . "
+			WHERE zebra_id = $user_id
+				AND user_id = {$user->data['user_id']}";
+		$result = $this->db->sql_query($sql);
+		$row = $this->db->sql_fetchrow($result);
+
+		$foe = $row ? (bool) $row['foe'] : false;
+		$friend = $row ? (bool) $row['friend'] : false;
+
+		$this->db->sql_freeresult($result);
+
 		if ($config['load_onlinetrack'])
 		{
 			$sql = 'SELECT MAX(session_time) AS session_time, MIN(session_viewonline) AS session_viewonline
@@ -169,6 +182,12 @@ class loader
 
 			'S_USER_NOTES' => $user_notes_enabled,
 			'S_WARN_USER'  => $warn_user_enabled,
+
+			'S_ZEBRA'	   => $user->data['user_id'] != $user_id && $user->data['is_registered'],
+
+			'U_ADD_FRIEND' => (!$friend && !$foe) ? $this->controller_helper->route('baihu_member_friend_add', ['user_id' => $user_id]) : '',
+
+			'U_ADD_FOE'	   => (!$friend && !$foe) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;mode=foes&amp;add=' . urlencode(html_entity_decode($member['username'], ENT_COMPAT))) : '',
 		];
 
 		/**
