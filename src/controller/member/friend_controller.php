@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 #[isGranted('LIMITED', ['u_viewprofile', 'a_user', 'a_useradd', 'a_userdel'])]
-class zebra_controller extends abstract_controller
+class friend_controller extends abstract_controller
 {
 	public static function getSubscribedServices(): array
 	{

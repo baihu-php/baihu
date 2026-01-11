@@ -57,13 +57,13 @@ baihu_member:
 
 baihu_member_friend_add:
     path: /u/add-friend/{user_id}
-    controller: baihu.profile.zebra_controller:create
+    controller: baihu.profile.friend_controller:create
     requirements:
         user_id: \d+
 
 baihu_member_friend_remove:
-    path: /u/delete-friend/{user_id}
-    controller: baihu.profile.zebra_controller:delete
+    path: /u/remove-friend/{user_id}
+    controller: baihu.profile.friend_controller:delete
     requirements:
         user_id: \d+
 
