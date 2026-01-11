@@ -33,18 +33,20 @@ class friend_controller extends abstract_controller
 	{
 		$this->language->add_lang('ucp');
 		$entity_manager = $this->get_entity_manager();
+		$user = $this->get_user();
 
 		// Load zebra data
-		$zebra = $this->container->get('baihu.profile.model.zebra')->get_data($user_id, $this->get_user());
+		$s_zebra = (int) $user->data['user_id'] !== $user_id;
+		$zebra = $this->container->get('baihu.profile.model.zebra')->get_data($user_id, $user);
 		$friend = $zebra['friend'];
 		$blacklist = $zebra['blacklist'];
 
-		if (!$friend && !$blacklist)
+		if ($s_zebra && !$friend && !$blacklist)
 		{
 			return $entity_manager->action(
 				'create',
 				ZEBRA_TABLE,
-				['user_id' => (int) $this->get_user()->data['user_id'], 'zebra_id' => (int) $user_id, 'friend' => 1],
+				['user_id' => (int) $user->data['user_id'], 'zebra_id' => $user_id, 'friend' => 1],
 				'FRIENDS_UPDATED',
 				['submit' => true]
 			);
@@ -57,13 +59,14 @@ class friend_controller extends abstract_controller
 	{
 		$this->language->add_lang('ucp');
 		$entity_manager = $this->get_entity_manager();
+		$user = $this->get_user();
 
-		if ($this->container->get('baihu.profile.model.zebra')->get_data($user_id, $this->get_user())['friend'])
+		if ($this->container->get('baihu.profile.model.zebra')->get_data($user_id, $user)['friend'])
 		{
 			return $entity_manager->action(
 				'delete',
 				ZEBRA_TABLE,
-				['user_id', $this->get_user()->data['user_id'], 'zebra_id', $user_id, true],
+				['user_id', $user->data['user_id'], 'zebra_id', $user_id, true],
 				'FRIENDS_UPDATED',
 				['submit' => true]
 			);
