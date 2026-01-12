@@ -11,7 +11,6 @@
 namespace baihu\baihu\src\controller\member;
 
 use baihu\baihu\src\controller\abstract_controller;
-use baihu\baihu\src\enum\core;
 use baihu\baihu\src\plugin\profile\loader as profile_loader;
 // phpcs:disable
 use baihu\baihu\src\security\attribute\is_granted as isGranted;
