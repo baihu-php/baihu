@@ -50,8 +50,29 @@
 	}
 }
 
-/* Profile left side */
+:where(.profile-cards > *)
+{
+	outline: var(--border);
+}
+
+.profile-cards {
+	padding: var(--spacing-3);
+
+	.card {
+		display: unset;
+		overflow: hidden;
+	}
+}
+
 .profile-block {
+	ol, ul {
+		margin: 0;
+	}
+
+	.profile-heading {
+		padding: var(--spacing-3);
+	}
+
 	.block-stats {
 		color: var(--color-text);
 		padding: unset;
@@ -79,8 +100,19 @@
 			opacity: 0.38;
 		}
 	}
+
+	.profile-stats {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--spacing-2);
+
+		.profile-stats-item {
+			text-align: center;
+		}
+	}
 }
 
+/* Profile left side */
 .profile-details {
 	font-size: var(--font-size);
 
