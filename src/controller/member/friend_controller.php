@@ -15,7 +15,6 @@ use baihu\baihu\src\plugin\profile\model\zebra;
 // phpcs:disable
 use baihu\baihu\src\security\attribute\is_granted as isGranted;
 // phpcs:enable
-
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 

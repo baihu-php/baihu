@@ -11,6 +11,7 @@
 namespace baihu\baihu\src\plugin\profile\tabs;
 
 use baihu\baihu\src\user\loader as users_loader;
+use phpbb\user;
 
 final class friends extends base
 {
@@ -18,6 +19,7 @@ final class friends extends base
 	{
 		return array_merge(parent::getSubscribedServices(), [
 			'baihu.users_loader' => '?'.users_loader::class,
+			'user' => '?'.user::class,
 		]);
 	}
 
@@ -34,12 +36,13 @@ final class friends extends base
 	public function load(array $member): void
 	{
 		$users_loader = $this->container->get('baihu.users_loader');
+		$user = $this->container->get('user');
 
 		// Output listing of friends online
 		$update_time = $this->config['load_online_time'] * 60;
 
 		$sql_ary = [
-			'SELECT'	=> 'u.user_id, u.username, u.username_clean, u.user_colour, u.user_posts, u.user_rank, u.user_avatar, u.user_avatar_type, u.user_avatar_width, u.user_avatar_height, MAX(s.session_time) as online_time, MIN(s.session_viewonline) AS viewonline',
+			'SELECT'	=> 'u.user_id, u.username, u.username_clean, u.user_colour, u.user_posts, u.user_rank, u.user_regdate, u.user_last_active, u.user_allow_viewonline, u.user_avatar, u.user_avatar_type, u.user_avatar_width, u.user_avatar_height, MAX(s.session_time) as online_time, MIN(s.session_viewonline) AS viewonline',
 
 			'FROM'		=> [
 				USERS_TABLE		=> 'u',
@@ -70,6 +73,13 @@ final class friends extends base
 			$user_id = (int) $row['user_id'];
 			$rank = $users_loader->get_rank_data($row);
 
+			$last_active = '';
+			if ($row['user_allow_viewonline'])
+			// if ($row['user_allow_viewonline'] || $auth->acl_get('u_viewonline'))
+			{
+				$last_active = $row['user_last_active'] ?: ($row['session_time'] ?? 0);
+			}
+
 			// $which = (time() - $update_time < $row['online_time'] && ($row['viewonline'] || $auth->acl_get('u_viewonline'))) ? 'online' : 'offline';
 
 			$this->template->assign_block_vars('friends', array_merge($users_loader->get_username_data($user_id), [
@@ -77,6 +87,8 @@ final class friends extends base
 				'rank'	   => $rank['rank_title'],
 				'rank_img' => $rank['rank_img'],
 				'posts'	   => $row['user_posts'],
+				'joined'   => $user->format_date($row['user_regdate']),
+				'last_active' => (empty($last_active)) ? ' - ' : $user->format_date($last_active),
 				's_online' => (time() - $update_time < $row['online_time'] && ($row['viewonline']))
 			]));
 		}
