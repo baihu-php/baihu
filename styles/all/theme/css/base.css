@@ -1318,6 +1318,12 @@ pre code {
 }
 
 /* Page */
+/* .page {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	min-height: 100svh;
+} */
+
 main {
 	margin-block: var(--spacing-md);
 }
@@ -1388,6 +1394,12 @@ main {
 	.avatar.avatar-sm {
 		inline-size: var(--avatar-sm);
 		block-size: var(--avatar-sm);
+	}
+
+	&.avatar-sl,
+	.avatar.avatar-sl {
+		inline-size: var(--avatar-sl);
+		block-size: var(--avatar-sl);
 	}
 
 	&.avatar-md,
@@ -1559,8 +1571,8 @@ main {
 }
 
 .stabilize {
-	border-color: var(--color-light-alt-2);
-	margin: var(--spacing-1) var(--spacing-4);
+	border-color: var(--color-light-alt-1);
+	margin: var(--spacing-4);
 }
 
 dl {
