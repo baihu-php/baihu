@@ -75,11 +75,10 @@ final class friends extends base
 
 			$last_active = '';
 			if ($row['user_allow_viewonline'])
-			// if ($row['user_allow_viewonline'] || $auth->acl_get('u_viewonline'))
 			{
 				$last_active = $row['user_last_active'] ?: ($row['session_time'] ?? 0);
 			}
-
+			// if ($row['user_allow_viewonline'] || $auth->acl_get('u_viewonline'))
 			// $which = (time() - $update_time < $row['online_time'] && ($row['viewonline'] || $auth->acl_get('u_viewonline'))) ? 'online' : 'offline';
 
 			$this->template->assign_block_vars('friends', array_merge($users_loader->get_username_data($user_id), [
