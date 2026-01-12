@@ -1,5 +1,3 @@
-const $page = '[data-container="page"]';
-
 const $tooltip = '[data-tooltip="true"]';
 const $tooltipContainer = '[data-tooltip-container="true"]';
 

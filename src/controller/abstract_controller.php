@@ -11,6 +11,7 @@
 namespace baihu\baihu\src\controller;
 
 use baihu\baihu\src\controller\controller_helper;
+use baihu\baihu\src\db\manager as entity_manager;
 use phpbb\auth\auth;
 use phpbb\config\config;
 use phpbb\event\dispatcher;
@@ -46,6 +47,7 @@ abstract class abstract_controller implements ServiceSubscriberInterface
 	{
 		return [
 			'baihu.controller_helper' => controller_helper::class,
+			'baihu.entity.manager' => entity_manager::class,
 			'auth' => auth::class,
 			'request' => request::class,
 			'symfony_request' => symfony_request::class,
@@ -66,6 +68,11 @@ abstract class abstract_controller implements ServiceSubscriberInterface
 	protected function get_user(): user
 	{
 		return $this->container->get('user');
+	}
+
+	protected function get_entity_manager(): entity_manager
+	{
+		return $this->container->get('baihu.entity.manager');
 	}
 
 	/**

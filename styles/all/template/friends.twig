@@ -1,11 +1,59 @@
 {% extends '@baihu_baihu/layout/profile-base.twig' %}
 
 {% block baihu_main_content %}
+<div class="block profile-block">
 
-	<article class="block post">
-		<div class="profile-content">{{ lang('BAIHU_UC') }}</div>
-	</article>
+		<div class="bar block-bar">
 
+			<span class="bar-item bar-info">
+				<h3 class="block-title">Friends {{ friends|length }}</h3>
+			</span>
+
+		</div>
+
+	<ol class="cards profile-cards">
+
+		{% for friend in friends %}
+
+			<li class="card profile-block">
+
+				<a href="{{ path('baihu_member', {'username': friend.name}) }}">
+					<div class="avatar-wrap avatar-lg">
+						{{ avatar('user', friend.avatar[0], '', false, true, 'avatar-lg', friend.s_online) }}
+					</div>
+				</a>
+
+				<h4 class="profile-meta">
+					{{- baihu_username('profile', friend.id, friend.name, friend.color, 'profile-user') -}}
+
+					{% if friend.rank %}
+						<small class="profile-title">{{ friend.rank }}</small>
+					{% endif %}
+
+					{% if friend.rank_img %}
+						<span class="profile-rank">{{ friend.rank_img }}</span>
+					{% endif %}
+				</h4>
+				<div class="profile-stats">
+
+					<div class="profile-stats-item">
+						<div>Posts</div><div>{{ friend.posts }}</div>
+					</div>
+
+					<div class="profile-stats-item">
+						<div>Test</div><div>hello</div>
+					</div>
+
+				</div>
+
+			</li>
+
+		{% endfor %}
+
+	</ol>
+
+	{# {{ lang('BAIHU_UC') }} #}
+</div>
 {% endblock %}
 
 {% block baihu_main_left %}{% endblock %}

@@ -18,3 +18,8 @@ services:
         class: baihu\baihu\src\event\subscribers
         tags:
             - { name: event.listener }
+
+    baihu.entity.manager:
+        class: baihu\baihu\src\db\manager
+
+    baihu\baihu\src\db\manager: '@baihu.entity.manager'
