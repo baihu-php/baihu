@@ -53,7 +53,7 @@ final class friends extends base
 				],
 			],
 
-			'WHERE'		=> 'z.user_id = ' . $member['user_id'] . '
+			'WHERE'		=> 'z.user_id = ' . (int) $member['user_id'] . '
 				AND z.friend = 1
 				AND u.user_id = z.zebra_id',
 

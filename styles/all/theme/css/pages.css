@@ -86,6 +86,7 @@
 		text-align: center;
 		margin: 0;
 		padding: var(--spacing-3);
+		min-block-size: 112px;
 
 		.profile-rank img {
 			max-inline-size: 200px;
