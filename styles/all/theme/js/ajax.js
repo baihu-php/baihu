@@ -4,14 +4,10 @@ $(function() { // Avoid conflicts with other libraries
 
 	phpbb.addAjaxCallback('zebra', function(response) {
 
-		if (response.success) {
-			if (response.refresh) {
-				setTimeout(function () {
-					location.reload(true);
-				}, 3100);
-
-				// location.reload();
-			}
+		if (response.success && response.refresh) {
+			setTimeout(function () {
+				location.reload(true);
+			}, 3100);
 		}
 	});
 

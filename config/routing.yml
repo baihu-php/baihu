@@ -68,7 +68,7 @@ baihu_member_friend_remove:
         user_id: \d+
 
 baihu_profile_tab:
-    path: /u/{username}/tab/{tid}
+    path: /u/{username}/tab-{tid}
     controller: baihu.profile_controller:index
 
 # Redirect to memberlist (legacy)
