@@ -1,3 +1,12 @@
-<li>
-	{{ Icon('gzo', 'mdi--file-outline', lang('IN_TOPIC'), true) ~ link({'class': 'block-stats-link', 'href': recent.link, 'title': recent.title}, recent.title) }}
+<li class="block-info">
+	<span class="avatar-wrap avatar avatar-sm">
+		{{ avatar('user', recent.avatar[0], '', false, true, 'avatar-sm') }}
+	</span>
+
+	<span class="block-status">
+		{{ link({'class': 'block-stats-link', 'href': recent.link, 'title': recent.title}, recent.title) }}
+		<small class="block-status-title">{{- baihu_username('profile', recent.id, recent.name, recent.color, 'recent-poster') -}}
+			- <time class="block-status-time" datetime="{{ recent.time }}" title="{{ recent.time }}">{{ recent.time }}</time>
+		</small>
+	</span>
 </li>
