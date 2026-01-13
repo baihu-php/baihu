@@ -44,45 +44,46 @@
 			</header>
 
 			{% block baihu_main_before %}{% endblock %}
-			<main class="container">
+			<main class="main-container">
+				<div class="container">
 
-				{# Baihu crumbs #}
-				{% block baihu_crumb %}
-					{{ include('@baihu_baihu/includes/crumbs.twig') }}
-				{% endblock %}
-
-				{% block baihu_main_content_before %}{% endblock %}
-
-				<section class="content-main">
-
-					{% block baihu_main_left %}
-						{% EVENT baihu_main_left %}
+					{# Baihu crumbs #}
+					{% block baihu_crumb %}
+						{{ include('@baihu_baihu/includes/crumbs.twig') }}
 					{% endblock %}
 
-					{# Baihu main section #}
-					<div class="section-main">
-						{% block baihu_main_content_top %}{% endblock %}
+					{% block baihu_main_content_before %}{% endblock %}
 
-						{% block baihu_main_content %}{% endblock %}
+					<section class="content-main">
 
-						{% block baihu_main_content_bottom %}
-							{{ baihu_blocks('baihu_bottom') }}
-							{% EVENT baihu_main_bottom %}
+						{% block baihu_main_left %}
+							{% EVENT baihu_main_left %}
 						{% endblock %}
-					</div>
 
-					{% block baihu_main_right %}
-						{% if config('baihu_side') %}
-							<div class="section-side">
-								{{ baihu_blocks('baihu_side') }}
-							</div>
-						{% endif %}
-					{% endblock %}
+						{# Baihu main section #}
+						<div class="section-main">
+							{% block baihu_main_content_top %}{% endblock %}
 
-				</section>
+							{% block baihu_main_content %}{% endblock %}
 
-				{% block baihu_main_content_after %}{% endblock %}
+							{% block baihu_main_content_bottom %}
+								{{ baihu_blocks('baihu_bottom') }}
+								{% EVENT baihu_main_bottom %}
+							{% endblock %}
+						</div>
 
+						{% block baihu_main_right %}
+							{% if config('baihu_side') %}
+								<div class="section-side">
+									{{ baihu_blocks('baihu_side') }}
+								</div>
+							{% endif %}
+						{% endblock %}
+
+					</section>
+
+					{% block baihu_main_content_after %}{% endblock %}
+				</div>
 			</main>
 
 			<footer class="footer-container" id="page-bottom">

@@ -1318,11 +1318,11 @@ pre code {
 }
 
 /* Page */
-/* .page {
+.page {
 	display: grid;
 	grid-template-rows: auto 1fr auto;
 	min-height: 100svh;
-} */
+}
 
 main {
 	margin-block: var(--spacing-md);
