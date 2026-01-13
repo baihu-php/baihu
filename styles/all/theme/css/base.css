@@ -1318,22 +1318,33 @@ pre code {
 }
 
 /* Page */
-/* .page {
+.page {
 	display: grid;
 	grid-template-rows: auto 1fr auto;
 	min-height: 100svh;
-} */
+}
 
-main {
+.main-container {
 	margin-block: var(--spacing-md);
 }
 
 /* Container */
-.footer,
 .container {
 	max-inline-size: 1300px;
 	position: relative;
 	margin-inline: auto;
+}
+
+/* Footer */
+.footer-container {
+	background-color: oklch(from var(--indigo-100) 85% c h / 0.5);
+	box-shadow: var(--box-shadow);
+	margin-block-start: var(--spacing-lg);
+	padding-block: var(--spacing-lg);
+}
+
+.footer {
+	text-align: center;
 }
 
 /* Main container */
