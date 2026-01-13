@@ -1,11 +1,78 @@
 {% extends '@baihu_baihu/layout/profile-base.twig' %}
 
 {% block baihu_main_content %}
+<div class="block profile-block">
 
-	<article class="block post">
-		<div class="profile-content">{{ lang('BAIHU_UC') }}</div>
-	</article>
+	<div class="bar block-bar">
+		<span class="bar-item bar-info">
+			<h3 class="block-title">Friends {{ friends|length }}</h3>
+		</span>
+	</div>
 
+	<ol class="cards profile-cards">
+
+		{% for friend in friends %}
+
+			<li class="profile-card">
+				<div class="content-header profile-header">
+					<div class="content-header-cover-container">
+						<div class="content-header-cover profile-header-cover"></div>
+					</div>
+
+					<div class="content-header-info profile-card-info">
+						<div class="avatar-wrap header-avatar-wrap header-avatar-size">
+							{{ avatar('user', friend.avatar[0], '', false, true, 'content-header-avatar avatar-sl', friend.s_online) }}
+						</div>
+
+						<div class="content-header-meta">
+							<span class="profile-header-status">
+								<h4 class="profile-heading-4">{{- baihu_username('profile', friend.id, friend.name, friend.color, 'profile-user') -}}</h4>
+
+								{% if friend.rank %}
+									<small class="profile-header-title">{{ friend.rank }}</small>
+								{% endif %}
+							</span>
+						</div>
+					</div>
+
+					<hr class="stabilize">
+
+					<div class="profile-stats">
+						<div class="profile-stats-item">
+							<h4 class="profile-heading-4">{{ lang('JOINED') }}</h4>
+							<small class="profile-header-time">
+								<time datetime="{{ friend.joined }}" title="{{ friend.joined }}" data-short="{{ friend.joined }}">{{ friend.joined }}</time>
+							</small>
+						</div>
+						<div class="profile-stats-item">
+							<h4 class="profile-heading-4">{{ lang('LAST_ACTIVE') }}</h4>
+							<small class="profile-header-time">
+								<time datetime="{{ friend.last_active }}" title="{{ friend.last_active }}" data-short="{{ friend.last_active }}">{{ friend.last_active }}</time>
+							</small>
+						</div>
+					</div>
+
+				</div>
+
+				<hr class="stabilize">
+
+				<h4 class="profile-meta">
+
+					{% if friend.rank_img %}
+						<span class="profile-rank">{{ friend.rank_img }}</span>
+					{% endif %}
+
+				</h4>
+
+			</li>
+
+		{% else %}
+			{{ lang('BAIHU_UC') }}
+		{% endfor %}
+
+	</ol>
+
+</div>
 {% endblock %}
 
 {% block baihu_main_left %}{% endblock %}

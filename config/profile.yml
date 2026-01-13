@@ -17,6 +17,7 @@ services:
         autowire: false
         arguments:
             - '@baihu.controller_helper'
+            - '@baihu.profile.model.zebra'
             - '@baihu.profile.tabs.collection'
             - '@dbal.conn'
             - '@event_dispatcher'
@@ -24,7 +25,11 @@ services:
             - '%core.php_ext%'
             - '%core.root_path%'
 
+    baihu.profile.model.zebra:
+        class: baihu\baihu\src\plugin\profile\model\zebra
+
     baihu\baihu\src\plugin\profile\loader: '@baihu.profile.loader'
+    baihu\baihu\src\plugin\profile\model\zebra: '@baihu.profile.model.zebra'
 
 # ----- Profile Tabs -----
     baihu.profile.tabs.collection:
@@ -41,6 +46,7 @@ services:
         class: baihu\baihu\src\plugin\profile\tabs\profile
         calls:
             - [set_tab_name, [profile]]
+            - [restrict_bots, [false]]
         tags:
             - { name: baihu.profile.tabs, order: 1 }
             - { name: container.service_subscriber }
@@ -49,6 +55,7 @@ services:
         class: baihu\baihu\src\plugin\profile\tabs\friends
         calls:
             - [set_tab_name, [friends]]
+            - [restrict_bots, [true]]
         tags:
             - { name: baihu.profile.tabs, order: 4 }
             - { name: container.service_subscriber }
@@ -56,6 +63,10 @@ services:
 # ----- Controllers -----
     baihu.profile_controller:
         class: baihu\baihu\src\controller\member\profile_controller
+        tags: ['container.service_subscriber']
+
+    baihu.profile.friend_controller:
+        class: baihu\baihu\src\controller\member\friend_controller
         tags: ['container.service_subscriber']
 
     baihu.members.redirect_controller:

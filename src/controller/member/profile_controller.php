@@ -11,7 +11,6 @@
 namespace baihu\baihu\src\controller\member;
 
 use baihu\baihu\src\controller\abstract_controller;
-use baihu\baihu\src\enum\core;
 use baihu\baihu\src\plugin\profile\loader as profile_loader;
 // phpcs:disable
 use baihu\baihu\src\security\attribute\is_granted as isGranted;
@@ -32,21 +31,35 @@ class profile_controller extends abstract_controller
 	{
 		// Load language
 		$this->language->add_lang('memberlist');
+		$this->language->add_lang('profile', 'baihu/baihu');
 
+		// Load common data
 		$profile_loader = $this->container->get('baihu.profile.loader');
 		$member = $profile_loader->get_member_data($username);
-		$profile_loader->build_profile_data($member, $this->get_auth(), $this->config, $this->get_user());
+		$user = $this->get_user();
+		$profile_loader->build_profile_data($member, $this->get_auth(), $this->config, $user);
 		$profile_loader->generate_breadcrumb($username, $tid);
 		$profile_loader->generate_tabs_menu($username, $tid);
 
 		// Load requested tab
 		$current_tab = $profile_loader->get_tab($tid);
+		// TODO: Needs to be moved into auth
+		if ($current_tab->restrict_bots)
+		{
+			if (!$user->data['is_registered'])
+			{
+				if ($user->data['is_bot'])
+				{
+					$this->redirect_to_route('baihu_main_index');
+				}
+			}
+		}
+
 		$current_tab->load($member);
 
-		$page_title = $this->get_user()->data['username'] === $username
+		$page_title = $user->data['username'] === $username
 			? $this->language->lang('CURRENT_PROFILE_TAB', ucfirst($tid))
 			: $this->language->lang('PROFILE_TAB', $username, ucfirst($tid));
-		$page_title = $tid === core::DEFAULT_TAB_NAME ? $page_title : $username;
 
 		return $this->render("{$current_tab->get_namespace()}$tid.twig", $page_title);
 	}

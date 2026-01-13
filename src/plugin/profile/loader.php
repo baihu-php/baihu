@@ -12,7 +12,7 @@ namespace baihu\baihu\src\plugin\profile;
 
 use baihu\baihu\src\controller\controller_helper;
 use baihu\baihu\src\enum\core;
-
+use baihu\baihu\src\plugin\profile\model\zebra;
 use phpbb\auth\auth;
 use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
@@ -27,6 +27,7 @@ class loader
 
 	public function __construct(
 		protected controller_helper $controller_helper,
+		protected zebra $zebra,
 		protected service_collection $collection,
 		protected driver_interface $db,
 		protected dispatcher $dispatcher,
@@ -63,7 +64,7 @@ class loader
 
 		foreach ($this->available() as $tab)
 		{
-			$route = $this->controller_helper->route('baihu_member_tab', ['username' => $username, 'tid' => $tab]);
+			$route = $this->controller_helper->route('baihu_profile_tab', ['username' => $username, 'tid' => $tab]);
 			if ($tab === core::DEFAULT_TAB_NAME)
 			{
 				$route = $this->controller_helper->route('baihu_member', ['username' => $username]);
@@ -88,7 +89,7 @@ class loader
 
 		if ($tab !== core::DEFAULT_TAB_NAME)
 		{
-			$route = 'baihu_member_tab';
+			$route = 'baihu_profile_tab';
 			$params = ['username' => $username, 'tid' => $tab];
 
 			$this->controller_helper->assign_breadcrumb(ucfirst($tab), $route, $params);
@@ -158,17 +159,29 @@ class loader
 
 		$this->controller_helper->template->assign_vars(phpbb_show_profile($member, $user_notes_enabled, $warn_user_enabled));
 
-		// Define the main array of vars to assign to memberlist_view.html
-		$template_ary = [
-			'U_USER_ADMIN' => ($auth->acl_get('a_user')) ? append_sid(generate_board_url() . "/{$this->admin_path}index.$this->php_ext", 'i=users&amp;mode=overview&amp;u=' . $user_id, true, $user->session_id) : '',
+		// Load zebra data
+		$zebra = $this->zebra->get_data($user_id, $user);
+		$friend = $zebra['friend'];
+		$blacklist = $zebra['blacklist'];
 
-			'U_USER_BAN'   => ($auth->acl_get('m_ban') && $user_id != $user->data['user_id']) ? append_sid("{$this->root_path}mcp.$this->php_ext", 'i=ban&amp;mode=user&amp;u=' . $user_id, true, $user->session_id) : '',
+		// Main array of vars
+		$template_ary = [
+			'U_USER_ADMIN'	=> ($auth->acl_get('a_user')) ? append_sid(generate_board_url() . "/{$this->admin_path}index.$this->php_ext", 'i=users&amp;mode=overview&amp;u=' . $user_id, true, $user->session_id) : '',
+
+			'U_USER_BAN'	=> ($auth->acl_get('m_ban') && $user_id != $user->data['user_id']) ? append_sid("{$this->root_path}mcp.$this->php_ext", 'i=ban&amp;mode=user&amp;u=' . $user_id, true, $user->session_id) : '',
 
 			'U_SWITCH_PERMISSIONS' => ($auth->acl_get('a_switchperm') && $user->data['user_id'] != $user_id) ? append_sid("{$this->root_path}ucp.$this->php_ext", "mode=switch_perm&amp;u={$user_id}&amp;hash=" . generate_link_hash('switchperm')) : '',
-			'U_EDIT_SELF'  => ($user_id == $user->data['user_id'] && $auth->acl_get('u_chgprofileinfo')) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=ucp_profile&amp;mode=profile_info') : '',
+			'U_EDIT_SELF'	=> ($user_id == $user->data['user_id'] && $auth->acl_get('u_chgprofileinfo')) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=ucp_profile&amp;mode=profile_info') : '',
 
-			'S_USER_NOTES' => $user_notes_enabled,
-			'S_WARN_USER'  => $warn_user_enabled,
+			'S_USER_NOTES'	=> $user_notes_enabled,
+			'S_WARN_USER'	=> $warn_user_enabled,
+
+			'S_ZEBRA'		=> $user->data['user_id'] != $user_id && $user->data['is_registered'],
+			'U_BEFRIEND'	=> (!$friend && !$blacklist) ? $this->controller_helper->route('baihu_member_friend_add', ['user_id' => $user_id]) : '',
+			'U_UNFRIEND'	=> ($friend) ? $this->controller_helper->route('baihu_member_friend_remove', ['user_id' => $user_id]) : '',
+
+			'U_BLACKLIST'	=> (!$friend && !$blacklist) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;mode=foes&amp;add=' . urlencode(html_entity_decode($member['username'], ENT_COMPAT))) : '',
+			'U_UNBLACKLIST' => ($blacklist) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;remove=1&amp;mode=foes&amp;usernames[]=' . $user_id) : '',
 		];
 
 		/**

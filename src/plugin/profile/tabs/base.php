@@ -21,6 +21,7 @@ use Symfony\Contracts\Service\ServiceSubscriberInterface;
 abstract class base implements ServiceSubscriberInterface
 {
 	public readonly string $name;
+	public readonly bool $restrict_bots;
 
 	public function __construct
 	(
@@ -59,5 +60,10 @@ abstract class base implements ServiceSubscriberInterface
 	public function set_tab_name(string $name): void
 	{
 		$this->name = $name;
+	}
+
+	public function restrict_bots(bool $restrict): void
+	{
+		$this->restrict_bots = $restrict;
 	}
 }

@@ -1,7 +1,7 @@
 {% macro baihu_profile(avatar, user_id, username, color, rank_title, rank_img, s_online = false, id = null) %}
 
-	{# <div class="block profile profile-block" id="profile" popover> #}
-	<div class="block profile-block profile{% if id %} action-toggle baihu-author-aid-{{ id }}{% endif %}">
+	{# <div class="block profile profile-block profile-card" id="profile" popover> #}
+	<div class="block profile-block profile-card profile{% if id %} action-toggle baihu-author-aid-{{ id }}{% endif %}">
 
 		<a href="{{ path('baihu_member', {'username': username}) }}">
 			<div class="avatar-wrap avatar-lg">
