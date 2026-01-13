@@ -180,8 +180,8 @@ class loader
 			'U_BEFRIEND'	=> (!$friend && !$blacklist) ? $this->controller_helper->route('baihu_member_friend_add', ['user_id' => $user_id]) : '',
 			'U_UNFRIEND'	=> ($friend) ? $this->controller_helper->route('baihu_member_friend_remove', ['user_id' => $user_id]) : '',
 
-			'U_BLACKLIST'	=> (!$friend && !$blacklist) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;mode=foes&amp;add=' . urlencode(html_entity_decode($member['username'], ENT_COMPAT))) : '',
-			'U_UNBLACKLIST' => ($blacklist) ? append_sid("{$this->root_path}ucp.$this->php_ext", 'i=zebra&amp;remove=1&amp;mode=foes&amp;usernames[]=' . $user_id) : '',
+			'U_BLACKLIST'	=> (!$friend && !$blacklist) ? $this->controller_helper->route('baihu_member_blacklist', ['user_id' => $user_id]) : '',
+			'U_UNBLACKLIST' => ($blacklist) ? $this->controller_helper->route('baihu_member_unblacklist', ['user_id' => $user_id]) : '',
 		];
 
 		/**

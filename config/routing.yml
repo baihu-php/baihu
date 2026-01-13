@@ -67,6 +67,18 @@ baihu_member_friend_remove:
     requirements:
         user_id: \d+
 
+baihu_member_blacklist:
+    path: /u/blacklist/{user_id}
+    controller: baihu.profile.blacklist_controller:create
+    requirements:
+        user_id: \d+
+
+baihu_member_unblacklist:
+    path: /u/unblacklist/{user_id}
+    controller: baihu.profile.blacklist_controller:delete
+    requirements:
+        user_id: \d+
+
 baihu_profile_tab:
     path: /u/{username}/tab-{tid}
     controller: baihu.profile_controller:index

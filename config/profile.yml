@@ -69,6 +69,10 @@ services:
         class: baihu\baihu\src\controller\member\friend_controller
         tags: ['container.service_subscriber']
 
+    baihu.profile.blacklist_controller:
+        class: baihu\baihu\src\controller\member\blacklist_controller
+        tags: ['container.service_subscriber']
+
     baihu.members.redirect_controller:
         class: baihu\baihu\src\controller\member\redirect_controller
         tags: ['container.service_subscriber']
