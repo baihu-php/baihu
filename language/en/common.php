@@ -70,6 +70,7 @@ $lang = array_merge($lang, [
 	'BAIHU_UNFRIEND'	=> 'Remove friend',
 	'BAIHU_BLACKLIST'	=> 'Blacklist',
 	'BAIHU_UNBLACKLIST' => 'Remove from Blacklist',
+	'BAIHU_BLACKLIST_UPDATED' => 'Your blacklist has been updated.',
 
 	'BAIHU_LIKE' => 'Like',
 	'BAIHU_UC'	 => 'Under construction...',
