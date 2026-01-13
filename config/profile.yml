@@ -46,6 +46,7 @@ services:
         class: baihu\baihu\src\plugin\profile\tabs\profile
         calls:
             - [set_tab_name, [profile]]
+            - [restrict_bots, [false]]
         tags:
             - { name: baihu.profile.tabs, order: 1 }
             - { name: container.service_subscriber }
@@ -54,6 +55,7 @@ services:
         class: baihu\baihu\src\plugin\profile\tabs\friends
         calls:
             - [set_tab_name, [friends]]
+            - [restrict_bots, [true]]
         tags:
             - { name: baihu.profile.tabs, order: 4 }
             - { name: container.service_subscriber }
