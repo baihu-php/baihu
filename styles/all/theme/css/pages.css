@@ -41,12 +41,26 @@
 	}
 }
 
+.profile-block {
+	ol, ul {
+		margin: 0;
+		list-style: none;
+	}
+
+	.block-stats {
+		color: var(--color-text);
+		padding: unset;
+	}
+}
+
+.profile-block,
 .profile-header,
 .profile-cards {
 	h4 {
 		font-size: var(--font-size);
 	}
 
+	.profile-title,
 	.profile-header-time,
 	.profile-header-title {
 		opacity: 0.5;
@@ -179,20 +193,4 @@
 /* Profile content */
 .profile-content {
 	padding: var(--spacing-4);
-}
-
-.profile-block {
-	ol, ul {
-		margin: 0;
-		list-style: none;
-	}
-
-	.profile-title {
-		opacity: 0.5;
-	}
-
-	.block-stats {
-		color: var(--color-text);
-		padding: unset;
-	}
 }

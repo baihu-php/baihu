@@ -11,6 +11,7 @@
 namespace baihu\baihu\src\plugin\profile\tabs;
 
 use baihu\baihu\src\user\loader as users_loader;
+use phpbb\auth\auth;
 use phpbb\user;
 
 final class friends extends base
@@ -19,6 +20,7 @@ final class friends extends base
 	{
 		return array_merge(parent::getSubscribedServices(), [
 			'baihu.users_loader' => '?'.users_loader::class,
+			'auth' => '?'.auth::class,
 			'user' => '?'.user::class,
 		]);
 	}
@@ -36,6 +38,7 @@ final class friends extends base
 	public function load(array $member): void
 	{
 		$users_loader = $this->container->get('baihu.users_loader');
+		$auth = $this->container->get('auth');
 		$user = $this->container->get('user');
 
 		// Output listing of friends online
@@ -65,7 +68,7 @@ final class friends extends base
 		];
 
 		$sql = $this->db->sql_build_query('SELECT_DISTINCT', $sql_ary);
-		$result = $this->db->sql_query($sql);
+		$result = $this->db->sql_query_limit($sql, (int) $this->config['limit'], 0);
 
 		while ($row = $this->db->sql_fetchrow($result))
 		{
@@ -74,12 +77,10 @@ final class friends extends base
 			$rank = $users_loader->get_rank_data($row);
 
 			$last_active = '';
-			if ($row['user_allow_viewonline'])
+			if ($row['user_allow_viewonline'] || $auth->acl_get('u_viewonline'))
 			{
 				$last_active = $row['user_last_active'] ?: ($row['session_time'] ?? 0);
 			}
-			// if ($row['user_allow_viewonline'] || $auth->acl_get('u_viewonline'))
-			// $which = (time() - $update_time < $row['online_time'] && ($row['viewonline'] || $auth->acl_get('u_viewonline'))) ? 'online' : 'offline';
 
 			$this->template->assign_block_vars('friends', array_merge($users_loader->get_username_data($user_id), [
 				'avatar'   => [$users_loader->get_avatar_data($user_id)],
@@ -88,7 +89,7 @@ final class friends extends base
 				'posts'	   => $row['user_posts'],
 				'joined'   => $user->format_date($row['user_regdate']),
 				'last_active' => (empty($last_active)) ? ' - ' : $user->format_date($last_active),
-				's_online' => (time() - $update_time < $row['online_time'] && ($row['viewonline']))
+				's_online' => (time() - $update_time < $row['online_time'] && ($row['viewonline'] || $auth->acl_get('u_viewonline')))
 			]));
 		}
 		$this->db->sql_freeresult($result);
