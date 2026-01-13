@@ -263,6 +263,7 @@
 }
 
 /* Footer */
-.footer-container {
+.area-footer-container {
 	grid-area: footer;
+	padding-block: var(--spacing);
 }

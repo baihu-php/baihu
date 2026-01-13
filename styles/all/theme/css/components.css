@@ -811,9 +811,3 @@
 		}
 	}
 }
-
-/* Footer */
-.footer {
-	text-align: center;
-	padding-block: var(--spacing);
-}
