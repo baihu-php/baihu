@@ -96,7 +96,7 @@
 	}
 
 	.profile-card-info {
-		min-block-size: 58px;
+		min-block-size: 65px;
 		gap: unset;
 
 		.header-avatar-wrap {
