@@ -32,14 +32,6 @@
 									<small class="profile-header-title">{{ friend.rank }}</small>
 								{% endif %}
 							</span>
-
-							{# <span class="profile-header-tools">
-								<button class="action" data-tooltip="true" data-toggle="profile-header-tools" title="{{ lang('BAIHU_TOOLS') }}">
-								{{ Icon('gzo', 'mdi--more-vert', lang('BAIHU_TOOLS'), true) }}
-								</button>
-
-								{{ include('@baihu_baihu/includes/tools.twig') }}
-							</span> #}
 						</div>
 					</div>
 
@@ -71,24 +63,6 @@
 					{% endif %}
 
 				</h4>
-
-					{# <hr class="stabilize">
-
-					<div class="profile-stats">
-						<div class="profile-stats-item">
-							<h4>{{ lang('JOINED') }}</h4>
-							<small class="profile-header-time">
-								<time datetime="{{ friend.joined }}" title="{{ friend.joined }}" data-short="{{ friend.joined }}">{{ friend.joined }}</time>
-							</small>
-						</div>
-						<div class="profile-stats-item">
-							<h4>{{ lang('LAST_ACTIVE') }}</h4>
-							<small class="profile-header-time">
-								<time datetime="{{ friend.last_active }}" title="{{ friend.last_active }}" data-short="{{ friend.last_active }}">{{ friend.last_active }}</time>
-							</small>
-						</div>
-
-					</div> #}
 
 			</li>
 
