@@ -26,7 +26,7 @@
 
 						<div class="content-header-meta">
 							<span class="profile-header-status">
-								<h4>{{- baihu_username('profile', friend.id, friend.name, friend.color, 'profile-user') -}}</h4>
+								<h4 class="profile-heading-4">{{- baihu_username('profile', friend.id, friend.name, friend.color, 'profile-user') -}}</h4>
 
 								{% if friend.rank %}
 									<small class="profile-header-title">{{ friend.rank }}</small>
@@ -39,13 +39,13 @@
 
 					<div class="profile-stats">
 						<div class="profile-stats-item">
-							<h4>{{ lang('JOINED') }}</h4>
+							<h4 class="profile-heading-4">{{ lang('JOINED') }}</h4>
 							<small class="profile-header-time">
 								<time datetime="{{ friend.joined }}" title="{{ friend.joined }}" data-short="{{ friend.joined }}">{{ friend.joined }}</time>
 							</small>
 						</div>
 						<div class="profile-stats-item">
-							<h4>{{ lang('LAST_ACTIVE') }}</h4>
+							<h4 class="profile-heading-4">{{ lang('LAST_ACTIVE') }}</h4>
 							<small class="profile-header-time">
 								<time datetime="{{ friend.last_active }}" title="{{ friend.last_active }}" data-short="{{ friend.last_active }}">{{ friend.last_active }}</time>
 							</small>

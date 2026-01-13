@@ -56,7 +56,7 @@
 .profile-block,
 .profile-header,
 .profile-cards {
-	h4 {
+	.profile-heading-4 {
 		font-size: var(--font-size);
 	}
 
