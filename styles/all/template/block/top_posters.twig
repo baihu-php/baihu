@@ -3,10 +3,10 @@
 
 	{% block block_content %}
 
-		<div class="block-stats">
+		<ul class="block-stats">
 			{% for top in top_posters %}
 
-				<div class="block-info block-user">
+				<li class="block-info">
 
 					<span class="avatar-wrap avatar avatar-sm">
 						{{ avatar('user', top.avatar[0], '', false, true, 'avatar-sm') }}
@@ -19,10 +19,10 @@
 						</small>
 					</span>
 
-				</div>
+				</li>
 
 			{% endfor %}
-		</div>
+		</ul>
 
 	{% endblock %}
 
