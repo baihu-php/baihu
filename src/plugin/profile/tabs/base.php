@@ -64,6 +64,6 @@ abstract class base implements ServiceSubscriberInterface
 
 	public function restrict_bots(bool $restrict): void
 	{
-		$this->restrict_bots = $restrict;;
+		$this->restrict_bots = $restrict;
 	}
 }
