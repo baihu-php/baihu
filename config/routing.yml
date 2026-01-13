@@ -55,13 +55,13 @@ baihu_member:
     defaults:
         tid: profile
 
-baihu_member_friend_add:
+baihu_member_befriend:
     path: /u/add-friend/{user_id}
     controller: baihu.profile.friend_controller:create
     requirements:
         user_id: \d+
 
-baihu_member_friend_remove:
+baihu_member_unfriend:
     path: /u/remove-friend/{user_id}
     controller: baihu.profile.friend_controller:delete
     requirements:

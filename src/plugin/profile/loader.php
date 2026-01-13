@@ -177,8 +177,8 @@ class loader
 			'S_WARN_USER'	=> $warn_user_enabled,
 
 			'S_ZEBRA'		=> $user->data['user_id'] != $user_id && $user->data['is_registered'],
-			'U_BEFRIEND'	=> (!$friend && !$blacklist) ? $this->controller_helper->route('baihu_member_friend_add', ['user_id' => $user_id]) : '',
-			'U_UNFRIEND'	=> ($friend) ? $this->controller_helper->route('baihu_member_friend_remove', ['user_id' => $user_id]) : '',
+			'U_BEFRIEND'	=> (!$friend && !$blacklist) ? $this->controller_helper->route('baihu_member_befriend', ['user_id' => $user_id]) : '',
+			'U_UNFRIEND'	=> ($friend) ? $this->controller_helper->route('baihu_member_unfriend', ['user_id' => $user_id]) : '',
 
 			'U_BLACKLIST'	=> (!$friend && !$blacklist) ? $this->controller_helper->route('baihu_member_blacklist', ['user_id' => $user_id]) : '',
 			'U_UNBLACKLIST' => ($blacklist) ? $this->controller_helper->route('baihu_member_unblacklist', ['user_id' => $user_id]) : '',
