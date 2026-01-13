@@ -1,12 +1,10 @@
 /* Area */
 .page {
-	display: grid;
 	grid-template-columns: auto 1fr;
 	grid-template-areas:
 		'navbar navbar'
 		'sidebar main'
 		'sidebar footer';
-	grid-template-rows: auto 1fr auto;
 
 	@container page (inline-size < 700px) {
 		grid-template-columns: 1fr;
@@ -229,7 +227,7 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: var(--spacing);
-		margin-block-end: var(--spacing);
+		margin-block: var(--spacing);
 	}
 
 	.area-desc {

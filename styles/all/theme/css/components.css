@@ -520,10 +520,9 @@
 /* Containers */
 .popover,
 .drawer-container {
-	--drawer-bg: white;
+	--drawer-bg: var(--block-background-color);
 	--drawer-bg-hover: var(--background-color);
-	--drawer-color: var(--color-light-alt-2);
-	--drawer-border: 1px solid var(--drawer-color);
+	--drawer-border: 1px solid var(--border-color);
 
 	background-color: var(--drawer-bg);
 	border: 0;
