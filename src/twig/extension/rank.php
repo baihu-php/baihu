@@ -17,6 +17,10 @@ use Twig\TwigFunction;
 
 class rank extends AbstractExtension
 {
+	public function __construct()
+	{
+	}
+
 	/**
 	 * Returns a list of functions to add to the existing list.
 	 *
