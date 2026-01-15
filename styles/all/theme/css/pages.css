@@ -95,7 +95,7 @@
 		block-size: 140px;
 	}
 
-	.profile-card-info {
+	.profile-info {
 		min-block-size: 65px;
 		gap: unset;
 
@@ -108,15 +108,20 @@
 		}
 	}
 
+	.profile-rank img {
+		max-inline-size: 200px;
+	}
+
+	.profile-friend-meta,
+	.profile-meta {
+		text-align: center;
+	}
+
 	.profile-meta {
 		text-align: center;
 		margin: 0;
-		padding: var(--spacing-3);
-		min-block-size: 62px;
-
-		.profile-rank img {
-			max-inline-size: 200px;
-		}
+		padding-block-start: var(--spacing-3);
+		padding-inline: var(--spacing-3);
 
 		.profile-user:hover {
 			text-decoration: underline;
@@ -131,7 +136,6 @@
 	.profile-stats {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		/* gap: var(--spacing-2); */
 		margin-inline: var(--spacing-2);
 
 		.profile-stats-item {

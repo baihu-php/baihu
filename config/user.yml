@@ -2,31 +2,28 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        bind:
+            string $php_ext: '%core.php_ext%'
+            string $root_path: '%core.root_path%'
+            string $users_table: '%tables.users%'
 
     baihu.create:
         class: baihu\baihu\src\user\create
 
     baihu.page:
         class: baihu\baihu\src\user\page
-        autowire: false
-        arguments:
-            - '@config'
-            - '@user'
-            - '%core.php_ext%'
 
     baihu.time:
         class: baihu\baihu\src\user\time
 
+    baihu.user_rank:
+        class: baihu\baihu\src\user\rank
+
     baihu.users_loader:
         class: baihu\baihu\src\user\loader
-        autowire: false
-        arguments:
-            - '@dbal.conn'
-            - '%core.root_path%'
-            - '%core.php_ext%'
-            - '%tables.users%'
 
     baihu\baihu\src\user\create: '@baihu.create'
     baihu\baihu\src\user\page: '@baihu.page'
+    baihu\baihu\src\user\rank: '@baihu.user_rank'
     baihu\baihu\src\user\loader: '@baihu.users_loader'
     baihu\baihu\src\user\time: '@baihu.time'

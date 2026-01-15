@@ -2,6 +2,7 @@ services:
     phpbb\auth\auth: '@auth'
     phpbb\avatar\helper: '@avatar.helper'
     phpbb\cache\driver\driver_interface: '@cache.driver'
+    phpbb\cache\service: '@cache'
     phpbb\config\config: '@config'
     phpbb\cron\manager: '@cron.manager'
     phpbb\db\driver\driver_interface: '@dbal.conn'

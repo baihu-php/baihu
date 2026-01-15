@@ -1443,6 +1443,41 @@ pre code {
 	}
 }
 
+/* Rank */
+.rank-wrap {
+	--rank-border-radius: 4px;
+
+	.rank {
+		font-weight: 500;
+		border-radius: var(--rank-border-radius);
+		display: flex;
+		align-items: center;
+		position: relative;
+		max-inline-size: 200px;
+		margin-inline: auto;
+		padding-inline-start: var(--spacing-1);
+	}
+
+	.rank-img {
+		display: inline-flex;
+		margin-inline-start: auto;
+		padding-inline: var(--spacing-1);
+	}
+
+	.rank-default {
+		color: var(--link);
+		border: var(--border-size) solid var(--link);
+
+		.rank-img {
+			color: inherit;
+			background-color: oklch(from var(--link) 80% c h / 0.6);
+			border-inline-start: inherit;
+			border-top-right-radius: var(--rank-border-radius);
+			border-bottom-right-radius: var(--rank-border-radius);
+		}
+	}
+}
+
 /* Cards */
 .cards {
 	--cards-column-size: var(--column-size, 300px);
@@ -1590,7 +1625,7 @@ pre code {
 
 .stabilize {
 	border-color: var(--color-light-alt-1);
-	margin: var(--spacing-4);
+	margin: var(--spacing);
 }
 
 dl {
