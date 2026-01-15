@@ -20,8 +20,8 @@ services:
 
     baihu.rank.extension:
         class: baihu\baihu\src\twig\extension\rank
-        # tags:
-        #     - { name: twig.extension }
+        tags:
+            - { name: twig.extension }
 
     baihu.avatar.extension:
         class: baihu\baihu\src\twig\extension\avatar
